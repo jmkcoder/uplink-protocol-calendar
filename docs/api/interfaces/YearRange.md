@@ -1,19 +1,27 @@
+[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+
+***
+
+[@uplink-protocol/form-controller](../globals.md) / YearRange
+
 # Interface: YearRange
 
-Interface representing a range of years used in the year view.
+Defined in: [interfaces/calendar.interfaces.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L77)
+
+YearRange - Interface for year range
 
 ## Properties
 
-### startYear
-
-• **startYear**: `number`
-
-The starting year of the range
-
-___
-
 ### endYear
 
-• **endYear**: `number`
+> **endYear**: `number`
 
-The ending year of the range
+Defined in: [interfaces/calendar.interfaces.ts:79](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L79)
+
+***
+
+### startYear
+
+> **startYear**: `number`
+
+Defined in: [interfaces/calendar.interfaces.ts:78](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L78)

@@ -6,7 +6,7 @@
 
 # Interface: IViewStateService
 
-Defined in: interfaces/view-state.service.interfaces.ts:8
+Defined in: [interfaces/view-state.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L8)
 
 View state service interface
 Responsible for managing calendar view state and binding updates
@@ -17,7 +17,7 @@ Responsible for managing calendar view state and binding updates
 
 > **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`): `object`
 
-Defined in: interfaces/view-state.service.interfaces.ts:12
+Defined in: [interfaces/view-state.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L12)
 
 Initialize view state bindings
 
@@ -55,6 +55,14 @@ Initialize view state bindings
 
 > **calendarDays**: `Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
 
+##### calendarMonths
+
+> **calendarMonths**: `Binding`\<[`CalendarMonth`](CalendarMonth.md)[]\>
+
+##### calendarYears
+
+> **calendarYears**: `Binding`\<[`CalendarYear`](CalendarYear.md)[]\>
+
 ##### currentMonth
 
 > **currentMonth**: `Binding`\<`number`\>
@@ -62,6 +70,10 @@ Initialize view state bindings
 ##### currentYear
 
 > **currentYear**: `Binding`\<`number`\>
+
+##### focusedDate
+
+> **focusedDate**: `Binding`\<`null` \| `Date`\>
 
 ##### isRangeSelection
 
@@ -89,7 +101,7 @@ Initialize view state bindings
 
 > **updateCurrentDate**(`date`, `bindings`, `getMonthName`, `generateCalendarDays`): `object`
 
-Defined in: interfaces/view-state.service.interfaces.ts:33
+Defined in: [interfaces/view-state.service.interfaces.ts:36](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L36)
 
 Update current date in view state
 
@@ -143,7 +155,7 @@ Update current date in view state
 
 > **updateDateRange**(`range`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: interfaces/view-state.service.interfaces.ts:58
+Defined in: [interfaces/view-state.service.interfaces.ts:61](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L61)
 
 Update date range bindings
 
@@ -171,11 +183,39 @@ Update date range bindings
 
 ***
 
+### updateFocusedDate()
+
+> **updateFocusedDate**(`date`, `calendarDaysBinding`, `generateCalendarDays`): `void`
+
+Defined in: [interfaces/view-state.service.interfaces.ts:81](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L81)
+
+Update focused date
+
+#### Parameters
+
+##### date
+
+`null` | `Date`
+
+##### calendarDaysBinding
+
+`Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
+
+##### generateCalendarDays
+
+() => [`CalendarDate`](CalendarDate.md)[]
+
+#### Returns
+
+`void`
+
+***
+
 ### updateSelectedDate()
 
 > **updateSelectedDate**(`date`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: interfaces/view-state.service.interfaces.ts:48
+Defined in: [interfaces/view-state.service.interfaces.ts:51](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L51)
 
 Update selected date bindings
 
@@ -207,7 +247,7 @@ Update selected date bindings
 
 > **updateSelectionMode**(`isRange`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: interfaces/view-state.service.interfaces.ts:68
+Defined in: [interfaces/view-state.service.interfaces.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/view-state.service.interfaces.ts#L71)
 
 Update selection mode
 

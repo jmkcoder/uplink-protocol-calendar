@@ -8,7 +8,7 @@
 
 > **isSameDay**(`date1`, `date2`): `boolean`
 
-Defined in: utils/calendar.utils.ts:31
+Defined in: [utils/calendar.utils.ts:31](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/utils/calendar.utils.ts#L31)
 
 Check if two dates represent the same day
 

@@ -6,7 +6,7 @@
 
 # Interface: INavigationService
 
-Defined in: interfaces/navigation.service.interfaces.ts:5
+Defined in: [interfaces/navigation.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L5)
 
 Navigation service interface
 Responsible for handling calendar navigation operations
@@ -17,7 +17,7 @@ Responsible for handling calendar navigation operations
 
 > **navigateToDate**(`date`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:39
+Defined in: [interfaces/navigation.service.interfaces.ts:48](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L48)
 
 Navigate to specific date
 
@@ -37,7 +37,7 @@ Navigate to specific date
 
 > **navigateToMonth**(`currentDate`, `month`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:29
+Defined in: [interfaces/navigation.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L29)
 
 Navigate to specific month
 
@@ -61,7 +61,7 @@ Navigate to specific month
 
 > **navigateToNextMonth**(`currentDate`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:9
+Defined in: [interfaces/navigation.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L9)
 
 Navigate to next month
 
@@ -81,7 +81,7 @@ Navigate to next month
 
 > **navigateToNextYear**(`currentDate`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:19
+Defined in: [interfaces/navigation.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L19)
 
 Navigate to next year
 
@@ -101,7 +101,7 @@ Navigate to next year
 
 > **navigateToPreviousMonth**(`currentDate`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:14
+Defined in: [interfaces/navigation.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L14)
 
 Navigate to previous month
 
@@ -121,7 +121,7 @@ Navigate to previous month
 
 > **navigateToPreviousYear**(`currentDate`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:24
+Defined in: [interfaces/navigation.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L24)
 
 Navigate to previous year
 
@@ -141,7 +141,7 @@ Navigate to previous year
 
 > **navigateToToday**(): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:44
+Defined in: [interfaces/navigation.service.interfaces.ts:53](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L53)
 
 Navigate to today
 
@@ -155,7 +155,7 @@ Navigate to today
 
 > **navigateToYear**(`currentDate`, `year`): `Date`
 
-Defined in: interfaces/navigation.service.interfaces.ts:34
+Defined in: [interfaces/navigation.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L34)
 
 Navigate to specific year
 
@@ -172,3 +172,39 @@ Navigate to specific year
 #### Returns
 
 `Date`
+
+***
+
+### navigateToYearRange()
+
+> **navigateToYearRange**(`currentYear`, `rangeSize`, `direction`): `number`
+
+Defined in: [interfaces/navigation.service.interfaces.ts:43](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/navigation.service.interfaces.ts#L43)
+
+Navigate to specific year range
+
+#### Parameters
+
+##### currentYear
+
+`number`
+
+The current year
+
+##### rangeSize
+
+`number`
+
+The number of years in the range
+
+##### direction
+
+`number`
+
+Direction to navigate (1 for next range, -1 for previous range)
+
+#### Returns
+
+`number`
+
+The new base year for the range

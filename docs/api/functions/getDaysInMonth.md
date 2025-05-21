@@ -8,7 +8,7 @@
 
 > **getDaysInMonth**(`year`, `month`): `number`
 
-Defined in: utils/calendar.utils.ts:11
+Defined in: [utils/calendar.utils.ts:11](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/utils/calendar.utils.ts#L11)
 
 Get the number of days in a month
 

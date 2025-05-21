@@ -8,7 +8,7 @@
 
 > **getFirstDayOfMonth**(`year`, `month`): `number`
 
-Defined in: utils/calendar.utils.ts:21
+Defined in: [utils/calendar.utils.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/utils/calendar.utils.ts#L21)
 
 Get the first day of the month (0 = Sunday, 1 = Monday, etc.)
 

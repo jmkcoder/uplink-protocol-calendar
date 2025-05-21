@@ -6,7 +6,7 @@
 
 # Class: ConstraintsService
 
-Defined in: services/constraints.service.ts:7
+Defined in: [services/constraints.service.ts:7](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/constraints.service.ts#L7)
 
 Implementation of ConstraintsService
 Responsible for managing date constraints like min/max dates and disabled dates
@@ -31,7 +31,7 @@ Responsible for managing date constraints like min/max dates and disabled dates
 
 > **getConstraints**(): `object`
 
-Defined in: services/constraints.service.ts:59
+Defined in: [services/constraints.service.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/constraints.service.ts#L59)
 
 Get current constraints
 
@@ -61,7 +61,7 @@ Get current constraints
 
 > **isDateDisabled**(`date`, `minDate`, `maxDate`, `disabledDates`): `boolean`
 
-Defined in: services/constraints.service.ts:39
+Defined in: [services/constraints.service.ts:39](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/constraints.service.ts#L39)
 
 Check if a date is disabled
 
@@ -97,7 +97,7 @@ Check if a date is disabled
 
 > **setDisabledDates**(`dates`): `Date`[]
 
-Defined in: services/constraints.service.ts:31
+Defined in: [services/constraints.service.ts:31](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/constraints.service.ts#L31)
 
 Set disabled dates
 
@@ -121,7 +121,7 @@ Set disabled dates
 
 > **setMaxDate**(`date`): `null` \| `Date`
 
-Defined in: services/constraints.service.ts:23
+Defined in: [services/constraints.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/constraints.service.ts#L23)
 
 Set maximum date
 
@@ -145,7 +145,7 @@ Set maximum date
 
 > **setMinDate**(`date`): `null` \| `Date`
 
-Defined in: services/constraints.service.ts:15
+Defined in: [services/constraints.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/constraints.service.ts#L15)
 
 Set minimum date
 

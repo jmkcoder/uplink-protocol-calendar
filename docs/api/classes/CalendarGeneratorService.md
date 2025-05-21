@@ -6,10 +6,10 @@
 
 # Class: CalendarGeneratorService
 
-Defined in: services/calendar-generator.service.ts:9
+Defined in: [services/calendar-generator.service.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/calendar-generator.service.ts#L9)
 
 Implementation of CalendarGeneratorService
-Responsible for generating calendar data for different view modes: days, months, and years
+Responsible for generating calendar days based on given options
 
 ## Implements
 
@@ -31,7 +31,7 @@ Responsible for generating calendar data for different view modes: days, months,
 
 > **generateCalendarDays**(`year`, `month`, `options`): [`CalendarDate`](../interfaces/CalendarDate.md)[]
 
-Defined in: services/calendar-generator.service.ts:13
+Defined in: [services/calendar-generator.service.ts:13](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/calendar-generator.service.ts#L13)
 
 Generate calendar days for a specified month/year
 
@@ -59,11 +59,71 @@ Generate calendar days for a specified month/year
 
 ***
 
+### generateCalendarMonths()
+
+> **generateCalendarMonths**(`year`, `options`): [`CalendarMonth`](../interfaces/CalendarMonth.md)[]
+
+Defined in: [services/calendar-generator.service.ts:238](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/calendar-generator.service.ts#L238)
+
+Generate calendar months for a specified year
+
+#### Parameters
+
+##### year
+
+`number`
+
+##### options
+
+[`MonthViewGenerationOptions`](../interfaces/MonthViewGenerationOptions.md)
+
+#### Returns
+
+[`CalendarMonth`](../interfaces/CalendarMonth.md)[]
+
+#### Implementation of
+
+[`ICalendarGeneratorService`](../interfaces/ICalendarGeneratorService.md).[`generateCalendarMonths`](../interfaces/ICalendarGeneratorService.md#generatecalendarmonths)
+
+***
+
+### generateCalendarYears()
+
+> **generateCalendarYears**(`baseYear`, `rangeSize`, `options`): [`CalendarYear`](../interfaces/CalendarYear.md)[]
+
+Defined in: [services/calendar-generator.service.ts:295](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/calendar-generator.service.ts#L295)
+
+Generate calendar years for a specified year range
+
+#### Parameters
+
+##### baseYear
+
+`number`
+
+##### rangeSize
+
+`number`
+
+##### options
+
+[`YearViewGenerationOptions`](../interfaces/YearViewGenerationOptions.md)
+
+#### Returns
+
+[`CalendarYear`](../interfaces/CalendarYear.md)[]
+
+#### Implementation of
+
+[`ICalendarGeneratorService`](../interfaces/ICalendarGeneratorService.md).[`generateCalendarYears`](../interfaces/ICalendarGeneratorService.md#generatecalendaryears)
+
+***
+
 ### getCalendarDaysGenerator()
 
 > **getCalendarDaysGenerator**(`getCurrentDate`, `getCalendarOptions`): () => [`CalendarDate`](../interfaces/CalendarDate.md)[]
 
-Defined in: services/calendar-generator.service.ts:104
+Defined in: [services/calendar-generator.service.ts:128](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/calendar-generator.service.ts#L128)
 
 Get calendar days generation function
 Returns a function that can be called to generate calendar days

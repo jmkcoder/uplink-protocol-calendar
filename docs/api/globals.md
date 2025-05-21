@@ -11,7 +11,6 @@ with advanced validation capabilities. This module is part of the Odyssey Uplink
 
 ## Classes
 
-- [Binding](classes/Binding.md)
 - [CalendarControllerClass](classes/CalendarControllerClass.md)
 - [CalendarGeneratorService](classes/CalendarGeneratorService.md)
 - [CalendarService](classes/CalendarService.md)
@@ -20,18 +19,19 @@ with advanced validation capabilities. This module is part of the Odyssey Uplink
 - [DateFormattingService](classes/DateFormattingService.md)
 - [DateSelectionService](classes/DateSelectionService.md)
 - [DateValidationService](classes/DateValidationService.md)
-- [EventEmitter](classes/EventEmitter.md)
 - [EventManagerService](classes/EventManagerService.md)
+- [LocalizationService](classes/LocalizationService.md)
 - [NavigationService](classes/NavigationService.md)
 - [ViewStateService](classes/ViewStateService.md)
 
 ## Interfaces
 
+- [CalendarControllerInterface](interfaces/CalendarControllerInterface.md)
 - [CalendarDate](interfaces/CalendarDate.md)
 - [CalendarGenerationOptions](interfaces/CalendarGenerationOptions.md)
+- [CalendarMonth](interfaces/CalendarMonth.md)
 - [CalendarOptions](interfaces/CalendarOptions.md)
-- [ControllerAdapter](interfaces/ControllerAdapter.md)
-- [ControllerMetadata](interfaces/ControllerMetadata.md)
+- [CalendarYear](interfaces/CalendarYear.md)
 - [DateRange](interfaces/DateRange.md)
 - [ICalendarGeneratorService](interfaces/ICalendarGeneratorService.md)
 - [ICalendarService](interfaces/ICalendarService.md)
@@ -41,9 +41,12 @@ with advanced validation capabilities. This module is part of the Odyssey Uplink
 - [IDateSelectionService](interfaces/IDateSelectionService.md)
 - [IDateValidationService](interfaces/IDateValidationService.md)
 - [IEventManagerService](interfaces/IEventManagerService.md)
+- [ILocalizationService](interfaces/ILocalizationService.md)
 - [INavigationService](interfaces/INavigationService.md)
 - [IViewStateService](interfaces/IViewStateService.md)
-- [TypedController](interfaces/TypedController.md)
+- [MonthViewGenerationOptions](interfaces/MonthViewGenerationOptions.md)
+- [YearRange](interfaces/YearRange.md)
+- [YearViewGenerationOptions](interfaces/YearViewGenerationOptions.md)
 
 ## Functions
 

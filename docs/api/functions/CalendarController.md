@@ -8,7 +8,7 @@
 
 > **CalendarController**(`options?`): [`CalendarControllerClass`](../classes/CalendarControllerClass.md)
 
-Defined in: controller.ts:420
+Defined in: [controller.ts:852](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L852)
 
 CalendarController - Factory function that creates and returns a new CalendarControllerClass instance.
 

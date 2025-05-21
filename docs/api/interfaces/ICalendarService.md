@@ -6,7 +6,7 @@
 
 # Interface: ICalendarService
 
-Defined in: interfaces/calendar.service.interfaces.ts:7
+Defined in: [interfaces/calendar.service.interfaces.ts:7](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L7)
 
 Calendar service interface
 Responsible for calendar generation and navigation functions
@@ -17,7 +17,7 @@ Responsible for calendar generation and navigation functions
 
 > **generateCalendarDays**(`year`, `month`, `options`): [`CalendarDate`](CalendarDate.md)[]
 
-Defined in: interfaces/calendar.service.interfaces.ts:11
+Defined in: [interfaces/calendar.service.interfaces.ts:11](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L11)
 
 Generate calendar data for a specific month/year
 
@@ -41,11 +41,25 @@ Generate calendar data for a specific month/year
 
 ***
 
+### getLocalizationService()
+
+> **getLocalizationService**(): `any`
+
+Defined in: [interfaces/calendar.service.interfaces.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L55)
+
+Get the localization service
+
+#### Returns
+
+`any`
+
+***
+
 ### getMonthName()
 
 > **getMonthName**(`month`): `string`
 
-Defined in: interfaces/calendar.service.interfaces.ts:20
+Defined in: [interfaces/calendar.service.interfaces.ts:20](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L20)
 
 Get month name from month index
 
@@ -65,7 +79,7 @@ Get month name from month index
 
 > **getNextMonth**(`currentDate`): `Date`
 
-Defined in: interfaces/calendar.service.interfaces.ts:30
+Defined in: [interfaces/calendar.service.interfaces.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L30)
 
 Navigate to next month from current date
 
@@ -85,7 +99,7 @@ Navigate to next month from current date
 
 > **getNextYear**(`currentDate`): `Date`
 
-Defined in: interfaces/calendar.service.interfaces.ts:40
+Defined in: [interfaces/calendar.service.interfaces.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L40)
 
 Navigate to next year from current date
 
@@ -105,7 +119,7 @@ Navigate to next year from current date
 
 > **getPreviousMonth**(`currentDate`): `Date`
 
-Defined in: interfaces/calendar.service.interfaces.ts:35
+Defined in: [interfaces/calendar.service.interfaces.ts:35](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L35)
 
 Navigate to previous month from current date
 
@@ -125,7 +139,7 @@ Navigate to previous month from current date
 
 > **getPreviousYear**(`currentDate`): `Date`
 
-Defined in: interfaces/calendar.service.interfaces.ts:45
+Defined in: [interfaces/calendar.service.interfaces.ts:45](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L45)
 
 Navigate to previous year from current date
 
@@ -145,7 +159,7 @@ Navigate to previous year from current date
 
 > **getWeekdayNames**(`firstDayOfWeek`): `string`[]
 
-Defined in: interfaces/calendar.service.interfaces.ts:25
+Defined in: [interfaces/calendar.service.interfaces.ts:25](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L25)
 
 Get weekday names starting from the specified first day
 
@@ -158,3 +172,23 @@ Get weekday names starting from the specified first day
 #### Returns
 
 `string`[]
+
+***
+
+### setLocalizationService()
+
+> **setLocalizationService**(`service`): `void`
+
+Defined in: [interfaces/calendar.service.interfaces.ts:50](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L50)
+
+Set the localization service
+
+#### Parameters
+
+##### service
+
+`any`
+
+#### Returns
+
+`void`

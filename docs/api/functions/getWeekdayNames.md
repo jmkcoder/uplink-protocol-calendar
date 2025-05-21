@@ -8,7 +8,7 @@
 
 > **getWeekdayNames**(`firstDayOfWeek`): `string`[]
 
-Defined in: utils/calendar.utils.ts:80
+Defined in: [utils/calendar.utils.ts:80](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/utils/calendar.utils.ts#L80)
 
 Get localized weekday names (short format)
 

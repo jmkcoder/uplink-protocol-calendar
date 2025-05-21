@@ -6,7 +6,7 @@
 
 # Interface: DateRange
 
-Defined in: interfaces/calendar.interfaces.ts:39
+Defined in: [interfaces/calendar.interfaces.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L46)
 
 DateRange - Interface for date range selection
 
@@ -16,7 +16,7 @@ DateRange - Interface for date range selection
 
 > **endDate**: `null` \| `Date`
 
-Defined in: interfaces/calendar.interfaces.ts:41
+Defined in: [interfaces/calendar.interfaces.ts:48](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L48)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: interfaces/calendar.interfaces.ts:41
 
 > **startDate**: `null` \| `Date`
 
-Defined in: interfaces/calendar.interfaces.ts:40
+Defined in: [interfaces/calendar.interfaces.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L47)

@@ -8,7 +8,7 @@
 
 > **getMonthName**(`monthIndex`): `string`
 
-Defined in: utils/calendar.utils.ts:67
+Defined in: [utils/calendar.utils.ts:67](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/utils/calendar.utils.ts#L67)
 
 Get month name from month index
 

@@ -1,43 +1,51 @@
+[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+
+***
+
+[@uplink-protocol/form-controller](../globals.md) / CalendarYear
+
 # Interface: CalendarYear
 
-Interface representing a year in the year view.
+Defined in: [interfaces/calendar.interfaces.ts:66](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L66)
+
+CalendarYear - Interface for calendar year objects in year view
 
 ## Properties
 
-### year
-
-• **year**: `number`
-
-The year number
-
-___
-
 ### isCurrentYear
 
-• **isCurrentYear**: `boolean`
+> **isCurrentYear**: `boolean`
 
-Indicates if this year is the current year in today's date
+Defined in: [interfaces/calendar.interfaces.ts:68](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L68)
 
-___
-
-### isSelected
-
-• **isSelected**: `boolean`
-
-Indicates if this year is currently selected
-
-___
+***
 
 ### isDisabled
 
-• **isDisabled**: `boolean`
+> **isDisabled**: `boolean`
 
-Indicates if this year is disabled (cannot be selected)
+Defined in: [interfaces/calendar.interfaces.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L70)
 
-___
+***
 
-### isInRange
+### isInRange?
 
-• **isInRange**: `boolean`
+> `optional` **isInRange**: `boolean`
 
-Indicates if this year is in the current year range being displayed
+Defined in: [interfaces/calendar.interfaces.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L71)
+
+***
+
+### isSelected
+
+> **isSelected**: `boolean`
+
+Defined in: [interfaces/calendar.interfaces.ts:69](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L69)
+
+***
+
+### year
+
+> **year**: `number`
+
+Defined in: [interfaces/calendar.interfaces.ts:67](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L67)

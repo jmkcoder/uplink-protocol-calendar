@@ -6,7 +6,7 @@
 
 # Interface: CalendarOptions
 
-Defined in: interfaces/calendar.interfaces.ts:21
+Defined in: [interfaces/calendar.interfaces.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L22)
 
 CalendarOptions - Interface for calendar configuration options
 
@@ -16,9 +16,19 @@ CalendarOptions - Interface for calendar configuration options
 
 > `optional` **dateFormat**: `string`
 
-Defined in: interfaces/calendar.interfaces.ts:33
+Defined in: [interfaces/calendar.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L34)
 
 Date format for output (defaults to ISO string)
+
+***
+
+### dateFormatOptions?
+
+> `optional` **dateFormatOptions**: `DateTimeFormatOptions`
+
+Defined in: [interfaces/calendar.interfaces.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L40)
+
+Date format options for Intl.DateTimeFormat
 
 ***
 
@@ -26,7 +36,7 @@ Date format for output (defaults to ISO string)
 
 > `optional` **disabledDates**: `Date`[]
 
-Defined in: interfaces/calendar.interfaces.ts:27
+Defined in: [interfaces/calendar.interfaces.ts:28](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L28)
 
 List of disabled dates
 
@@ -36,9 +46,19 @@ List of disabled dates
 
 > `optional` **firstDayOfWeek**: `number`
 
-Defined in: interfaces/calendar.interfaces.ts:31
+Defined in: [interfaces/calendar.interfaces.ts:32](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L32)
 
 First day of week (0 = Sunday, 1 = Monday, etc.)
+
+***
+
+### hideOtherMonthDays?
+
+> `optional` **hideOtherMonthDays**: `boolean`
+
+Defined in: [interfaces/calendar.interfaces.ts:36](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L36)
+
+Hide days from previous and next months
 
 ***
 
@@ -46,9 +66,19 @@ First day of week (0 = Sunday, 1 = Monday, etc.)
 
 > `optional` **initialSelectedDate**: `Date`
 
-Defined in: interfaces/calendar.interfaces.ts:29
+Defined in: [interfaces/calendar.interfaces.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L30)
 
 Start with a specific date selected
+
+***
+
+### locale?
+
+> `optional` **locale**: `string`
+
+Defined in: [interfaces/calendar.interfaces.ts:38](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L38)
+
+Locale for internationalization (defaults to 'en-US')
 
 ***
 
@@ -56,7 +86,7 @@ Start with a specific date selected
 
 > `optional` **maxDate**: `Date`
 
-Defined in: interfaces/calendar.interfaces.ts:25
+Defined in: [interfaces/calendar.interfaces.ts:26](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L26)
 
 Maximum selectable date
 
@@ -66,6 +96,6 @@ Maximum selectable date
 
 > `optional` **minDate**: `Date`
 
-Defined in: interfaces/calendar.interfaces.ts:23
+Defined in: [interfaces/calendar.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.interfaces.ts#L24)
 
 Minimum selectable date
