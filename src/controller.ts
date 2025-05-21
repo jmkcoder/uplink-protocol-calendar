@@ -315,12 +315,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * @param day Day of month
    */
   public selectDate(year: number, month: number, day: number): void {
-    const date =
-    new Date(
-      this._currentDate.getFullYear(),
-      this._currentDate.getMonth(),
-      day
-    ); new Date(year, month, day);
+    const date = new Date(year, month, day);
     
     // Check if date is disabled
     if (this.isDateDisabled(date)) {
