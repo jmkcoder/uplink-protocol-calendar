@@ -1,5 +1,5 @@
 import { EventEmitter } from "@uplink-protocol/core";
-import { DateRange } from "./calendar.interfaces";
+import { DateRange, YearRange } from "./calendar.interfaces";
 
 /**
  * Event manager service interface
@@ -15,6 +15,7 @@ export interface IEventManagerService {
     monthChanged: EventEmitter<number>;
     yearChanged: EventEmitter<number>;
     viewChanged: EventEmitter<{month: number, year: number}>;
+    yearRangeChanged: EventEmitter<YearRange>;
   };
 
   /**
@@ -43,8 +44,7 @@ export interface IEventManagerService {
 
   /**
    * Emit year changed event
-   */
-  emitYearChanged(
+   */  emitYearChanged(
     emitter: EventEmitter<number>,
     year: number
   ): void;
@@ -55,5 +55,13 @@ export interface IEventManagerService {
   emitViewChanged(
     emitter: EventEmitter<{month: number, year: number}>,
     view: {month: number, year: number}
+  ): void;
+
+  /**
+   * Emit year range changed event
+   */
+  emitYearRangeChanged(
+    emitter: EventEmitter<YearRange>,
+    range: YearRange
   ): void;
 }

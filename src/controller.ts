@@ -2,9 +2,14 @@ import { Binding, ControllerAdapter, EventEmitter, TypedController } from "@upli
 import { ControllerMetadata } from "@uplink-protocol/core/dist/uplink/interfaces/metadata/controller-metadata.interface";
 import { 
   CalendarDate, 
+  CalendarMonth,
+  CalendarYear,
   CalendarOptions, 
   DateRange,
+  YearRange,
   CalendarGenerationOptions, 
+  MonthViewGenerationOptions,
+  YearViewGenerationOptions,
   ICalendarService,
   IDateFormattingService,
   IDateSelectionService,
@@ -51,6 +56,8 @@ export interface CalendarControllerInterface extends TypedController {
   _hideOtherMonthDays: boolean;
   _locale: string;
   _dateFormatOptions: Intl.DateTimeFormatOptions | null;
+  _yearRangeSize: number;
+  _currentYearRangeBase: number;
 }
 
 export class CalendarControllerClass implements CalendarControllerInterface {
@@ -58,7 +65,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   methods?: Record<string, (...args: any[]) => any>;
   events?: Record<string, EventEmitter<any>>;
   meta?: ControllerMetadata;
-  __adapter?: ControllerAdapter;  // State variables
+  __adapter?: ControllerAdapter;
+  
+  // State variables
   _currentDate: Date = new Date();
   _selectedDate: Date | null = null;
   _selectedDateRange: DateRange = { startDate: null, endDate: null };
@@ -69,9 +78,11 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   _firstDayOfWeek: number = 0; // Sunday
   _dateFormat: string | null = null;
   _isRangeSelection: boolean = false;
-  _hideOtherMonthDays: boolean = false; // Show other month days by default
-  _locale: string = 'en-US'; // Default locale
+  _hideOtherMonthDays: boolean = false; // Show other month days by default  _locale: string = 'en-US'; // Default locale
   _dateFormatOptions: Intl.DateTimeFormatOptions | null = null;
+  _yearRangeSize: number = 12; // Default number of years in year view
+  _currentYearRangeBase: number = 0; // Base year for current year range view
+  _locale: string = 'en-US'; // Default locale
   
   // Services
   private _calendarService: ICalendarService;
@@ -141,16 +152,21 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this._selectedDate, 
       this._selectedDateRange, 
       this._firstDayOfWeek, 
-      this._isRangeSelection,
-      () => this.generateCalendarDays()
+      this._isRangeSelection,      () => this.generateCalendarDays()
     );
     
     // Set month name and weekdays after initialization
     this.bindings.monthName.set(this._calendarService.getMonthName(this._currentDate.getMonth()));
     this.bindings.weekdays.set(this._calendarService.getWeekdayNames(this._firstDayOfWeek));
+    
+    // Initialize month and year views
+    this.bindings.calendarMonths.set(this.generateCalendarMonths());
+    this.bindings.calendarYears.set(this.generateCalendarYears());
 
     // Set up events using EventManagerService
-    this.events = this._eventManagerService.initializeEvents();    // Set up methods    
+    this.events = this._eventManagerService.initializeEvents();    
+    
+    // Set up methods    
     this.methods = {
       selectDate: this.selectDate.bind(this),
       nextMonth: this.nextMonth.bind(this),
@@ -161,6 +177,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       goToYear: this.goToYear.bind(this),
       goToDate: this.goToDate.bind(this),
       goToToday: this.goToToday.bind(this),
+      nextYearRange: this.nextYearRange.bind(this),
+      prevYearRange: this.prevYearRange.bind(this),
+      goToYearRange: this.goToYearRange.bind(this),
       setRangeSelectionMode: this.setRangeSelectionMode.bind(this),
       clearSelection: this.clearSelection.bind(this),
       isDateDisabled: this.isDateDisabled.bind(this),
@@ -170,6 +189,15 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       getLocale: this.getLocale.bind(this),
       setDateFormatOptions: this.setDateFormatOptions.bind(this),
       getDateFormatOptions: this.getDateFormatOptions.bind(this),
+      selectMonth: this.selectMonth.bind(this),
+      selectYear: this.selectYear.bind(this),
+      getFormattedDate: this.getFormattedDate.bind(this),
+      formatDate: this.formatDate.bind(this),
+      setMinDate: this.setMinDate.bind(this),
+      setMaxDate: this.setMaxDate.bind(this),
+      setDisabledDates: this.setDisabledDates.bind(this),
+      getCurrentYearRange: this.getCurrentYearRange.bind(this),
+      setYearRangeSize: this.setYearRangeSize.bind(this),
     };
   }
   /**
@@ -195,6 +223,79 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     return this._calendarGeneratorService.generateCalendarDays(year, month, options);
   }
   /**
+   * Generate calendar months for year view
+   * @returns Array of CalendarMonth objects
+   */
+  private generateCalendarMonths(): CalendarMonth[] {
+    const year = this._currentDate.getFullYear();
+    
+    const options: MonthViewGenerationOptions = {
+      selectedDate: this._selectedDate,
+      currentDate: this._currentDate,
+      minDate: this._minDate,
+      maxDate: this._maxDate,
+      isMonthDisabledFn: (year, month) => {
+        // Check if all days in month are disabled
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        
+        // If entire month is before min date
+        if (this._minDate && lastDayOfMonth < this._minDate) {
+          return true;
+        }
+        
+        // If entire month is after max date
+        if (this._maxDate && firstDayOfMonth > this._maxDate) {
+          return true;
+        }
+        
+        // Not disabled
+        return false;
+      }
+    };
+    
+    return this._calendarGeneratorService.generateCalendarMonths(year, options);
+  }
+
+  /**
+   * Generate calendar years for year range view
+   * @returns Array of CalendarYear objects
+   */
+  private generateCalendarYears(): CalendarYear[] {
+    const baseYear = this._currentYearRangeBase || 
+                    (this._currentDate.getFullYear() - (this._currentDate.getFullYear() % this._yearRangeSize));
+    
+    // If base year was not explicitly set, update the current range base
+    if (!this._currentYearRangeBase) {
+      this._currentYearRangeBase = baseYear;
+    }
+    
+    const options: YearViewGenerationOptions = {
+      selectedDate: this._selectedDate,
+      currentDate: this._currentDate,
+      minDate: this._minDate,
+      maxDate: this._maxDate,
+      isYearDisabledFn: (year) => {
+        // Check if the entire year is disabled
+        
+        // If entire year is before min date
+        if (this._minDate && year < this._minDate.getFullYear()) {
+          return true;
+        }
+        
+        // If entire year is after max date
+        if (this._maxDate && year > this._maxDate.getFullYear()) {
+          return true;
+        }
+        
+        // Not disabled
+        return false;
+      }
+    };
+    
+    return this._calendarGeneratorService.generateCalendarYears(baseYear, this._yearRangeSize, options);
+  }
+  /**
    * Check if a date should be disabled using ConstraintsService
    * @param date Date to check
    * @returns Boolean indicating if the date is disabled
@@ -214,7 +315,12 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * @param day Day of month
    */
   public selectDate(year: number, month: number, day: number): void {
-    const date = new Date(year, month, day);
+    const date =
+    new Date(
+      this._currentDate.getFullYear(),
+      this._currentDate.getMonth(),
+      day
+    ); new Date(year, month, day);
     
     // Check if date is disabled
     if (this.isDateDisabled(date)) {
@@ -303,10 +409,15 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   /**
    * Go to a specific year using NavigationService
    * @param year Year
-   */
+   */  
   public goToYear(year: number): void {
     this._currentDate = this._navigationService.navigateToYear(this._currentDate, year);
     this.updateCurrentDate(this._currentDate);
+    
+    // Update month view since the year changed
+    if (this.bindings.calendarMonths) {
+      this.bindings.calendarMonths.set(this.generateCalendarMonths());
+    }
   }
 
   /**
@@ -326,6 +437,82 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this.updateCurrentDate(this._currentDate);
   }
   /**
+   * Navigate to next year range
+   */
+  public nextYearRange(): void {
+    this._currentYearRangeBase = this._navigationService.navigateToYearRange(
+      this._currentYearRangeBase || this._currentDate.getFullYear(), 
+      this._yearRangeSize, 
+      1
+    );
+    
+    // Update view bindings
+    if (this.bindings.calendarYears) {
+      this.bindings.calendarYears.set(this.generateCalendarYears());
+    }
+    
+    // Emit events
+    if (this.events && this.events.yearRangeChanged) {
+      this._eventManagerService.emitYearRangeChanged(
+        this.events.yearRangeChanged, 
+        { 
+          startYear: this._currentYearRangeBase, 
+          endYear: this._currentYearRangeBase + this._yearRangeSize - 1 
+        }
+      );
+    }
+  }
+
+  /**
+   * Navigate to previous year range
+   */
+  public prevYearRange(): void {
+    this._currentYearRangeBase = this._navigationService.navigateToYearRange(
+      this._currentYearRangeBase || this._currentDate.getFullYear(), 
+      this._yearRangeSize, 
+      -1
+    );
+    
+    // Update view bindings
+    if (this.bindings.calendarYears) {
+      this.bindings.calendarYears.set(this.generateCalendarYears());
+    }
+    
+    // Emit events
+    if (this.events && this.events.yearRangeChanged) {
+      this._eventManagerService.emitYearRangeChanged(
+        this.events.yearRangeChanged, 
+        { 
+          startYear: this._currentYearRangeBase, 
+          endYear: this._currentYearRangeBase + this._yearRangeSize - 1 
+        }
+      );
+    }
+  }
+
+  /**
+   * Go to specific year range
+   * @param baseYear The base year for the range
+   */
+  public goToYearRange(baseYear: number): void {
+    this._currentYearRangeBase = baseYear;
+    
+    // Update view bindings
+    if (this.bindings.calendarYears) {
+      this.bindings.calendarYears.set(this.generateCalendarYears());
+    }
+    
+    // Emit events
+    if (this.events && this.events.yearRangeChanged) {
+      this._eventManagerService.emitYearRangeChanged(
+        this.events.yearRangeChanged, 
+        { 
+          startYear: this._currentYearRangeBase, 
+          endYear: this._currentYearRangeBase + this._yearRangeSize - 1 
+        }
+      );
+    }
+  }  /**
    * Update the current date and related bindings
    * @param date New current date
    */
@@ -344,11 +531,33 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       () => this.generateCalendarDays()
     );
     
+    // Update month and year views
+    this.updateViewBindings();
+    
     // Emit events
     if (this.events) {
       this._eventManagerService.emitMonthChanged(this.events.monthChanged, month);
       this._eventManagerService.emitYearChanged(this.events.yearChanged, year);
       this._eventManagerService.emitViewChanged(this.events.viewChanged, { month, year });
+    }
+  }
+  /**
+   * Update the bindings for calendar months and years
+   */
+  private updateViewBindings(): void {
+    // Update day view
+    if (this.bindings.calendarDays) {
+      this.bindings.calendarDays.set(this.generateCalendarDays());
+    }
+    
+    // Update month view
+    if (this.bindings.calendarMonths) {
+      this.bindings.calendarMonths.set(this.generateCalendarMonths());
+    }
+    
+    // Update year view
+    if (this.bindings.calendarYears) {
+      this.bindings.calendarYears.set(this.generateCalendarYears());
     }
   }
   /**
@@ -534,6 +743,103 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    */
   public clearFocusedDate(): void {
     this.setFocusedDate(null);
+  }
+
+  /**
+   * Get formatted date for display
+   * @param date Date to format
+   * @returns Formatted date string
+   */
+  public formatDate(date: Date): string {
+    // If we have localization service and format options, use internationalized formatting
+    if (this._localizationService && this._dateFormatOptions) {
+      return this._localizationService.formatDate(date, this._dateFormatOptions);
+    }
+    
+    // Otherwise use the traditional formatting
+    return this._dateFormattingService.formatDate(date, this._dateFormat || undefined);
+  }
+
+  /**
+   * Get information about the current year range
+   * @returns Year range object with start and end years
+   */
+  public getCurrentYearRange(): YearRange {
+    const baseYear = this._currentYearRangeBase || 
+                    (this._currentDate.getFullYear() - (this._currentDate.getFullYear() % this._yearRangeSize));
+    
+    return {
+      startYear: baseYear,
+      endYear: baseYear + this._yearRangeSize - 1
+    };
+  }
+
+  /**
+   * Set the size of the year range (number of years to display in year view)
+   * @param size Number of years to display
+   */
+  public setYearRangeSize(size: number): void {
+    if (size < 1) return; // Invalid size
+    
+    this._yearRangeSize = size;
+    
+    // Reset the current range base to align with the new size
+    this._currentYearRangeBase = this._currentDate.getFullYear() - (this._currentDate.getFullYear() % this._yearRangeSize);
+    
+    // Update the years view
+    if (this.bindings.calendarYears) {
+      this.bindings.calendarYears.set(this.generateCalendarYears());
+    }
+  }
+
+  /**
+   * Select a specific month from the month view
+   * @param month Month to select (0-11)
+   * @param year Year of the month
+   */
+  public selectMonth(month: number, year: number): void {
+    // Navigate to the selected month
+    this._currentDate = this._navigationService.navigateToMonth(
+      new Date(year, month, 1), 
+      month
+    );
+    
+    this.updateCurrentDate(this._currentDate);
+    
+    // Emit a view change event for month selection
+    if (this.events && this.events.viewChanged) {
+      this._eventManagerService.emitViewChanged(
+        this.events.viewChanged, 
+        { month, year }
+      );
+    }
+  }
+  
+  /**
+   * Select a specific year from the year view
+   * @param year Year to select
+   */
+  public selectYear(year: number): void {
+    // Navigate to the selected year
+    this._currentDate = this._navigationService.navigateToYear(
+      this._currentDate,
+      year
+    );
+    
+    this.updateCurrentDate(this._currentDate);
+    
+    // Emit a view change event for year selection
+    if (this.events && this.events.yearChanged) {
+      this._eventManagerService.emitYearChanged(
+        this.events.yearChanged, 
+        year
+      );
+    }
+    
+    // Update month view since year changed
+    if (this.bindings.calendarMonths) {
+      this.bindings.calendarMonths.set(this.generateCalendarMonths());
+    }
   }
 }
 

@@ -71,17 +71,38 @@ calendar.methods.nextYear();
 // Navigate to the previous year
 calendar.methods.prevYear();
 
+// Navigate to the next year range (e.g., move from 2020-2029 to 2030-2039)
+calendar.methods.nextYearRange();
+
+// Navigate to the previous year range (e.g., move from 2020-2029 to 2010-2019)
+calendar.methods.prevYearRange();
+
 // Navigate to a specific month (0-indexed)
 calendar.methods.goToMonth(6); // July
 
 // Navigate to a specific year
 calendar.methods.goToYear(2026);
 
+// Navigate to a specific year range by specifying the base year
+calendar.methods.goToYearRange(2030); // Goes to range starting with 2030
+
 // Navigate to a specific date
 calendar.methods.goToDate(new Date(2025, 11, 25)); // December 25, 2025
 
 // Navigate to today
 calendar.methods.goToToday();
+```
+
+### View Mode Selection
+
+```javascript
+// Select a specific month from the month view
+// This updates the current date to that month and can be used to switch from month view to day view
+calendar.methods.selectMonth(3, 2025); // Select April 2025
+
+// Select a specific year from the year view
+// This updates the current date to that year and can be used to switch from year view to month view
+calendar.methods.selectYear(2026); // Select 2026
 ```
 
 ### Date Validation
@@ -118,6 +139,19 @@ const monthName = calendar.bindings.monthName.get();
 ```javascript
 // Get calendar days for the current month view
 const days = calendar.bindings.calendarDays.get();
+
+// Get months for the month view
+const months = calendar.bindings.calendarMonths.get();
+
+// Get years for the year view
+const years = calendar.bindings.calendarYears.get();
+
+// Get information about the current year range
+const yearRange = calendar.methods.getCurrentYearRange();
+console.log(`Current year range: ${yearRange.startYear}-${yearRange.endYear}`);
+
+// Set the year range size (number of years to display in year view)
+calendar.methods.setYearRangeSize(16); // Display 16 years instead of default 12
 
 // Render the calendar days
 days.forEach(day => {

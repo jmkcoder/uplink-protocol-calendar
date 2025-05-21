@@ -34,6 +34,15 @@ export interface INavigationService {
   navigateToYear(currentDate: Date, year: number): Date;
 
   /**
+   * Navigate to specific year range
+   * @param currentYear The current year
+   * @param rangeSize The number of years in the range
+   * @param direction Direction to navigate (1 for next range, -1 for previous range)
+   * @returns The new base year for the range
+   */
+  navigateToYearRange(currentYear: number, rangeSize: number, direction: number): number;
+
+  /**
    * Navigate to specific date
    */
   navigateToDate(date: Date): Date;

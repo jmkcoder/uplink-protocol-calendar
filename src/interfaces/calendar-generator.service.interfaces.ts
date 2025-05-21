@@ -1,5 +1,5 @@
-import { CalendarDate } from "./calendar.interfaces";
-import { CalendarGenerationOptions } from "./calendar.service.interfaces";
+import { CalendarDate, CalendarMonth, CalendarYear } from "./calendar.interfaces";
+import { CalendarGenerationOptions, MonthViewGenerationOptions, YearViewGenerationOptions } from "./calendar.service.interfaces";
 
 /**
  * Calendar generator service interface
@@ -14,6 +14,23 @@ export interface ICalendarGeneratorService {
     month: number,
     options: CalendarGenerationOptions
   ): CalendarDate[];
+
+  /**
+   * Generate calendar months for a specified year
+   */
+  generateCalendarMonths(
+    year: number,
+    options: MonthViewGenerationOptions
+  ): CalendarMonth[];
+
+  /**
+   * Generate calendar years for a specified year range
+   */
+  generateCalendarYears(
+    baseYear: number,
+    rangeSize: number,
+    options: YearViewGenerationOptions
+  ): CalendarYear[];
 
   /**
    * Get calendar days generation function

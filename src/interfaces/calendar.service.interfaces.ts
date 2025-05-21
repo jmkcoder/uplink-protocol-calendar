@@ -71,4 +71,26 @@ export interface CalendarGenerationOptions {
   hideOtherMonthDays: boolean;
 }
 
+/**
+ * Options for month view generation
+ */
+export interface MonthViewGenerationOptions {
+  selectedDate: Date | null;
+  currentDate: Date;
+  minDate: Date | null;
+  maxDate: Date | null;
+  isMonthDisabledFn?: (year: number, month: number) => boolean;
+}
+
+/**
+ * Options for year view generation
+ */
+export interface YearViewGenerationOptions {
+  selectedDate: Date | null;
+  currentDate: Date;
+  minDate: Date | null;
+  maxDate: Date | null;
+  isYearDisabledFn?: (year: number) => boolean;
+}
+
 // Using CalendarDate from calendar.interfaces.ts

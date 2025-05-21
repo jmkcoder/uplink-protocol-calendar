@@ -5,6 +5,17 @@ All notable changes to the `@uplink-protocol/calendar-controller` package will b
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-05-21
+
+### Added
+- Month view functionality for easier month selection
+- Year view with configurable year ranges
+- Year range navigation methods (nextYearRange, prevYearRange, goToYearRange)
+- New interfaces: CalendarMonth, CalendarYear, YearRange
+- Methods to select specific months and years (selectMonth, selectYear)
+- Ability to customize year range size
+- Updated documentation for new view modes
+
 ## [0.1.0] - 2025-05-20
 
 ### Added

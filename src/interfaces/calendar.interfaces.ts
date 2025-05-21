@@ -47,3 +47,34 @@ export interface DateRange {
   startDate: Date | null;
   endDate: Date | null;
 }
+
+/**
+ * CalendarMonth - Interface for calendar month objects in month view
+ */
+export interface CalendarMonth {
+  month: number;
+  year: number;
+  name: string;
+  isCurrentMonth: boolean;
+  isSelected: boolean;
+  isDisabled: boolean;
+}
+
+/**
+ * CalendarYear - Interface for calendar year objects in year view
+ */
+export interface CalendarYear {
+  year: number;
+  isCurrentYear: boolean;
+  isSelected: boolean;
+  isDisabled: boolean;
+  isInRange?: boolean;
+}
+
+/**
+ * YearRange - Interface for year range
+ */
+export interface YearRange {
+  startYear: number;
+  endYear: number;
+}

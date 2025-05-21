@@ -1,6 +1,6 @@
 import { ICalendarGeneratorService } from "../interfaces/calendar-generator.service.interfaces";
-import { CalendarDate } from "../interfaces/calendar.interfaces";
-import { CalendarGenerationOptions } from "../interfaces/calendar.service.interfaces";
+import { CalendarDate, CalendarMonth, CalendarYear } from "../interfaces/calendar.interfaces";
+import { CalendarGenerationOptions, MonthViewGenerationOptions, YearViewGenerationOptions } from "../interfaces/calendar.service.interfaces";
 
 /**
  * Implementation of CalendarGeneratorService
@@ -230,5 +230,111 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
       date.getMonth() === focusedDate.getMonth() &&
       date.getFullYear() === focusedDate.getFullYear()
     );
+  }
+
+  /**
+   * Generate calendar months for a specified year
+   */
+  public generateCalendarMonths(
+    year: number,
+    options: MonthViewGenerationOptions
+  ): CalendarMonth[] {
+    const months: CalendarMonth[] = [];
+    const currentMonth = options.currentDate.getMonth();
+    const currentYear = options.currentDate.getFullYear();
+    
+    // Generate all 12 months
+    for (let month = 0; month < 12; month++) {
+      const date = new Date(year, month, 1);
+      
+      // Check if the month is disabled
+      let isDisabled = false;
+      if (options.minDate && date < options.minDate) {
+        // Entire month is before min date
+        isDisabled = true;
+      }
+      
+      if (options.maxDate) {
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        if (lastDayOfMonth > options.maxDate) {
+          // Entire month is after max date
+          isDisabled = true;
+        }
+      }
+      
+      // Use custom disabled function if provided
+      if (options.isMonthDisabledFn && options.isMonthDisabledFn(year, month)) {
+        isDisabled = true;
+      }
+      
+      // Check if this month is selected
+      const isSelected = options.selectedDate
+        ? options.selectedDate.getMonth() === month && 
+          options.selectedDate.getFullYear() === year
+        : false;
+      
+      // Get month name
+      const monthName = date.toLocaleString('default', { month: 'long' });
+      
+      months.push({
+        month,
+        year,
+        name: monthName,
+        isCurrentMonth: month === currentMonth && year === currentYear,
+        isSelected,
+        isDisabled
+      });
+    }
+    
+    return months;
+  }
+
+  /**
+   * Generate calendar years for a specified year range
+   */
+  public generateCalendarYears(
+    baseYear: number,
+    rangeSize: number,
+    options: YearViewGenerationOptions
+  ): CalendarYear[] {
+    const years: CalendarYear[] = [];
+    const currentYear = options.currentDate.getFullYear();
+    
+    // Generate years for the range
+    for (let i = 0; i < rangeSize; i++) {
+      const year = baseYear + i;
+      
+      // Check if the year is disabled
+      let isDisabled = false;
+      if (options.minDate && year < options.minDate.getFullYear()) {
+        // Year is before min date
+        isDisabled = true;
+      }
+      
+      if (options.maxDate && year > options.maxDate.getFullYear()) {
+        // Year is after max date
+        isDisabled = true;
+      }
+      
+      // Use custom disabled function if provided
+      if (options.isYearDisabledFn && options.isYearDisabledFn(year)) {
+        isDisabled = true;
+      }
+      
+      // Check if this year is selected
+      const isSelected = options.selectedDate
+        ? options.selectedDate.getFullYear() === year
+        : false;
+      
+      years.push({
+        year,
+        isCurrentYear: year === currentYear,
+        isSelected,
+        isDisabled,
+        isInRange: true // Since it's in the current range
+      });
+    }
+    
+    return years;
   }
 }

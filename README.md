@@ -4,7 +4,9 @@ A flexible calendar API supporting both calendar and date-picker integrations fo
 
 ## Features
 
+- Multiple view modes (day, month, and year views)
 - Date selection (single date and date range)
+- Year range navigation for efficient date picking
 - Internationalization support with locale-specific date formats
 - Flexible configuration options
 - Service-oriented architecture
@@ -22,8 +24,21 @@ const calendar = CalendarController({
   initialSelectedDate: new Date()
 });
 
-// Use the calendar API
+// Use the calendar API for date selection
 calendar.methods.selectDate(2025, 4, 15);
+
+// Work with different view modes
+const days = calendar.bindings.calendarDays.get(); // Day view
+const months = calendar.bindings.calendarMonths.get(); // Month view
+const years = calendar.bindings.calendarYears.get(); // Year view
+
+// Navigate between view modes
+calendar.methods.selectMonth(3, 2025); // Select April 2025 in month view
+calendar.methods.selectYear(2026); // Select 2026 in year view
+
+// Navigate year ranges
+calendar.methods.nextYearRange(); // Move to next decade
+calendar.methods.prevYearRange(); // Move to previous decade
 ```
 
 ## UI Integration

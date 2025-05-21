@@ -9,7 +9,7 @@
 Defined in: services/calendar-generator.service.ts:9
 
 Implementation of CalendarGeneratorService
-Responsible for generating calendar days based on given options
+Responsible for generating calendar data for different view modes: days, months, and years
 
 ## Implements
 

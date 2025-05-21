@@ -58,8 +58,9 @@ Manages the emission of events:
 
 Handles calendar navigation:
 - Methods to navigate between months and years
-- Direct navigation to specific dates
-- Maintains navigation state
+- Year range navigation for decade view
+- Direct navigation to specific dates, months, and years
+- Maintains navigation state for all view modes
 
 ### ConstraintsService
 
@@ -71,9 +72,11 @@ Manages date constraints:
 ### CalendarGeneratorService
 
 Generates calendar data structures:
-- Creates arrays of calendar days for the current view
-- Calculates properties for each day (is today, is selected, etc.)
-- Handles the complexity of calendar generation
+- Creates arrays of calendar days for the day view
+- Generates month grids for the month view
+- Creates year ranges for the year view
+- Calculates properties for each element (is selected, is disabled, etc.)
+- Handles the complexity of calendar generation for all view modes
 
 ### ConfigurationService
 

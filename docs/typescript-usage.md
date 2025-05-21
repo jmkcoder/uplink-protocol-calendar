@@ -39,6 +39,49 @@ const options: CalendarOptions = {
 const calendar = CalendarController(options);
 ```
 
+### Working with Multiple View Modes
+
+```typescript
+import { 
+  CalendarController, 
+  CalendarDate,
+  CalendarMonth,
+  CalendarYear,
+  YearRange
+} from '@uplink-protocol/calendar-controller';
+
+// Create the controller
+const calendar = CalendarController();
+
+// Working with the day view (default)
+const days: CalendarDate[] = calendar.bindings.calendarDays.get();
+
+// Working with the month view
+const months: CalendarMonth[] = calendar.bindings.calendarMonths.get();
+const handleMonthClick = (month: CalendarMonth): void => {
+  if (!month.isDisabled) {
+    calendar.methods.selectMonth(month.month, month.year);
+  }
+};
+
+// Working with the year view
+const years: CalendarYear[] = calendar.bindings.calendarYears.get();
+const handleYearClick = (year: CalendarYear): void => {
+  if (!year.isDisabled) {
+    calendar.methods.selectYear(year.year);
+  }
+};
+
+// Working with year ranges
+const yearRange: YearRange = calendar.methods.getCurrentYearRange();
+console.log(`Displaying years ${yearRange.startYear} to ${yearRange.endYear}`);
+
+// Navigate between year ranges
+calendar.methods.nextYearRange(); // Move to next range (e.g., 2020-2031 to 2032-2043)
+calendar.methods.prevYearRange(); // Move to previous range
+calendar.methods.goToYearRange(2050); // Go to specific range starting with 2050
+```
+
 ### Working with Calendar Dates
 
 ```typescript

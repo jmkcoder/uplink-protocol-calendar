@@ -50,7 +50,6 @@ export class NavigationService implements INavigationService {
     newDate.setMonth(month);
     return newDate;
   }
-
   /**
    * Navigate to specific year
    */
@@ -58,6 +57,23 @@ export class NavigationService implements INavigationService {
     const newDate = new Date(currentDate);
     newDate.setFullYear(year);
     return newDate;
+  }
+
+  /**
+   * Navigate to specific year range
+   * @param currentYear The current year
+   * @param rangeSize The number of years in the range
+   * @param direction Direction to navigate (1 for next range, -1 for previous range)
+   * @returns The new base year for the range
+   */
+  public navigateToYearRange(currentYear: number, rangeSize: number, direction: number): number {
+    // Calculate the current base year (starting year of the current range)
+    const currentBaseYear = currentYear - (currentYear % rangeSize);
+    
+    // Calculate the new base year based on the direction
+    const newBaseYear = currentBaseYear + (direction * rangeSize);
+    
+    return newBaseYear;
   }
 
   /**

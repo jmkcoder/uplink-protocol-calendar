@@ -18,8 +18,18 @@ Navigate through the calendar with intuitive methods:
 
 - **Month Navigation**: Easily move to next or previous months
 - **Year Navigation**: Jump forward or backward by years
+- **Year Range Navigation**: Navigate through ranges of years (e.g., decades)
 - **Direct Navigation**: Go directly to a specific month, year, or date
 - **Today Shortcut**: Quick navigation to the current date
+
+### Multiple View Modes
+
+The calendar offers different view modes to streamline date selection:
+
+- **Day View**: Traditional calendar grid showing days of a month
+- **Month View**: Grid of months for quick month selection
+- **Year View**: Range of years for quick year selection and decade navigation
+- **Seamless Transitions**: Switch between views with intuitive navigation
 
 ### Date Validation and Constraints
 
@@ -100,6 +110,44 @@ The controller uses specialized services for different concerns:
 - Automatic generation of calendar days for the current view
 - Proper handling of days from previous and next months
 - Special styling for today, selected dates, and date ranges
+
+### Multiple View Modes
+
+The controller provides multiple ways to navigate and select dates through different view modes:
+
+#### Day View
+
+The traditional calendar view showing days of a month:
+- View days in a month grid
+- Select individual days
+- Navigate between months
+- See previous and next month days
+
+#### Month View
+
+A grid of months for quick month selection:
+- View all 12 months of the current year
+- Select any month to navigate to that month's day view
+- Visual indicators for the current month
+- Disabled indicators for months outside valid date range
+
+#### Year View
+
+A range of years for selecting a specific year:
+- View years in configurable ranges (default is 12 years)
+- Navigate between year ranges (decades)
+- Select any year to navigate to that year's month view
+- Visual indicators for the current year
+- Disabled indicators for years outside valid date range
+
+#### Year Range Navigation
+
+Methods to efficiently navigate through years:
+- `nextYearRange()`: Move to the next set of years
+- `prevYearRange()`: Move to the previous set of years
+- `goToYearRange(year)`: Jump to a specific year range
+- `getCurrentYearRange()`: Get information about the current year range
+- `setYearRangeSize(size)`: Customize how many years are displayed in the year view
 
 ## Integration with Uplink Protocol
 

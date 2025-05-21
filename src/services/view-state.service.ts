@@ -1,5 +1,5 @@
 import { Binding, createBinding } from "@uplink-protocol/core";
-import { CalendarDate, DateRange } from "../interfaces/calendar.interfaces";
+import { CalendarDate, CalendarMonth, CalendarYear, DateRange } from "../interfaces/calendar.interfaces";
 import { IViewStateService } from "../interfaces/view-state.service.interfaces";
 
 /**
@@ -21,6 +21,8 @@ export class ViewStateService implements IViewStateService {
     currentYear: Binding<number>;
     monthName: Binding<string>;
     calendarDays: Binding<CalendarDate[]>;
+    calendarMonths: Binding<CalendarMonth[]>;
+    calendarYears: Binding<CalendarYear[]>;
     selectedDate: Binding<Date | null>;
     selectedDateRange: Binding<DateRange>;
     focusedDate: Binding<Date | null>;
@@ -35,6 +37,8 @@ export class ViewStateService implements IViewStateService {
       currentYear: createBinding<number>(currentDate.getFullYear()),
       monthName: createBinding<string>(""), // Will be set by other service
       calendarDays: createBinding<CalendarDate[]>(calendarDaysGenerator()),
+      calendarMonths: createBinding<CalendarMonth[]>([]), // Will be populated when needed
+      calendarYears: createBinding<CalendarYear[]>([]), // Will be populated when needed
       selectedDate: createBinding<Date | null>(selectedDate),
       selectedDateRange: createBinding<DateRange>(selectedDateRange),
       focusedDate: createBinding<Date | null>(null), // Initialize focusedDate as null

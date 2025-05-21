@@ -1,5 +1,5 @@
 import { Binding } from "@uplink-protocol/core";
-import { CalendarDate, DateRange } from "./calendar.interfaces";
+import { CalendarDate, CalendarMonth, CalendarYear, DateRange } from "./calendar.interfaces";
 
 /**
  * View state service interface
@@ -20,7 +20,10 @@ export interface IViewStateService {
     currentMonth: Binding<number>;
     currentYear: Binding<number>;
     monthName: Binding<string>;
-    calendarDays: Binding<CalendarDate[]>;    selectedDate: Binding<Date | null>;
+    calendarDays: Binding<CalendarDate[]>;    
+    calendarMonths: Binding<CalendarMonth[]>;
+    calendarYears: Binding<CalendarYear[]>;
+    selectedDate: Binding<Date | null>;
     selectedDateRange: Binding<DateRange>;
     focusedDate: Binding<Date | null>;
     weekdays: Binding<string[]>;
