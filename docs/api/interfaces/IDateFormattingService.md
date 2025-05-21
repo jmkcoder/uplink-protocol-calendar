@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IDateFormattingService
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L5)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L5)
 
 Date formatting service interface
 Responsible for formatting dates
@@ -17,7 +17,7 @@ Responsible for formatting dates
 
 > **formatDate**(`date`, `format?`): `string`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L9)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L9)
 
 Format a date according to the specified format string
 
@@ -41,7 +41,7 @@ Format a date according to the specified format string
 
 > **getDateFormatOptions**(): `null` \| `DateTimeFormatOptions`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:44](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L44)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:44](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L44)
 
 Get the date format options
 
@@ -55,7 +55,7 @@ Get the date format options
 
 > **getDefaultFormat**(): `null` \| `string`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L24)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L24)
 
 Get the default date format
 
@@ -69,7 +69,7 @@ Get the default date format
 
 > **getLocalizationService**(): `any`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L34)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L34)
 
 Get the localization service
 
@@ -83,7 +83,7 @@ Get the localization service
 
 > **parseDate**(`dateString`, `format?`): `null` \| `Date`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L14)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L14)
 
 Parse a date string according to the specified format
 
@@ -107,7 +107,7 @@ Parse a date string according to the specified format
 
 > **setDateFormatOptions**(`options`): `void`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:39](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L39)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:39](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L39)
 
 Set the date format options
 
@@ -127,7 +127,7 @@ Set the date format options
 
 > **setDefaultFormat**(`format`): `void`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L19)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L19)
 
 Set the default date format
 
@@ -147,7 +147,7 @@ Set the default date format
 
 > **setLocalizationService**(`service`): `void`
 
-Defined in: [interfaces/date-formatting.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/date-formatting.service.interfaces.ts#L29)
+Defined in: [interfaces/date-formatting.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/date-formatting.service.interfaces.ts#L29)
 
 Set the localization service
 

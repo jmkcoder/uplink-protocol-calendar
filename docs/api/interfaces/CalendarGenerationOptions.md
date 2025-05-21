@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: CalendarGenerationOptions
 
-Defined in: [interfaces/calendar.service.interfaces.ts:61](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L61)
+Defined in: [interfaces/calendar.service.interfaces.ts:61](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L61)
 
 Options for calendar generation
 
@@ -16,7 +16,7 @@ Options for calendar generation
 
 > **disabledDates**: `Date`[]
 
-Defined in: [interfaces/calendar.service.interfaces.ts:68](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L68)
+Defined in: [interfaces/calendar.service.interfaces.ts:68](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L68)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:68](https://github.com/jm
 
 > **firstDayOfWeek**: `number`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:65](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L65)
+Defined in: [interfaces/calendar.service.interfaces.ts:65](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L65)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:65](https://github.com/jm
 
 > **focusedDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:64](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L64)
+Defined in: [interfaces/calendar.service.interfaces.ts:64](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L64)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:64](https://github.com/jm
 
 > **hideOtherMonthDays**: `boolean`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L71)
+Defined in: [interfaces/calendar.service.interfaces.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L71)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:71](https://github.com/jm
 
 > **isDateDisabledFn**: (`date`) => `boolean`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L70)
+Defined in: [interfaces/calendar.service.interfaces.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L70)
 
 #### Parameters
 
@@ -66,7 +66,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:70](https://github.com/jm
 
 > **isRangeSelection**: `boolean`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:69](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L69)
+Defined in: [interfaces/calendar.service.interfaces.ts:69](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L69)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:69](https://github.com/jm
 
 > **maxDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:67](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L67)
+Defined in: [interfaces/calendar.service.interfaces.ts:67](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L67)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:67](https://github.com/jm
 
 > **minDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:66](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L66)
+Defined in: [interfaces/calendar.service.interfaces.ts:66](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L66)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:66](https://github.com/jm
 
 > **selectedDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:62](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L62)
+Defined in: [interfaces/calendar.service.interfaces.ts:62](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L62)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:62](https://github.com/jm
 
 > **selectedDateRange**: `object`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:63](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/calendar.service.interfaces.ts#L63)
+Defined in: [interfaces/calendar.service.interfaces.ts:63](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L63)
 
 #### endDate
 

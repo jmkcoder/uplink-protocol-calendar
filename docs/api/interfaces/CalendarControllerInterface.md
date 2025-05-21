@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: CalendarControllerInterface
 
-Defined in: [controller.ts:45](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L45)
+Defined in: [controller.ts:45](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L45)
 
 CalendarControllerClass - A full featured date picker controller class.
 Provides functionality for date picking and calendar display.
@@ -24,7 +24,7 @@ functionality is delegated to specialized services.
 
 > **\_currentDate**: `Date`
 
-Defined in: [controller.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L46)
+Defined in: [controller.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L46)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [controller.ts:46](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_currentYearRangeBase**: `number`
 
-Defined in: [controller.ts:60](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L60)
+Defined in: [controller.ts:60](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L60)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [controller.ts:60](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_dateFormat**: `null` \| `string`
 
-Defined in: [controller.ts:54](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L54)
+Defined in: [controller.ts:54](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L54)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [controller.ts:54](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_dateFormatOptions**: `null` \| `DateTimeFormatOptions`
 
-Defined in: [controller.ts:58](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L58)
+Defined in: [controller.ts:58](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L58)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [controller.ts:58](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_disabledDates**: `Date`[]
 
-Defined in: [controller.ts:52](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L52)
+Defined in: [controller.ts:52](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L52)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [controller.ts:52](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_firstDayOfWeek**: `number`
 
-Defined in: [controller.ts:53](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L53)
+Defined in: [controller.ts:53](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L53)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [controller.ts:53](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_focusedDate**: `null` \| `Date`
 
-Defined in: [controller.ts:49](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L49)
+Defined in: [controller.ts:49](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L49)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [controller.ts:49](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_hideOtherMonthDays**: `boolean`
 
-Defined in: [controller.ts:56](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L56)
+Defined in: [controller.ts:56](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L56)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [controller.ts:56](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_isRangeSelection**: `boolean`
 
-Defined in: [controller.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L55)
+Defined in: [controller.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L55)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [controller.ts:55](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_locale**: `string`
 
-Defined in: [controller.ts:57](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L57)
+Defined in: [controller.ts:57](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L57)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [controller.ts:57](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_maxDate**: `null` \| `Date`
 
-Defined in: [controller.ts:51](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L51)
+Defined in: [controller.ts:51](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L51)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [controller.ts:51](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_minDate**: `null` \| `Date`
 
-Defined in: [controller.ts:50](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L50)
+Defined in: [controller.ts:50](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L50)
 
 ***
 
@@ -120,7 +120,7 @@ Defined in: [controller.ts:50](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_selectedDate**: `null` \| `Date`
 
-Defined in: [controller.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L47)
+Defined in: [controller.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L47)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [controller.ts:47](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_selectedDateRange**: [`DateRange`](DateRange.md)
 
-Defined in: [controller.ts:48](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L48)
+Defined in: [controller.ts:48](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L48)
 
 ***
 
@@ -136,4 +136,4 @@ Defined in: [controller.ts:48](https://github.com/jmkcoder/uplink-protocol-calen
 
 > **\_yearRangeSize**: `number`
 
-Defined in: [controller.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L59)
+Defined in: [controller.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L59)

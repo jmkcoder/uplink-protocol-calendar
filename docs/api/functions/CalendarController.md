@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **CalendarController**(`options?`): [`CalendarControllerClass`](../classes/CalendarControllerClass.md)
 
-Defined in: [controller.ts:852](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/controller.ts#L852)
+Defined in: [controller.ts:847](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/controller.ts#L847)
 
 CalendarController - Factory function that creates and returns a new CalendarControllerClass instance.
 

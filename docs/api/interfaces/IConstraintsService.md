@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IConstraintsService
 
-Defined in: [interfaces/constraints.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/constraints.service.interfaces.ts#L5)
+Defined in: [interfaces/constraints.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/constraints.service.interfaces.ts#L5)
 
 Constraints service interface
 Responsible for managing date constraints like min/max dates and disabled dates
@@ -17,7 +17,7 @@ Responsible for managing date constraints like min/max dates and disabled dates
 
 > **getConstraints**(): `object`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/constraints.service.interfaces.ts#L29)
+Defined in: [interfaces/constraints.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/constraints.service.interfaces.ts#L29)
 
 Get current constraints
 
@@ -43,7 +43,7 @@ Get current constraints
 
 > **isDateDisabled**(`date`, `minDate`, `maxDate`, `disabledDates`): `boolean`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/constraints.service.interfaces.ts#L24)
+Defined in: [interfaces/constraints.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/constraints.service.interfaces.ts#L24)
 
 Check if a date is disabled
 
@@ -75,7 +75,7 @@ Check if a date is disabled
 
 > **setDisabledDates**(`dates`): `Date`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/constraints.service.interfaces.ts#L19)
+Defined in: [interfaces/constraints.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/constraints.service.interfaces.ts#L19)
 
 Set disabled dates
 
@@ -95,7 +95,7 @@ Set disabled dates
 
 > **setMaxDate**(`date`): `null` \| `Date`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/constraints.service.interfaces.ts#L14)
+Defined in: [interfaces/constraints.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/constraints.service.interfaces.ts#L14)
 
 Set maximum date
 
@@ -115,7 +115,7 @@ Set maximum date
 
 > **setMinDate**(`date`): `null` \| `Date`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/interfaces/constraints.service.interfaces.ts#L9)
+Defined in: [interfaces/constraints.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/constraints.service.interfaces.ts#L9)
 
 Set minimum date
 

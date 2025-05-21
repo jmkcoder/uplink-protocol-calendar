@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ConfigurationService
 
-Defined in: [services/configuration.service.ts:10](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L10)
+Defined in: [services/configuration.service.ts:10](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L10)
 
 Implementation of ConfigurationService
 Responsible for managing calendar configuration
@@ -21,7 +21,7 @@ Responsible for managing calendar configuration
 
 > **new ConfigurationService**(`_constraintsService`, `_dateFormattingService`): `ConfigurationService`
 
-Defined in: [services/configuration.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L15)
+Defined in: [services/configuration.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L15)
 
 #### Parameters
 
@@ -43,7 +43,7 @@ Defined in: [services/configuration.service.ts:15](https://github.com/jmkcoder/u
 
 > **applyConfiguration**(`options`): `object`
 
-Defined in: [services/configuration.service.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L21)
+Defined in: [services/configuration.service.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L21)
 
 Apply configuration options
 
@@ -103,7 +103,7 @@ Apply configuration options
 
 > **getDateFormat**(): `null` \| `string`
 
-Defined in: [services/configuration.service.ts:100](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L100)
+Defined in: [services/configuration.service.ts:100](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L100)
 
 Get date format
 
@@ -121,7 +121,7 @@ Get date format
 
 > **getFirstDayOfWeek**(): `number`
 
-Defined in: [services/configuration.service.ts:83](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L83)
+Defined in: [services/configuration.service.ts:83](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L83)
 
 Get first day of week
 
@@ -139,7 +139,7 @@ Get first day of week
 
 > **setDateFormat**(`format`): `null` \| `string`
 
-Defined in: [services/configuration.service.ts:107](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L107)
+Defined in: [services/configuration.service.ts:107](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L107)
 
 Set date format
 
@@ -163,7 +163,7 @@ Set date format
 
 > **setFirstDayOfWeek**(`day`): `number`
 
-Defined in: [services/configuration.service.ts:90](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/configuration.service.ts#L90)
+Defined in: [services/configuration.service.ts:90](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/configuration.service.ts#L90)
 
 Set first day of week
 

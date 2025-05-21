@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.0**](../README.md)
+[**@uplink-protocol/form-controller v0.1.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: LocalizationService
 
-Defined in: [services/localization.service.ts:7](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L7)
+Defined in: [services/localization.service.ts:7](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L7)
 
 Implementation of LocalizationService
 Responsible for providing internationalization and localization functions
@@ -21,7 +21,7 @@ Responsible for providing internationalization and localization functions
 
 > **new LocalizationService**(`locale?`): `LocalizationService`
 
-Defined in: [services/localization.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L14)
+Defined in: [services/localization.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L14)
 
 Constructor with optional locale
 
@@ -43,7 +43,7 @@ Initial locale
 
 > **formatDate**(`date`, `options?`): `string`
 
-Defined in: [services/localization.service.ts:95](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L95)
+Defined in: [services/localization.service.ts:95](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L95)
 
 Format a date according to the locale
 
@@ -77,7 +77,7 @@ Formatted date string
 
 > **getLocale**(): `string`
 
-Defined in: [services/localization.service.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L77)
+Defined in: [services/localization.service.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L77)
 
 Get current locale
 
@@ -97,7 +97,7 @@ Current locale string
 
 > **getMonthNames**(): `string`[]
 
-Defined in: [services/localization.service.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L24)
+Defined in: [services/localization.service.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L24)
 
 Get localized month names
 
@@ -117,7 +117,7 @@ Array of month names
 
 > **getShortWeekdayNames**(): `string`[]
 
-Defined in: [services/localization.service.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L59)
+Defined in: [services/localization.service.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L59)
 
 Get short localized weekday names
 
@@ -137,7 +137,7 @@ Array of short weekday names
 
 > **getWeekdayNames**(): `string`[]
 
-Defined in: [services/localization.service.ts:41](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L41)
+Defined in: [services/localization.service.ts:41](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L41)
 
 Get localized weekday names
 
@@ -157,7 +157,7 @@ Array of weekday names
 
 > **setLocale**(`locale`): `void`
 
-Defined in: [services/localization.service.ts:85](https://github.com/jmkcoder/uplink-protocol-calendar/blob/37dc792b8a1827808b6d945b0ed3805e9835a62c/src/services/localization.service.ts#L85)
+Defined in: [services/localization.service.ts:85](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/localization.service.ts#L85)
 
 Set locale
 
