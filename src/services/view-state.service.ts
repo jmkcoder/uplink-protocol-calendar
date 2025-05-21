@@ -37,7 +37,7 @@ export class ViewStateService implements IViewStateService {
       calendarDays: createBinding<CalendarDate[]>(calendarDaysGenerator()),
       selectedDate: createBinding<Date | null>(selectedDate),
       selectedDateRange: createBinding<DateRange>(selectedDateRange),
-      weekdays: createBinding<string[]>([]), // Will be set by other service based on firstDayOfWeek  
+      weekdays: createBinding<string[]>([]), // Will be set by other service based on firstDayOfWeek
       isRangeSelection: createBinding<boolean>(isRangeSelection),
     };
   }

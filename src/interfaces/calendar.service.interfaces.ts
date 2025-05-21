@@ -43,6 +43,16 @@ export interface ICalendarService {
    * Navigate to previous year from current date
    */
   getPreviousYear(currentDate: Date): Date;
+  
+  /**
+   * Set the localization service
+   */
+  setLocalizationService(service: any): void;
+  
+  /**
+   * Get the localization service
+   */
+  getLocalizationService(): any | null;
 }
 
 /**

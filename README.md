@@ -5,6 +5,7 @@ A flexible calendar API supporting both calendar and date-picker integrations fo
 ## Features
 
 - Date selection (single date and date range)
+- Internationalization support with locale-specific date formats
 - Flexible configuration options
 - Service-oriented architecture
 - Framework agnostic
@@ -97,3 +98,48 @@ const calendar = CalendarController({
   hideOtherMonthDays: true // Only show days from the current month
 });
 ```
+
+## Internationalization
+
+The calendar supports internationalization with the following features:
+
+- **Localized Month Names**: Month names are displayed according to the selected locale
+- **Localized Weekday Names**: Weekday names are displayed according to the selected locale
+- **Locale-based Date Formatting**: Dates can be formatted according to the locale conventions
+- **RTL Support**: Right-to-left languages are supported via the browser's localization
+
+### Configuration
+
+```javascript
+// Internationalization options
+const calendar = CalendarController({
+  // Set locale (any valid BCP 47 language tag)
+  locale: 'ja-JP', // Japanese
+  
+  // Optional date format options (Intl.DateTimeFormat options)
+  dateFormatOptions: {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'short'
+  }
+});
+```
+
+### Changing Locale Dynamically
+
+```javascript
+// Change locale at runtime
+calendar.methods.setLocale('ar-EG'); // Arabic (Egypt)
+
+// Update date format options
+calendar.methods.setDateFormatOptions({ 
+  year: 'numeric',
+  month: 'short',
+  day: '2-digit'
+});
+```
+
+### Example
+
+See the full example of internationalization usage in the [i18n example](examples/i18n/index.html).

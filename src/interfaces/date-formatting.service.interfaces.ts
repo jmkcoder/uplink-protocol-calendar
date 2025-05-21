@@ -22,4 +22,24 @@ export interface IDateFormattingService {
    * Get the default date format
    */
   getDefaultFormat(): string | null;
+  
+  /**
+   * Set the localization service
+   */
+  setLocalizationService(service: any): void;
+  
+  /**
+   * Get the localization service
+   */
+  getLocalizationService(): any | null;
+  
+  /**
+   * Set the date format options
+   */
+  setDateFormatOptions(options: Intl.DateTimeFormatOptions): void;
+  
+  /**
+   * Get the date format options
+   */
+  getDateFormatOptions(): Intl.DateTimeFormatOptions | null;
 }

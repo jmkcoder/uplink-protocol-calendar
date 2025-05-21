@@ -37,6 +37,16 @@ Adapt the calendar to your UI needs:
 - **Hide Other Month Days**: Option to show only days from the current month
 - **Custom Date Formatting**: Format dates according to your requirements
 
+### Internationalization
+
+Support for multiple languages and regions:
+
+- **Localized Month Names**: Display month names in the user's language
+- **Localized Weekday Names**: Show weekday names in the user's language
+- **Locale-based Date Formatting**: Format dates according to regional conventions
+- **RTL Support**: Support for right-to-left languages
+- **Dynamic Locale Switching**: Change language settings at runtime
+
 ### Event System
 
 React to user interactions:

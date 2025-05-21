@@ -16,7 +16,6 @@ export class ConfigurationService implements IConfigurationService {
     private _constraintsService: IConstraintsService,
     private _dateFormattingService: IDateFormattingService
   ) {}
-
   /**
    * Apply configuration options
    */  public applyConfiguration(options: CalendarOptions): {
@@ -27,6 +26,8 @@ export class ConfigurationService implements IConfigurationService {
     firstDayOfWeek: number;
     dateFormat: string | null;
     hideOtherMonthDays: boolean;
+    locale?: string;
+    dateFormatOptions?: Intl.DateTimeFormatOptions;
   } {
     let minDate = null;
     let maxDate = null;
@@ -58,8 +59,7 @@ export class ConfigurationService implements IConfigurationService {
         this._dateFormat = options.dateFormat;
         this._dateFormattingService.setDefaultFormat(options.dateFormat);
       }
-      
-      if (options.hideOtherMonthDays !== undefined) {
+        if (options.hideOtherMonthDays !== undefined) {
         this._hideOtherMonthDays = options.hideOtherMonthDays;
       }
     }
@@ -71,7 +71,9 @@ export class ConfigurationService implements IConfigurationService {
       selectedDate,
       firstDayOfWeek: this._firstDayOfWeek,
       dateFormat: this._dateFormat,
-      hideOtherMonthDays: this._hideOtherMonthDays
+      hideOtherMonthDays: this._hideOtherMonthDays,
+      locale: options.locale,
+      dateFormatOptions: options.dateFormatOptions
     };
   }
 

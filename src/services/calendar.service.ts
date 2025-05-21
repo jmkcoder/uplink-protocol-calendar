@@ -1,6 +1,7 @@
 import { CalendarDate } from '../interfaces/calendar.interfaces';
 import { CalendarGenerationOptions } from '../interfaces/calendar.service.interfaces';
 import { ICalendarService } from '../interfaces/calendar.service.interfaces';
+import { ILocalizationService } from '../interfaces/localization.service.interfaces';
 import { 
   getDaysInMonth, 
   getFirstDayOfMonth, 
@@ -12,6 +13,23 @@ import {
  * Responsible for calendar generation and navigation functions
  */
 export class CalendarService implements ICalendarService {
+  private _localizationService: ILocalizationService | null = null;
+
+  /**
+   * Set the localization service
+   * @param service The localization service to use
+   */
+  public setLocalizationService(service: ILocalizationService): void {
+    this._localizationService = service;
+  }
+  
+  /**
+   * Get the localization service
+   * @returns The current localization service or null
+   */
+  public getLocalizationService(): ILocalizationService | null {
+    return this._localizationService;
+  }
   /**
    * Generate calendar days for a specific month/year
    * @param year The year
@@ -131,13 +149,19 @@ export class CalendarService implements ICalendarService {
       isDisabled: options.isDateDisabledFn(date)
     };
   }
-  
-  /**
+    /**
    * Get month name from month index
    * @param month Month index (0-11)
    * @returns Month name
    */
   public getMonthName(month: number): string {
+    // Use localization service if available
+    if (this._localizationService) {
+      const monthNames = this._localizationService.getMonthNames();
+      return monthNames[month];
+    }
+    
+    // Fallback to English
     const months = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
@@ -151,7 +175,17 @@ export class CalendarService implements ICalendarService {
    * @returns Array of weekday names
    */
   public getWeekdayNames(firstDayOfWeek: number): string[] {
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let weekdays: string[];
+    
+    // Use localization service if available
+    if (this._localizationService) {
+      weekdays = this._localizationService.getShortWeekdayNames();
+    } else {
+      // Fallback to English
+      weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    }
+    
+    // Reorder weekdays based on firstDayOfWeek
     return [...weekdays.slice(firstDayOfWeek), ...weekdays.slice(0, firstDayOfWeek)];
   }
   

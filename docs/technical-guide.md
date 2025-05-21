@@ -82,6 +82,14 @@ Manages calendar configuration:
 - Applies default values where needed
 - Ensures configuration consistency
 
+### LocalizationService
+
+Handles internationalization and localization:
+- Supports multiple languages and regions via BCP 47 language tags
+- Provides localized month and weekday names
+- Formats dates according to locale conventions
+- Integrates with JavaScript's Intl API for standards-compliant localization
+
 ## Key Design Patterns
 
 ### Controller Pattern

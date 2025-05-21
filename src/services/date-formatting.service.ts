@@ -1,4 +1,5 @@
 import { IDateFormattingService } from '../interfaces/date-formatting.service.interfaces';
+import { ILocalizationService } from '../interfaces/localization.service.interfaces';
 
 /**
  * Implementation of DateFormattingService
@@ -6,7 +7,40 @@ import { IDateFormattingService } from '../interfaces/date-formatting.service.in
  */
 export class DateFormattingService implements IDateFormattingService {
   private _defaultFormat: string | null = null;
+  private _localizationService: ILocalizationService | null = null;
+  private _dateFormatOptions: Intl.DateTimeFormatOptions | null = null;
+
+  /**
+   * Set the localization service
+   * @param service Localization service to use
+   */
+  public setLocalizationService(service: ILocalizationService): void {
+    this._localizationService = service;
+  }
   
+  /**
+   * Get the localization service
+   * @returns Current localization service or null
+   */
+  public getLocalizationService(): ILocalizationService | null {
+    return this._localizationService;
+  }
+  
+  /**
+   * Set the date format options for Intl.DateTimeFormat
+   * @param options Format options
+   */
+  public setDateFormatOptions(options: Intl.DateTimeFormatOptions): void {
+    this._dateFormatOptions = options;
+  }
+  
+  /**
+   * Get the date format options
+   * @returns Current date format options or null
+   */
+  public getDateFormatOptions(): Intl.DateTimeFormatOptions | null {
+    return this._dateFormatOptions;
+  }
   /**
    * Format a date according to the specified format string
    * @param date Date to format
@@ -14,6 +48,17 @@ export class DateFormattingService implements IDateFormattingService {
    * @returns Formatted date string
    */
   public formatDate(date: Date, format?: string): string {
+    // Case 1: If localization service is available and no specific format string is requested
+    if (this._localizationService) {
+      // If a specific format is requested, use the traditional formatting
+      if (format || this._defaultFormat) {
+        // Continue to use string-based formatting
+      } else {
+        // Use internationalized formatting with the localization service
+        return this._localizationService.formatDate(date, this._dateFormatOptions || undefined);
+      }
+    }
+    
     const formatToUse = format || this._defaultFormat;
     
     if (!formatToUse) {
@@ -42,14 +87,25 @@ export class DateFormattingService implements IDateFormattingService {
       .replace('ss', seconds)
       .replace('s', date.getSeconds().toString());
   }
-  
-  /**
+    /**
    * Parse a date string according to the specified format
    * @param dateString Date string to parse
    * @param format Optional format string
    * @returns Parsed Date or null if invalid
    */
   public parseDate(dateString: string, format?: string): Date | null {
+    // If using localization and we have a date format
+    if (this._localizationService && this._dateFormatOptions && !format) {
+      try {
+        // This is a simple parse for common formats when using localization
+        // For more complex cases, additional parsing logic would be needed
+        const date = new Date(dateString);
+        return isNaN(date.getTime()) ? null : date;
+      } catch (error) {
+        // Fall back to default parsing
+      }
+    }
+    
     // If no format is specified, try standard formats
     if (!format && this._defaultFormat) {
       format = this._defaultFormat;

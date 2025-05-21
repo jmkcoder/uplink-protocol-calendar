@@ -1,4 +1,3 @@
-
 import { Binding, ControllerAdapter, EventEmitter, TypedController } from "@uplink-protocol/core";
 import { ControllerMetadata } from "@uplink-protocol/core/dist/uplink/interfaces/metadata/controller-metadata.interface";
 import { 
@@ -14,7 +13,8 @@ import {
   INavigationService,
   IConstraintsService,
   ICalendarGeneratorService,
-  IConfigurationService
+  IConfigurationService,
+  ILocalizationService
 } from "./interfaces";
 import {
   CalendarService,
@@ -25,7 +25,8 @@ import {
   NavigationService,
   ConstraintsService,
   CalendarGeneratorService,
-  ConfigurationService
+  ConfigurationService,
+  LocalizationService
 } from "./services";
 
 
@@ -47,6 +48,8 @@ export interface CalendarControllerInterface extends TypedController {
   _dateFormat: string | null;
   _isRangeSelection: boolean;
   _hideOtherMonthDays: boolean;
+  _locale: string;
+  _dateFormatOptions: Intl.DateTimeFormatOptions | null;
 }
 
 export class CalendarControllerClass implements CalendarControllerInterface {
@@ -66,9 +69,12 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   _dateFormat: string | null = null;
   _isRangeSelection: boolean = false;
   _hideOtherMonthDays: boolean = false; // Show other month days by default
+  _locale: string = 'en-US'; // Default locale
+  _dateFormatOptions: Intl.DateTimeFormatOptions | null = null;
   
   // Services
   private _calendarService: ICalendarService;
+  private _localizationService: ILocalizationService;
   private _dateFormattingService: IDateFormattingService;
   private _dateSelectionService: IDateSelectionService;
   private _viewStateService: IViewStateService;
@@ -81,8 +87,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   /**
    * Constructor - initializes the controller with optional configuration
    * @param options Calendar configuration options
-   */
-  constructor(options?: CalendarOptions) {    // Initialize services
+   */  constructor(options?: CalendarOptions) {    // Initialize services
     this._calendarService = new CalendarService();
     this._dateFormattingService = new DateFormattingService();
     this._dateSelectionService = new DateSelectionService();
@@ -91,15 +96,44 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this._navigationService = new NavigationService();
     this._constraintsService = new ConstraintsService();
     this._calendarGeneratorService = new CalendarGeneratorService();
-    this._configurationService = new ConfigurationService(this._constraintsService, this._dateFormattingService);      // Initialize with options using ConfigurationService
+    this._configurationService = new ConfigurationService(this._constraintsService, this._dateFormattingService);
+    
+    // Initialize with options using ConfigurationService
     if (options) {
-      const config = this._configurationService.applyConfiguration(options);      this._minDate = config.minDate;
+      // Initialize locale before applying other configurations
+      if (options.locale) {
+        this._locale = options.locale;
+      }
+      
+      // Initialize localization service with the locale
+      this._localizationService = new LocalizationService(this._locale);
+      
+      // Link the localization service to other services
+      this._calendarService.setLocalizationService(this._localizationService);
+      this._dateFormattingService.setLocalizationService(this._localizationService);
+      
+      // Set date format options if provided
+      if (options.dateFormatOptions) {
+        this._dateFormatOptions = options.dateFormatOptions;
+        this._dateFormattingService.setDateFormatOptions(options.dateFormatOptions);
+      }
+      
+      const config = this._configurationService.applyConfiguration(options);
+      
+      this._minDate = config.minDate;
       this._maxDate = config.maxDate;
       this._disabledDates = config.disabledDates;
       this._selectedDate = config.selectedDate;
       this._firstDayOfWeek = config.firstDayOfWeek;
       this._dateFormat = config.dateFormat;
       this._hideOtherMonthDays = config.hideOtherMonthDays;
+    } else {
+      // Initialize localization service with default locale
+      this._localizationService = new LocalizationService(this._locale);
+      
+      // Link the localization service to other services
+      this._calendarService.setLocalizationService(this._localizationService);
+      this._dateFormattingService.setLocalizationService(this._localizationService);
     }// Set up bindings using ViewStateService
     this.bindings = this._viewStateService.initializeBindings(
       this._currentDate, 
@@ -115,9 +149,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this.bindings.weekdays.set(this._calendarService.getWeekdayNames(this._firstDayOfWeek));
 
     // Set up events using EventManagerService
-    this.events = this._eventManagerService.initializeEvents();
-
-    // Set up methods
+    this.events = this._eventManagerService.initializeEvents();    // Set up methods
     this.methods = {
       selectDate: this.selectDate.bind(this),
       nextMonth: this.nextMonth.bind(this),
@@ -131,6 +163,10 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       setRangeSelectionMode: this.setRangeSelectionMode.bind(this),
       clearSelection: this.clearSelection.bind(this),
       isDateDisabled: this.isDateDisabled.bind(this),
+      setLocale: this.setLocale.bind(this),
+      getLocale: this.getLocale.bind(this),
+      setDateFormatOptions: this.setDateFormatOptions.bind(this),
+      getDateFormatOptions: this.getDateFormatOptions.bind(this),
     };
   }
   /**
@@ -354,15 +390,21 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       () => this.generateCalendarDays()
     );
   }
-
   /**
    * Get formatted selected date using DateFormattingService
    * @returns Formatted date string or null
    */
   public getFormattedDate(): string | null {
     if (!this._selectedDate) return null;
+    
+    // If we have localization service and format options, use internationalized formatting
+    if (this._localizationService && this._dateFormatOptions) {
+      return this._localizationService.formatDate(this._selectedDate, this._dateFormatOptions);
+    }
+    
+    // Otherwise use the traditional formatting
     return this._dateFormattingService.formatDate(this._selectedDate, this._dateFormat || undefined);
-  }  /**
+  }/**
    * Set minimum selectable date
    * @param date Minimum date
    */
@@ -423,6 +465,47 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       (month: number) => this._calendarService.getMonthName(month),
       () => this.generateCalendarDays()
     );
+  }
+  
+  /**
+   * Set the locale for the calendar
+   * @param locale Locale string (e.g., 'en-US', 'fr-FR', 'ja-JP')
+   */
+  public setLocale(locale: string): void {
+    this._locale = locale;
+    
+    // Update the localization service
+    this._localizationService.setLocale(locale);
+    
+    // Update calendar bindings that depend on localization
+    this.bindings.monthName.set(this._calendarService.getMonthName(this._currentDate.getMonth()));
+    this.bindings.weekdays.set(this._calendarService.getWeekdayNames(this._firstDayOfWeek));
+    this.bindings.calendarDays.set(this.generateCalendarDays());
+  }
+  
+  /**
+   * Get the current locale
+   * @returns Current locale string
+   */
+  public getLocale(): string {
+    return this._locale;
+  }
+  
+  /**
+   * Set date format options for internationalized formatting
+   * @param options Intl.DateTimeFormatOptions
+   */
+  public setDateFormatOptions(options: Intl.DateTimeFormatOptions): void {
+    this._dateFormatOptions = options;
+    this._dateFormattingService.setDateFormatOptions(options);
+  }
+  
+  /**
+   * Get the current date format options
+   * @returns Current date format options or null
+   */
+  public getDateFormatOptions(): Intl.DateTimeFormatOptions | null {
+    return this._dateFormatOptions;
   }
 }
 

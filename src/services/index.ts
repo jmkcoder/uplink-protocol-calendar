@@ -13,3 +13,4 @@ export * from './navigation.service';
 export * from './constraints.service';
 export * from './calendar-generator.service';
 export * from './configuration.service';
+export * from './localization.service';

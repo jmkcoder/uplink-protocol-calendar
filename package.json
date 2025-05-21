@@ -31,9 +31,13 @@
     "wizard",
     "react",
     "calendar",
-    "uplink-protocol"
+    "uplink-protocol",
+    "i18n",
+    "typescript",
+    "javascript",
+    "web"
   ],
-  "author": "Odyssey Team",
+  "author": "jmkcoder",
   "license": "MIT",
   "repository": {
     "type": "git",

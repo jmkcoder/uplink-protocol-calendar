@@ -33,6 +33,10 @@ export interface CalendarOptions {
   dateFormat?: string;
   /** Hide days from previous and next months */
   hideOtherMonthDays?: boolean;
+  /** Locale for internationalization (defaults to 'en-US') */
+  locale?: string;
+  /** Date format options for Intl.DateTimeFormat */
+  dateFormatOptions?: Intl.DateTimeFormatOptions;
 }
 
 /**

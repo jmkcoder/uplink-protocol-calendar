@@ -4,8 +4,7 @@ import { CalendarOptions } from "./calendar.interfaces";
  * Configuration service interface
  * Responsible for managing calendar configuration
  */
-export interface IConfigurationService {
-  /**
+export interface IConfigurationService {  /**
    * Apply configuration options
    */  applyConfiguration(options: CalendarOptions): {
     minDate: Date | null;
@@ -15,6 +14,8 @@ export interface IConfigurationService {
     firstDayOfWeek: number;
     dateFormat: string | null;
     hideOtherMonthDays: boolean;
+    locale?: string;
+    dateFormatOptions?: Intl.DateTimeFormatOptions;
   };
 
   /**

@@ -13,3 +13,4 @@ export * from "./navigation.service.interfaces";
 export * from "./constraints.service.interfaces";
 export * from "./calendar-generator.service.interfaces";
 export * from "./configuration.service.interfaces";
+export * from "./localization.service.interfaces";
