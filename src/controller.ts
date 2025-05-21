@@ -41,6 +41,7 @@ export interface CalendarControllerInterface extends TypedController {
   _currentDate: Date;
   _selectedDate: Date | null;
   _selectedDateRange: DateRange;
+  _focusedDate: Date | null;
   _minDate: Date | null;
   _maxDate: Date | null;
   _disabledDates: Date[];
@@ -57,11 +58,11 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   methods?: Record<string, (...args: any[]) => any>;
   events?: Record<string, EventEmitter<any>>;
   meta?: ControllerMetadata;
-  __adapter?: ControllerAdapter;
-  // State variables
+  __adapter?: ControllerAdapter;  // State variables
   _currentDate: Date = new Date();
   _selectedDate: Date | null = null;
   _selectedDateRange: DateRange = { startDate: null, endDate: null };
+  _focusedDate: Date | null = null;
   _minDate: Date | null = null;
   _maxDate: Date | null = null;
   _disabledDates: Date[] = [];
@@ -149,7 +150,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this.bindings.weekdays.set(this._calendarService.getWeekdayNames(this._firstDayOfWeek));
 
     // Set up events using EventManagerService
-    this.events = this._eventManagerService.initializeEvents();    // Set up methods
+    this.events = this._eventManagerService.initializeEvents();    // Set up methods    
     this.methods = {
       selectDate: this.selectDate.bind(this),
       nextMonth: this.nextMonth.bind(this),
@@ -163,6 +164,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       setRangeSelectionMode: this.setRangeSelectionMode.bind(this),
       clearSelection: this.clearSelection.bind(this),
       isDateDisabled: this.isDateDisabled.bind(this),
+      setFocusedDate: this.setFocusedDate.bind(this),
+      clearFocusedDate: this.clearFocusedDate.bind(this),
       setLocale: this.setLocale.bind(this),
       getLocale: this.getLocale.bind(this),
       setDateFormatOptions: this.setDateFormatOptions.bind(this),
@@ -172,13 +175,14 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   /**
    * Generate calendar days for current month view using CalendarGeneratorService
    * @returns Array of CalendarDate objects
-   */
+   */  
   private generateCalendarDays(): CalendarDate[] {
     const year = this._currentDate.getFullYear();
     const month = this._currentDate.getMonth();
       const options: CalendarGenerationOptions = {
       selectedDate: this._selectedDate,
       selectedDateRange: this._selectedDateRange,
+      focusedDate: this._focusedDate,
       firstDayOfWeek: this._firstDayOfWeek,
       minDate: this._minDate,
       maxDate: this._maxDate,
@@ -506,6 +510,30 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    */
   public getDateFormatOptions(): Intl.DateTimeFormatOptions | null {
     return this._dateFormatOptions;
+  }
+  /**
+   * Set the focused date
+   * @param date Focused date or null to clear focus
+   */
+  public setFocusedDate(date: Date | null): void {
+    this._focusedDate = date ? new Date(date) : null;
+    
+    // Update the focused date binding
+    this.bindings.focusedDate.set(this._focusedDate);
+    
+    // Use ViewStateService to update calendar days
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+  }
+
+  /**
+   * Clear the focused date
+   */
+  public clearFocusedDate(): void {
+    this.setFocusedDate(null);
   }
 }
 

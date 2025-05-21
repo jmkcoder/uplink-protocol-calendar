@@ -9,8 +9,7 @@ import { IViewStateService } from "../interfaces/view-state.service.interfaces";
 export class ViewStateService implements IViewStateService {
   /**
    * Initialize view state bindings
-   */
-  public initializeBindings(
+   */  public initializeBindings(
     currentDate: Date,
     selectedDate: Date | null,
     selectedDateRange: DateRange,
@@ -24,9 +23,10 @@ export class ViewStateService implements IViewStateService {
     calendarDays: Binding<CalendarDate[]>;
     selectedDate: Binding<Date | null>;
     selectedDateRange: Binding<DateRange>;
+    focusedDate: Binding<Date | null>;
     weekdays: Binding<string[]>;
     isRangeSelection: Binding<boolean>;
-  } {    // Use firstDayOfWeek to avoid TS6133 error (parameter declared but not used)
+  } {// Use firstDayOfWeek to avoid TS6133 error (parameter declared but not used)
     // Even though it might be used by other services to generate weekdays, we'll add a comment to clarify
     console.log(`Using first day of week setting: ${firstDayOfWeek}`);
     
@@ -37,6 +37,7 @@ export class ViewStateService implements IViewStateService {
       calendarDays: createBinding<CalendarDate[]>(calendarDaysGenerator()),
       selectedDate: createBinding<Date | null>(selectedDate),
       selectedDateRange: createBinding<DateRange>(selectedDateRange),
+      focusedDate: createBinding<Date | null>(null), // Initialize focusedDate as null
       weekdays: createBinding<string[]>([]), // Will be set by other service based on firstDayOfWeek
       isRangeSelection: createBinding<boolean>(isRangeSelection),
     };
@@ -103,6 +104,21 @@ export class ViewStateService implements IViewStateService {
     generateCalendarDays: () => CalendarDate[]
   ): void {
     binding.set(isRange);
+    calendarDaysBinding.set(generateCalendarDays());
+  }
+  /**
+   * Update focused date
+   */
+  public updateFocusedDate(
+    date: Date | null,
+    calendarDaysBinding: Binding<CalendarDate[]>,
+    generateCalendarDays: () => CalendarDate[]
+  ): void {
+    // The focused date state is already updated in the controller 
+    // through the focusedDate binding
+    console.log(`Updating focus to date: ${date ? date.toISOString() : 'null'}`);
+    
+    // Update calendar days to reflect the new focused date
     calendarDaysBinding.set(generateCalendarDays());
   }
 }

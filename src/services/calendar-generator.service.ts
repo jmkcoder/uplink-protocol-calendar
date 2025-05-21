@@ -39,8 +39,7 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
       const prevMonthDate = new Date(year, month - 1, prevMonthDay);
       
       // Skip if hideOtherMonthDays is true
-      if (!options.hideOtherMonthDays) {
-        result.push({
+      if (!options.hideOtherMonthDays) {        result.push({
           date: prevMonthDate,
           day: prevMonthDay,
           month: prevMonthDate.getMonth(),
@@ -51,7 +50,8 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
           isDisabled: options.isDateDisabledFn ? options.isDateDisabledFn(prevMonthDate) : false,
           isInRange: this.isInRange(prevMonthDate, options.selectedDateRange),
           isRangeStart: this.isRangeStart(prevMonthDate, options.selectedDateRange),
-          isRangeEnd: this.isRangeEnd(prevMonthDate, options.selectedDateRange)
+          isRangeEnd: this.isRangeEnd(prevMonthDate, options.selectedDateRange),
+          isFocused: this.isFocusedDate(prevMonthDate, options.focusedDate)
         });
       } else {
         // Add empty placeholder to maintain grid structure
@@ -70,8 +70,7 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
     
     // Add days of current month
     for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, month, day);
-        result.push({
+      const date = new Date(year, month, day);        result.push({
         date,
         day,
         month: date.getMonth(),
@@ -82,7 +81,8 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
         isDisabled: options.isDateDisabledFn ? options.isDateDisabledFn(date) : false,
         isInRange: this.isInRange(date, options.selectedDateRange),
         isRangeStart: this.isRangeStart(date, options.selectedDateRange),
-        isRangeEnd: this.isRangeEnd(date, options.selectedDateRange)
+        isRangeEnd: this.isRangeEnd(date, options.selectedDateRange),
+        isFocused: this.isFocusedDate(date, options.focusedDate)
       });
     }
       // Add days from next month to complete 6 rows (42 days)
@@ -92,8 +92,7 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
       const date = new Date(year, month + 1, day);
       
       // Skip if hideOtherMonthDays is true
-      if (!options.hideOtherMonthDays) {
-        result.push({
+      if (!options.hideOtherMonthDays) {        result.push({
           date,
           day,
           month: date.getMonth(),
@@ -104,7 +103,8 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
           isDisabled: options.isDateDisabledFn ? options.isDateDisabledFn(date) : false,
           isInRange: this.isInRange(date, options.selectedDateRange),
           isRangeStart: this.isRangeStart(date, options.selectedDateRange),
-          isRangeEnd: this.isRangeEnd(date, options.selectedDateRange)
+          isRangeEnd: this.isRangeEnd(date, options.selectedDateRange),
+          isFocused: this.isFocusedDate(date, options.focusedDate)
         });
       } else {
         // Add empty placeholder to maintain grid structure
@@ -213,6 +213,22 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {
       date.getDate() === selectedDateRange.endDate.getDate() &&
       date.getMonth() === selectedDateRange.endDate.getMonth() &&
       date.getFullYear() === selectedDateRange.endDate.getFullYear()
+    );
+  }
+
+  /**
+   * Check if a date is focused
+   */
+  private isFocusedDate(
+    date: Date,
+    focusedDate: Date | null
+  ): boolean {
+    if (!focusedDate) return false;
+    
+    return (
+      date.getDate() === focusedDate.getDate() &&
+      date.getMonth() === focusedDate.getMonth() &&
+      date.getFullYear() === focusedDate.getFullYear()
     );
   }
 }

@@ -13,6 +13,7 @@ export interface CalendarDate {
   isInRange?: boolean;
   isRangeStart?: boolean;
   isRangeEnd?: boolean;
+  isFocused?: boolean; // Indicates if this date has focus
 }
 
 /**

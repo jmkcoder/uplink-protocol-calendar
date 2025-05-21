@@ -61,6 +61,7 @@ export interface ICalendarService {
 export interface CalendarGenerationOptions {
   selectedDate: Date | null;
   selectedDateRange: {startDate: Date | null, endDate: Date | null};
+  focusedDate: Date | null;
   firstDayOfWeek: number;
   minDate: Date | null;
   maxDate: Date | null;

@@ -20,9 +20,9 @@ export interface IViewStateService {
     currentMonth: Binding<number>;
     currentYear: Binding<number>;
     monthName: Binding<string>;
-    calendarDays: Binding<CalendarDate[]>;
-    selectedDate: Binding<Date | null>;
+    calendarDays: Binding<CalendarDate[]>;    selectedDate: Binding<Date | null>;
     selectedDateRange: Binding<DateRange>;
+    focusedDate: Binding<Date | null>;
     weekdays: Binding<string[]>;
     isRangeSelection: Binding<boolean>;
   };
@@ -68,6 +68,15 @@ export interface IViewStateService {
   updateSelectionMode(
     isRange: boolean,
     binding: Binding<boolean>,
+    calendarDaysBinding: Binding<CalendarDate[]>,
+    generateCalendarDays: () => CalendarDate[]
+  ): void;
+  
+  /**
+   * Update focused date
+   */
+  updateFocusedDate(
+    date: Date | null,
     calendarDaysBinding: Binding<CalendarDate[]>,
     generateCalendarDays: () => CalendarDate[]
   ): void;
