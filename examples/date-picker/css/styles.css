@@ -1,0 +1,475 @@
+/* Accessibility and custom styles for the date picker */
+
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Calendar view modes */
+.calendar-view {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    display: block;
+}
+
+.calendar-view.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* Calendar grid styling */
+.calendar-grid {
+    grid-template-rows: repeat(6, minmax(40px, auto));
+}
+
+/* Calendar day styling */
+.calendar-cell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin: 2px auto;
+    font-size: 14px;
+}
+
+.calendar-cell:hover:not([aria-disabled="true"]) {
+    background-color: #f3f4f6;
+}
+
+.calendar-cell[aria-selected="true"] {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Focus styles */
+.calendar-cell:focus {
+    outline: 1px solid #3b82f6;
+    outline-offset: 1px;
+    z-index: 1;
+}
+
+/* Day in range styling */
+.calendar-cell.in-range {
+    background-color: #eff6ff;
+}
+
+.calendar-cell.range-start,
+.calendar-cell.range-end {
+    background-color: #3b82f6;
+    color: white;
+    z-index: 1;
+}
+
+/* Today indicator */
+.calendar-cell[aria-current="date"] {
+    border: 1px solid #3b82f6;
+}
+
+/* Month/Year selector */
+#monthYearSelector:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Weekday headers */
+.weekdays-row > div {
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    padding: 8px 0;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .calendar-cell[aria-selected="true"] {
+        border: 2px solid CanvasText;
+    }
+    
+    .calendar-cell[aria-current="date"] {
+        border: 1px dashed CanvasText;
+    }
+}
+
+/* Touch support for mobile */
+@media (pointer: coarse) {
+    .calendar-cell {
+        height: 44px;
+        width: 44px;
+    }
+    
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Improve touch targets in sidebar */
+    #datepickerSidebar button {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Responsive design for small screens */
+@media screen and (max-width: 640px) {
+    .calendar-popup {
+        position: fixed !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 1.5rem 1.5rem 0 0;
+        z-index: 999;
+        box-shadow: 0 -4px 10px -2px rgba(0, 0, 0, 0.15);
+        transform: translateY(0) !important;
+        max-height: 90vh;
+        overflow-y: auto;
+        /* Safer approach for safe area insets for cross-browser compatibility */
+        padding-bottom: calc(constant(safe-area-inset-bottom, 1rem) + 1rem) !important; /* iOS 11.0 */
+        padding-bottom: calc(env(safe-area-inset-bottom, 1rem) + 1rem) !important; /* iOS 11.2+ */
+        /* Improve scrolling behavior */
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Make the flex layout column on mobile */
+    .calendar-popup > div {
+        flex-direction: column !important;
+        width: 100%;
+    }
+    
+    /* Adjust sidebar for mobile */
+    #datepickerSidebar {
+        width: 100%;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 0.75rem;
+        border-right: 0;
+        border-bottom: 1px solid #e5e7eb;
+        margin-bottom: 1rem;
+        /* Improve scroll appearance using cross-browser approaches */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        -webkit-overflow-scrolling: touch; /* iOS Safari */
+    }
+    
+    #datepickerSidebar::-webkit-scrollbar {
+        display: none;  /* Hide scrollbar for Chrome/Safari/Opera */
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    #datepickerSidebar > div {
+        flex: 0 0 auto;
+        margin-right: 1rem;
+    }
+    
+    #datepickerSidebar .space-y-2 {
+        display: flex;
+        gap: 0.75rem;
+        overflow-x: auto;
+        margin: 0;
+        padding-bottom: 0.5rem;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        -webkit-overflow-scrolling: touch; /* iOS Safari */
+    }
+    
+    #datepickerSidebar .space-y-2::-webkit-scrollbar {
+        display: none;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    #datepickerSidebar .space-y-2 > button {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-size: 0.875rem;
+        padding: 0.625rem 1rem;
+        border-radius: 1.5rem;
+        border: 1px solid #e5e7eb;
+        /* Improve touch target size */
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Add a small indicator for horizontal scrolling */
+    #datepickerSidebar:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.9));
+        pointer-events: none;
+    }
+    
+    /* Month/year selector and calendar controls */
+    .calendar-header-controls {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    /* Calendar cells should be responsive */
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        width: 100%;
+    }
+    
+    .calendar-cell {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+        max-width: none !important;
+    }
+    
+    /* Single column layout for double month view on mobile */
+    #doubleMonthView .flex {
+        flex-direction: column;
+    }
+    
+    #doubleMonthView .flex > div:first-child {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Add swipe gesture support */
+    #calendarViewContainer {
+        touch-action: pan-y;
+        width: 100%;
+    }
+    
+    .calendar-grid {
+        touch-action: manipulation;
+    }
+    
+    /* Calendar footer should be fixed to bottom on mobile */
+    .calendar-footer {
+        padding: 1rem;
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        border-top: 1px solid #f3f4f6;
+        margin: 0 -1rem -1rem -1rem;
+        padding-bottom: env(safe-area-inset-bottom, 1rem);
+        z-index: 1;
+    }
+    
+    /* Adding swipe animation for calendar transitions */
+    #calendarViewContainer.swiping {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+}
+
+/* Additional styling classes for responsive behavior */
+.calendar-popup.small-mobile {
+    padding: 1rem !important;
+}
+
+.calendar-popup.tablet {
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 1rem !important;
+}
+
+/* Animations */
+@keyframes slideUpIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.calendar-popup:not(.hidden) {
+    animation: slideUpIn 0.2s ease-out;
+}
+
+/* Calendar view transitions */
+.calendar-view {
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Month/Year grid transitions */
+#monthsGrid, #yearsGrid {
+    transition: all 0.3s ease-out;
+}
+
+/* Better input field interaction */
+.date-input {
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.date-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Mobile-specific animations */
+@media screen and (max-width: 640px) {
+    /* Slide up animation for mobile popup */
+    @keyframes slideUpFromBottom {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    .calendar-popup.mobile-popup:not(.hidden) {
+        animation: slideUpFromBottom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    /* Add horizontal swipe animation class */
+    .horizontal-swipe-animation {
+        transition: transform 0.3s ease-out;
+    }
+}
+
+/* Very small screens optimization */
+@media screen and (max-width: 380px) {
+    .calendar-cell {
+        font-size: 12px;
+    }
+    
+    #monthYearSelector {
+        font-size: 0.9rem;
+    }
+    
+    #datepickerSidebar .space-y-2 > button {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    /* Optimize month and year grid for very small screens */
+    #monthsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #yearsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    /* Reduce padding to maximize space */
+    .calendar-popup {
+        padding: 1rem;
+    }
+}
+
+/* Tablet optimization */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+    .calendar-popup {
+        max-width: 90vw;
+    }
+    
+    /* Use two columns for months in tablet view */
+    #doubleMonthView .flex {
+        gap: 1rem;
+    }
+    
+    /* Ensure calendar maintains reasonable proportions */
+    .calendar-cell {
+        height: 38px;
+        width: 38px;
+    }
+}
+
+/* Landscape mode optimization for mobile */
+@media screen and (max-width: 640px) and (orientation: landscape) {
+    .calendar-popup {
+        max-height: 85vh; /* Slightly less height to accommodate landscape */
+    }
+    
+    /* Adjust sidebar to be more compact in landscape */
+    #datepickerSidebar {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    #datepickerSidebar .space-y-2 > button {
+        padding: 0.4rem 0.75rem;
+    }
+    
+    /* Make calendar cells more compact for landscape */
+    .calendar-cell {
+        width: auto !important;
+        aspect-ratio: 1.2 / 1;
+        font-size: 0.8rem;
+    }
+    
+    /* Optimize footer for landscape */
+    .calendar-footer {
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Use a horizontal layout for side-by-side viewing in landscape */
+    body.landscape-mode .calendar-popup > div {
+        flex-direction: row !important;
+    }
+    
+    body.landscape-mode #datepickerSidebar {
+        width: 30%;
+        flex-direction: column;
+        border-right: 1px solid #e5e7eb;
+        border-bottom: none;
+    }
+    
+    body.landscape-mode #calendarViewContainer {
+        width: 70%;
+    }
+}
+
+/* Add improved touch feedback for all devices */
+@media (pointer: coarse) {
+    .calendar-cell:active {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    
+    button:active {
+        transform: scale(0.97);
+    }
+    
+    /* Add visual indication of which day is being touched */
+    .calendar-cell.touching {
+        background-color: rgba(59, 130, 246, 0.1);
+    }
+}
+
+/* Optimize input field for mobile */
+@media screen and
