@@ -1,0 +1,63 @@
+{
+  "name": "@uplink-protocol/calendar-controller",
+  "version": "0.1.0",
+  "description": "Flexible calendar API supporting both calendar and date-picker integrations for any JavaScript framework or library",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "webpack",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir ./dist/types",
+    "build:docs": "typedoc --options typedoc.json",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build && npm run build:types && npm run build:docs",
+    "lint": "eslint src --ext .ts",
+    "test": "jest --config=jest.config.js",
+    "test:watch": "jest --config=jest.config.js --watch",
+    "docs": "typedoc --options typedoc.json",
+    "build:all": "npm run clean && npm run build && npm run build:types && npm run build:docs"
+  },
+  "keywords": [
+    "date-picker",
+    "controller",
+    "validation",
+    "multi-step",
+    "wizard",
+    "react",
+    "calendar",
+    "uplink-protocol"
+  ],
+  "author": "Odyssey Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmkcoder/uplink-protocol-calendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmkcoder/uplink-protocol-calendar/issues"
+  },
+  "homepage": "https://github.com/jmkcoder/uplink-protocol-calendar#readme",
+  "dependencies": {
+    "@uplink-protocol/core": "^0.0.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.3.4",
+    "ts-loader": "^9.0.0",
+    "typedoc": "^0.28.4",
+    "typedoc-plugin-markdown": "^4.6.3",
+    "typescript": "^5.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0"
+  }
+}
