@@ -8,11 +8,24 @@ const subscriptions = {};
 const initCalendarView = () => {
   // Set up subscriptions to calendar bindings
   setupSubscriptions(controller.calendar);
-  
-  // Initialize UI elements
+    // Initialize UI elements
   updateCalendarDisplay(controller.calendar.bindings.calendarDays.current);
   updateMonthYearDisplay();
   updateWeekdaysDisplay();
+  
+  // Initialize date display based on current selection mode
+  const calendar = controller.calendar;
+  if (calendar.bindings.isRangeSelection && calendar.bindings.isRangeSelection.current) {
+    // Initialize range display if in range mode
+    if (calendar.bindings.selectedDateRange && calendar.bindings.selectedDateRange.current) {
+      updateSelectedDateRangeDisplay(calendar.bindings.selectedDateRange.current);
+    }
+  } else {
+    // Initialize single date display
+    if (calendar.bindings.selectedDate && calendar.bindings.selectedDate.current) {
+      updateSelectedDateDisplay(calendar.bindings.selectedDate.current);
+    }
+  }
 };
 
 // Set up subscriptions to calendar bindings
@@ -50,10 +63,18 @@ const setupSubscriptions = (calendar) => {
     
     if (calendar.bindings.weekdays) {
       subscriptions.weekdays = calendar.bindings.weekdays.subscribe(updateWeekdaysDisplay);
-    }
-
-    if (calendar.bindings.formattedDate) {
+    }    if (calendar.bindings.formattedDate) {
       subscriptions.formattedDate = calendar.bindings.formattedDate.subscribe(updateSelectedDateDisplay);
+    }
+    
+    // Add subscription for date range selection
+    if (calendar.bindings.selectedDateRange) {
+      subscriptions.selectedDateRange = calendar.bindings.selectedDateRange.subscribe(updateSelectedDateRangeDisplay);
+    }
+    
+    // Add subscription for range selection mode
+    if (calendar.bindings.isRangeSelection) {
+      subscriptions.isRangeSelection = calendar.bindings.isRangeSelection.subscribe(handleRangeSelectionModeChange);
     }
   } catch (error) {
     console.error('Error setting up calendar subscriptions:', error);
@@ -136,6 +157,16 @@ const updateSelectedDateDisplay = (date) => {
   if (!element) return;
   
   const calendar = controller.calendar;
+  
+  // If we're in range mode, delegate to the range display handler
+  if (calendar.bindings.isRangeSelection && calendar.bindings.isRangeSelection.current) {
+    if (calendar.bindings.selectedDateRange && calendar.bindings.selectedDateRange.current) {
+      updateSelectedDateRangeDisplay(calendar.bindings.selectedDateRange.current);
+      return;
+    }
+  }
+  
+  // Handle single date mode
   if (!date) {
     element.textContent = 'No date selected';
     return;
@@ -185,13 +216,15 @@ const updateSelectedDateDisplay = (date) => {
 const changeLocale = (locale) => {
   
   // Update the existing calendar instance with the new locale
-  const calendar = controller.changeLocale(locale);
+  const calendar = controller.calendar;
+  calendar.methods.setLocale(locale);
   
   // Force a complete UI refresh with the new localized content
   updateCalendarDisplay(calendar.bindings.calendarDays.current);
   updateMonthYearDisplay();
   updateWeekdaysDisplay();
-    // CRITICAL: Update selected date display with the new locale
+  
+  // CRITICAL: Update selected date display with the new locale
   if (calendar.bindings.selectedDate && calendar.bindings.selectedDate.current) {
     const selectedDate = calendar.bindings.selectedDate.current;
     
@@ -204,6 +237,18 @@ const changeLocale = (locale) => {
     // If no selected date, just update the display to show "No date selected"
     updateSelectedDateDisplay(null);
   }
+    // Handle date range mode display
+  if (calendar.bindings.isRangeSelection && calendar.bindings.isRangeSelection.current) {
+    if (calendar.bindings.selectedDateRange && calendar.bindings.selectedDateRange.current) {
+      const dateRange = calendar.bindings.selectedDateRange.current;
+      
+      // Delay the update to ensure locale changes have propagated
+      setTimeout(() => {
+        // Use the proper date range display function
+        updateSelectedDateRangeDisplay(dateRange);
+      }, 50);
+    }
+  }
 };
 
 // Update the toggle mode button text
@@ -214,12 +259,91 @@ const updateToggleModeButton = (isRangeMode) => {
     : '<i class="fa-solid fa-calendar-range mr-1"></i><span>Switch to Range Mode</span>';
 };
 
+// Handle changes in range selection mode
+const handleRangeSelectionModeChange = (isRangeMode) => {
+  const selectedDateElement = document.getElementById('selectedDate');
+  
+  // Update the toggle mode button UI
+  updateToggleModeButton(isRangeMode);
+  
+  // Update the selected date display
+  if (isRangeMode) {
+    // If switching to range mode, update the text to reflect this
+    const calendar = controller.calendar;
+    if (calendar.bindings.selectedDateRange && calendar.bindings.selectedDateRange.current) {
+      // Show the currently selected range if any
+      updateSelectedDateRangeDisplay(calendar.bindings.selectedDateRange.current);
+    } else {
+      // Otherwise indicate that a range can be selected
+      selectedDateElement.textContent = 'Select a date range';
+    }
+  } else {
+    // If switching to single date mode, update with current selection if any
+    const calendar = controller.calendar;
+    if (calendar.bindings.selectedDate && calendar.bindings.selectedDate.current) {
+      updateSelectedDateDisplay(calendar.bindings.selectedDate.current);
+    } else {
+      selectedDateElement.textContent = 'No date selected';
+    }
+  }
+};
+
+// Update the display for date ranges
+const updateSelectedDateRangeDisplay = (range) => {
+  const element = document.getElementById('selectedDate');
+  if (!element) return;
+
+  const calendar = controller.calendar;
+  const locale = calendar.methods.getLocale() || 'en-US';
+  
+  if (!range) {
+    element.textContent = 'No range selected';
+    return;
+  }
+  
+  try {
+    const options = { 
+      weekday: 'long',
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    };
+    
+    // Format start date
+    if (range.startDate) {
+      const formatter = new Intl.DateTimeFormat(locale, options);
+      const startFormatted = formatter.format(range.startDate);
+      
+      // If we only have a start date
+      if (!range.endDate) {
+        element.textContent = `From: ${startFormatted}`;
+      } else {
+        // We have both start and end dates
+        const endFormatted = formatter.format(range.endDate);
+        element.textContent = `${startFormatted} — ${endFormatted}`;
+      }
+    } else if (range.endDate) {
+      // Unusual case: only end date is set
+      const formatter = new Intl.DateTimeFormat(locale, options);
+      element.textContent = `Until: ${formatter.format(range.endDate)}`;
+    } else {
+      element.textContent = 'No range selected';
+    }
+  } catch (error) {
+    // Fallback for any errors
+    element.textContent = 'Error displaying date range';
+    console.error('Error formatting date range:', error);
+  }
+};
+
 export default {
   initCalendarView,
   updateCalendarDisplay,
   updateMonthYearDisplay,
   updateWeekdaysDisplay,
   updateSelectedDateDisplay,
+  updateSelectedDateRangeDisplay,
   changeLocale,
-  updateToggleModeButton
+  updateToggleModeButton,
+  handleRangeSelectionModeChange
 };
