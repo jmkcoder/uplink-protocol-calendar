@@ -621,13 +621,13 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       () => this.generateCalendarDays()
     );
 
-    // Update month and year views
-    this.updateViewBindings();
-
     // Update currentRangeBase if needed
     if (this.bindings.currentYearRangeBase) {
-      this.bindings.currentYearRangeBase.set(year - (year % this._yearRangeSize) || this._currentYearRangeBase);
+      this.bindings.currentYearRangeBase.set(this.getYearRangeBase(date) || this._currentYearRangeBase);
     }
+
+    // Update month and year views
+    this.updateViewBindings();
 
     // Emit events
     if (this.events) {
@@ -982,6 +982,15 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       startYear: yearRange.startYear,
       endYear: yearRange.startYear + this._yearRangeSize - 1,
     };
+  }
+
+  /**
+   * Get information about the current year range
+   * @returns Year range object with start and end years
+   */
+  public setCurrentYearRange(date: Date): void {
+    this.bindings.currentYearRangeBase.set(this.getYearRangeBase(date));
+    this.updateViewBindings();
   }
 
   /**
