@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.3**](../README.md)
+[**@uplink-protocol/form-controller v0.1.4**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ILocalizationService
 
-Defined in: [interfaces/localization.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L5)
+Defined in: [interfaces/localization.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L5)
 
 Localization service interface
 Responsible for providing internationalization and localization functions
@@ -17,7 +17,7 @@ Responsible for providing internationalization and localization functions
 
 > **formatDate**(`date`, `options?`): `string`
 
-Defined in: [interfaces/localization.service.interfaces.ts:36](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L36)
+Defined in: [interfaces/localization.service.interfaces.ts:36](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L36)
 
 Format a date according to the locale
 
@@ -41,7 +41,7 @@ Format a date according to the locale
 
 > **getLocale**(): `string`
 
-Defined in: [interfaces/localization.service.interfaces.ts:26](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L26)
+Defined in: [interfaces/localization.service.interfaces.ts:26](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L26)
 
 Get current locale
 
@@ -55,7 +55,7 @@ Get current locale
 
 > **getMonthNames**(`short?`): `string`[]
 
-Defined in: [interfaces/localization.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L9)
+Defined in: [interfaces/localization.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L9)
 
 #### Parameters
 
@@ -73,7 +73,7 @@ Defined in: [interfaces/localization.service.interfaces.ts:9](https://github.com
 
 > **getShortWeekdayNames**(`firstDayOfWeek?`): `string`[]
 
-Defined in: [interfaces/localization.service.interfaces.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L21)
+Defined in: [interfaces/localization.service.interfaces.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L21)
 
 Get short localized weekday names
 
@@ -95,7 +95,7 @@ Optional first day of week (0=Sunday, 1=Monday, etc.)
 
 > **getWeekdayNames**(`short?`, `firstDayOfWeek?`): `string`[]
 
-Defined in: [interfaces/localization.service.interfaces.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L15)
+Defined in: [interfaces/localization.service.interfaces.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L15)
 
 Get localized weekday names
 
@@ -123,7 +123,7 @@ Optional first day of week (0=Sunday, 1=Monday, etc.)
 
 > **getWeekNumber**(`date`): `number`
 
-Defined in: [interfaces/localization.service.interfaces.ts:43](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L43)
+Defined in: [interfaces/localization.service.interfaces.ts:43](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L43)
 
 Get the week number of a date
 This is based on ISO 8601 where the first week of the year is the week with the first Thursday
@@ -144,7 +144,7 @@ This is based on ISO 8601 where the first week of the year is the week with the 
 
 > **setLocale**(`locale`): `void`
 
-Defined in: [interfaces/localization.service.interfaces.ts:31](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/localization.service.interfaces.ts#L31)
+Defined in: [interfaces/localization.service.interfaces.ts:31](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/interfaces/localization.service.interfaces.ts#L31)
 
 Set locale
 

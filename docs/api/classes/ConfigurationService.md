@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.3**](../README.md)
+[**@uplink-protocol/form-controller v0.1.4**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ConfigurationService
 
-Defined in: [services/configuration.service.ts:10](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L10)
+Defined in: [services/configuration.service.ts:10](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L10)
 
 Implementation of ConfigurationService
 Responsible for managing calendar configuration
@@ -21,7 +21,7 @@ Responsible for managing calendar configuration
 
 > **new ConfigurationService**(`_constraintsService`, `_dateFormattingService`): `ConfigurationService`
 
-Defined in: [services/configuration.service.ts:16](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L16)
+Defined in: [services/configuration.service.ts:16](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L16)
 
 #### Parameters
 
@@ -43,7 +43,7 @@ Defined in: [services/configuration.service.ts:16](https://github.com/jmkcoder/u
 
 > **applyConfiguration**(`options`): `object`
 
-Defined in: [services/configuration.service.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L24)
+Defined in: [services/configuration.service.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L24)
 
 Apply configuration options
 
@@ -111,7 +111,7 @@ Apply configuration options
 
 > **getDateFormat**(): `null` \| `string`
 
-Defined in: [services/configuration.service.ts:124](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L124)
+Defined in: [services/configuration.service.ts:124](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L124)
 
 Get date format
 
@@ -129,7 +129,7 @@ Get date format
 
 > **getFirstDayOfWeek**(): `number`
 
-Defined in: [services/configuration.service.ts:107](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L107)
+Defined in: [services/configuration.service.ts:107](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L107)
 
 Get first day of week
 
@@ -147,7 +147,7 @@ Get first day of week
 
 > **getHideOtherMonthDays**(): `boolean`
 
-Defined in: [services/configuration.service.ts:142](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L142)
+Defined in: [services/configuration.service.ts:142](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L142)
 
 Get hide other month days setting
 
@@ -165,7 +165,7 @@ Get hide other month days setting
 
 > **getIsRangeSelection**(): `boolean`
 
-Defined in: [services/configuration.service.ts:172](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L172)
+Defined in: [services/configuration.service.ts:172](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L172)
 
 Get range selection mode setting
 
@@ -183,7 +183,7 @@ Get range selection mode setting
 
 > **getShowWeekNumbers**(): `boolean`
 
-Defined in: [services/configuration.service.ts:157](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L157)
+Defined in: [services/configuration.service.ts:157](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L157)
 
 Get show week numbers setting
 
@@ -201,7 +201,7 @@ Get show week numbers setting
 
 > **setDateFormat**(`format`): `null` \| `string`
 
-Defined in: [services/configuration.service.ts:131](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L131)
+Defined in: [services/configuration.service.ts:131](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L131)
 
 Set date format
 
@@ -225,7 +225,7 @@ Set date format
 
 > **setFirstDayOfWeek**(`day`): `number`
 
-Defined in: [services/configuration.service.ts:114](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L114)
+Defined in: [services/configuration.service.ts:114](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L114)
 
 Set first day of week
 
@@ -249,7 +249,7 @@ Set first day of week
 
 > **setHideOtherMonthDays**(`hide`): `boolean`
 
-Defined in: [services/configuration.service.ts:149](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L149)
+Defined in: [services/configuration.service.ts:149](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L149)
 
 Set hide other month days setting
 
@@ -273,7 +273,7 @@ Set hide other month days setting
 
 > **setIsRangeSelection**(`isRange`): `boolean`
 
-Defined in: [services/configuration.service.ts:179](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L179)
+Defined in: [services/configuration.service.ts:179](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L179)
 
 Set range selection mode setting
 
@@ -297,7 +297,7 @@ Set range selection mode setting
 
 > **setShowWeekNumbers**(`show`): `boolean`
 
-Defined in: [services/configuration.service.ts:164](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/configuration.service.ts#L164)
+Defined in: [services/configuration.service.ts:164](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/services/configuration.service.ts#L164)
 
 Set show week numbers setting
 
