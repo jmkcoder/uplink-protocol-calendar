@@ -694,6 +694,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     // Update controller state
     this._selectedDate = result.selectedDate;
     this._selectedDateRange = result.selectedDateRange;
+
+    this.updateBindings();
   }
   /**
    * Get formatted selected date using DateFormattingService
