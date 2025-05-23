@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: NavigationService
 
-Defined in: [services/navigation.service.ts:7](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L7)
+Defined in: [services/navigation.service.ts:7](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L7)
 
 Implementation of NavigationService
 Responsible for handling calendar navigation operations
@@ -31,7 +31,7 @@ Responsible for handling calendar navigation operations
 
 > **navigateToDate**(`currentDate`, `targetDate?`): `Date`
 
-Defined in: [services/navigation.service.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L94)
+Defined in: [services/navigation.service.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L94)
 
 Navigate to specific date
 
@@ -63,7 +63,7 @@ The target date to navigate to
 
 > **navigateToMonth**(`currentDate`, `month`): `Date`
 
-Defined in: [services/navigation.service.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L47)
+Defined in: [services/navigation.service.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L47)
 
 Navigate to specific month
 
@@ -91,7 +91,7 @@ Navigate to specific month
 
 > **navigateToNextMonth**(`currentDate`): `Date`
 
-Defined in: [services/navigation.service.ts:11](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L11)
+Defined in: [services/navigation.service.ts:11](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L11)
 
 Navigate to next month
 
@@ -115,7 +115,7 @@ Navigate to next month
 
 > **navigateToNextYear**(`currentDate`): `Date`
 
-Defined in: [services/navigation.service.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L29)
+Defined in: [services/navigation.service.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L29)
 
 Navigate to next year
 
@@ -139,7 +139,7 @@ Navigate to next year
 
 > **navigateToPreviousMonth**(`currentDate`): `Date`
 
-Defined in: [services/navigation.service.ts:20](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L20)
+Defined in: [services/navigation.service.ts:20](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L20)
 
 Navigate to previous month
 
@@ -163,7 +163,7 @@ Navigate to previous month
 
 > **navigateToPreviousYear**(`currentDate`): `Date`
 
-Defined in: [services/navigation.service.ts:38](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L38)
+Defined in: [services/navigation.service.ts:38](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L38)
 
 Navigate to previous year
 
@@ -187,7 +187,7 @@ Navigate to previous year
 
 > **navigateToToday**(): `Date`
 
-Defined in: [services/navigation.service.ts:108](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L108)
+Defined in: [services/navigation.service.ts:108](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L108)
 
 Navigate to today
 
@@ -205,7 +205,7 @@ Navigate to today
 
 > **navigateToYear**(`currentDate`, `year`): `Date`
 
-Defined in: [services/navigation.service.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L55)
+Defined in: [services/navigation.service.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L55)
 
 Navigate to specific year
 
@@ -233,7 +233,7 @@ Navigate to specific year
 
 > **navigateToYearRange**(`currentYear`, `rangeSize`, `direction`): `number`
 
-Defined in: [services/navigation.service.ts:80](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/navigation.service.ts#L80)
+Defined in: [services/navigation.service.ts:80](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/navigation.service.ts#L80)
 
 Navigate to specific year range
 

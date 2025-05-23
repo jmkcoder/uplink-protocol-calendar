@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: InitializationService
 
-Defined in: [services/initialization.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/initialization.service.ts#L23)
+Defined in: [services/initialization.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/initialization.service.ts#L23)
 
 Implementation of InitializationService
 Responsible for setting up and initializing calendar components
@@ -31,7 +31,7 @@ Responsible for setting up and initializing calendar components
 
 > **applyConfiguration**(`options`, `locale`, `calendarService`, `dateFormattingService`, `localizationService`): `object`
 
-Defined in: [services/initialization.service.ts:62](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/initialization.service.ts#L62)
+Defined in: [services/initialization.service.ts:62](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/initialization.service.ts#L62)
 
 Apply calendar configuration options
 
@@ -115,7 +115,7 @@ Apply calendar configuration options
 
 > **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`, `getMonthNameFn`, `getWeekdayNamesFn`, `generateCalendarMonthsFn`, `generateCalendarYearsFn`): `Record`\<`string`, `Binding`\<`any`\>\>
 
-Defined in: [services/initialization.service.ts:27](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/initialization.service.ts#L27)
+Defined in: [services/initialization.service.ts:27](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/initialization.service.ts#L27)
 
 Initialize view state bindings and initial values
 

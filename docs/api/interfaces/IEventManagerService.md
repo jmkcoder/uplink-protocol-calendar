@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IEventManagerService
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L8)
+Defined in: [interfaces/event-manager.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L8)
 
 Event manager service interface
 Responsible for managing and emitting calendar events
@@ -17,7 +17,7 @@ Responsible for managing and emitting calendar events
 
 > **emitDateRangeSelected**(`emitter`, `range`): `void`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:32](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L32)
+Defined in: [interfaces/event-manager.service.interfaces.ts:32](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L32)
 
 Emit date range selected event
 
@@ -41,7 +41,7 @@ Emit date range selected event
 
 > **emitDateSelected**(`emitter`, `date`): `void`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L24)
+Defined in: [interfaces/event-manager.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L24)
 
 Emit date selected event
 
@@ -65,7 +65,7 @@ Emit date selected event
 
 > **emitMonthChanged**(`emitter`, `month`): `void`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L40)
+Defined in: [interfaces/event-manager.service.interfaces.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L40)
 
 Emit month changed event
 
@@ -89,7 +89,7 @@ Emit month changed event
 
 > **emitViewChanged**(`emitter`, `view`): `void`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L55)
+Defined in: [interfaces/event-manager.service.interfaces.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L55)
 
 Emit view changed event
 
@@ -119,7 +119,7 @@ Emit view changed event
 
 > **emitYearChanged**(`emitter`, `year`): `void`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L47)
+Defined in: [interfaces/event-manager.service.interfaces.ts:47](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L47)
 
 Emit year changed event
 
@@ -143,7 +143,7 @@ Emit year changed event
 
 > **emitYearRangeChanged**(`emitter`, `range`): `void`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:63](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L63)
+Defined in: [interfaces/event-manager.service.interfaces.ts:63](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L63)
 
 Emit year range changed event
 
@@ -167,7 +167,7 @@ Emit year range changed event
 
 > **initializeEvents**(): `object`
 
-Defined in: [interfaces/event-manager.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/event-manager.service.interfaces.ts#L12)
+Defined in: [interfaces/event-manager.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/event-manager.service.interfaces.ts#L12)
 
 Initialize event emitters
 

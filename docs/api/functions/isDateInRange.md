@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **isDateInRange**(`date`, `minDate`, `maxDate`): `boolean`
 
-Defined in: [utils/calendar.utils.ts:102](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/utils/calendar.utils.ts#L102)
+Defined in: [utils/calendar.utils.ts:102](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/utils/calendar.utils.ts#L102)
 
 Check if a date is within a range (inclusive)
 

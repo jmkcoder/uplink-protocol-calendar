@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IInitializationService
 
-Defined in: [interfaces/initialization.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/initialization.service.interfaces.ts#L14)
+Defined in: [interfaces/initialization.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/initialization.service.interfaces.ts#L14)
 
 Interface for component initialization service
 Responsible for setting up and initializing calendar components
@@ -17,7 +17,7 @@ Responsible for setting up and initializing calendar components
 
 > **applyConfiguration**(`options`, `locale`, `calendarService`, `dateFormattingService`, `localizationService`): `object`
 
-Defined in: [interfaces/initialization.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/initialization.service.interfaces.ts#L34)
+Defined in: [interfaces/initialization.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/initialization.service.interfaces.ts#L34)
 
 Apply calendar configuration options
 
@@ -89,7 +89,7 @@ Apply calendar configuration options
 
 > **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`, `getMonthNameFn`, `getWeekdayNamesFn`, `generateCalendarMonthsFn`, `generateCalendarYearsFn`): `Record`\<`string`, `Binding`\<`any`\>\>
 
-Defined in: [interfaces/initialization.service.interfaces.ts:18](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/initialization.service.interfaces.ts#L18)
+Defined in: [interfaces/initialization.service.interfaces.ts:18](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/interfaces/initialization.service.interfaces.ts#L18)
 
 Initialize view state bindings and initial values
 

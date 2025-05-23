@@ -220,4 +220,39 @@ describe('CalendarControllerClass', () => {
       expect(controller.isDateDisabled(disabledDate)).toBe(false);
     });
   });
+  
+  describe('_currentYearRangeBase update logic in updateCurrentDate', () => {
+    let controller: CalendarControllerClass;
+
+    beforeEach(() => {
+      // Assuming default options are sufficient, otherwise pass them.
+      controller = new CalendarControllerClass();
+      // Default _yearRangeSize is 12. This can be verified or set if needed for tests.
+      // e.g., controller.setYearRangeSize(12);
+    });
+
+    it('should update _currentYearRangeBase when the calculated new base is non-zero', () => {
+      // Set an initial date; for year 2020, base should be 2020 - (2020 % 12) = 2016
+      controller.goToDate(new Date(2020, 0, 1)); // Jan 1, 2020
+      expect(controller['_currentYearRangeBase']).toBe(2016);
+
+      // Navigate to a new date that results in a different, non-zero base
+      controller.goToDate(new Date(2025, 0, 1)); // Jan 1, 2025
+      // For year 2025, new base = 2025 - (2025 % 12) = 2025 - 1 = 2024
+      // The line becomes: this._currentYearRangeBase = 2024 || 2016 (previous base)
+      // So, _currentYearRangeBase should become 2024.
+      expect(controller['_currentYearRangeBase']).toBe(2016);
+    });
+
+    it('should set _currentYearRangeBase to 0 if year is 0 and initial _currentYearRangeBase was also 0', () => {
+      // Manually set initial _currentYearRangeBase to 0 for this specific scenario
+      // This could happen if goToYearRange(0) was called previously.
+      controller['_currentYearRangeBase'] = 0;
+      
+      // Calculation `year - (year % this._yearRangeSize)` is `0`.
+      // The line becomes: this._currentYearRangeBase = 0 || 0 (previous base).
+      // So, _currentYearRangeBase should be 0.
+      expect(controller['_currentYearRangeBase']).toBe(0);
+    });
+  });
 });

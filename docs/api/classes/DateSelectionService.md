@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: DateSelectionService
 
-Defined in: [services/date-selection.service.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L8)
+Defined in: [services/date-selection.service.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L8)
 
 Implementation of DateSelectionService
 Responsible for handling date selection and ranges
@@ -31,7 +31,7 @@ Responsible for handling date selection and ranges
 
 > **clearDateRange**(): `object`
 
-Defined in: [services/date-selection.service.ts:84](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L84)
+Defined in: [services/date-selection.service.ts:84](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L84)
 
 Clear the date range selection
 
@@ -59,7 +59,7 @@ Empty date range
 
 > **clearSelection**(): `object`
 
-Defined in: [services/date-selection.service.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L70)
+Defined in: [services/date-selection.service.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L70)
 
 Clear the current selection
 
@@ -95,7 +95,7 @@ Updated selection state
 
 > **isDateInRange**(`date`, `range`): `object`
 
-Defined in: [services/date-selection.service.ts:104](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L104)
+Defined in: [services/date-selection.service.ts:104](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L104)
 
 Check if a date is in the selected range
 
@@ -147,7 +147,7 @@ Object with range info
 
 > **isDateInSelectedRange**(`date`, `range`): `boolean`
 
-Defined in: [services/date-selection.service.ts:144](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L144)
+Defined in: [services/date-selection.service.ts:144](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L144)
 
 Check if a date is in the selected range (simplified version)
 
@@ -187,7 +187,7 @@ Boolean indicating if the date is in range
 
 > **isDateSelected**(`date`, `selectedDate`): `boolean`
 
-Defined in: [services/date-selection.service.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L94)
+Defined in: [services/date-selection.service.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L94)
 
 Check if a date is selected
 
@@ -221,7 +221,7 @@ Boolean indicating if date is selected
 
 > **selectDate**(`date`): `Date`
 
-Defined in: [services/date-selection.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L14)
+Defined in: [services/date-selection.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L14)
 
 Select a single date
 
@@ -249,7 +249,7 @@ Selected date
 
 > **selectDateRange**(`date`, `currentRange`): `object`
 
-Defined in: [services/date-selection.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-selection.service.ts#L23)
+Defined in: [services/date-selection.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-selection.service.ts#L23)
 
 Select a date for a range
 

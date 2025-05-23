@@ -602,7 +602,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       );
     }
   }
-  /**
+    /**
    * Update the current date and related bindings
    * @param date New current date
    */
@@ -624,6 +624,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     // Update month and year views
     this.updateViewBindings();
 
+    // Update currentRangeBase if needed
+    this._currentYearRangeBase = year - (year % this._yearRangeSize) || this._currentYearRangeBase;
+
     // Emit events
     if (this.events) {
       this._eventManagerService.emitMonthChanged(
@@ -637,6 +640,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       });
     }
   }
+
   /**
    * Update the bindings for calendar months and years
    */
@@ -962,11 +966,27 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * @returns Year range object with start and end years
    */
   public getCurrentYearRange(): YearRange {
-    const baseYear =
-      this._currentYearRangeBase ||
-      this._currentDate.getFullYear() -
-        (this._currentDate.getFullYear() % this._yearRangeSize);
+    if (this._currentYearRangeBase)
+      return {
+        startYear: this._currentYearRangeBase,
+        endYear: this._currentYearRangeBase + this._yearRangeSize - 1,
+      };
 
+    const yearRange = this.getYearRangeBase(this._currentDate);
+
+    return {
+      startYear: yearRange.startYear,
+      endYear: yearRange.startYear + this._yearRangeSize - 1,
+    };
+  }
+
+  /**
+   * Set the current date
+   * @param date Date to set as current
+   */
+  private getYearRangeBase(date: Date): YearRange {
+    const baseYear = date.getFullYear() - (date.getFullYear() % this._yearRangeSize)
+    
     return {
       startYear: baseYear,
       endYear: baseYear + this._yearRangeSize - 1,

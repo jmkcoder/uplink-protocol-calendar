@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.2**](../README.md)
+[**@uplink-protocol/form-controller v0.1.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: DateValidationService
 
-Defined in: [services/date-validation.service.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-validation.service.ts#L8)
+Defined in: [services/date-validation.service.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-validation.service.ts#L8)
 
 Implementation of DateValidationService
 Responsible for date validation and constraint checking
@@ -31,7 +31,7 @@ Responsible for date validation and constraint checking
 
 > **isDateDisabled**(`date`, `minDate`, `maxDate`, `disabledDates`): `boolean`
 
-Defined in: [services/date-validation.service.ts:17](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-validation.service.ts#L17)
+Defined in: [services/date-validation.service.ts:17](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-validation.service.ts#L17)
 
 Check if a date is disabled based on constraints
 
@@ -77,7 +77,7 @@ Boolean indicating if date is disabled
 
 > **isSameDay**(`date1`, `date2`): `boolean`
 
-Defined in: [services/date-validation.service.ts:86](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-validation.service.ts#L86)
+Defined in: [services/date-validation.service.ts:86](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-validation.service.ts#L86)
 
 Check if two dates represent the same day
 
@@ -111,7 +111,7 @@ Boolean indicating if dates are the same day
 
 > **setDisabledDates**(`dates`): `Date`[]
 
-Defined in: [services/date-validation.service.ts:72](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-validation.service.ts#L72)
+Defined in: [services/date-validation.service.ts:72](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-validation.service.ts#L72)
 
 Set disabled dates
 
@@ -139,7 +139,7 @@ Normalized array of disabled dates
 
 > **setMaxDate**(`date`): `null` \| `Date`
 
-Defined in: [services/date-validation.service.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-validation.service.ts#L59)
+Defined in: [services/date-validation.service.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-validation.service.ts#L59)
 
 Set maximum selectable date
 
@@ -167,7 +167,7 @@ Normalized maximum date
 
 > **setMinDate**(`date`): `null` \| `Date`
 
-Defined in: [services/date-validation.service.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/date-validation.service.ts#L46)
+Defined in: [services/date-validation.service.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b7ce0ea27c5f5fc885d8d11198b3335a1464aa83/src/services/date-validation.service.ts#L46)
 
 Set minimum selectable date
 
