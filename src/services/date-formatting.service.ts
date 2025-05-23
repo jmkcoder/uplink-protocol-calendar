@@ -40,39 +40,47 @@ export class DateFormattingService implements IDateFormattingService {
    */
   public getDateFormatOptions(): Intl.DateTimeFormatOptions | null {
     return this._dateFormatOptions;
-  }
-  /**
+  }  /**
    * Format a date according to the specified format string
    * @param date Date to format
-   * @param format Optional format string
+   * @param format Optional format string or format type ('short', 'medium', 'long', 'full')
    * @returns Formatted date string
    */
-  public formatDate(date: Date, format?: string): string {
-    // Case 1: If localization service is available and no specific format string is requested
+  public formatDate(date: Date, format?: string | Intl.DateTimeFormatOptions): string {
+    if (!date) {
+      return '';
+    }
+    // If format is a custom string (e.g., 'DD/MM/YYYY'), handle explicitly
+    if (typeof format === 'string' && format === 'DD/MM/YYYY') {
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+    // If localization service is available and format is an object or known type, use it
     if (this._localizationService) {
-      // If a specific format is requested, use the traditional formatting
-      if (format || this._defaultFormat) {
-        // Continue to use string-based formatting
-      } else {
-        // Use internationalized formatting with the localization service
-        return this._localizationService.formatDate(date, this._dateFormatOptions || undefined);
+      if (typeof format === 'object' && format !== null) {
+        return this._localizationService.formatDate(date, format);
+      }
+      if (typeof format === 'string' && (format === 'short' || format === 'medium' || format === 'long' || format === 'full')) {
+        return this._localizationService.formatDate(date, { dateStyle: format as 'short' | 'medium' | 'long' | 'full' });
+      }
+      if (!format && this._dateFormatOptions) {
+        return this._localizationService.formatDate(date, this._dateFormatOptions);
       }
     }
-    
-    const formatToUse = format || this._defaultFormat;
-    
+    // Use default format if set
+    const formatToUse = typeof format === 'string' ? format : this._defaultFormat;
     if (!formatToUse) {
-      return date.toISOString().split('T')[0]; // Default ISO format
+      return date.toISOString().split('T')[0];
     }
-    
-    // Basic formatting support
+    // Basic formatting support for custom format strings
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const seconds = date.getSeconds().toString().padStart(2, '0');
-    
     return formatToUse
       .replace('YYYY', year.toString())
       .replace('YY', year.toString().slice(-2))
@@ -190,5 +198,45 @@ export class DateFormattingService implements IDateFormattingService {
    */
   public getDefaultFormat(): string | null {
     return this._defaultFormat;
+  }
+    /**
+   * Format a month and year
+   * @param year Year to format
+   * @param month Month to format (0-11)
+   * @param format Optional format string
+   * @returns Formatted month string
+   */
+  public formatMonth(year: number, month: number, format?: string): string {
+    const date = new Date(year, month, 1);
+    
+    if (this._localizationService && !format) {
+      // Use localization service with default month-year format
+      return this._localizationService.formatDate(date, {
+        year: 'numeric',
+        month: 'long'
+      });
+    }
+    
+    if (format) {
+      // Use the specified format
+      return this.formatDate(date, format);
+    }
+    
+    // Default format: "Month Year"
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    
+    return `${monthNames[month]} ${year}`;
+  }
+  
+  /**
+   * Format a year
+   * @param year Year to format
+   * @returns Formatted year string
+   */
+  public formatYear(year: number): string {
+    return year.toString();
   }
 }

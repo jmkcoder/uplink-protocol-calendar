@@ -14,6 +14,8 @@ export interface IConfigurationService {  /**
     firstDayOfWeek: number;
     dateFormat: string | null;
     hideOtherMonthDays: boolean;
+    showWeekNumbers: boolean;
+    isRangeSelection: boolean;
     locale?: string;
     dateFormatOptions?: Intl.DateTimeFormatOptions;
   };
@@ -32,9 +34,38 @@ export interface IConfigurationService {  /**
    * Get date format
    */
   getDateFormat(): string | null;
-
   /**
    * Set date format
    */
   setDateFormat(format: string | null): string | null;
+
+  /**
+   * Get hide other month days setting
+   */
+  getHideOtherMonthDays(): boolean;
+
+  /**
+   * Set hide other month days setting
+   */
+  setHideOtherMonthDays(hide: boolean): boolean;
+
+  /**
+   * Get show week numbers setting
+   */
+  getShowWeekNumbers(): boolean;
+
+  /**
+   * Set show week numbers setting
+   */
+  setShowWeekNumbers(show: boolean): boolean;
+
+  /**
+   * Get range selection mode setting
+   */
+  getIsRangeSelection(): boolean;
+
+  /**
+   * Set range selection mode setting
+   */
+  setIsRangeSelection(isRange: boolean): boolean;
 }

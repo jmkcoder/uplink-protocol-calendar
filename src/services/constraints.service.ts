@@ -52,8 +52,7 @@ export class ConstraintsService implements IConstraintsService {
       disabledDate.getDate() === date.getDate()
     );
   }
-  
-  /**
+    /**
    * Get current constraints
    */
   public getConstraints(): {
@@ -66,5 +65,36 @@ export class ConstraintsService implements IConstraintsService {
       maxDate: this._maxDate,
       disabledDates: [...this._disabledDates],
     };
+  }
+  
+  /**
+   * Add a date to the disabled dates list
+   */
+  public addDisabledDate(date: Date): Date[] {
+    // Check if date already exists
+    const exists = this._disabledDates.some(disabledDate =>
+      disabledDate.getFullYear() === date.getFullYear() &&
+      disabledDate.getMonth() === date.getMonth() &&
+      disabledDate.getDate() === date.getDate()
+    );
+    
+    if (!exists) {
+      this._disabledDates.push(new Date(date));
+    }
+    
+    return [...this._disabledDates];
+  }
+  
+  /**
+   * Remove a date from the disabled dates list
+   */
+  public removeDisabledDate(date: Date): Date[] {
+    this._disabledDates = this._disabledDates.filter(disabledDate =>
+      !(disabledDate.getFullYear() === date.getFullYear() &&
+        disabledDate.getMonth() === date.getMonth() &&
+        disabledDate.getDate() === date.getDate())
+    );
+    
+    return [...this._disabledDates];
   }
 }

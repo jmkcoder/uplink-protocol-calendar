@@ -1,0 +1,223 @@
+import { CalendarControllerClass } from '../controller';
+import { createDate, mockDate, testDates } from './test-utils';
+import { CalendarOptions } from '../interfaces';
+
+describe('CalendarControllerClass', () => {
+  let controller: CalendarControllerClass;
+  let resetDate: () => void;
+  
+  beforeEach(() => {
+    // Mock current date to May 21, 2025
+    resetDate = mockDate(testDates.present);
+    
+    // Create a basic controller without options
+    controller = new CalendarControllerClass();
+  });
+  
+  afterEach(() => {
+    resetDate();
+  });
+  
+  describe('initialization', () => {
+    it('should initialize with default values', () => {
+      expect(controller._currentDate).toBeDefined();
+      expect(controller._selectedDate).toBeNull();
+      expect(controller._selectedDateRange.startDate).toBeNull();
+      expect(controller._selectedDateRange.endDate).toBeNull();
+      expect(controller._firstDayOfWeek).toBe(0); // Sunday
+      expect(controller._isRangeSelection).toBe(false);
+      expect(controller._locale).toBe('en-US');
+    });
+      it('should initialize with provided options', () => {
+      const options: CalendarOptions = {
+        initialSelectedDate: testDates.past,
+        minDate: testDates.past,
+        maxDate: testDates.future,
+        firstDayOfWeek: 1, // Monday
+        locale: 'fr-FR',
+      };
+      
+      controller = new CalendarControllerClass(options);
+      
+      expect(controller._selectedDate).toEqual(testDates.past);
+      expect(controller._minDate).toEqual(testDates.past);
+      expect(controller._maxDate).toEqual(testDates.future);
+      expect(controller._firstDayOfWeek).toBe(1);
+      expect(controller._locale).toBe('fr-FR');
+    });
+  });
+  
+  describe('date selection', () => {    it('should select a date', () => {      
+      const date = testDates.future;
+      controller.selectDate(date.getFullYear(), date.getMonth(), date.getDate());
+      // Set focused date explicitly - this would normally be handled by UI interaction
+      controller.setFocusedDate(date);
+      
+      expect(controller._selectedDate).toEqual(date);
+      expect(controller._focusedDate).toEqual(date);
+    });
+      it('should not select disabled dates', () => {
+      const date = testDates.future;
+      
+      // Disable the date first
+      controller.setMinDate(testDates.past);
+      controller.setMaxDate(testDates.present);
+      
+      controller.selectDate(date.getFullYear(), date.getMonth(), date.getDate());
+      
+      // Should not be selected because it's after max date
+      expect(controller._selectedDate).not.toEqual(date);
+    });
+    
+    it('should handle date range selection', () => {
+      controller._isRangeSelection = true;
+      
+      const startDate = testDates.past;
+      const endDate = testDates.present;
+        // Select start date
+      controller.selectDate(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+      expect(controller._selectedDateRange.startDate).toEqual(startDate);
+      expect(controller._selectedDateRange.endDate).toBeNull();
+      
+      // Select end date
+      controller.selectDate(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+      expect(controller._selectedDateRange.startDate).toEqual(startDate);
+      expect(controller._selectedDateRange.endDate).toEqual(endDate);
+    });
+    
+    it('should swap dates in range if end date is before start date', () => {      controller._isRangeSelection = true;
+      
+      const earlierDate = testDates.past;
+      const laterDate = testDates.present;
+      
+      // Select later date first
+      controller.selectDate(laterDate.getFullYear(), laterDate.getMonth(), laterDate.getDate());
+      expect(controller._selectedDateRange.startDate).toEqual(laterDate);
+      
+      // Then select earlier date
+      controller.selectDate(earlierDate.getFullYear(), earlierDate.getMonth(), earlierDate.getDate());
+      
+      // Should have swapped the dates
+      expect(controller._selectedDateRange.startDate).toEqual(earlierDate);
+      expect(controller._selectedDateRange.endDate).toEqual(laterDate);
+    });
+  });
+  
+  describe('navigation', () => {
+    it('should navigate to previous month', () => {
+      // May 2025 is the starting month
+      const initialMonth = controller._currentDate.getMonth();
+      const initialYear = controller._currentDate.getFullYear();
+      
+      controller.prevMonth();
+      
+      // Should now be April 2025
+      expect(controller._currentDate.getMonth()).toBe((initialMonth - 1 + 12) % 12);
+      expect(controller._currentDate.getFullYear()).toBe(initialMonth === 0 ? initialYear - 1 : initialYear);
+    });
+    
+    it('should navigate to next month', () => {
+      // May 2025 is the starting month
+      const initialMonth = controller._currentDate.getMonth();
+      const initialYear = controller._currentDate.getFullYear();
+      
+      controller.nextMonth();
+      
+      // Should now be June 2025
+      expect(controller._currentDate.getMonth()).toBe((initialMonth + 1) % 12);
+      expect(controller._currentDate.getFullYear()).toBe(initialMonth === 11 ? initialYear + 1 : initialYear);
+    });
+    
+    it('should navigate to previous year', () => {
+      const initialYear = controller._currentDate.getFullYear();
+      
+      controller.prevYear();
+      
+      expect(controller._currentDate.getFullYear()).toBe(initialYear - 1);
+    });
+    
+    it('should navigate to next year', () => {
+      const initialYear = controller._currentDate.getFullYear();
+      
+      controller.nextYear();
+      
+      expect(controller._currentDate.getFullYear()).toBe(initialYear + 1);
+    });
+      it('should navigate to date', () => {
+      const targetDate = createDate(2023, 3, 15); // April 15, 2023
+      
+      controller.goToDate(targetDate);
+      
+      expect(controller._currentDate.getFullYear()).toBe(2023);
+      expect(controller._currentDate.getMonth()).toBe(3);
+    });
+      it('should navigate to today', () => {
+      // First navigate away from today
+      controller.goToDate(testDates.past);
+      
+      // Then navigate back to today
+      controller.goToToday();
+      
+      expect(controller._currentDate.getFullYear()).toBe(testDates.present.getFullYear());
+      expect(controller._currentDate.getMonth()).toBe(testDates.present.getMonth());
+    });
+  });  describe('view generation', () => {
+    it('should have calendar days binding', () => {
+      expect(controller.bindings.calendarDays).toBeDefined();
+    });
+    
+    it('should have calendar months binding', () => {
+      expect(controller.bindings.calendarMonths).toBeDefined();
+    });
+    
+    it('should have calendar years binding', () => {
+      expect(controller.bindings.calendarYears).toBeDefined();
+    });
+  });
+  
+  describe('constraints and validation', () => {
+    it('should set min date', () => {
+      const minDate = testDates.past;
+      
+      controller.setMinDate(minDate);
+      
+      expect(controller._minDate).toEqual(minDate);
+    });
+    
+    it('should set max date', () => {
+      const maxDate = testDates.future;
+      
+      controller.setMaxDate(maxDate);
+      
+      expect(controller._maxDate).toEqual(maxDate);
+    });
+    
+    it('should check if a date is disabled', () => {
+      const minDate = testDates.past;
+      const maxDate = testDates.future;
+      const withinRange = testDates.present;
+      const outsideRange = createDate(2026, 6, 1); // July 1, 2026
+      
+      controller.setMinDate(minDate);
+      controller.setMaxDate(maxDate);
+      
+      expect(controller.isDateDisabled(withinRange)).toBe(false);
+      expect(controller.isDateDisabled(outsideRange)).toBe(true);
+    });
+      it('should update disabled dates', () => {
+      const disabledDate = testDates.present;
+      
+      // Add a disabled date
+      controller.setDisabledDates([disabledDate]);
+      
+      expect(controller._disabledDates).toContainEqual(disabledDate);
+      expect(controller.isDateDisabled(disabledDate)).toBe(true);
+      
+      // Remove all disabled dates
+      controller.setDisabledDates([]);
+      
+      expect(controller._disabledDates).not.toContainEqual(disabledDate);
+      expect(controller.isDateDisabled(disabledDate)).toBe(false);
+    });
+  });
+});

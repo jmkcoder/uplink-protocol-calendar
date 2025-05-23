@@ -31,4 +31,14 @@ export interface IConstraintsService {
     maxDate: Date | null;
     disabledDates: Date[];
   };
+  
+  /**
+   * Add a date to the disabled dates list
+   */
+  addDisabledDate(date: Date): Date[];
+  
+  /**
+   * Remove a date from the disabled dates list
+   */
+  removeDisabledDate(date: Date): Date[];
 }

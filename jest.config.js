@@ -1,11 +1,14 @@
-module.exports = {
-  preset: 'ts-jest',
+export default {
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
+  extensionsToTreatAsEsm: ['.ts'],
   moduleFileExtensions: [
     'ts',
     'tsx',
     'js',
-    'jsx'
+    'jsx',
+    'json',
+    'node'
   ],
   testMatch: [
     '**/__tests__/**/*.(spec|test).ts',
@@ -17,10 +20,19 @@ module.exports = {
     'test-utils.ts'
   ],
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest'
+    '^.+\\.(ts|tsx|js|jsx)$': [
+      'ts-jest',
+      {
+        useESM: true,
+        tsconfig: '<rootDir>/tsconfig.test.json'
+      }
+    ]
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^@uplink-protocol/core$': '<rootDir>/src/__mocks__/@uplink-protocol/core.ts'
-  }
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
+  moduleDirectories: ['node_modules'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!@uplink-protocol/core|other-esm-dependency)' // Transform ESM dependencies
+  ]
 };

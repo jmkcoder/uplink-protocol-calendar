@@ -53,6 +53,16 @@ export interface ICalendarService {
    * Get the localization service
    */
   getLocalizationService(): any | null;
+  
+  /**
+   * Check if a date is today
+   */
+  isToday(date: Date): boolean;
+  
+  /**
+   * Get the ISO week number for a date
+   */
+  getWeekNumber(date: Date): number;
 }
 
 /**
@@ -60,7 +70,7 @@ export interface ICalendarService {
  */
 export interface CalendarGenerationOptions {
   selectedDate: Date | null;
-  selectedDateRange: {startDate: Date | null, endDate: Date | null};
+  selectedDateRange: { startDate?: Date | null; endDate?: Date | null; start?: Date | null; end?: Date | null };
   focusedDate: Date | null;
   firstDayOfWeek: number;
   minDate: Date | null;
@@ -69,12 +79,17 @@ export interface CalendarGenerationOptions {
   isRangeSelection: boolean;
   isDateDisabledFn: (date: Date) => boolean;
   hideOtherMonthDays: boolean;
+  locale?: string; // Optional locale for internationalization
+  weekNumbers?: boolean; // Whether to display week numbers
+  fullWeekdays?: boolean; // Whether to use full weekday names
 }
 
 /**
  * Options for month view generation
  */
 export interface MonthViewGenerationOptions {
+  selectedDateRange: any;
+  isRangeSelection: any;
   selectedDate: Date | null;
   currentDate: Date;
   minDate: Date | null;
@@ -86,11 +101,15 @@ export interface MonthViewGenerationOptions {
  * Options for year view generation
  */
 export interface YearViewGenerationOptions {
+  selectedDateRange: any;
+  isRangeSelection: any;
   selectedDate: Date | null;
   currentDate: Date;
   minDate: Date | null;
   maxDate: Date | null;
   isYearDisabledFn?: (year: number) => boolean;
+  yearRangeSize?: number; // Optional range size for multi-year views
+  selectedYearRange?: { startYear: number; endYear: number }; // For marking years in range
 }
 
 // Using CalendarDate from calendar.interfaces.ts

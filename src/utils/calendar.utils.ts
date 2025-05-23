@@ -62,23 +62,32 @@ export function formatDate(date: Date, format?: string): string {
 /**
  * Get month name from month index
  * @param monthIndex Month index (0-11)
+ * @param short Whether to return short month name
  * @returns Month name
  */
-export function getMonthName(monthIndex: number): string {
+export function getMonthName(monthIndex: number, short: boolean = false): string {
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  return months[monthIndex];
+  const shortMonths = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  return short ? shortMonths[monthIndex] : months[monthIndex];
 }
 
 /**
- * Get localized weekday names (short format)
+ * Get localized weekday names
+ * @param short Whether to get short weekday names
  * @param firstDayOfWeek The first day of the week (0 = Sunday, 1 = Monday, etc.)
  * @returns Array of weekday names, starting with the specified first day
  */
-export function getWeekdayNames(firstDayOfWeek: number = 0): string[] {
-  const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export function getWeekdayNames(short: boolean = false, firstDayOfWeek: number = 0): string[] {
+  const weekdays = short 
+    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
   const rotatedWeekdays = [...weekdays.slice(firstDayOfWeek), ...weekdays.slice(0, firstDayOfWeek)];
   return rotatedWeekdays;
 }

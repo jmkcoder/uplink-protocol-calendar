@@ -29,30 +29,35 @@ export interface IViewStateService {
     weekdays: Binding<string[]>;
     isRangeSelection: Binding<boolean>;
   };
-
   /**
    * Update current date in view state
+   * @param date The date to update to
+   * @param param1 Either individual bindings or an object containing the bindings
+   * @param param2 Function to get month name or the generate calendar days function
+   * @param param3 Optional function to generate calendar days
    */
   updateCurrentDate(
     date: Date, 
-    bindings: {
+    currentMonthBinding: Binding<number> | {
       currentMonth: Binding<number>;
       currentYear: Binding<number>;
       monthName: Binding<string>;
       calendarDays: Binding<CalendarDate[]>;
     },
-    getMonthName: (month: number) => string,
-    generateCalendarDays: () => CalendarDate[]
+    currentYearOrGetMonthName: Binding<number> | ((month: number) => string),
+    monthNameBindingOrGenerateCalendarDays: Binding<string> | (() => CalendarDate[]),
+    getMonthNameFn?: (month: number) => string,
+    calendarDaysBinding?: Binding<CalendarDate[]>,
+    generateCalendarDaysFn?: () => CalendarDate[]
   ): { month: number, year: number };
-
   /**
    * Update selected date bindings
    */
   updateSelectedDate(
     date: Date | null,
     binding: Binding<Date | null>,
-    calendarDaysBinding: Binding<CalendarDate[]>,
-    generateCalendarDays: () => CalendarDate[]
+    calendarDaysBinding?: Binding<CalendarDate[]>,
+    generateCalendarDays?: () => CalendarDate[]
   ): void;
 
   /**
@@ -76,11 +81,29 @@ export interface IViewStateService {
   ): void;
   
   /**
+   * Update selectedDateRange binding with new range
+   */
+  updateSelectedDateRange(
+    range: DateRange,
+    binding: Binding<DateRange>
+  ): void;
+
+  /**
+   * Update calendarDays binding with new calendar days
+   */
+  updateCalendarDays(
+    calendarDays: CalendarDate[],
+    binding: Binding<CalendarDate[]>
+  ): void;
+  /**
    * Update focused date
+   * @param date The date to focus
+   * @param bindingArg Either the focusedDate binding or the calendarDays binding
+   * @param generateCalendarDays Optional function to generate calendar days
    */
   updateFocusedDate(
     date: Date | null,
-    calendarDaysBinding: Binding<CalendarDate[]>,
-    generateCalendarDays: () => CalendarDate[]
+    bindingArg?: Binding<Date | null> | Binding<CalendarDate[]>,
+    generateCalendarDays?: () => CalendarDate[]
   ): void;
 }

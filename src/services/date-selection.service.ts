@@ -14,8 +14,7 @@ export class DateSelectionService implements IDateSelectionService {
   public selectDate(date: Date): Date {
     return new Date(date);
   }
-  
-  /**
+    /**
    * Select a date for a range
    * @param date Date being selected
    * @param currentRange Current date range
@@ -23,33 +22,44 @@ export class DateSelectionService implements IDateSelectionService {
    */
   public selectDateRange(
     date: Date, 
-    currentRange: {startDate: Date | null, endDate: Date | null}
+    currentRange: {startDate?: Date | null, endDate?: Date | null, start?: Date | null, end?: Date | null}
   ): {startDate: Date | null, endDate: Date | null} {
-    // Deep copy the current range to avoid mutation
-    const result = { 
-      startDate: currentRange.startDate ? new Date(currentRange.startDate) : null, 
-      endDate: currentRange.endDate ? new Date(currentRange.endDate) : null 
-    };
+    // Create a consistent object structure for the result
+    let startDate: Date | null = null;
+    let endDate: Date | null = null;
     
-    if (!result.startDate) {
+    // Get existing values from the current range, handling both naming conventions
+    if (currentRange.startDate || currentRange.start) {
+      startDate = new Date(currentRange.startDate || currentRange.start as Date);
+    }
+    
+    if (currentRange.endDate || currentRange.end) {
+      endDate = new Date(currentRange.endDate || currentRange.end as Date);
+    }
+    
+    // Create a new date object to avoid mutation
+    const newDate = new Date(date);
+    
+    if (!startDate) {
       // First date in range
-      result.startDate = new Date(date);
-      result.endDate = null;
-    } else if (!result.endDate) {
+      startDate = newDate;
+      endDate = null;
+    } else if (!endDate) {
       // Second date in range - ensure proper order
-      if (date < result.startDate) {
-        result.endDate = new Date(result.startDate);
-        result.startDate = new Date(date);
+      if (newDate < startDate) {
+        endDate = new Date(startDate);
+        startDate = newDate;
       } else {
-        result.endDate = new Date(date);
+        endDate = newDate;
       }
     } else {
       // Start a new range
-      result.startDate = new Date(date);
-      result.endDate = null;
+      startDate = newDate;
+      endDate = null;
     }
     
-    return result;
+    // Always return an object with both startDate and endDate
+    return { startDate: startDate ?? null, endDate: endDate ?? null };
   }
   
   /**
@@ -57,21 +67,22 @@ export class DateSelectionService implements IDateSelectionService {
    * @param isRangeMode Whether in range selection mode
    * @returns Updated selection state
    */
-  public clearSelection(isRangeMode: boolean): {
+  public clearSelection(): {
     selectedDate: Date | null, 
     selectedDateRange: {startDate: Date | null, endDate: Date | null}
   } {
-    if (isRangeMode) {
-      return {
-        selectedDate: null,
-        selectedDateRange: { startDate: null, endDate: null }
-      };
-    } else {
-      return {
-        selectedDate: null,
-        selectedDateRange: { startDate: null, endDate: null }
-      };
-    }
+    return {
+      selectedDate: null,
+      selectedDateRange: { startDate: null, endDate: null }
+    };
+  }
+  
+  /**
+   * Clear the date range selection
+   * @returns Empty date range
+   */
+  public clearDateRange(): {startDate: Date | null, endDate: Date | null} {
+    return { startDate: null, endDate: null };
   }
   
   /**
@@ -84,8 +95,7 @@ export class DateSelectionService implements IDateSelectionService {
     if (!selectedDate) return false;
     return isSameDay(date, selectedDate);
   }
-  
-  /**
+    /**
    * Check if a date is in the selected range
    * @param date Date to check
    * @param range Currently selected range
@@ -121,8 +131,34 @@ export class DateSelectionService implements IDateSelectionService {
     
     result.isInRange = normalizedDate >= start && normalizedDate <= end;
     result.isRangeStart = isSameDay(normalizedDate, start);
-    result.isRangeEnd = isSameDay(normalizedDate, end);
-    
+    result.isRangeEnd = isSameDay(normalizedDate, end);    
     return result;
+  }
+  
+  /**
+   * Check if a date is in the selected range (simplified version)
+   * @param date Date to check
+   * @param range Currently selected range
+   * @returns Boolean indicating if the date is in range
+   */
+  public isDateInSelectedRange(
+    date: Date, 
+    range: {startDate: Date | null, endDate: Date | null}
+  ): boolean {
+    if (!range.startDate || !range.endDate) {
+      return false;
+    }
+    
+    // Normalize dates to midnight for comparison
+    const normalizedDate = new Date(date);
+    normalizedDate.setHours(0, 0, 0, 0);
+    
+    const start = new Date(range.startDate);
+    start.setHours(0, 0, 0, 0);
+    
+    const end = new Date(range.endDate);
+    end.setHours(0, 0, 0, 0);
+    
+    return normalizedDate >= start && normalizedDate <= end;
   }
 }

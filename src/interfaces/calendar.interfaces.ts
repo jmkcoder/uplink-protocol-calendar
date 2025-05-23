@@ -38,6 +38,10 @@ export interface CalendarOptions {
   locale?: string;
   /** Date format options for Intl.DateTimeFormat */
   dateFormatOptions?: Intl.DateTimeFormatOptions;
+  /** Enable date range selection mode */
+  isRangeSelection?: boolean;
+  /** Show week numbers in calendar */
+  showWeekNumbers?: boolean;
 }
 
 /**
@@ -77,4 +81,33 @@ export interface CalendarYear {
 export interface YearRange {
   startYear: number;
   endYear: number;
+}
+
+/**
+ * CalendarWeek - Interface for a week in the calendar view
+ */
+export interface CalendarWeek {
+  days: CalendarDate[];
+  weekNumber?: number;
+}
+
+/**
+ * CalendarView - Interface for a month view with weeks
+ */
+export interface CalendarView {
+  month: number;
+  year: number;
+  weeks: CalendarWeek[];
+  weekdays: string[];
+}
+
+/**
+ * YearView - Interface for a year view with months or years
+ */
+export interface YearView {
+  year?: number;
+  startYear?: number;
+  endYear?: number;
+  months?: CalendarMonth[];
+  years?: CalendarYear[];
 }

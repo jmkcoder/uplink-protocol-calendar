@@ -11,14 +11,17 @@ export class ConfigurationService implements IConfigurationService {
   private _firstDayOfWeek: number = 0; // Sunday by default
   private _dateFormat: string | null = null;
   private _hideOtherMonthDays: boolean = false; // Show other month days by default
-
+  private _showWeekNumbers: boolean = false; // Hide week numbers by default
+  private _isRangeSelection: boolean = false; // Single date selection by default
   constructor(
     private _constraintsService: IConstraintsService,
     private _dateFormattingService: IDateFormattingService
   ) {}
+  
   /**
    * Apply configuration options
-   */  public applyConfiguration(options: CalendarOptions): {
+   */
+  public applyConfiguration(options: CalendarOptions): {
     minDate: Date | null;
     maxDate: Date | null;
     disabledDates: Date[];
@@ -26,6 +29,8 @@ export class ConfigurationService implements IConfigurationService {
     firstDayOfWeek: number;
     dateFormat: string | null;
     hideOtherMonthDays: boolean;
+    showWeekNumbers: boolean;
+    isRangeSelection: boolean;
     locale?: string;
     dateFormatOptions?: Intl.DateTimeFormatOptions;
   } {
@@ -55,16 +60,33 @@ export class ConfigurationService implements IConfigurationService {
       if (options.firstDayOfWeek !== undefined) {
         this._firstDayOfWeek = options.firstDayOfWeek;
       }
-        if (options.dateFormat) {
+      
+      if (options.dateFormat) {
         this._dateFormat = options.dateFormat;
         this._dateFormattingService.setDefaultFormat(options.dateFormat);
       }
-        if (options.hideOtherMonthDays !== undefined) {
+      
+      if (options.hideOtherMonthDays !== undefined) {
         this._hideOtherMonthDays = options.hideOtherMonthDays;
       }
+
+      if (options.isRangeSelection !== undefined) {
+        this._isRangeSelection = options.isRangeSelection;
+      }
+      
+      if (options.showWeekNumbers !== undefined) {
+        this._showWeekNumbers = options.showWeekNumbers;
+      }
+      
+      if (options.isRangeSelection !== undefined) {
+        this._isRangeSelection = options.isRangeSelection;
+      }
+      
+      if (options.dateFormatOptions) {
+        this._dateFormattingService.setDateFormatOptions(options.dateFormatOptions);
+      }
     }
-    
-    return {
+      return {
       minDate,
       maxDate,
       disabledDates,
@@ -72,8 +94,10 @@ export class ConfigurationService implements IConfigurationService {
       firstDayOfWeek: this._firstDayOfWeek,
       dateFormat: this._dateFormat,
       hideOtherMonthDays: this._hideOtherMonthDays,
-      locale: options.locale,
-      dateFormatOptions: options.dateFormatOptions
+      showWeekNumbers: this._showWeekNumbers,
+      isRangeSelection: this._isRangeSelection,
+      locale: options?.locale,
+      dateFormatOptions: options?.dateFormatOptions
     };
   }
 
@@ -110,5 +134,50 @@ export class ConfigurationService implements IConfigurationService {
       this._dateFormattingService.setDefaultFormat(format);
     }
     return this._dateFormat;
+  }
+
+  /**
+   * Get hide other month days setting
+   */
+  public getHideOtherMonthDays(): boolean {
+    return this._hideOtherMonthDays;
+  }
+
+  /**
+   * Set hide other month days setting
+   */
+  public setHideOtherMonthDays(hide: boolean): boolean {
+    this._hideOtherMonthDays = hide;
+    return this._hideOtherMonthDays;
+  }
+
+  /**
+   * Get show week numbers setting
+   */
+  public getShowWeekNumbers(): boolean {
+    return this._showWeekNumbers;
+  }
+
+  /**
+   * Set show week numbers setting
+   */
+  public setShowWeekNumbers(show: boolean): boolean {
+    this._showWeekNumbers = show;
+    return this._showWeekNumbers;
+  }
+
+  /**
+   * Get range selection mode setting
+   */
+  public getIsRangeSelection(): boolean {
+    return this._isRangeSelection;
+  }
+
+  /**
+   * Set range selection mode setting
+   */
+  public setIsRangeSelection(isRange: boolean): boolean {
+    this._isRangeSelection = isRange;
+    return this._isRangeSelection;
   }
 }

@@ -25,12 +25,24 @@ export interface IDateSelectionService {
    * Check if a given date is selected
    */
   isDateSelected(date: Date, selectedDate: Date | null): boolean;
-  
-  /**
+    /**
    * Check if a given date is in the selected range
    */
   isDateInRange(
     date: Date, 
     range: {startDate: Date | null, endDate: Date | null}
   ): {isInRange: boolean, isRangeStart: boolean, isRangeEnd: boolean};
+  
+  /**
+   * Clear the date range selection
+   */
+  clearDateRange(): {startDate: Date | null, endDate: Date | null};
+  
+  /**
+   * Check if a date is in the selected range (simplified version)
+   */
+  isDateInSelectedRange(
+    date: Date, 
+    range: {startDate: Date | null, endDate: Date | null}
+  ): boolean;
 }

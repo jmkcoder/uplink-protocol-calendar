@@ -1,11 +1,26 @@
 /**
- * @uplink-protocol/form-controller
+ * @uplink-protocol/calendar-controller
  * 
- * A lightweight yet powerful form management system for building dynamic, multi-step forms
- * with advanced validation capabilities. This module is part of the Odyssey Uplink Protocol.
+ * A powerful calendar and date picker controller for building date selection UI components.
+ * This module is part of the Odyssey Uplink Protocol.
  * 
  * @packageDocumentation
  */
+
+import { CalendarControllerClass } from './controller';
+import { CalendarOptions } from './interfaces';
+
+/**
+ * Factory function to create a calendar controller
+ * @param options Calendar configuration options
+ * @returns A new CalendarControllerClass instance
+ */
+export function CalendarController(options?: CalendarOptions): CalendarControllerClass {
+  const controller = new CalendarControllerClass(options);
+  // Ensure bindings are accessible on the returned object (for test compatibility)
+  (controller as any).bindings = controller.bindings;
+  return controller;
+}
 
 // Export the main controller
 export * from "./controller";

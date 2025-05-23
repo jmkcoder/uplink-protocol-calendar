@@ -49,12 +49,23 @@ export class NavigationService implements INavigationService {
     const newDate = new Date(currentDate);
     newDate.setMonth(month);
     return newDate;
-  }
-  /**
+  }  /**
    * Navigate to specific year
    */
   public navigateToYear(currentDate: Date, year: number): Date {
     const newDate = new Date(currentDate);
+    
+    // Check if it's February 29 in a leap year
+    const isLeapYearDate = currentDate.getMonth() === 1 && currentDate.getDate() === 29;
+    
+    // Check if the target year is not a leap year
+    const isTargetYearLeapYear = ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+    
+    // If it's Feb 29 and the target year is not a leap year, adjust to Feb 28
+    if (isLeapYearDate && !isTargetYearLeapYear) {
+      newDate.setDate(28); // Change to February 28
+    }
+    
     newDate.setFullYear(year);
     return newDate;
   }
@@ -75,12 +86,20 @@ export class NavigationService implements INavigationService {
     
     return newBaseYear;
   }
-
-  /**
+    /**
    * Navigate to specific date
+   * @param currentDate The current date (optional)
+   * @param targetDate The target date to navigate to
    */
-  public navigateToDate(date: Date): Date {
-    return new Date(date);
+  public navigateToDate(currentDate: Date | null, targetDate?: Date): Date {
+    // If only one parameter is provided, use it as the target date
+    if (targetDate === undefined) {
+      targetDate = currentDate as Date;
+      return new Date(targetDate);
+    }
+    
+    // If both parameters are provided, use the second one
+    return new Date(targetDate);
   }
 
   /**

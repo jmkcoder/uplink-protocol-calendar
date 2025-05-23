@@ -40,4 +40,19 @@ export interface ICalendarGeneratorService {
     getCurrentDate: () => Date,
     getCalendarOptions: () => CalendarGenerationOptions
   ): () => CalendarDate[];
+  
+  /**
+   * Generate a complete month view with proper structure for rendering
+   * Includes weeks and weekdays data
+   */
+  generateMonthView(
+    year: number,
+    month: number,
+    options: CalendarGenerationOptions // Removed showWeekNumbers and weekdayNames
+  ): {
+    month: number;
+    year: number;
+    weeks: { days: CalendarDate[]; weekNumber?: number }[];
+    weekdays: string[];
+  };
 }

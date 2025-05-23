@@ -50,9 +50,8 @@ export class CalendarService implements ICalendarService {
     
     // Calculate days needed from previous month
     let prevMonthDays = (firstDay - options.firstDayOfWeek + 7) % 7;
-    
-    // Add days from previous month
-    if (prevMonthDays > 0) {
+      // Add days from previous month if not hiding other month days
+    if (prevMonthDays > 0 && !options.hideOtherMonthDays) {
       const prevMonth = month === 0 ? 11 : month - 1;
       const prevYear = month === 0 ? year - 1 : year;
       const daysInPrevMonth = getDaysInMonth(prevYear, prevMonth);
@@ -80,12 +79,11 @@ export class CalendarService implements ICalendarService {
         options
       ));
     }
-    
-    // Calculate remaining days needed to complete the grid (6 rows x 7 days = 42)
+      // Calculate remaining days needed to complete the grid (6 rows x 7 days = 42)
     const remainingDays = 42 - days.length;
     
-    // Add days from next month
-    if (remainingDays > 0) {
+    // Add days from next month if not hiding other month days
+    if (remainingDays > 0 && !options.hideOtherMonthDays) {
       const nextMonth = month === 11 ? 0 : month + 1;
       const nextYear = month === 11 ? year + 1 : year;
       
@@ -143,10 +141,9 @@ export class CalendarService implements ICalendarService {
       isCurrentMonth,
       isToday: isSameDay(date, today),
       isSelected,
-      isInRange,
-      isRangeStart,
+      isInRange,      isRangeStart,
       isRangeEnd,
-      isDisabled: options.isDateDisabledFn(date)
+      isDisabled: options.isDateDisabledFn ? options.isDateDisabledFn(date) : false
     };
   }
     /**
@@ -179,10 +176,10 @@ export class CalendarService implements ICalendarService {
     
     // Use localization service if available
     if (this._localizationService) {
-      weekdays = this._localizationService.getShortWeekdayNames();
+      weekdays = this._localizationService.getWeekdayNames(false);
     } else {
-      // Fallback to English
-      weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      // Fallback to English full names
+      weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     }
     
     // Reorder weekdays based on firstDayOfWeek
@@ -226,10 +223,63 @@ export class CalendarService implements ICalendarService {
    * Navigate to previous year from current date
    * @param currentDate Current date
    * @returns New date in the previous year
-   */
-  public getPreviousYear(currentDate: Date): Date {
+   */  public getPreviousYear(currentDate: Date): Date {
     const newDate = new Date(currentDate);
     newDate.setFullYear(newDate.getFullYear() - 1);
     return newDate;
+  }
+  
+  /**
+   * Check if a date is within a selected date range
+   * @param date The date to check
+   * @param range The date range (startDate and endDate)
+   * @returns True if the date is within the range
+   */
+  public isDateInSelectedRange(
+    date: Date, 
+    range: {startDate: Date | null, endDate: Date | null}
+  ): boolean {
+    if (!range.startDate || !range.endDate) {
+      return false;
+    }
+    
+    // Check if the date is equal to or between the start and end dates
+    return date >= range.startDate && date <= range.endDate;
+  }
+    /**
+   * Get the ISO week number for a date
+   * @param date The date
+   * @returns The week number (1-53)
+   */
+  public getWeekNumber(date: Date): number {
+    // Use localization service if available and it provides getWeekNumber
+    if (this._localizationService && typeof this._localizationService.getWeekNumber === 'function') {
+      return this._localizationService.getWeekNumber(date);
+    }
+
+    // Default ISO 8601 week number calculation
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number (Monday=1, Sunday=7)
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    // Get first day of year
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    // Calculate full weeks to nearest Thursday
+    const weekNum = Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+    return weekNum;
+  }
+  
+  /**
+   * Check if a date is today
+   * @param date The date to check
+   * @returns True if the date is today
+   */
+  public isToday(date: Date): boolean {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
   }
 }
