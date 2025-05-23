@@ -625,7 +625,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this.updateViewBindings();
 
     // Update currentRangeBase if needed
-    this._currentYearRangeBase = year - (year % this._yearRangeSize) || this._currentYearRangeBase;
+    if (this.bindings.currentYearRangeBase) {
+      this.bindings.currentYearRangeBase.set(year - (year % this._yearRangeSize) || this._currentYearRangeBase);
+    }
 
     // Emit events
     if (this.events) {
