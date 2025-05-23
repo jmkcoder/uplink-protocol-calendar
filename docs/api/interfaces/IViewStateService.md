@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.1**](../README.md)
+[**@uplink-protocol/form-controller v0.1.2**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IViewStateService
 
-Defined in: [interfaces/view-state.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L8)
+Defined in: [interfaces/view-state.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L8)
 
 View state service interface
 Responsible for managing calendar view state and binding updates
@@ -17,7 +17,7 @@ Responsible for managing calendar view state and binding updates
 
 > **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`): `object`
 
-Defined in: [interfaces/view-state.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L12)
+Defined in: [interfaces/view-state.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L12)
 
 Initialize view state bindings
 
@@ -97,11 +97,35 @@ Initialize view state bindings
 
 ***
 
+### updateCalendarDays()
+
+> **updateCalendarDays**(`calendarDays`, `binding`): `void`
+
+Defined in: [interfaces/view-state.service.interfaces.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L94)
+
+Update calendarDays binding with new calendar days
+
+#### Parameters
+
+##### calendarDays
+
+[`CalendarDate`](CalendarDate.md)[]
+
+##### binding
+
+`Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
+
+#### Returns
+
+`void`
+
+***
+
 ### updateCurrentDate()
 
-> **updateCurrentDate**(`date`, `bindings`, `getMonthName`, `generateCalendarDays`): `object`
+> **updateCurrentDate**(`date`, `currentMonthBinding`, `currentYearOrGetMonthName`, `monthNameBindingOrGenerateCalendarDays`, `getMonthNameFn?`, `calendarDaysBinding?`, `generateCalendarDaysFn?`): `object`
 
-Defined in: [interfaces/view-state.service.interfaces.ts:36](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L36)
+Defined in: [interfaces/view-state.service.interfaces.ts:39](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L39)
 
 Update current date in view state
 
@@ -111,29 +135,29 @@ Update current date in view state
 
 `Date`
 
-##### bindings
+The date to update to
 
-###### calendarDays
+##### currentMonthBinding
 
-`Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
+`Binding`\<`number`\> | \{ `calendarDays`: `Binding`\<[`CalendarDate`](CalendarDate.md)[]\>; `currentMonth`: `Binding`\<`number`\>; `currentYear`: `Binding`\<`number`\>; `monthName`: `Binding`\<`string`\>; \}
 
-###### currentMonth
+##### currentYearOrGetMonthName
 
-`Binding`\<`number`\>
+`Binding`\<`number`\> | (`month`) => `string`
 
-###### currentYear
+##### monthNameBindingOrGenerateCalendarDays
 
-`Binding`\<`number`\>
+`Binding`\<`string`\> | () => [`CalendarDate`](CalendarDate.md)[]
 
-###### monthName
-
-`Binding`\<`string`\>
-
-##### getMonthName
+##### getMonthNameFn?
 
 (`month`) => `string`
 
-##### generateCalendarDays
+##### calendarDaysBinding?
+
+`Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
+
+##### generateCalendarDaysFn?
 
 () => [`CalendarDate`](CalendarDate.md)[]
 
@@ -155,7 +179,7 @@ Update current date in view state
 
 > **updateDateRange**(`range`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: [interfaces/view-state.service.interfaces.ts:61](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L61)
+Defined in: [interfaces/view-state.service.interfaces.ts:66](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L66)
 
 Update date range bindings
 
@@ -185,9 +209,9 @@ Update date range bindings
 
 ### updateFocusedDate()
 
-> **updateFocusedDate**(`date`, `calendarDaysBinding`, `generateCalendarDays`): `void`
+> **updateFocusedDate**(`date`, `bindingArg?`, `generateCalendarDays?`): `void`
 
-Defined in: [interfaces/view-state.service.interfaces.ts:81](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L81)
+Defined in: [interfaces/view-state.service.interfaces.ts:104](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L104)
 
 Update focused date
 
@@ -195,15 +219,21 @@ Update focused date
 
 ##### date
 
+The date to focus
+
 `null` | `Date`
 
-##### calendarDaysBinding
+##### bindingArg?
 
-`Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
+Either the focusedDate binding or the calendarDays binding
 
-##### generateCalendarDays
+`Binding`\<[`CalendarDate`](CalendarDate.md)[]\> | `Binding`\<`null` \| `Date`\>
+
+##### generateCalendarDays?
 
 () => [`CalendarDate`](CalendarDate.md)[]
+
+Optional function to generate calendar days
 
 #### Returns
 
@@ -213,9 +243,9 @@ Update focused date
 
 ### updateSelectedDate()
 
-> **updateSelectedDate**(`date`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
+> **updateSelectedDate**(`date`, `binding`, `calendarDaysBinding?`, `generateCalendarDays?`): `void`
 
-Defined in: [interfaces/view-state.service.interfaces.ts:51](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L51)
+Defined in: [interfaces/view-state.service.interfaces.ts:56](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L56)
 
 Update selected date bindings
 
@@ -229,13 +259,37 @@ Update selected date bindings
 
 `Binding`\<`null` \| `Date`\>
 
-##### calendarDaysBinding
+##### calendarDaysBinding?
 
 `Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
 
-##### generateCalendarDays
+##### generateCalendarDays?
 
 () => [`CalendarDate`](CalendarDate.md)[]
+
+#### Returns
+
+`void`
+
+***
+
+### updateSelectedDateRange()
+
+> **updateSelectedDateRange**(`range`, `binding`): `void`
+
+Defined in: [interfaces/view-state.service.interfaces.ts:86](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L86)
+
+Update selectedDateRange binding with new range
+
+#### Parameters
+
+##### range
+
+[`DateRange`](DateRange.md)
+
+##### binding
+
+`Binding`\<[`DateRange`](DateRange.md)\>
 
 #### Returns
 
@@ -247,7 +301,7 @@ Update selected date bindings
 
 > **updateSelectionMode**(`isRange`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: [interfaces/view-state.service.interfaces.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/view-state.service.interfaces.ts#L71)
+Defined in: [interfaces/view-state.service.interfaces.ts:76](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/view-state.service.interfaces.ts#L76)
 
 Update selection mode
 

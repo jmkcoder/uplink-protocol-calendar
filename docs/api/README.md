@@ -1,4 +1,4 @@
-**@uplink-protocol/form-controller v0.1.1**
+**@uplink-protocol/form-controller v0.1.2**
 
 ***
 

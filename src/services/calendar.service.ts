@@ -151,10 +151,10 @@ export class CalendarService implements ICalendarService {
    * @param month Month index (0-11)
    * @returns Month name
    */
-  public getMonthName(month: number): string {
+  public getMonthName(month: number, short: boolean = false): string {
     // Use localization service if available
     if (this._localizationService) {
-      const monthNames = this._localizationService.getMonthNames();
+      const monthNames = this._localizationService.getMonthNames(short);
       return monthNames[month];
     }
     
@@ -171,12 +171,12 @@ export class CalendarService implements ICalendarService {
    * @param firstDayOfWeek First day of week (0 = Sunday, 1 = Monday, etc.)
    * @returns Array of weekday names
    */
-  public getWeekdayNames(firstDayOfWeek: number): string[] {
+  public getWeekdayNames(firstDayOfWeek: number, short = false): string[] {
     let weekdays: string[];
     
     // Use localization service if available
     if (this._localizationService) {
-      weekdays = this._localizationService.getWeekdayNames(false);
+      weekdays = this._localizationService.getWeekdayNames(short);
     } else {
       // Fallback to English full names
       weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

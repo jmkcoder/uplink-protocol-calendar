@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.1**](../README.md)
+[**@uplink-protocol/form-controller v0.1.2**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: YearViewGenerationOptions
 
-Defined in: [interfaces/calendar.service.interfaces.ts:88](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L88)
+Defined in: [interfaces/calendar.service.interfaces.ts:103](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L103)
 
 Options for year view generation
 
@@ -16,7 +16,15 @@ Options for year view generation
 
 > **currentDate**: `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:90](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L90)
+Defined in: [interfaces/calendar.service.interfaces.ts:107](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L107)
+
+***
+
+### isRangeSelection
+
+> **isRangeSelection**: `any`
+
+Defined in: [interfaces/calendar.service.interfaces.ts:105](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L105)
 
 ***
 
@@ -24,7 +32,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:90](https://github.com/jm
 
 > `optional` **isYearDisabledFn**: (`year`) => `boolean`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:93](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L93)
+Defined in: [interfaces/calendar.service.interfaces.ts:110](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L110)
 
 #### Parameters
 
@@ -42,7 +50,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:93](https://github.com/jm
 
 > **maxDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:92](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L92)
+Defined in: [interfaces/calendar.service.interfaces.ts:109](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L109)
 
 ***
 
@@ -50,7 +58,7 @@ Defined in: [interfaces/calendar.service.interfaces.ts:92](https://github.com/jm
 
 > **minDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L91)
+Defined in: [interfaces/calendar.service.interfaces.ts:108](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L108)
 
 ***
 
@@ -58,4 +66,36 @@ Defined in: [interfaces/calendar.service.interfaces.ts:91](https://github.com/jm
 
 > **selectedDate**: `null` \| `Date`
 
-Defined in: [interfaces/calendar.service.interfaces.ts:89](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/interfaces/calendar.service.interfaces.ts#L89)
+Defined in: [interfaces/calendar.service.interfaces.ts:106](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L106)
+
+***
+
+### selectedDateRange
+
+> **selectedDateRange**: `any`
+
+Defined in: [interfaces/calendar.service.interfaces.ts:104](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L104)
+
+***
+
+### selectedYearRange?
+
+> `optional` **selectedYearRange**: `object`
+
+Defined in: [interfaces/calendar.service.interfaces.ts:112](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L112)
+
+#### endYear
+
+> **endYear**: `number`
+
+#### startYear
+
+> **startYear**: `number`
+
+***
+
+### yearRangeSize?
+
+> `optional` **yearRangeSize**: `number`
+
+Defined in: [interfaces/calendar.service.interfaces.ts:111](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/interfaces/calendar.service.interfaces.ts#L111)

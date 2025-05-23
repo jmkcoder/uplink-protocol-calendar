@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.1**](../README.md)
+[**@uplink-protocol/form-controller v0.1.2**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: CalendarService
 
-Defined in: [services/calendar.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L15)
+Defined in: [services/calendar.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L15)
 
 Implementation of CalendarService 
 Responsible for calendar generation and navigation functions
@@ -31,7 +31,7 @@ Responsible for calendar generation and navigation functions
 
 > **generateCalendarDays**(`year`, `month`, `options`): [`CalendarDate`](../interfaces/CalendarDate.md)[]
 
-Defined in: [services/calendar.service.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L40)
+Defined in: [services/calendar.service.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L40)
 
 Generate calendar days for a specific month/year
 
@@ -71,7 +71,7 @@ Array of CalendarDate objects
 
 > **getLocalizationService**(): `null` \| [`ILocalizationService`](../interfaces/ILocalizationService.md)
 
-Defined in: [services/calendar.service.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L30)
+Defined in: [services/calendar.service.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L30)
 
 Get the localization service
 
@@ -91,7 +91,7 @@ The current localization service or null
 
 > **getMonthName**(`month`): `string`
 
-Defined in: [services/calendar.service.ts:157](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L157)
+Defined in: [services/calendar.service.ts:154](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L154)
 
 Get month name from month index
 
@@ -119,7 +119,7 @@ Month name
 
 > **getNextMonth**(`currentDate`): `Date`
 
-Defined in: [services/calendar.service.ts:197](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L197)
+Defined in: [services/calendar.service.ts:194](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L194)
 
 Navigate to next month from current date
 
@@ -147,7 +147,7 @@ New date in the next month
 
 > **getNextYear**(`currentDate`): `Date`
 
-Defined in: [services/calendar.service.ts:219](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L219)
+Defined in: [services/calendar.service.ts:216](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L216)
 
 Navigate to next year from current date
 
@@ -175,7 +175,7 @@ New date in the next year
 
 > **getPreviousMonth**(`currentDate`): `Date`
 
-Defined in: [services/calendar.service.ts:208](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L208)
+Defined in: [services/calendar.service.ts:205](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L205)
 
 Navigate to previous month from current date
 
@@ -203,7 +203,7 @@ New date in the previous month
 
 > **getPreviousYear**(`currentDate`): `Date`
 
-Defined in: [services/calendar.service.ts:230](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L230)
+Defined in: [services/calendar.service.ts:226](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L226)
 
 Navigate to previous year from current date
 
@@ -231,7 +231,7 @@ New date in the previous year
 
 > **getWeekdayNames**(`firstDayOfWeek`): `string`[]
 
-Defined in: [services/calendar.service.ts:177](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L177)
+Defined in: [services/calendar.service.ts:174](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L174)
 
 Get weekday names starting from specified first day
 
@@ -255,11 +255,103 @@ Array of weekday names
 
 ***
 
+### getWeekNumber()
+
+> **getWeekNumber**(`date`): `number`
+
+Defined in: [services/calendar.service.ts:254](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L254)
+
+Get the ISO week number for a date
+
+#### Parameters
+
+##### date
+
+`Date`
+
+The date
+
+#### Returns
+
+`number`
+
+The week number (1-53)
+
+#### Implementation of
+
+[`ICalendarService`](../interfaces/ICalendarService.md).[`getWeekNumber`](../interfaces/ICalendarService.md#getweeknumber)
+
+***
+
+### isDateInSelectedRange()
+
+> **isDateInSelectedRange**(`date`, `range`): `boolean`
+
+Defined in: [services/calendar.service.ts:238](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L238)
+
+Check if a date is within a selected date range
+
+#### Parameters
+
+##### date
+
+`Date`
+
+The date to check
+
+##### range
+
+The date range (startDate and endDate)
+
+###### endDate
+
+`null` \| `Date`
+
+###### startDate
+
+`null` \| `Date`
+
+#### Returns
+
+`boolean`
+
+True if the date is within the range
+
+***
+
+### isToday()
+
+> **isToday**(`date`): `boolean`
+
+Defined in: [services/calendar.service.ts:277](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L277)
+
+Check if a date is today
+
+#### Parameters
+
+##### date
+
+`Date`
+
+The date to check
+
+#### Returns
+
+`boolean`
+
+True if the date is today
+
+#### Implementation of
+
+[`ICalendarService`](../interfaces/ICalendarService.md).[`isToday`](../interfaces/ICalendarService.md#istoday)
+
+***
+
 ### setLocalizationService()
 
 > **setLocalizationService**(`service`): `void`
 
-Defined in: [services/calendar.service.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/services/calendar.service.ts#L22)
+Defined in: [services/calendar.service.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/services/calendar.service.ts#L22)
 
 Set the localization service
 

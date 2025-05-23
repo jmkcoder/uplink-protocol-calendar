@@ -179,7 +179,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this._isRangeSelection,
       () => this.generateCalendarDays(),
       (month: number) => this._calendarService.getMonthName(month),
-      (firstDay: number) => this._calendarService.getWeekdayNames(firstDay),
+      (firstDay: number) => this._calendarService.getWeekdayNames(firstDay, true),
       () => this.generateCalendarMonths(),
       () => this.generateCalendarYears()
     );
@@ -829,7 +829,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this._calendarService.getMonthName(this._currentDate.getMonth())
     );
     this.bindings.weekdays.set(
-      this._calendarService.getWeekdayNames(this._firstDayOfWeek)
+      this._calendarService.getWeekdayNames(this._firstDayOfWeek, true)
     );
     this.bindings.calendarDays.set(this.generateCalendarDays());
   }
@@ -952,9 +952,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * Get localized weekday names
    * @returns Array of weekday names
    */
-  public getWeekdayNames(): string[] {
+  public getWeekdayNames(short: boolean = false): string[] {
     // Delegate to the CalendarService
-    return this._calendarService.getWeekdayNames(this._firstDayOfWeek);
+    return this._calendarService.getWeekdayNames(this._firstDayOfWeek, short);
   }
 
   /**

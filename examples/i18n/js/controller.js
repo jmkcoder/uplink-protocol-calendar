@@ -7,7 +7,7 @@ let calendar = CalendarController({
   dateFormat: "YYYY-MM-DD",
   locale: "en-US",
   dateFormatOptions: {
-    weekday: "long",
+    weekday: "short",
     year: "numeric",
     month: "long",
     day: "numeric",

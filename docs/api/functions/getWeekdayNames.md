@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.1**](../README.md)
+[**@uplink-protocol/form-controller v0.1.2**](../README.md)
 
 ***
 
@@ -6,13 +6,19 @@
 
 # Function: getWeekdayNames()
 
-> **getWeekdayNames**(`firstDayOfWeek`): `string`[]
+> **getWeekdayNames**(`short`, `firstDayOfWeek`): `string`[]
 
-Defined in: [utils/calendar.utils.ts:80](https://github.com/jmkcoder/uplink-protocol-calendar/blob/38fef3d5c9ea8d85876f78e9f7a77f710bb13ac6/src/utils/calendar.utils.ts#L80)
+Defined in: [utils/calendar.utils.ts:86](https://github.com/jmkcoder/uplink-protocol-calendar/blob/519c17274ca35a5b4f4dfa9d2f04d55cb230d0b4/src/utils/calendar.utils.ts#L86)
 
-Get localized weekday names (short format)
+Get localized weekday names
 
 ## Parameters
+
+### short
+
+`boolean` = `false`
+
+Whether to get short weekday names
 
 ### firstDayOfWeek
 

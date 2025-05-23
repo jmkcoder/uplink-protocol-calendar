@@ -298,6 +298,7 @@ const updateSelectedDateRangeDisplay = (range) => {
   
   if (!range) {
     element.textContent = 'No range selected';
+    
     return;
   }
   

@@ -22,7 +22,7 @@ export interface ICalendarService {
   /**
    * Get weekday names starting from the specified first day
    */
-  getWeekdayNames(firstDayOfWeek: number): string[];
+  getWeekdayNames(firstDayOfWeek: number, short?: boolean): string[];
   
   /**
    * Navigate to next month from current date
