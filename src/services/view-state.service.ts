@@ -28,10 +28,9 @@ export class ViewStateService implements IViewStateService {
     selectedDateRange: Binding<DateRange>;
     focusedDate: Binding<Date | null>;
     weekdays: Binding<string[]>;
-    isRangeSelection: Binding<boolean>;
-  } {// Use firstDayOfWeek to avoid TS6133 error (parameter declared but not used)
+    isRangeSelection: Binding<boolean>;  } {
+    // Use firstDayOfWeek to avoid TS6133 error (parameter declared but not used)
     // Even though it might be used by other services to generate weekdays, we'll add a comment to clarify
-    console.log(`Using first day of week setting: ${firstDayOfWeek}`);
     
     return {
       currentMonth: createBinding<number>(currentDate.getMonth()),
@@ -159,9 +158,6 @@ export class ViewStateService implements IViewStateService {
     focusedDateBindingOrCalendarDaysBinding?: Binding<Date | null> | Binding<CalendarDate[]>,
     generateCalendarDays?: () => CalendarDate[]
   ): void {
-    // Log the focus update
-    console.log(`Updating focus to date: ${date ? date.toISOString() : 'null'}`);
-    
     // If called with (date, focusedDateBinding)
     if (focusedDateBindingOrCalendarDaysBinding && !generateCalendarDays) {
       // Update the focusedDate binding

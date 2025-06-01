@@ -34,20 +34,14 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {  /*
     }
     
     // Different week calculation methods based on locale
-    if (locale && (locale.startsWith('de') || locale.startsWith('fr') || locale.startsWith('es'))) {
-      // European calculation (weeks start on Monday)
+    if (locale && (locale.startsWith('de') || locale.startsWith('fr') || locale.startsWith('es'))) {      // European calculation (weeks start on Monday)
       const d = new Date(date.getTime());
       d.setHours(0, 0, 0, 0);
       d.setDate(d.getDate() + 4 - ((d.getDay() + 6) % 7)); // Adjust for Monday start
       const yearStart = new Date(d.getFullYear(), 0, 4);
-      // Adding debug logs to trace inputs and outputs of getWeekNumber
-      console.log(`Debug: Calculating week number for date: ${date}, locale: ${locale}`);
-      console.log(`Debug: Adjusted date for week calculation: ${d}`);
-      console.log(`Debug: Year start date: ${yearStart}`);
       const weekNumber = locale && (locale.startsWith('de') || locale.startsWith('fr') || locale.startsWith('es'))
         ? Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7)
         : Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
-      console.log(`Debug: Calculated week number: ${weekNumber}`);
       return weekNumber;
     } else {
       // Default ISO week number calculation
@@ -306,8 +300,7 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {  /*
    * @param month Month (0-11)
    * @param options Calendar generation options
    * @returns Object with month view data
-   */  
-  public generateMonthView(
+   */    public generateMonthView(
     year: number,
     month: number,
     options: CalendarGenerationOptions
@@ -315,43 +308,36 @@ export class CalendarGeneratorService implements ICalendarGeneratorService {  /*
     month: number;
     year: number;
     weeks: { days: CalendarDate[]; weekNumber?: number }[];
-    weekdays: string[];
-  } {
+    weekdays: string[];  } {
     // Generate calendar days
     const calendarDays = this.generateCalendarDays(year, month, options);
     // Group days into weeks
     const weeks: { days: CalendarDate[]; weekNumber?: number }[] = [];
     let week: { days: CalendarDate[]; weekNumber?: number } = { days: [] };
-    let dayCounter = 0;
-    for (const day of calendarDays) {
-      if (dayCounter > 0 && dayCounter % 7 === 0) {
-        // Add week number if needed
-        if (options.weekNumbers) {
+    
+    for (let i = 0; i < calendarDays.length; i++) {
+      const day = calendarDays[i];
+        // Start a new week every 7 days
+      if (i > 0 && i % 7 === 0) {
+        // Set week number for the completed week
+        if (options.weekNumbers && week.days.length > 0) {
           const firstDayOfWeek = week.days[0]?.date;
-          // Adding debug logs to trace firstDayOfWeek and weekNumber in generateMonthView
-          console.log(`First day of week: ${firstDayOfWeek}`);
           if (firstDayOfWeek) {
-            const weekNumber = this.getWeekNumber(firstDayOfWeek, options.locale);
-            console.log(`Calculated week number: ${weekNumber}`);
-            week.weekNumber = weekNumber;
-          } else {
-            console.log('First day of week is undefined');
-            week.weekNumber = 1;
+            week.weekNumber = this.getWeekNumber(firstDayOfWeek, options.locale);
           }
-          weeks.push(week);
-          week = { days: [] };
         }
+        weeks.push(week);
+        week = { days: [] };
       }
-      week.days.push(day);
-      dayCounter++;
-    }
-    // Add the last week
+      
+      week.days.push(day);    }
+      // Add the last week
     if (week.days.length > 0) {
       if (options.weekNumbers) {
         const firstDayOfWeek = week.days[0]?.date;
-        week.weekNumber = firstDayOfWeek ? this.getWeekNumber(firstDayOfWeek, options.locale) : 1;
-      } else {
-        week.weekNumber = undefined;
+        if (firstDayOfWeek) {
+          week.weekNumber = this.getWeekNumber(firstDayOfWeek, options.locale);
+        }
       }
       weeks.push(week);
     }

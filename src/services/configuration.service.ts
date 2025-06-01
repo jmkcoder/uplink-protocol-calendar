@@ -17,11 +17,9 @@ export class ConfigurationService implements IConfigurationService {
     private _constraintsService: IConstraintsService,
     private _dateFormattingService: IDateFormattingService
   ) {}
-  
-  /**
+    /**
    * Apply configuration options
-   */
-  public applyConfiguration(options: CalendarOptions): {
+   */  public applyConfiguration(options: CalendarOptions): {
     minDate: Date | null;
     maxDate: Date | null;
     disabledDates: Date[];
@@ -34,70 +32,66 @@ export class ConfigurationService implements IConfigurationService {
     locale?: string;
     dateFormatOptions?: Intl.DateTimeFormatOptions;
   } {
-    let minDate = null;
-    let maxDate = null;
-    let disabledDates: Date[] = [];
-    let selectedDate = null;
     
-    // Apply options
-    if (options) {
-      if (options.minDate) {
-        minDate = this._constraintsService.setMinDate(options.minDate);
-      }
-      
-      if (options.maxDate) {
-        maxDate = this._constraintsService.setMaxDate(options.maxDate);
-      }
-      
-      if (options.disabledDates) {
-        disabledDates = this._constraintsService.setDisabledDates(options.disabledDates);
-      }
-      
-      if (options.initialSelectedDate) {
-        selectedDate = options.initialSelectedDate;
-      }
-      
-      if (options.firstDayOfWeek !== undefined) {
-        this._firstDayOfWeek = options.firstDayOfWeek;
-      }
-      
-      if (options.dateFormat) {
-        this._dateFormat = options.dateFormat;
-        this._dateFormattingService.setDefaultFormat(options.dateFormat);
-      }
-      
-      if (options.hideOtherMonthDays !== undefined) {
-        this._hideOtherMonthDays = options.hideOtherMonthDays;
-      }
-
-      if (options.isRangeSelection !== undefined) {
-        this._isRangeSelection = options.isRangeSelection;
-      }
-      
-      if (options.showWeekNumbers !== undefined) {
-        this._showWeekNumbers = options.showWeekNumbers;
-      }
-      
-      if (options.isRangeSelection !== undefined) {
-        this._isRangeSelection = options.isRangeSelection;
-      }
-      
-      if (options.dateFormatOptions) {
-        this._dateFormattingService.setDateFormatOptions(options.dateFormatOptions);
-      }
+    // Apply constraints individually
+    let minDate: Date | null = null;
+    let maxDate: Date | null = null;
+    let disabledDates: Date[] = [];
+    
+    if (options.minDate !== undefined) {
+      minDate = this._constraintsService.setMinDate(options.minDate);
     }
-      return {
+    
+    if (options.maxDate !== undefined) {
+      maxDate = this._constraintsService.setMaxDate(options.maxDate);
+    }
+    
+    if (options.disabledDates !== undefined) {
+      disabledDates = this._constraintsService.setDisabledDates(options.disabledDates);
+    }
+    
+    // Set first day of week if provided
+    if (options.firstDayOfWeek !== undefined) {
+      this._firstDayOfWeek = options.firstDayOfWeek;
+    }
+    
+    // Set date format if provided
+    if (options.dateFormat !== undefined) {
+      this._dateFormattingService.setDefaultFormat(options.dateFormat);
+      this._dateFormat = options.dateFormat;
+    }
+    
+    // Set hide other month days if provided
+    if (options.hideOtherMonthDays !== undefined) {
+      this._hideOtherMonthDays = options.hideOtherMonthDays;
+    }
+      // Set show week numbers if provided
+    if (options.showWeekNumbers !== undefined) {
+      this._showWeekNumbers = options.showWeekNumbers;
+    }
+    
+    // Set range selection mode if provided
+    if (options.isRangeSelection !== undefined) {
+      this._isRangeSelection = options.isRangeSelection;
+    }
+    
+    // Set date format options if provided
+    if (options.dateFormatOptions) {
+      this._dateFormattingService.setDateFormatOptions(options.dateFormatOptions);
+    }
+      // Return result with applied configuration
+    return {
       minDate,
       maxDate,
       disabledDates,
-      selectedDate,
+      selectedDate: options.initialSelectedDate || null,
       firstDayOfWeek: this._firstDayOfWeek,
       dateFormat: this._dateFormat,
       hideOtherMonthDays: this._hideOtherMonthDays,
       showWeekNumbers: this._showWeekNumbers,
       isRangeSelection: this._isRangeSelection,
-      locale: options?.locale,
-      dateFormatOptions: options?.dateFormatOptions
+      locale: options.locale,
+      dateFormatOptions: options.dateFormatOptions
     };
   }
 
@@ -149,9 +143,7 @@ export class ConfigurationService implements IConfigurationService {
   public setHideOtherMonthDays(hide: boolean): boolean {
     this._hideOtherMonthDays = hide;
     return this._hideOtherMonthDays;
-  }
-
-  /**
+  }  /**
    * Get show week numbers setting
    */
   public getShowWeekNumbers(): boolean {
