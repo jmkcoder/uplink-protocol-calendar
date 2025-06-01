@@ -19,6 +19,8 @@ export function CalendarController(options?: CalendarOptions): CalendarControlle
   const controller = new CalendarControllerClass(options);
   // Ensure bindings are accessible on the returned object (for test compatibility)
   (controller as any).bindings = controller.bindings;
+  (controller as any).methods = controller.methods;
+  (controller as any).events = controller.events;
   return controller;
 }
 

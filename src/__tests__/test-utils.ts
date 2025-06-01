@@ -20,13 +20,15 @@ export function createDate(year: number, month: number, day: number): Date {
  */
 export function mockDate(mockDate: Date) {
   const originalDate = global.Date;
-  
   class MockDate extends Date {
-    constructor(...args: any[]) {
+    constructor(...args: [] | [string | number | Date] | [number, number, number?, number?, number?, number?, number?]) {
       if (args.length === 0) {
         super(mockDate);
+      } else if (args.length === 1) {
+        super(args[0]);
       } else {
-        super(...args);
+        const [year, month, day = 1, hours = 0, minutes = 0, seconds = 0, ms = 0] = args as [number, number, number?, number?, number?, number?, number?];
+        super(year, month, day, hours, minutes, seconds, ms);
       }
     }
     

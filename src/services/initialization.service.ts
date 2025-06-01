@@ -35,8 +35,7 @@ export class InitializationService implements IInitializationService {
     getWeekdayNamesFn: (firstDayOfWeek: number) => string[],
     generateCalendarMonthsFn: () => CalendarMonth[],
     generateCalendarYearsFn: () => CalendarYear[]
-  ): Record<string, Binding<any>> {
-    // Initialize bindings using ViewStateService method (we're just enhancing the initialization)
+  ): Record<string, Binding<any>> {    // Initialize bindings using ViewStateService method (we're just enhancing the initialization)
     const viewStateService = new ViewStateService();
     const bindings = viewStateService.initializeBindings(
       currentDate,
@@ -44,7 +43,9 @@ export class InitializationService implements IInitializationService {
       selectedDateRange,
       firstDayOfWeek,
       isRangeSelection,
-      calendarDaysGenerator
+      calendarDaysGenerator,
+      generateCalendarMonthsFn,
+      generateCalendarYearsFn
     );
     
     // Set additional initial values

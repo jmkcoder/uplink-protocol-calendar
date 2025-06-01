@@ -1,13 +1,16 @@
 import { ViewStateService } from '../../services/view-state.service';
 import { Binding } from '@uplink-protocol/core';
 import { createDate } from '../test-utils';
-import { CalendarDate, DateRange } from '../../interfaces/calendar.interfaces';
+import { CalendarDate, CalendarMonth, CalendarYear, DateRange } from '../../interfaces/calendar.interfaces';
 
 describe('ViewStateService', () => {
   let service: ViewStateService;
   let mockCalendarDaysGenerator: jest.Mock;
+  let mockCalendarMonthsGenerator: jest.Mock;
+  let mockCalendarYearsGenerator: jest.Mock;
   let mockCalendarDays: CalendarDate[];
-
+  let mockCalendarMonths: CalendarMonth[];
+  let mockCalendarYears: CalendarYear[];
   beforeEach(() => {
     service = new ViewStateService();
     
@@ -35,9 +38,39 @@ describe('ViewStateService', () => {
         isDisabled: false,
         isInRange: false
       }
+    ];    // Create mock calendar months
+    mockCalendarMonths = [
+      { month: 0, name: 'January', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 1, name: 'February', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 2, name: 'March', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 3, name: 'April', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 4, name: 'May', year: 2025, isCurrentMonth: true, isSelected: false, isDisabled: false },
+      { month: 5, name: 'June', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 6, name: 'July', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 7, name: 'August', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 8, name: 'September', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 9, name: 'October', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 10, name: 'November', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false },
+      { month: 11, name: 'December', year: 2025, isCurrentMonth: false, isSelected: false, isDisabled: false }
+    ];
+
+    // Create mock calendar years
+    mockCalendarYears = [
+      { year: 2020, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2021, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2022, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2023, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2024, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2025, isCurrentYear: true, isSelected: false, isDisabled: false },
+      { year: 2026, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2027, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2028, isCurrentYear: false, isSelected: false, isDisabled: false },
+      { year: 2029, isCurrentYear: false, isSelected: false, isDisabled: false }
     ];
     
     mockCalendarDaysGenerator = jest.fn().mockReturnValue(mockCalendarDays);
+    mockCalendarMonthsGenerator = jest.fn().mockReturnValue(mockCalendarMonths);
+    mockCalendarYearsGenerator = jest.fn().mockReturnValue(mockCalendarYears);
   });
 
   describe('initializeBindings', () => {
@@ -50,14 +83,15 @@ describe('ViewStateService', () => {
       };
       const firstDayOfWeek = 0;
       const isRangeSelection = false;
-      
-      const bindings = service.initializeBindings(
+        const bindings = service.initializeBindings(
         currentDate,
         selectedDate,
         selectedDateRange,
         firstDayOfWeek,
         isRangeSelection,
-        mockCalendarDaysGenerator
+        mockCalendarDaysGenerator,
+        mockCalendarMonthsGenerator,
+        mockCalendarYearsGenerator
       );
       
       // Check that bindings were created with correct initial values

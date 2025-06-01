@@ -16,10 +16,13 @@ export class ViewStateService implements IViewStateService {
     selectedDateRange: DateRange,
     firstDayOfWeek: number,
     isRangeSelection: boolean,
-    calendarDaysGenerator: () => CalendarDate[]
+    calendarDaysGenerator: () => CalendarDate[],
+    calendarMonthsGenerator: () => CalendarMonth[],
+    calendarYearsGenerator: () => CalendarYear[]
   ): {
     currentMonth: Binding<number>;
     currentYear: Binding<number>;
+    currentDate: Binding<Date>;
     monthName: Binding<string>;
     calendarDays: Binding<CalendarDate[]>;
     calendarMonths: Binding<CalendarMonth[]>;
@@ -28,17 +31,19 @@ export class ViewStateService implements IViewStateService {
     selectedDateRange: Binding<DateRange>;
     focusedDate: Binding<Date | null>;
     weekdays: Binding<string[]>;
-    isRangeSelection: Binding<boolean>;  } {
-    // Use firstDayOfWeek to avoid TS6133 error (parameter declared but not used)
-    // Even though it might be used by other services to generate weekdays, we'll add a comment to clarify
+    isRangeSelection: Binding<boolean>;
+  } {    // Use firstDayOfWeek parameter to avoid TS6133 error (parameter declared but not used)
+    // This parameter is used to configure weekday display order in the calendar
+    void firstDayOfWeek; // Parameter is used by other services
     
     return {
       currentMonth: createBinding<number>(currentDate.getMonth()),
       currentYear: createBinding<number>(currentDate.getFullYear()),
+      currentDate: createBinding<Date>(new Date(currentDate)),
       monthName: createBinding<string>(""), // Will be set by other service
       calendarDays: createBinding<CalendarDate[]>(calendarDaysGenerator()),
-      calendarMonths: createBinding<CalendarMonth[]>([]), // Will be populated when needed
-      calendarYears: createBinding<CalendarYear[]>([]), // Will be populated when needed
+      calendarMonths: createBinding<CalendarMonth[]>(calendarMonthsGenerator()),
+      calendarYears: createBinding<CalendarYear[]>(calendarYearsGenerator()),
       selectedDate: createBinding<Date | null>(selectedDate),
       selectedDateRange: createBinding<DateRange>(selectedDateRange),
       focusedDate: createBinding<Date | null>(null), // Initialize focusedDate as null
@@ -92,7 +97,9 @@ export class ViewStateService implements IViewStateService {
     }
     
     return { month, year };
-  }  /**
+  }
+
+  /**
    * Update selected date bindings
    */
   public updateSelectedDate(
@@ -132,6 +139,7 @@ export class ViewStateService implements IViewStateService {
     binding.set(isRange);
     calendarDaysBinding.set(generateCalendarDays());
   }
+
   /**
    * Update selectedDateRange binding with new range
    */
@@ -150,7 +158,9 @@ export class ViewStateService implements IViewStateService {
     binding: Binding<CalendarDate[]>
   ): void {
     binding.set(calendarDays);
-  }  /**
+  }
+
+  /**
    * Update focused date
    */
   public updateFocusedDate(

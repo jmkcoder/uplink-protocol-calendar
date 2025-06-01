@@ -8,17 +8,19 @@ import { CalendarDate, CalendarMonth, CalendarYear, DateRange } from "./calendar
 export interface IViewStateService {
   /**
    * Initialize view state bindings
-   */
-  initializeBindings(
+   */  initializeBindings(
     currentDate: Date,
     selectedDate: Date | null,
     selectedDateRange: DateRange,
     firstDayOfWeek: number,
     isRangeSelection: boolean,
-    calendarDaysGenerator: () => CalendarDate[]
+    calendarDaysGenerator: () => CalendarDate[],
+    calendarMonthsGenerator: () => CalendarMonth[],
+    calendarYearsGenerator: () => CalendarYear[]
   ): {
     currentMonth: Binding<number>;
     currentYear: Binding<number>;
+    currentDate: Binding<Date>;
     monthName: Binding<string>;
     calendarDays: Binding<CalendarDate[]>;    
     calendarMonths: Binding<CalendarMonth[]>;
