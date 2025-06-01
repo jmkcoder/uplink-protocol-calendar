@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.6**](../README.md)
+[**@uplink-protocol/form-controller v0.2.0**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ViewStateService
 
-Defined in: [services/view-state.service.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L9)
+Defined in: [services/view-state.service.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L9)
 
 Implementation of ViewStateService
 Responsible for managing calendar view state and binding updates
@@ -29,9 +29,9 @@ Responsible for managing calendar view state and binding updates
 
 ### initializeBindings()
 
-> **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`): `object`
+> **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`, `calendarMonthsGenerator`, `calendarYearsGenerator`): `object`
 
-Defined in: [services/view-state.service.ts:13](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L13)
+Defined in: [services/view-state.service.ts:13](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L13)
 
 Initialize view state bindings
 
@@ -61,6 +61,14 @@ Initialize view state bindings
 
 () => [`CalendarDate`](../interfaces/CalendarDate.md)[]
 
+##### calendarMonthsGenerator
+
+() => [`CalendarMonth`](../interfaces/CalendarMonth.md)[]
+
+##### calendarYearsGenerator
+
+() => [`CalendarYear`](../interfaces/CalendarYear.md)[]
+
 #### Returns
 
 `object`
@@ -76,6 +84,10 @@ Initialize view state bindings
 ##### calendarYears
 
 > **calendarYears**: `Binding`\<[`CalendarYear`](../interfaces/CalendarYear.md)[]\>
+
+##### currentDate
+
+> **currentDate**: `Binding`\<`Date`\>
 
 ##### currentMonth
 
@@ -119,7 +131,7 @@ Initialize view state bindings
 
 > **updateCalendarDays**(`calendarDays`, `binding`): `void`
 
-Defined in: [services/view-state.service.ts:149](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L149)
+Defined in: [services/view-state.service.ts:156](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L156)
 
 Update calendarDays binding with new calendar days
 
@@ -147,7 +159,7 @@ Update calendarDays binding with new calendar days
 
 > **updateCurrentDate**(`date`, `arg2`, `arg3`, `arg4`, `arg5?`, `arg6?`, `arg7?`): `object`
 
-Defined in: [services/view-state.service.ts:53](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L53)
+Defined in: [services/view-state.service.ts:57](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L57)
 
 Update current date in view state
 
@@ -203,7 +215,7 @@ Update current date in view state
 
 > **updateDateRange**(`range`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: [services/view-state.service.ts:114](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L114)
+Defined in: [services/view-state.service.ts:120](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L120)
 
 Update date range bindings
 
@@ -239,15 +251,13 @@ Update date range bindings
 
 > **updateFocusedDate**(`date`, `focusedDateBindingOrCalendarDaysBinding?`, `generateCalendarDays?`): `void`
 
-Defined in: [services/view-state.service.ts:157](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L157)
+Defined in: [services/view-state.service.ts:166](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L166)
 
 Update focused date
 
 #### Parameters
 
 ##### date
-
-The date to focus
 
 `null` | `Date`
 
@@ -258,8 +268,6 @@ The date to focus
 ##### generateCalendarDays?
 
 () => [`CalendarDate`](../interfaces/CalendarDate.md)[]
-
-Optional function to generate calendar days
 
 #### Returns
 
@@ -275,7 +283,7 @@ Optional function to generate calendar days
 
 > **updateSelectedDate**(`date`, `binding`, `calendarDaysBinding?`, `generateCalendarDays?`): `void`
 
-Defined in: [services/view-state.service.ts:99](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L99)
+Defined in: [services/view-state.service.ts:105](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L105)
 
 Update selected date bindings
 
@@ -311,7 +319,7 @@ Update selected date bindings
 
 > **updateSelectedDateRange**(`range`, `binding`): `void`
 
-Defined in: [services/view-state.service.ts:139](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L139)
+Defined in: [services/view-state.service.ts:146](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L146)
 
 Update selectedDateRange binding with new range
 
@@ -339,7 +347,7 @@ Update selectedDateRange binding with new range
 
 > **updateSelectionMode**(`isRange`, `binding`, `calendarDaysBinding`, `generateCalendarDays`): `void`
 
-Defined in: [services/view-state.service.ts:127](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/services/view-state.service.ts#L127)
+Defined in: [services/view-state.service.ts:133](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/view-state.service.ts#L133)
 
 Update selection mode
 

@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.6**](../README.md)
+[**@uplink-protocol/form-controller v0.2.0**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **getFirstDayOfMonth**(`year`, `month`): `number`
 
-Defined in: [utils/calendar.utils.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/utils/calendar.utils.ts#L21)
+Defined in: [utils/calendar.utils.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/utils/calendar.utils.ts#L21)
 
 Get the first day of the month (0 = Sunday, 1 = Monday, etc.)
 
