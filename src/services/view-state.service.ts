@@ -1,5 +1,5 @@
 import { Binding, createBinding } from "@uplink-protocol/core";
-import { CalendarDate, CalendarMonth, CalendarYear, DateRange } from "../interfaces/calendar.interfaces";
+import { CalendarDate, CalendarMonth, CalendarYear, DateRange, YearRange } from "../interfaces/calendar.interfaces";
 import { IViewStateService } from "../interfaces/view-state.service.interfaces";
 
 /**
@@ -18,8 +18,7 @@ export class ViewStateService implements IViewStateService {
     isRangeSelection: boolean,
     calendarDaysGenerator: () => CalendarDate[],
     calendarMonthsGenerator: () => CalendarMonth[],
-    calendarYearsGenerator: () => CalendarYear[]
-  ): {
+    calendarYearsGenerator: () => CalendarYear[]  ): {
     currentMonth: Binding<number>;
     currentYear: Binding<number>;
     currentDate: Binding<Date>;
@@ -32,6 +31,7 @@ export class ViewStateService implements IViewStateService {
     focusedDate: Binding<Date | null>;
     weekdays: Binding<string[]>;
     isRangeSelection: Binding<boolean>;
+    currentYearRangeBase: Binding<YearRange | number>;
   } {    // Use firstDayOfWeek parameter to avoid TS6133 error (parameter declared but not used)
     // This parameter is used to configure weekday display order in the calendar
     void firstDayOfWeek; // Parameter is used by other services
@@ -49,6 +49,7 @@ export class ViewStateService implements IViewStateService {
       focusedDate: createBinding<Date | null>(null), // Initialize focusedDate as null
       weekdays: createBinding<string[]>([]), // Will be set by other service based on firstDayOfWeek
       isRangeSelection: createBinding<boolean>(isRangeSelection),
+      currentYearRangeBase: createBinding<YearRange | number>(0), // Initialize year range base
     };
   }
   /**

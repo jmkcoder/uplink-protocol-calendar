@@ -1,8 +1,5 @@
 import {
-  Binding,
   ControllerAdapter,
-  EventEmitter,
-  TypedController,
 } from "@uplink-protocol/core";
 import { ControllerMetadata } from "@uplink-protocol/core/dist/uplink/interfaces/metadata/controller-metadata.interface";
 import {
@@ -30,6 +27,12 @@ import {
   ICalendarStateService,
 } from "./interfaces";
 import {
+  TypedCalendarController,
+  CalendarControllerBindings,
+  CalendarControllerMethods,
+  CalendarControllerEvents
+} from "./types";
+import {
   CalendarService,
   DateFormattingService,
   DateSelectionService,
@@ -53,7 +56,7 @@ import {
  * This controller uses a service-oriented architecture where all the core
  * functionality is delegated to specialized services.
  */
-export interface CalendarControllerInterface extends TypedController {
+export interface CalendarControllerInterface extends TypedCalendarController {
   _currentDate: Date;
   _selectedDate: Date | null;
   _selectedDateRange: DateRange;
@@ -69,7 +72,8 @@ export interface CalendarControllerInterface extends TypedController {
   _dateFormatOptions: Intl.DateTimeFormatOptions | null;
   _yearRangeSize: number;
   _currentYearRangeBase: number;
-    // Method aliases for backward compatibility
+
+  // Method aliases for backward compatibility
   nextMonth?: () => void;
   prevMonth?: () => void;
   previousMonth?: () => void;
@@ -78,10 +82,12 @@ export interface CalendarControllerInterface extends TypedController {
 }
 
 export class CalendarControllerClass implements CalendarControllerInterface {
-  bindings!: Record<string, Binding<any>>;
-  methods?: Record<string, (...args: any[]) => any>;
-  events?: Record<string, EventEmitter<any>>;
-  meta?: ControllerMetadata;  __adapter?: ControllerAdapter;
+  bindings!: CalendarControllerBindings;
+  methods!: CalendarControllerMethods;
+  events!: CalendarControllerEvents;
+  meta?: ControllerMetadata;
+  __adapter?: ControllerAdapter;
+  options?: CalendarOptions;
 
   // Method aliases for backward compatibility
   nextMonth?: () => void;
@@ -180,7 +186,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       if (options.hideOtherMonthDays !== undefined) this._hideOtherMonthDays = options.hideOtherMonthDays;
       if (options.dateFormatOptions) this._dateFormatOptions = options.dateFormatOptions;
       if (options.disabledDates) this._disabledDates = [...options.disabledDates];
-    }    // Initialize bindings using ViewStateService
+    }    
+      // Initialize bindings using ViewStateService
     this.bindings = this._viewStateService.initializeBindings(
       this._currentDate,
       this._selectedDate,
@@ -192,8 +199,11 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       () => this.generateCalendarYears()
     );
 
+    // Initialize events using EventManagerService  
+    this.events = this._eventManagerService.initializeEvents();
+
     // Set initial month name using calendar service
-    this.bindings.monthName.set(this._calendarService.getMonthName(this._currentDate.getMonth()));    // Set up method bindings
+    this.bindings.monthName.set(this._calendarService.getMonthName(this._currentDate.getMonth()));// Set up method bindings
     this.methods = {
       // Basic date selection and navigation
       selectDate: this.selectDate.bind(this),
@@ -203,8 +213,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       goToNextMonth: this.goToNextMonth.bind(this),
       goToPreviousMonth: this.goToPreviousMonth.bind(this),
       goToNextYear: this.goToNextYear.bind(this),
-      goToPreviousYear: this.goToPreviousYear.bind(this),
-      goToToday: this.goToToday.bind(this),
+      goToPreviousYear: this.goToPreviousYear.bind(this),      goToToday: this.goToToday.bind(this),
+      goToNextYearRange: this.goToNextYearRange.bind(this),
+      goToPreviousYearRange: this.goToPreviousYearRange.bind(this),
       
       // Range selection
       setRangeSelectionMode: this.setRangeSelectionMode.bind(this),
@@ -272,7 +283,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       prevMonth: this.goToPreviousMonth.bind(this),
       nextYear: this.goToNextYear.bind(this),
       prevYear: this.goToPreviousYear.bind(this),
-    };// Add method aliases directly to controller instance for backward compatibility
+    };
+    
+    // Add method aliases directly to controller instance for backward compatibility
     this.nextMonth = this.goToNextMonth.bind(this);
     this.prevMonth = this.goToPreviousMonth.bind(this);
     this.previousMonth = this.goToPreviousMonth.bind(this);  // Additional alias

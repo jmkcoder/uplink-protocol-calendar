@@ -30,6 +30,9 @@ export * from "./controller";
 // Export public interfaces for form configuration
 export * from "./interfaces";
 
+// Export TypeScript type definitions
+export * from "./types";
+
 // Export core services for advanced usage
 export * from "./services";
 
