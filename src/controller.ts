@@ -93,9 +93,11 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   _dateFormatOptions: Intl.DateTimeFormatOptions | null = null;
   _yearRangeSize: number = 12; // Default number of years in year view
   _currentYearRangeBase: number = 0; // Base year for current year range
-  _locale: string = "en-US";
 
-  // Default locale  // Services
+  // Default locale  
+  _locale: string = "en-US";
+  
+  // Services
   private _calendarService: ICalendarService;
   private _localizationService: ILocalizationService;
   private _dateFormattingService: IDateFormattingService;
@@ -218,6 +220,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       setMaxDate: this.setMaxDate.bind(this),
       setDisabledDates: this.setDisabledDates.bind(this),
       getCurrentYearRange: this.getCurrentYearRange.bind(this),
+      setCurrentYearRange: this.setCurrentYearRange.bind(this),
       setYearRangeSize: this.setYearRangeSize.bind(this),
       addDisabledDate: this.addDisabledDate.bind(this),
       removeDisabledDate: this.removeDisabledDate.bind(this),
@@ -696,6 +699,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this._selectedDateRange = result.selectedDateRange;
 
     this.updateBindings();
+    this.updateViewBindings();
   }
   /**
    * Get formatted selected date using DateFormattingService
@@ -989,7 +993,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * @returns Year range object with start and end years
    */
   public setCurrentYearRange(date: Date): void {
-    this.bindings.currentYearRangeBase.set(this.getYearRangeBase(date));
+    this._currentYearRangeBase = this.getYearRangeBase(date).startYear;
     this.updateViewBindings();
   }
 
@@ -1090,6 +1094,12 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.bindings.calendarDays,
         () => this.generateCalendarDays()
       );
+
+      // Update the current month and year if needed
+      if (this._focusedDate) {
+        this._currentDate = new Date(this._focusedDate);
+        this.updateCurrentDate(this._currentDate);
+      }
     }
   }
   /**
@@ -1109,6 +1119,22 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the focused date binding
+    this.bindings.focusedDate.set(this._focusedDate);
+    
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the date on the left (previous day)
@@ -1127,6 +1153,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the date above (previous week)
@@ -1145,6 +1184,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the date below (next week)
@@ -1163,6 +1215,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the first day of the month (Home key)
@@ -1177,6 +1242,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this.bindings.calendarDays,
       () => this.generateCalendarDays()
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the last day of the month (End key)
@@ -1191,6 +1269,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this.bindings.calendarDays,
       () => this.generateCalendarDays()
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the same day in the previous month (Page Up key)
@@ -1209,6 +1300,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the same day in the next month (Page Down key)
@@ -1227,6 +1331,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the same day in the previous year (Ctrl + Page Up)
@@ -1245,6 +1362,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.updateCurrentDate(this._currentDate);
       }
     );
+
+    // Update the calendar view with the new focused date
+    this._viewStateService.updateFocusedDate(
+      this._focusedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._focusedDate) {
+      this._currentDate = new Date(this._focusedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Move focus to the same day in the next year (Ctrl + Page Down)
@@ -1275,6 +1405,28 @@ export class CalendarControllerClass implements CalendarControllerInterface {
         this.selectDate(date.getFullYear(), date.getMonth(), date.getDate());
       }
     );
+
+    // Update the selected date binding
+    this.bindings.selectedDate.set(this._selectedDate);
+
+    // Update the selected date range binding if in range selection mode
+    if (this._isRangeSelection) {
+      this.bindings.selectedDateRange.set(this._selectedDateRange);
+    }
+
+    // Update the calendar view with the new selected date
+    this._viewStateService.updateSelectedDate(
+      this._selectedDate,
+      this.bindings.selectedDate,
+      this.bindings.calendarDays,
+      () => this.generateCalendarDays()
+    );
+
+    // Update the current date if needed
+    if (this._selectedDate) {
+      this._currentDate = new Date(this._selectedDate);
+      this.updateCurrentDate(this._currentDate);
+    }
   }
   /**
    * Get accessible date label for screen readers

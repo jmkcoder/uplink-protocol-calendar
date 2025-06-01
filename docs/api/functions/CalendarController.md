@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.1.4**](../README.md)
+[**@uplink-protocol/form-controller v0.1.6**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **CalendarController**(`options?`): [`CalendarControllerClass`](../classes/CalendarControllerClass.md)
 
-Defined in: [index.ts:18](https://github.com/jmkcoder/uplink-protocol-calendar/blob/90165c1152662e28e3c591acea1b996d16646319/src/index.ts#L18)
+Defined in: [index.ts:18](https://github.com/jmkcoder/uplink-protocol-calendar/blob/f78ad3d76836bc48e6721214f929c06c541c2ab7/src/index.ts#L18)
 
 Factory function to create a calendar controller
 
