@@ -5,1708 +5,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar Controller - Interactive Documentation & Live Demos</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))"
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))"
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))"
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))"
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))"
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))"
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))"
+                        }
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)"
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Consolas', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                        'bounce-in': 'bounceIn 0.6s ease-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)', opacity: '0.7' },
+                            '50%': { transform: 'translateY(-10px)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-      <style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">    <style>
         :root {
-            /* Color System */
-            --primary: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --secondary: #6b7280;
-            --secondary-light: #9ca3af;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --surface: #ffffff;
-            --surface-secondary: #f8fafc;
-            --surface-tertiary: #f1f5f9;
-            --text-primary: #1f2937;
-            --text-secondary: #64748b;
-            --text-tertiary: #9ca3af;
-            --border: #e2e8f0;
-            --border-light: #f1f5f9;
-            
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            --gradient-surface: linear-gradient(135deg, var(--surface) 0%, var(--surface-secondary) 100%);
-            
-            /* Shadows */
-            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-            
-            /* Spacing */
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 1.5rem;
-            --spacing-xl: 2rem;
-            --spacing-2xl: 3rem;
-            
-            /* Border Radius */
-            --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --radius-2xl: 20px;
-            
-            /* Typography */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-        }        
-        /* Base Styles */
-        * { 
-            font-family: var(--font-sans);
-            box-sizing: border-box;
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96%;
+            --secondary-foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96%;
+            --accent-foreground: 222.2 84% 4.9%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 221.2 83.2% 53.3%;
+            --radius: 0.75rem;
         }
         
-        html {
-            scroll-behavior: smooth;
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --primary: 217.2 91.2% 59.8%;
+            --primary-foreground: 222.2 84% 4.9%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 224.3 76.3% 94.1%;
+        }
+        
+        * {
+            border-color: hsl(var(--border));
         }
         
         body {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+            color: hsl(var(--foreground));
+            font-family: 'Inter', system-ui, sans-serif;
             min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: var(--text-primary);
         }
         
-        /* Animated background particles */
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.6;
+        /* Essential animations only */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+            50% { transform: translateY(-10px) translateX(5px); opacity: 0.7; }
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .particle {
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.4);
+            width: 2px;
+            height: 2px;
+            background: hsl(var(--primary-foreground) / 0.4);
             border-radius: 50%;
+            opacity: 0.3;
             animation: float 8s ease-in-out infinite;
         }
         
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px); 
-                opacity: 0.3; 
-            }
-            50% { 
-                transform: translateY(-15px) translateX(8px); 
-                opacity: 0.7; 
-            }
-        }
-        
-        /* Main Container */
-        .doc-container {
-            background: rgba(255, 255, 255, 0.98);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-radius: var(--radius-2xl);
-            margin: var(--spacing-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-            z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }        
-        /* Hero Section */
-        .hero-section {
-            background: var(--gradient-hero);
-            color: white;
-            padding: var(--spacing-2xl);
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: gridMove 30s linear infinite;
-        }
-        
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(8px, 8px); }
-        }
-        
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 60%);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: var(--spacing-md);
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
-            font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: var(--spacing-xl);
-            max-width: 600px;
-            line-height: 1.6;
-        }
-        
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-2xl);
-            justify-content: center;
-        }
-        
-        .hero-badge {
-            background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-sm) var(--spacing-md);
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            transition: all 0.3s ease;
-        }
-        
-        .hero-badge:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-2xl);
-        }
-        
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-xl);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
-        }
-        
-        .stat-number {
-            font-size: 2.25rem;
-            font-weight: 800;
-            margin-bottom: var(--spacing-sm);
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stat-label {
-            font-size: 0.875rem;
-            opacity: 0.8;
-            font-weight: 500;
-        }        
-        /* Feature Cards */
-        .feature-card {
-            background: var(--surface);
-            border-radius: var(--radius-2xl);
-            padding: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-light);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .feature-card:hover::before {
-            width: 6px;
-        }
-        
-        .feature-header {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: var(--spacing-xl);
-            padding-bottom: var(--spacing-lg);
-            border-bottom: 2px solid var(--surface-tertiary);
-        }
-        
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-lg);
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-right: var(--spacing-lg);
-            font-size: 1.25rem;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .feature-card:hover .feature-icon {
-            transform: scale(1.05);
-        }
-        
-        .feature-title {
-            font-size: 1.375rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 0 0 var(--spacing-sm) 0;
-            letter-spacing: -0.025em;
-        }
-        
-        .feature-description {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-        
-        /* Demo Section */
-        .demo-section {
-            background: var(--gradient-surface);
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-            border: 1px solid var(--border);
-        }
-        
-        .demo-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        /* Button Styles */
-        .demo-btn {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border-radius: var(--radius-lg);
-            border: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            text-decoration: none;
-            min-height: 40px;
-            font-family: var(--font-sans);
-        }
-        
-        .demo-btn::before {
+        .shimmer::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.4s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
         }
-        
-        .demo-btn:hover::before {
-            left: 100%;
-        }
-        
-        .demo-btn.primary {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .demo-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .demo-btn.secondary {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .demo-btn.secondary:hover {
-            background: #e2e8f0;
-            color: #334155;
-        }
-        
-        .demo-btn.success {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-        
-        .demo-btn.warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-        
-        .demo-btn.danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-        }
-        
-        /* Additional layout classes to replace inline styles */
-        .quick-stats-note {
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            opacity: 0.8;
-        }
-        
-        .keyboard-nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        /* Code Snippets */
-        .code-snippet {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-xl);
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            margin: var(--spacing-xl) 0;
-            position: relative;
-            overflow-x: auto;
-            box-shadow: var(--shadow-md);
-            border: 1px solid #334155;
-            line-height: 1.6;
-        }
-        
-        .code-snippet::before {
-            content: attr(data-lang);
-            position: absolute;
-            top: var(--spacing-md);
-            right: var(--spacing-lg);
-            color: #64748b;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            background: rgba(100, 116, 139, 0.1);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(100, 116, 139, 0.2);
-        }
-        
-        .code-snippet pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        
-        /* Info Panels */
-        .info-panel {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border: 2px solid #bfdbfe;
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-xl);
-            margin-top: var(--spacing-lg);
-            position: relative;
-        }
-        
-        .info-panel::before {
-            content: '💡';
-            position: absolute;
-            top: var(--spacing-lg);
-            left: var(--spacing-lg);
-            font-size: 1.25rem;
-        }
-        
-        .info-panel .content {
-            margin-left: var(--spacing-2xl);
-        }
-        
-        .info-panel .label {
-            font-weight: 600;
-            color: #1e40af;
-            margin-right: var(--spacing-sm);
-            display: inline-block;
-            min-width: 120px;
-        }
-        
-        .info-panel .value {
-            color: #1d4ed8;
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            font-weight: 500;
-            background: rgba(59, 130, 246, 0.1);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-sm);
-        }
-        
-        .calendar-display {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow-medium);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-            margin-bottom: 2rem;
-        }
-        
-        .calendar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid #f1f5f9;
-        }
-        
-        .calendar-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin: 0;
-            letter-spacing: -0.025em;
-        }
-        
-        .calendar-nav {
-            display: flex;
-            gap: 0.75rem;
-        }
-        
-        .nav-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        .nav-btn:hover {
-            background: var(--blue-gradient);
-            color: white;
-            border-color: #3b82f6;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-light);
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .weekday-header {
-            text-align: center;
-            font-weight: 600;
-            color: #64748b;
-            font-size: 0.875rem;
-            padding: 1rem 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.025em;
-        }
-        
-        .date-cell {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: 500;
-            font-size: 0.875rem;
-            border: 2px solid transparent;
-        }
-        
-        .date-cell:hover {
-            background: #eff6ff;
-            transform: scale(1.1);
-            border-color: #bfdbfe;
-        }
-        
-        .date-cell.selected {
-            background: var(--blue-gradient);
-            color: white;
-            box-shadow: var(--shadow-light);
-        }
-        
-        .date-cell.range-start {
-            background: var(--blue-gradient);
-            color: white;
-            border-radius: 12px 6px 6px 12px;
-        }
-        
-        .date-cell.range-end {
-            background: var(--blue-gradient);
-            color: white;
-            border-radius: 6px 12px 12px 6px;
-        }
-        
-        .date-cell.in-range {
-            background: #dbeafe;
-            color: #1e40af;
-            border-radius: 6px;
-        }
-        
-        .date-cell.disabled {
-            color: #d1d5db;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-        
-        .date-cell.disabled:hover {
-            background: transparent;
-            transform: none;
-            border-color: transparent;
-        }
-        
-        .date-cell.other-month {
-            color: #cbd5e1;
-            opacity: 0.6;
-        }
-        
-        .date-cell.today::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #f59e0b;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOutRight {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
-        }
-        
-        /* Action-specific animations */
-        #floating-calendar-widget.action-today .floating-date-cell.today {
-            animation: pulse 1s ease-in-out;
-        }
-        
-        #floating-calendar-widget.action-tomorrow .floating-date-cell:nth-child(2) {
-            animation: bounce 0.8s ease-in-out;
-        }
-        
-        #floating-calendar-widget.action-weekend .floating-date-cell:nth-child(6),
-        #floating-calendar-widget.action-weekend .floating-date-cell:nth-child(7) {
-            animation: glow 1.5s ease-in-out;
-        }
-        
-        #floating-calendar-widget.action-clear {
-            animation: slideOutRight 0.3s ease-in-out,
-                       slideInRight 0.3s ease-in-out 0.3s;
-        }
-        
-        /* Range preview effect */
-        .floating-date-cell.range-preview {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-            border: 2px dashed #3b82f6;
-            animation: pulse 0.8s ease-in-out infinite;
-        }
-        
-        /* Enhanced hover effects for quick actions */
-        .floating-quick-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-        }
-        
-        .floating-quick-btn:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-        
-        /* Smooth transitions for all interactive elements */
-        .floating-date-cell,
-        .floating-nav-btn,
-        .floating-control-btn,
-        .floating-quick-btn {
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        /* Loading state */
-        .floating-calendar-display.loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        
-        .floating-calendar-display.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 24px;
-            height: 24px;
-            margin: -12px 0 0 -12px;
-            border: 2px solid #e5e7eb;
-            border-top: 2px solid #3b82f6;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Notification system */
-        .floating-notification {
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-            opacity: 0;
-            transform: translateX(-50%) translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .floating-notification.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        
-        .floating-notification::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #10b981;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .doc-container {
-                margin: 10px;
-                border-radius: 16px;
-            }
-            
-            .hero-section {
-                padding: 3rem 1.5rem;
-            }
-            
-            .hero-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            
-            .feature-card {
-                padding: 1.5rem;
-            }
-            
-            .demo-section {
-                padding: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-badges {
-                justify-content: center;
-            }
-            
-            .hero-badge {
-                font-size: 0.75rem;
-                padding: 0.5rem 1rem;
-            }
-            
-            .feature-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .feature-icon {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-            
-            .demo-buttons {
-                justify-content: center;
-            }
-            
-            .calendar-header {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-        
-        /* Animations for page load */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .feature-card {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        
         /* Smooth scrolling for anchors */
         html {
             scroll-behavior: smooth;
         }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--blue-gradient);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--purple-gradient);
-        }
-
-        .demo-btn.secondary {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .demo-btn.secondary:hover {
-            background: #e2e8f0;
-            color: #334155;
-        }
-        
-        .demo-btn.success {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-        
-        .demo-btn.warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-        
-        .demo-btn.danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-        }
-        
-        .code-snippet {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            margin: 1rem 0;
-            position: relative;
-            overflow-x: auto;
-        }
-        
-        .code-snippet::before {
-            content: attr(data-lang);
-            position: absolute;
-            top: 0.5rem;
-            right: 0.75rem;
-            color: #64748b;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-        
-        .info-panel {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border: 1px solid #bae6fd;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .info-panel .label {
-            font-weight: 600;
-            color: #0c4a6e;
-            margin-right: 0.5rem;
-        }
-        
-        .info-panel .value {
-            color: #0369a1;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-        }
-        
-        .calendar-display {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .calendar-header {
-            display: flex;
-            align-items: center;
-            justify-content: between;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .calendar-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin: 0;
-        }
-        
-        .calendar-nav {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .nav-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #6b7280;
-        }
-        
-        .nav-btn:hover {
-            background: #f3f4f6;
-            border-color: #d1d5db;
-            color: #374151;
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
-            margin-top: 1rem;
-        }
-        
-        .weekday-header {
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #6b7280;
-            padding: 0.75rem 0;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-        }
-        
-        .date-cell {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            position: relative;
-            margin: 0 auto;
-        }
-        
-        .date-cell:hover {
-            background: #eff6ff;
-            transform: scale(1.05);
-        }
-        
-        .date-cell.selected {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-        }
-        
-        .date-cell.range-start {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            border-radius: 8px 4px 4px 8px;
-        }
-        
-        .date-cell.range-end {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            border-radius: 4px 8px 8px 4px;
-        }
-        
-        .date-cell.in-range {
-            background: #dbeafe;
-            color: #1e40af;
-            border-radius: 4px;
-        }
-        
-        .date-cell.disabled {
-            color: #d1d5db;
-            cursor: not-allowed;
-        }
-        
-        .date-cell.disabled:hover {
-            background: transparent;
-            transform: none;
-        }
-        
-        .date-cell.other-month {
-            color: #9ca3af;
-        }
-        
-        .date-cell.today::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #f59e0b;
-        }        .date-cell.focused {
-            box-shadow: 0 0 0 2px #fbbf24;
-        }          /* Advanced Floating Calendar - Complete Overhaul */
-        #floating-calendar-widget {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            width: 360px;
-            max-height: 90vh;
-            background: rgba(255, 255, 255, 0.98);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 24px;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.12),
-                0 8px 20px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-origin: top right;
-            animation: floatIn 0.6s ease-out;
-        }
-        
-        @keyframes floatIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        
-        #floating-calendar-widget:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 
-                0 35px 70px rgba(0, 0, 0, 0.18),
-                0 15px 30px rgba(0, 0, 0, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
-        }
-        
-        #floating-calendar-widget.minimized {
-            width: 80px;
-            height: 80px;
-            overflow: hidden;
-        }
-        
-        #floating-calendar-widget.minimized .calendar-content {
-            display: none;
-        }
-        
-        #floating-calendar-widget.minimized .calendar-mini-view {
-            display: flex;
-        }
-        
-        /* Calendar Widget Header */
-        .floating-calendar-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 1rem 1.25rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .floating-calendar-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                rgba(255,255,255,0.1) 0%, 
-                transparent 50%, 
-                rgba(255,255,255,0.1) 100%);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-        
-        .floating-header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .floating-calendar-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin: 0;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        
-        .floating-calendar-controls {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-          .floating-control-btn {
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-        }
-        
-        .floating-control-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-        
-        .floating-control-btn:active {
-            transform: scale(0.95);
-        }
-        
-        /* Calendar Content */
-        .calendar-content {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-        
-        .calendar-mini-view {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: white;
-        }
-        
-        .mini-date {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0;
-        }
-        
-        .mini-month {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.9;
-        }
-        
-        /* Enhanced Calendar Display */
-        .floating-calendar-display {
-            background: white;
-            border-radius: 16px;
-            padding: 1.25rem;
-            box-shadow: 
-                0 8px 25px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            margin-bottom: 1rem;
-        }
-        
-        .floating-calendar-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #f1f5f9;
-        }
-          .floating-month-year {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1e293b;
-            text-align: center;
-            flex: 1;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .floating-nav-btn {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #e5e7eb;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #6b7280;
-            font-size: 1rem;
-        }
-        
-        .floating-nav-btn:hover {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-color: transparent;
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .floating-nav-btn:active {
-            transform: scale(0.95);
-        }
-          /* Enhanced Calendar Grid */
-        .floating-calendar-grid-container {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .floating-weekday-headers {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border-bottom: 2px solid #e5e7eb;
-        }
-        
-        .floating-weekday-header {
-            padding: 12px 8px;
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-right: 1px solid #e5e7eb;
-        }
-        
-        .floating-weekday-header:last-child {
-            border-right: none;
-        }
-        
-        .floating-calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 1px;
-            background: #e5e7eb;
-            padding: 1px;
-        }
-          .floating-date-cell {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            margin: 0 auto;
-            border: 2px solid transparent;
-            background: white;
-        }
-        
-        .floating-date-cell:hover {
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            transform: scale(1.15);
-            z-index: 1;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-          .floating-date-cell.selected {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
-            color: white !important;
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-            border-color: transparent !important;
-            font-weight: 700;
-        }
-        
-        .floating-date-cell.today {
-            border-color: #f59e0b;
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            color: #92400e;
-            font-weight: 700;
-        }
-        
-        .floating-date-cell.today.selected {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            border-color: transparent;
-        }
-        
-        .floating-date-cell.other-month {
-            color: #cbd5e1;
-            opacity: 0.6;
-        }
-        
-        .floating-date-cell.disabled {
-            color: #d1d5db;
-            cursor: not-allowed;
-            opacity: 0.4;
-        }
-        
-        .floating-date-cell.disabled:hover {
-            background: transparent;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        /* Quick Actions Panel */
-        .floating-quick-actions {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border-radius: 16px;
-            margin-top: 1rem;
-        }
-        
-        .floating-quick-btn {
-            padding: 0.75rem;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #475569;
-        }
-        
-        .floating-quick-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-        }
-        
-        .floating-quick-btn:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-        
-        /* Status Display */
-        .floating-status-display {
-            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-            border: 1px solid #a7f3d0;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .floating-status-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #065f46;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .floating-status-content {
-            font-size: 0.875rem;
-            color: #047857;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        /* Draggable Functionality */
-        #floating-calendar-widget.dragging {
-            cursor: grabbing;
-            transform: rotate(2deg) scale(1.05);
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 1024px) {
-            #floating-calendar-widget {
-                width: 340px;
-                top: 15px;
-                right: 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            #floating-calendar-widget {
-                width: 300px;
-                top: 10px;
-                right: 10px;
-            }
-            
-            .floating-date-cell {
-                width: 36px;
-                height: 36px;
-                font-size: 0.75rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            #floating-calendar-widget {
-                width: 280px;
-                top: 5px;
-                right: 5px;
-            }
-            
-            .calendar-content {
-                padding: 1rem;
-            }
-            
-            .floating-date-cell {
-                width: 32px;
-                height: 32px;
-                font-size: 0.625rem;
-            }
-        }
-        
-        .sidebar {
-            position: sticky;
-            top: 2rem;
-            height: fit-content;
-        }
-        
-        .toc {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .toc-title {
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .toc-item {
-            margin-bottom: 0.5rem;
-        }
-        
-        .toc-link {
-            color: #6b7280;
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.2s ease;
-            display: block;
-            padding: 0.25rem 0;
-        }
-        
-        .toc-link:hover {
-            color: #3b82f6;
-        }
-        
-        .stats-card {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            color: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-          .stats-number {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stats-label {
-            font-size: 0.875rem;
-            color: #94a3b8;
-        }
-          @media (max-width: 1024px) {
-            .doc-container {
-                margin: 10px;
-                border-radius: 16px;
-            }
-            
-            .hero-section {
-                padding: 2rem 1.5rem;
-            }
-            
-            /* Adjust floating calendar for tablets */
-            #calendar-display {
-                width: 300px;
-                top: 15px;
-                right: 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            /* Floating calendar adjustments for mobile */
-            #calendar-display {
-                width: 280px;
-                top: 10px;
-                right: 10px;
-                padding: 0.75rem;
-            }
-            
-            #calendar-display .feature-title {
-                font-size: 0.875rem;
-            }
-            
-            #calendar-display .feature-description {
-                font-size: 0.625rem;
-                line-height: 1.4;
-            }
-            
-            #calendar-display .date-cell {
-                width: 28px;
-                height: 28px;
-                font-size: 0.625rem;
-            }
-            
-            #calendar-display .nav-btn {
-                width: 28px;
-                height: 28px;
-                font-size: 0.75rem;
-            }
-        }
-          
-        /* Additional Classes for Enhanced Widget */
-        .widget-features-section {
-            margin-top: 2rem;
-        }
-        
-        .widget-features-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-        
-        .widget-status-item {
-            margin-bottom: 0.75rem;
-        }
-        
-        /* Theme Variations */
-        #floating-calendar-widget.dark-theme {
-            background: rgba(30, 41, 59, 0.95);
-            color: white;
-        }
-        
-        #floating-calendar-widget.dark-theme .floating-calendar-header {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        }
-        
-        #floating-calendar-widget.dark-theme .floating-calendar-display {
-            background: #334155;
-            border-color: #475569;
-        }
-        
-        #floating-calendar-widget.gradient-theme {
-            background: linear-gradient(135deg, 
-                rgba(168, 85, 247, 0.95) 0%, 
-                rgba(59, 130, 246, 0.95) 50%, 
-                rgba(16, 185, 129, 0.95) 100%);
-        }
-        
-        #floating-calendar-widget.gradient-theme .floating-calendar-header {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+        </style>
 </head>
-<body>
-    <!-- Animated background particles -->
-    <div class="bg-particles" id="particles"></div>
-
-    <div class="doc-container">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content max-w-6xl mx-auto">
+<body class="bg-gradient-to-br from-primary to-primary/80 text-foreground font-sans min-h-screen">        <!-- Hero Section -->
+        <section class="relative py-20 px-6 overflow-hidden">
+            <div class="max-w-6xl mx-auto">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
                             Calendar Controller
                             <span class="block text-xl md:text-2xl font-normal opacity-90 mt-2">
                                 Interactive Documentation & Live Demos
                             </span>
                         </h1>
-                        <p class="text-lg md:text-xl opacity-90 mb-6 max-w-2xl">
+                        <p class="text-lg md:text-xl opacity-90 mb-6 max-w-2xl text-white">
                             Explore the complete API surface of our powerful Calendar Controller through interactive examples. 
                             Built with TypeScript, featuring comprehensive accessibility support and internationalization.
                         </p>
                         <div class="flex flex-wrap gap-4">
                             <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <span class="text-sm font-medium">✨ 40+ Methods</span>
+                                <span class="text-sm font-medium text-white">✨ 40+ Methods</span>
                             </div>
                             <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <span class="text-sm font-medium">🌍 i18n Support</span>
+                                <span class="text-sm font-medium text-white">🌍 i18n Support</span>
                             </div>
                             <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <span class="text-sm font-medium">♿ Accessibility</span>
-                            </div>
-                            <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <span class="text-sm font-medium">📱 Responsive</span>
+                                <span class="text-sm font-medium text-white">♿ Accessibility</span>
                             </div>
                         </div>
                     </div>
                     <div class="hidden lg:block">
-                        <div class="stats-card">
-                            <div class="stats-number" id="methodCount">41</div>
-                            <div class="stats-label">Available Methods</div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20">
+                            <div class="text-3xl font-bold text-white mb-2" id="methodCount">41</div>
+                            <div class="text-sm text-white/80">Available Methods</div>
                         </div>
                     </div>
                 </div>
@@ -1715,28 +226,28 @@
 
         <div class="max-w-7xl mx-auto p-6">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <!-- Sidebar Navigation -->
-                <aside class="lg:col-span-1">
-                    <div class="sidebar">                        <nav class="toc">
-                            <h3 class="toc-title">Quick Navigation</h3>
-                            <ul class="toc-list">
-                                <li class="toc-item"><a href="#calendar-display" class="toc-link">🗓️ Live Calendar</a></li>
-                                <li class="toc-item"><a href="#basic-selection" class="toc-link">👆 Date Selection</a></li>
-                                <li class="toc-item"><a href="#range-selection" class="toc-link">📅 Range Selection</a></li>
-                                <li class="toc-item"><a href="#navigation" class="toc-link">🧭 Navigation</a></li>
-                                <li class="toc-item"><a href="#constraints" class="toc-link">🚫 Date Constraints</a></li>
-                                <li class="toc-item"><a href="#internationalization" class="toc-link">🌍 Internationalization</a></li>
-                                <li class="toc-item"><a href="#accessibility" class="toc-link">♿ Accessibility</a></li>
-                                <li class="toc-item"><a href="#advanced" class="toc-link">⚡ Advanced Features</a></li>
-                                <li class="toc-item"><a href="#events" class="toc-link">📡 Events & Bindings</a></li>
-                                <li class="toc-item"><a href="#api-reference" class="toc-link">📚 API Reference</a></li>
+                <!-- Sidebar Navigation -->                <aside class="lg:col-span-1">
+                    <div class="bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/50 sticky top-6">
+                        <nav class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4 text-foreground">Quick Navigation</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#calendar-display" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">🗓️ Live Calendar</a></li>
+                                <li><a href="#basic-selection" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">👆 Date Selection</a></li>
+                                <li><a href="#range-selection" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">📅 Range Selection</a></li>
+                                <li><a href="#navigation" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">🧭 Navigation</a></li>
+                                <li><a href="#constraints" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">🚫 Date Constraints</a></li>
+                                <li><a href="#internationalization" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">🌍 Internationalization</a></li>
+                                <li><a href="#accessibility" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">♿ Accessibility</a></li>
+                                <li><a href="#advanced" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">⚡ Advanced Features</a></li>
+                                <li><a href="#events" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">📡 Events & Bindings</a></li>
+                                <li><a href="#api-reference" class="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2 px-3 rounded-lg hover:bg-accent">📚 API Reference</a></li>
                             </ul>
                         </nav>
                         
-                        <div class="quick-stats">
-                            <div class="stat-number" id="methodCountSidebar">41</div>
-                            <div class="stat-label">Methods Available</div>
-                            <div class="quick-stats-note">
+                        <div class="bg-gradient-to-br from-primary/10 to-primary/20 rounded-lg p-4 border border-primary/20">
+                            <div class="text-2xl font-bold text-primary mb-1" id="methodCountSidebar">41</div>
+                            <div class="text-sm text-muted-foreground">Methods Available</div>
+                            <div class="text-xs text-muted-foreground mt-2 opacity-80">
                                 All methods tested ✓
                             </div>
                         </div>
@@ -1745,14 +256,14 @@
 
                 <!-- Main Content -->
                 <main class="lg:col-span-3 space-y-8">                    <!-- Advanced Floating Calendar Widget -->
-                    <section id="calendar-display" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-calendar-alt"></i>
+                    <section id="calendar-display" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-calendar-alt text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Advanced Floating Calendar</h2>
-                                <p class="feature-description">Experience a completely redesigned floating calendar with enhanced features, modern UI, and advanced interactions.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Advanced Floating Calendar</h2>
+                                <p class="text-muted-foreground">Experience a completely redesigned floating calendar with enhanced features, modern UI, and advanced interactions.</p>
                             </div>
                         </div>
                           <!-- Floating Calendar Widget Placeholder (moved to body) -->
@@ -1763,58 +274,58 @@
                                 <p class="text-blue-600">The interactive floating calendar widget is now positioned at the top-right corner of your screen.</p>
                                 <p class="text-sm text-blue-500 mt-2">Scroll to see it stay visible • Drag to reposition • Click minimize to collapse</p>
                             </div>
-                        </div>
-                          <!-- Feature Description and Demo Controls -->
-                        <div class="widget-features-section">
-                            <h3 class="widget-features-title">
+                        </div>                          <!-- Feature Description and Demo Controls -->
+                        <div class="space-y-6">
+                            <h3 class="text-lg font-semibold text-foreground">
                                 Enhanced Floating Calendar Features
                             </h3>
                             
-                            <div class="demo-section">
-                                <div class="demo-buttons">
-                                    <button class="demo-btn primary" onclick="window.advancedCalendar.showAnimationDemo()">
+                            <div class="space-y-4">
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.advancedCalendar.showAnimationDemo()">
                                         <i class="fas fa-magic"></i>
                                         Animation Demo
                                     </button>
-                                    <button class="demo-btn primary" onclick="window.advancedCalendar.toggleTheme()">
+                                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.advancedCalendar.toggleTheme()">
                                         <i class="fas fa-palette"></i>
                                         Toggle Theme
                                     </button>
-                                    <button class="demo-btn success" onclick="window.advancedCalendar.enableRangeMode()">
+                                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.advancedCalendar.enableRangeMode()">
                                         <i class="fas fa-calendar-alt"></i>
                                         Range Selection
                                     </button>
-                                    <button class="demo-btn warning" onclick="window.advancedCalendar.stressTest()">
+                                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors" onclick="window.advancedCalendar.stressTest()">
                                         <i class="fas fa-bolt"></i>
                                         Performance Test
                                     </button>
                                 </div>
                                 
-                                <div class="info-panel">
-                                    <div class="content">
-                                        <div class="widget-status-item">
-                                            <span class="label">Widget Status:</span>
-                                            <span class="value" id="widgetStatus">Active & Interactive</span>
+                                <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                    <div class="absolute top-4 left-4 text-xl">💡</div>
+                                    <div class="ml-8 space-y-3">
+                                        <div class="flex items-center">
+                                            <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Widget Status:</span>
+                                            <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="widgetStatus">Active & Interactive</span>
                                         </div>
-                                        <div class="widget-status-item">
-                                            <span class="label">Selected Date:</span>
-                                            <span class="value" id="widgetSelectedDate">None</span>
+                                        <div class="flex items-center">
+                                            <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Selected Date:</span>
+                                            <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="widgetSelectedDate">None</span>
                                         </div>
-                                        <div class="widget-status-item">
-                                            <span class="label">Current Theme:</span>
-                                            <span class="value" id="widgetTheme">Default</span>
+                                        <div class="flex items-center">
+                                            <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Current Theme:</span>
+                                            <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="widgetTheme">Default</span>
                                         </div>
-                                        <div>
-                                            <span class="label">Interaction Mode:</span>
-                                            <span class="value" id="widgetMode">Single Selection</span>
+                                        <div class="flex items-center">
+                                            <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Interaction Mode:</span>
+                                            <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="widgetMode">Single Selection</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="code-snippet" data-lang="javascript">
-// Initialize the Advanced Floating Calendar
+                        </div>                        
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Initialize the Advanced Floating Calendar
 const advancedCalendar = new AdvancedFloatingCalendar({
     container: '#floating-calendar-widget',
     initialDate: new Date(),
@@ -1843,61 +354,60 @@ advancedCalendar.on('minimize', () => {
 advancedCalendar.on('dragEnd', (position) => {
     console.log('New position:', position);
     localStorage.setItem('calendarPosition', JSON.stringify(position));
-});</div>
-                    </section>
-
-                    <!-- Date Selection -->
-                    <section id="basic-selection" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-hand-pointer"></i>
+});</pre></div>
+                    </section>                    <!-- Date Selection -->
+                    <section id="basic-selection" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-hand-pointer text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Intelligent Date Selection</h2>
-                                <p class="feature-description">Single and multi-date selection with validation, formatting, and smart date handling.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Intelligent Date Selection</h2>
+                                <p class="text-muted-foreground">Single and multi-date selection with validation, formatting, and smart date handling.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.selectToday()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.selectToday()">
                                     <i class="fas fa-calendar-day"></i>
                                     Select Today
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.selectSpecificDate()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.selectSpecificDate()">
                                     <i class="fas fa-calendar-plus"></i>
                                     Select Future Date
                                 </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.clearSelection()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.clearSelection()">
                                     <i class="fas fa-times"></i>
                                     Clear Selection
                                 </button>
-                                <button class="demo-btn success" onclick="window.calendarDemo.selectRandomDate()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.selectRandomDate()">
                                     <i class="fas fa-random"></i>
                                     Random Date
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Selected Date:</span>
-                                        <span class="value" id="selectedDateDisplay">None</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Selected Date:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="selectedDateDisplay">None</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Formatted:</span>
-                                        <span class="value" id="formattedDateDisplay">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Formatted:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="formattedDateDisplay">--</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Is Today:</span>
-                                        <span class="value" id="isTodayDisplay">false</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Is Today:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="isTodayDisplay">false</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="code-snippet" data-lang="javascript">
-// Select specific dates
+                        </div>                        
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Select specific dates
 calendar.methods.selectDate(2025, 4, 15); // May 15, 2025
 
 // Select today programmatically
@@ -1915,65 +425,64 @@ calendar.methods.clearSelection();
 const isToday = calendar.methods.isToday(selectedDate);
 
 // Get formatted date string
-const formatted = calendar.methods.formatDate(selectedDate);</div>
-                    </section>
-
-                    <!-- Range Selection -->
-                    <section id="range-selection" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-calendar-week"></i>
+const formatted = calendar.methods.formatDate(selectedDate);</pre></div>
+                    </section>                    <!-- Range Selection -->
+                    <section id="range-selection" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-calendar-week text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Advanced Range Selection</h2>
-                                <p class="feature-description">Select date ranges with visual feedback, smart range validation, and flexible range handling.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Advanced Range Selection</h2>
+                                <p class="text-muted-foreground">Select date ranges with visual feedback, smart range validation, and flexible range handling.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.enableRangeSelection()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.enableRangeSelection()">
                                     <i class="fas fa-calendar-alt"></i>
                                     Enable Range Mode
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.selectThisWeek()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.selectThisWeek()">
                                     <i class="fas fa-calendar-week"></i>
                                     Select This Week
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.selectNextMonth()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.selectNextMonth()">
                                     <i class="fas fa-calendar"></i>
                                     Select Next Month
                                 </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.disableRangeSelection()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.disableRangeSelection()">
                                     <i class="fas fa-calendar-day"></i>
                                     Single Date Mode
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Mode:</span>
-                                        <span class="value" id="selectionModeDisplay">Single</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Mode:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="selectionModeDisplay">Single</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Range Start:</span>
-                                        <span class="value" id="rangeStartDisplay">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Range Start:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="rangeStartDisplay">--</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Range End:</span>
-                                        <span class="value" id="rangeEndDisplay">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Range End:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="rangeEndDisplay">--</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Days Selected:</span>
-                                        <span class="value" id="rangeDaysDisplay">0</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Days Selected:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="rangeDaysDisplay">0</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="code-snippet" data-lang="javascript">
-// Enable range selection mode
+                        </div>                        
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Enable range selection mode
 calendar.methods.setRangeSelection(true);
 
 // Select a date range programmatically
@@ -1990,80 +499,78 @@ console.log('End:', range.end);
 // Calculate days in range
 const dayCount = Math.ceil(
     (range.end - range.start) / (1000 * 60 * 60 * 24)
-) + 1;</div>
-                    </section>
-
-                    <!-- Navigation Controls -->
-                    <section id="navigation" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-compass"></i>
+) + 1;</pre></div>
+                    </section>                    <!-- Navigation Controls -->
+                    <section id="navigation" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-compass text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Powerful Navigation</h2>
-                                <p class="feature-description">Navigate through dates, months, and years with keyboard support and programmatic control.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Powerful Navigation</h2>
+                                <p class="text-muted-foreground">Navigate through dates, months, and years with keyboard support and programmatic control.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.goToNextYear()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.goToNextYear()">
                                     <i class="fas fa-fast-forward"></i>
                                     Next Year
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.goToPreviousYear()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.goToPreviousYear()">
                                     <i class="fas fa-fast-backward"></i>
                                     Previous Year
                                 </button>
-                                <button class="demo-btn success" onclick="window.calendarDemo.goToSpecificDate()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.goToSpecificDate()">
                                     <i class="fas fa-calendar-check"></i>
                                     Go to Date
                                 </button>
-                                <button class="demo-btn warning" onclick="window.calendarDemo.jumpToFuture()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors" onclick="window.calendarDemo.jumpToFuture()">
                                     <i class="fas fa-rocket"></i>
                                     Jump to 2030
                                 </button>
                             </div>
-                            
-                            <div class="keyboard-nav-grid">
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.testKeyboardNav('ArrowUp')">
-                                    <i class="fas fa-arrow-up"></i>
-                                    Week Up
-                                </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.testKeyboardNav('ArrowDown')">
-                                    <i class="fas fa-arrow-down"></i>
-                                    Week Down
-                                </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.testKeyboardNav('ArrowLeft')">
-                                    <i class="fas fa-arrow-left"></i>
-                                    Day Left
-                                </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.testKeyboardNav('ArrowRight')">
-                                    <i class="fas fa-arrow-right"></i>
-                                    Day Right
-                                </button>
-                            </div>
-                            
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Current Date:</span>
-                                        <span class="value" id="currentDateDisplay">Loading...</span>
+                                  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                                    <button class="inline-flex items-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors text-sm" onclick="window.calendarDemo.testKeyboardNav('ArrowUp')">
+                                        <i class="fas fa-arrow-up"></i>
+                                        Week Up
+                                    </button>
+                                    <button class="inline-flex items-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors text-sm" onclick="window.calendarDemo.testKeyboardNav('ArrowDown')">
+                                        <i class="fas fa-arrow-down"></i>
+                                        Week Down
+                                    </button>
+                                    <button class="inline-flex items-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors text-sm" onclick="window.calendarDemo.testKeyboardNav('ArrowLeft')">
+                                        <i class="fas fa-arrow-left"></i>
+                                        Day Left
+                                    </button>
+                                    <button class="inline-flex items-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors text-sm" onclick="window.calendarDemo.testKeyboardNav('ArrowRight')">
+                                        <i class="fas fa-arrow-right"></i>
+                                        Day Right
+                                    </button>
+                                </div>                            
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Current Date:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="currentDateDisplay">Loading...</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Focused Date:</span>
-                                        <span class="value" id="focusedDateDisplay">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Focused Date:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="focusedDateDisplay">--</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Current View:</span>
-                                        <span class="value" id="currentViewDisplay">Month View</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Current View:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="currentViewDisplay">Month View</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Navigate to specific dates
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Navigate to specific dates
 calendar.methods.goToDate(new Date(2025, 11, 25)); // Christmas 2025
 calendar.methods.goToMonth(6, 2025); // July 2025
 calendar.methods.goToYear(2030);
@@ -2076,61 +583,61 @@ calendar.methods.moveFocusDown();  // Move focus one week down
 
 // Focus management
 calendar.methods.focusDate(new Date());
-calendar.methods.selectFocusedDate();</div>
-                    </section>
-
-                    <!-- Date Constraints -->
-                    <section id="constraints" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt"></i>
+calendar.methods.selectFocusedDate();</pre></div>
+                    </section>                    <!-- Date Constraints -->
+                    <section id="constraints" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-shield-alt text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Smart Date Constraints</h2>
-                                <p class="feature-description">Set minimum/maximum dates, disable specific dates, and implement business rules with ease.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Smart Date Constraints</h2>
+                                <p class="text-muted-foreground">Set minimum/maximum dates, disable specific dates, and implement business rules with ease.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.setMinMaxDates()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.setMinMaxDates()">
                                     <i class="fas fa-calendar-times"></i>
                                     Set Date Range
                                 </button>
-                                <button class="demo-btn warning" onclick="window.calendarDemo.disableWeekends()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors" onclick="window.calendarDemo.disableWeekends()">
                                     <i class="fas fa-ban"></i>
                                     Disable Weekends
                                 </button>
-                                <button class="demo-btn danger" onclick="window.calendarDemo.disableHolidays()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors" onclick="window.calendarDemo.disableHolidays()">
                                     <i class="fas fa-gift"></i>
                                     Disable Holidays
                                 </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.clearConstraints()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.clearConstraints()">
                                     <i class="fas fa-unlock"></i>
                                     Clear All
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Min Date:</span>
-                                        <span class="value" id="minDateDisplay">None</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Min Date:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="minDateDisplay">None</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Max Date:</span>
-                                        <span class="value" id="maxDateDisplay">None</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Max Date:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="maxDateDisplay">None</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Disabled Dates:</span>
-                                        <span class="value" id="disabledDatesDisplay">0</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Disabled Dates:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="disabledDatesDisplay">0</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Set minimum and maximum selectable dates
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Set minimum and maximum selectable dates
 calendar.methods.setMinDate(new Date(2025, 0, 1)); // Jan 1, 2025
 calendar.methods.setMaxDate(new Date(2025, 11, 31)); // Dec 31, 2025
 
@@ -2147,90 +654,91 @@ holidays.forEach(date => {
 
 // Disable weekends
 for (let i = 0; i < 365; i++) {
-    const date = new Date(2025, 0, 1 + i);
-    if (date.getDay() === 0 || date.getDay() === 6) {
+    const date = new Date(2025, 0, 1 + i);    if (date.getDay() === 0 || date.getDay() === 6) {
         calendar.methods.addDisabledDate(date);
     }
-}</div>
+}</pre></div>
                     </section>                    <!-- Internationalization -->
-                    <section id="internationalization" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-globe-americas"></i>
+                    <section id="internationalization" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-globe-americas text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Global Internationalization</h2>
-                                <p class="feature-description">Built-in support for 50+ locales with automatic formatting, RTL languages, and cultural date preferences.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Global Internationalization</h2>
+                                <p class="text-muted-foreground">Built-in support for 50+ locales with automatic formatting, RTL languages, and cultural date preferences.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.changeLocale('en-US')">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.changeLocale('en-US')">
                                     <i class="fas fa-flag-usa"></i>
                                     English (US)
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.changeLocale('es-ES')">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.changeLocale('es-ES')">
                                     <i class="fas fa-flag"></i>
                                     Español
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.changeLocale('fr-FR')">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.changeLocale('fr-FR')">
                                     <i class="fas fa-flag"></i>
                                     Français
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.changeLocale('de-DE')">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.changeLocale('de-DE')">
                                     <i class="fas fa-flag"></i>
                                     Deutsch
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.changeLocale('ja-JP')">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.changeLocale('ja-JP')">
                                     <i class="fas fa-flag"></i>
                                     日本語
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.changeLocale('ar-SA')">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.changeLocale('ar-SA')">
                                     <i class="fas fa-flag"></i>
                                     العربية
                                 </button>
                             </div>
                             
-                            <div class="demo-buttons">
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.changeFirstDayOfWeek(0)">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.changeFirstDayOfWeek(0)">
                                     <i class="fas fa-calendar-week"></i>
                                     Sunday First
                                 </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.changeFirstDayOfWeek(1)">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.changeFirstDayOfWeek(1)">
                                     <i class="fas fa-calendar-week"></i>
                                     Monday First
                                 </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.showDateFormats()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.showDateFormats()">
                                     <i class="fas fa-format-text"></i>
                                     Date Formats
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Current Locale:</span>
-                                        <span class="value" id="currentLocaleDisplay">en-US</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Current Locale:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="currentLocaleDisplay">en-US</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">First Day:</span>
-                                        <span class="value" id="firstDayDisplay">Sunday</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">First Day:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="firstDayDisplay">Sunday</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Month Names:</span>
-                                        <span class="value" id="monthNamesDisplay">Loading...</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Month Names:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="monthNamesDisplay">Loading...</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Weekday Names:</span>
-                                        <span class="value" id="weekdayNamesDisplay">Loading...</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Weekday Names:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="weekdayNamesDisplay">Loading...</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Change locale dynamically
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Change locale dynamically
 calendar.methods.setLocale('fr-FR');
 
 // Get localized month names
@@ -2246,65 +754,65 @@ calendar.methods.setFirstDayOfWeek(1); // Monday first
 
 // Get date format options for current locale
 const formatOptions = calendar.methods.getDateFormatOptions();
-console.log(formatOptions);</div>
-                    </section>
-
-                    <!-- Accessibility -->
-                    <section id="accessibility" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-universal-access"></i>
+console.log(formatOptions);</pre></div>
+                    </section>                    <!-- Accessibility -->
+                    <section id="accessibility" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-universal-access text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Complete Accessibility</h2>
-                                <p class="feature-description">WCAG 2.1 compliant with full keyboard navigation, screen reader support, and ARIA attributes.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Complete Accessibility</h2>
+                                <p class="text-muted-foreground">WCAG 2.1 compliant with full keyboard navigation, screen reader support, and ARIA attributes.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn success" onclick="window.calendarDemo.testScreenReaderLabels()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.testScreenReaderLabels()">
                                     <i class="fas fa-microphone"></i>
                                     Screen Reader Test
                                 </button>
-                                <button class="demo-btn success" onclick="window.calendarDemo.testKeyboardNavigation()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.testKeyboardNavigation()">
                                     <i class="fas fa-keyboard"></i>
                                     Keyboard Test
                                 </button>
-                                <button class="demo-btn success" onclick="window.calendarDemo.testFocusManagement()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.testFocusManagement()">
                                     <i class="fas fa-eye"></i>
                                     Focus Test
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.generateAccessibilityReport()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.generateAccessibilityReport()">
                                     <i class="fas fa-clipboard-check"></i>
                                     A11y Report
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">ARIA Support:</span>
-                                        <span class="value">✅ Complete</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">ARIA Support:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">✅ Complete</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Keyboard Nav:</span>
-                                        <span class="value">✅ Full Support</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Keyboard Nav:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">✅ Full Support</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Focus Management:</span>
-                                        <span class="value">✅ Implemented</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Focus Management:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">✅ Implemented</span>
                                     </div>
-                                    <div>
-                                        <span class="label">WCAG Compliance:</span>
-                                        <span class="value">✅ Level AA</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">WCAG Compliance:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">✅ Level AA</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Get accessible date labels for screen readers
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Get accessible date labels for screen readers
 const accessibleLabel = calendar.methods.getAccessibleDateLabel(
     new Date(2025, 4, 15)
 );
@@ -2322,65 +830,65 @@ calendar.methods.moveFocusRight(); // Move to next day
 calendar.methods.selectFocusedDate(); // Select with Enter/Space
 
 // ARIA attributes are automatically managed
-// role="grid", aria-selected, aria-disabled, etc.</div>
-                    </section>
-
-                    <!-- Advanced Features -->
-                    <section id="advanced" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-cogs"></i>
+// role="grid", aria-selected, aria-disabled, etc.</pre></div>
+                    </section>                    <!-- Advanced Features -->
+                    <section id="advanced" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-cogs text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Advanced Features</h2>
-                                <p class="feature-description">Week numbers, custom views, date calculations, and powerful utilities for complex calendar applications.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Advanced Features</h2>
+                                <p class="text-muted-foreground">Week numbers, custom views, date calculations, and powerful utilities for complex calendar applications.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.showWeekNumbers()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.showWeekNumbers()">
                                     <i class="fas fa-list-ol"></i>
                                     Show Week Numbers
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.generateMonthView()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.generateMonthView()">
                                     <i class="fas fa-calendar"></i>
                                     Generate Month View
                                 </button>
-                                <button class="demo-btn primary" onclick="window.calendarDemo.generateYearView()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.generateYearView()">
                                     <i class="fas fa-calendar-alt"></i>
                                     Generate Year View
                                 </button>
-                                <button class="demo-btn warning" onclick="window.calendarDemo.calculateDateDifferences()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors" onclick="window.calendarDemo.calculateDateDifferences()">
                                     <i class="fas fa-calculator"></i>
                                     Date Calculations
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Week Number:</span>
-                                        <span class="value" id="currentWeekNumber">--</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Week Number:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="currentWeekNumber">--</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Days in Month:</span>
-                                        <span class="value" id="daysInMonth">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Days in Month:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="daysInMonth">--</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Year Range:</span>
-                                        <span class="value" id="yearRangeDisplay">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Year Range:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="yearRangeDisplay">--</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Calendar Type:</span>
-                                        <span class="value">Gregorian</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Calendar Type:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">Gregorian</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Get week number for any date
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Get week number for any date
 const weekNumber = calendar.methods.getWeekNumber(new Date());
 console.log('Week number:', weekNumber);
 
@@ -2399,54 +907,53 @@ console.log('Year range:', yearRange);
 // Advanced date calculations
 const today = new Date();
 const futureDate = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
-const daysDiff = Math.ceil((futureDate - today) / (1000 * 60 * 60 * 24));</div>
-                    </section>
-
-                    <!-- Events and Bindings -->
-                    <section id="events" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-broadcast-tower"></i>
+const daysDiff = Math.ceil((futureDate - today) / (1000 * 60 * 60 * 24));</pre></div>
+                    </section>                    <!-- Events and Bindings -->
+                    <section id="events" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-broadcast-tower text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Reactive Events & Bindings</h2>
-                                <p class="feature-description">Real-time data bindings with reactive updates, event listeners, and state management.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Reactive Events & Bindings</h2>
+                                <p class="text-muted-foreground">Real-time data bindings with reactive updates, event listeners, and state management.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.setupEventListeners()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.setupEventListeners()">
                                     <i class="fas fa-plug"></i>
                                     Setup Listeners
                                 </button>
-                                <button class="demo-btn success" onclick="window.calendarDemo.triggerTestEvents()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.triggerTestEvents()">
                                     <i class="fas fa-play"></i>
                                     Trigger Events
                                 </button>
-                                <button class="demo-btn warning" onclick="window.calendarDemo.showEventLog()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors" onclick="window.calendarDemo.showEventLog()">
                                     <i class="fas fa-list"></i>
                                     Event Log
                                 </button>
-                                <button class="demo-btn secondary" onclick="window.calendarDemo.clearEventLog()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors" onclick="window.calendarDemo.clearEventLog()">
                                     <i class="fas fa-trash"></i>
                                     Clear Log
                                 </button>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Active Bindings:</span>
-                                        <span class="value" id="activeBindingsCount">--</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Active Bindings:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="activeBindingsCount">--</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Events Fired:</span>
-                                        <span class="value" id="eventCount">0</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Events Fired:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="eventCount">0</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Last Event:</span>
-                                        <span class="value" id="lastEventDisplay">None</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Last Event:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="lastEventDisplay">None</span>
                                     </div>
                                 </div>
                             </div>
@@ -2459,8 +966,9 @@ const daysDiff = Math.ceil((futureDate - today) / (1000 * 60 * 60 * 24));</div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Subscribe to date selection changes
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Subscribe to date selection changes
 calendar.bindings.selectedDate.subscribe(date => {
     console.log('Date selected:', date);
     updateUI(date);
@@ -2484,32 +992,30 @@ calendar.bindings.calendarDays.subscribe(days => {
     renderCalendar(days);
 });
 
-// All bindings update automatically and reactively!</div>
-                    </section>
-
-                    <!-- API Reference -->
-                    <section id="api-reference" class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-book"></i>
+// All bindings update automatically and reactively!</pre></div>
+                    </section>                    <!-- API Reference -->
+                    <section id="api-reference" class="bg-card backdrop-blur-sm rounded-xl p-6 border border-border/50 shadow-lg">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-lg">
+                                <i class="fas fa-book text-primary text-xl"></i>
                             </div>
                             <div>
-                                <h2 class="feature-title">Complete API Reference</h2>
-                                <p class="feature-description">Comprehensive documentation of all 41 available methods with examples and usage patterns.</p>
+                                <h2 class="text-2xl font-bold text-foreground mb-2">Complete API Reference</h2>
+                                <p class="text-muted-foreground">Comprehensive documentation of all 41 available methods with examples and usage patterns.</p>
                             </div>
                         </div>
                         
-                        <div class="demo-section">
-                            <div class="demo-buttons">
-                                <button class="demo-btn primary" onclick="window.calendarDemo.runMethodValidation()">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors" onclick="window.calendarDemo.runMethodValidation()">
                                     <i class="fas fa-check-circle"></i>
                                     Validate All Methods
                                 </button>
-                                <button class="demo-btn success" onclick="window.calendarDemo.showMethodCategories()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" onclick="window.calendarDemo.showMethodCategories()">
                                     <i class="fas fa-tags"></i>
                                     Method Categories
                                 </button>
-                                <button class="demo-btn warning" onclick="window.calendarDemo.benchmarkMethods()">
+                                <button class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors" onclick="window.calendarDemo.benchmarkMethods()">
                                     <i class="fas fa-stopwatch"></i>
                                     Performance Test
                                 </button>
@@ -2553,30 +1059,32 @@ calendar.bindings.calendarDays.subscribe(days => {
                                 </div>
                             </div>
                             
-                            <div class="info-panel">
-                                <div class="content">
-                                    <div class="mb-3">
-                                        <span class="label">Total Methods:</span>
-                                        <span class="value" id="totalMethodsCount">41</span>
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 relative">
+                                <div class="absolute top-4 left-4 text-xl">💡</div>
+                                <div class="ml-8 space-y-3">
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Total Methods:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="totalMethodsCount">41</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Tested Methods:</span>
-                                        <span class="value" id="testedMethodsCount">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Tested Methods:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="testedMethodsCount">--</span>
                                     </div>
-                                    <div class="mb-3">
-                                        <span class="label">Success Rate:</span>
-                                        <span class="value" id="successRateDisplay">--</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Success Rate:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded" id="successRateDisplay">--</span>
                                     </div>
-                                    <div>
-                                        <span class="label">Library Version:</span>
-                                        <span class="value">2.0.0</span>
+                                    <div class="flex items-center">
+                                        <span class="font-semibold text-blue-800 dark:text-blue-200 mr-3 inline-block min-w-[120px]">Library Version:</span>
+                                        <span class="text-blue-600 dark:text-blue-300 font-mono text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">2.0.0</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="code-snippet" data-lang="javascript">
-// Complete method validation example
+                        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 p-6 rounded-xl font-mono text-sm my-6 overflow-x-auto border border-slate-700 leading-relaxed" data-lang="javascript">
+                            <div class="absolute top-3 right-4 text-slate-500 text-xs uppercase font-semibold bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">JavaScript</div>
+                            <pre class="m-0 whitespace-pre-wrap break-words">// Complete method validation example
 const allMethods = [
     'selectDate', 'selectDateRange', 'clearSelection',
     'goToNextMonth', 'goToPreviousMonth', 'goToDate',
@@ -2593,7 +1101,7 @@ const methodsAvailable = allMethods.every(method =>
 );
 
 console.log('All methods available:', methodsAvailable);
-console.log('Total methods exposed:', Object.keys(calendar.methods).length);</div>
+console.log('Total methods exposed:', Object.keys(calendar.methods).length);</pre></div>
                     </section>
                 </main>
             </div>
@@ -2665,108 +1173,129 @@ console.log('Total methods exposed:', Object.keys(calendar.methods).length);</di
             
             sections.forEach(section => observer.observe(section));
         });
-    </script>
-    
-    <!-- Floating Calendar Widget - Positioned at body level for proper floating -->
-    <div id="floating-calendar-widget">
+    </script>      <!-- Floating Calendar Widget - Positioned at body level for proper floating -->
+    <div id="floating-calendar-widget" class="fixed top-5 right-5 w-80 max-w-[90vw] z-50 shadow-2xl sm:top-5 sm:right-5 max-sm:top-2 max-sm:right-2 max-sm:w-[calc(100vw-1rem)]">
         <!-- Widget Header -->
-        <div class="floating-calendar-header">
-            <div class="floating-header-content">
-                <h3 class="floating-calendar-title">Smart Calendar</h3>
-                <div class="floating-calendar-controls">
-                    <button class="floating-control-btn" onclick="window.advancedCalendar.toggleMinimize()" title="Minimize/Maximize">
-                        <i class="fas fa-window-minimize" id="minimizeIcon"></i>
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 text-white rounded-t-xl px-4 py-3 cursor-move select-none">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold tracking-tight">Smart Calendar</h3>
+                <div class="flex items-center gap-1">
+                    <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200" onclick="window.advancedCalendar.toggleMinimize()" title="Minimize/Maximize">
+                        <i class="fas fa-window-minimize text-sm" id="minimizeIcon"></i>
                     </button>
-                    <button class="floating-control-btn" onclick="window.advancedCalendar.enableDragMode()" title="Drag to Move">
-                        <i class="fas fa-arrows-alt"></i>
+                    <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200" onclick="window.advancedCalendar.enableDragMode()" title="Drag to Move">
+                        <i class="fas fa-arrows-alt text-sm"></i>
                     </button>
-                    <button class="floating-control-btn" onclick="window.advancedCalendar.showSettings()" title="Settings">
-                        <i class="fas fa-cog"></i>
+                    <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200" onclick="window.advancedCalendar.showSettings()" title="Settings">
+                        <i class="fas fa-cog text-sm"></i>
                     </button>
                 </div>
             </div>
         </div>
-        
         <!-- Mini View (when minimized) -->
-        <div class="calendar-mini-view">
-            <div class="mini-date" id="miniDate">1</div>
-            <div class="mini-month" id="miniMonth">JUN</div>
+        <div id="miniView" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-950 rounded-b-xl p-4 text-center border-t border-white/20">
+            <div class="text-3xl font-bold text-blue-900 dark:text-blue-100" id="miniDate">1</div>
+            <div class="text-sm font-medium text-blue-700 dark:text-blue-300 uppercase tracking-wide" id="miniMonth">JUN</div>
         </div>
         
         <!-- Full Calendar Content -->
-        <div class="calendar-content">
+        <div id="fullView" class="bg-white dark:bg-gray-900 rounded-b-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <!-- Enhanced Calendar Display -->
-            <div class="floating-calendar-display">
-                <div class="floating-calendar-nav">
-                    <button class="floating-nav-btn" onclick="window.advancedCalendar.goToPreviousMonth()" title="Previous Month">
-                        <i class="fas fa-chevron-left"></i>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-lg p-3">
+                    <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm" onclick="window.advancedCalendar.goToPreviousMonth()" title="Previous Month">
+                        <i class="fas fa-chevron-left text-sm"></i>
                     </button>
-                    <div class="floating-month-year" id="floatingMonthYear">June 2025</div>
-                    <button class="floating-nav-btn" onclick="window.advancedCalendar.goToNextMonth()" title="Next Month">
-                        <i class="fas fa-chevron-right"></i>
+                    <div class="text-lg font-semibold text-gray-900 dark:text-gray-100" id="floatingMonthYear">June 2025</div>
+                    <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm" onclick="window.advancedCalendar.goToNextMonth()" title="Next Month">
+                        <i class="fas fa-chevron-right text-sm"></i>
                     </button>
-                </div>
-                
+                </div>                
                 <!-- Enhanced Calendar Grid with Proper Structure -->
-                <div class="floating-calendar-grid-container">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
                     <!-- Weekday Headers Row -->
-                    <div class="floating-weekday-headers" id="floatingWeekdayHeaders">
-                        <div class="floating-weekday-header">SUN</div>
-                        <div class="floating-weekday-header">MON</div>
-                        <div class="floating-weekday-header">TUE</div>
-                        <div class="floating-weekday-header">WED</div>
-                        <div class="floating-weekday-header">THU</div>
-                        <div class="floating-weekday-header">FRI</div>
-                        <div class="floating-weekday-header">SAT</div>
+                    <div class="grid grid-cols-7 gap-1 mb-2" id="floatingWeekdayHeaders">
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">SUN</div>
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">MON</div>
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">TUE</div>
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">WED</div>
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">THU</div>
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">FRI</div>
+                        <div class="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">SAT</div>
                     </div>
                     
                     <!-- Calendar Days Grid -->
-                    <div class="floating-calendar-grid" id="floatingCalendarDays">
+                    <div class="grid grid-cols-7 gap-1" id="floatingCalendarDays">
                         <!-- Populated by JavaScript -->
                     </div>
                 </div>
-            </div>
-            
+            </div>            
             <!-- Quick Actions Panel -->
-            <div class="floating-quick-actions">
-                <button class="floating-quick-btn" onclick="window.advancedCalendar.selectToday()">
-                    <i class="fas fa-calendar-day"></i>
-                    Today
-                </button>
-                <button class="floating-quick-btn" onclick="window.advancedCalendar.selectTomorrow()">
-                    <i class="fas fa-calendar-plus"></i>
-                    Tomorrow
-                </button>
-                <button class="floating-quick-btn" onclick="window.advancedCalendar.selectWeekend()">
-                    <i class="fas fa-calendar-week"></i>
-                    Weekend
-                </button>
-                <button class="floating-quick-btn" onclick="window.advancedCalendar.selectNextWeek()">
-                    <i class="fas fa-forward"></i>
-                    Next Week
-                </button>
-                <button class="floating-quick-btn" onclick="window.advancedCalendar.clearAll()">
-                    <i class="fas fa-times"></i>
-                    Clear
-                </button>
-                <button class="floating-quick-btn" onclick="window.advancedCalendar.showTooltips()">
-                    <i class="fas fa-info-circle"></i>
-                    Help
-                </button>
-            </div>
-            
+            <div class="border-t border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-800">
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/50 hover:bg-blue-100 dark:hover:bg-blue-900/75 rounded-lg transition-colors" onclick="window.advancedCalendar.selectToday()">
+                        <i class="fas fa-calendar-day text-xs"></i>
+                        Today
+                    </button>
+                    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/50 hover:bg-green-100 dark:hover:bg-green-900/75 rounded-lg transition-colors" onclick="window.advancedCalendar.selectTomorrow()">
+                        <i class="fas fa-calendar-plus text-xs"></i>
+                        Tomorrow
+                    </button>
+                    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/50 hover:bg-purple-100 dark:hover:bg-purple-900/75 rounded-lg transition-colors" onclick="window.advancedCalendar.selectWeekend()">
+                        <i class="fas fa-calendar-week text-xs"></i>
+                        Weekend
+                    </button>
+                    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/50 hover:bg-indigo-100 dark:hover:bg-indigo-900/75 rounded-lg transition-colors" onclick="window.advancedCalendar.selectNextWeek()">
+                        <i class="fas fa-forward text-xs"></i>
+                        Next Week
+                    </button>
+                    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-900/50 hover:bg-red-100 dark:hover:bg-red-900/75 rounded-lg transition-colors" onclick="window.advancedCalendar.clearAll()">
+                        <i class="fas fa-times text-xs"></i>
+                        Clear
+                    </button>
+                    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/50 hover:bg-amber-100 dark:hover:bg-amber-900/75 rounded-lg transition-colors" onclick="window.advancedCalendar.showTooltips()">
+                        <i class="fas fa-info-circle text-xs"></i>
+                        Help
+                    </button>
+                </div>
+            </div>            
             <!-- Enhanced Status Display -->
-            <div class="floating-status-display">
-                <div class="floating-status-title">Calendar Status</div>
-                <div class="floating-status-content" id="floatingStatus">
+            <div class="border-t border-gray-200 dark:border-gray-700 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 p-4">
+                <div class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Calendar Status</div>
+                <div class="text-sm text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-600" id="floatingStatus">
                     Range: 1 days selected
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div>    
     <script type="module" src="js/simple-calendar-controller.js"></script>
     <script src="js/comprehensive-demo.js"></script>
     <script src="js/advanced-floating-calendar.js"></script>
+    
+    <!-- Initialize Floating Calendar -->
+    <script>
+        // Initialize the floating calendar when page is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the advanced floating calendar
+            if (typeof AdvancedFloatingCalendar !== 'undefined') {
+                window.advancedCalendar = new AdvancedFloatingCalendar({
+                    container: '#floating-calendar-widget',
+                    initialDate: new Date(),
+                    position: { top: 20, right: 20 },
+                    features: {
+                        draggable: true,
+                        minimizable: true,
+                        quickActions: true,
+                        animations: true,
+                        rangeSelection: true
+                    }
+                });
+                
+                console.log('Advanced floating calendar initialized successfully');
+            } else {
+                console.error('AdvancedFloatingCalendar class not found');
+            }
+        });
+    </script>
 </body>
 </html>

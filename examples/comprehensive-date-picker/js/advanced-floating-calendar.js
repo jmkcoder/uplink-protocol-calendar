@@ -31,11 +31,20 @@ class AdvancedFloatingCalendar {
             position: this.options.position,
             rangeMode: false,
             animations: true
-        };
-
-        this.eventListeners = new Map();
+        };        this.eventListeners = new Map();
         this.widget = null;
         this.dragState = { isDragging: false, offset: { x: 0, y: 0 } };
+        this.resizeTimeout = null; // For debouncing resize events
+        
+        // Bound methods for event listeners (for proper cleanup)
+        this.boundHandleResize = this.handleResize.bind(this);
+        this.boundHandleKeydown = this.handleKeydown.bind(this);
+        this.boundHandleMouseMove = this.handleMouseMove.bind(this);
+        this.boundHandleMouseUp = this.handleMouseUp.bind(this);
+        
+        // Event listener tracking for cleanup
+        this.documentListeners = new Set();
+        this.windowListeners = new Set();
         
         // Calendar controller for integration
         this.calendarController = null;
@@ -70,25 +79,26 @@ class AdvancedFloatingCalendar {
 
         console.log('Advanced Floating Calendar initialized');
         this.showNotification('Advanced Floating Calendar Ready!', 'success');
-    }
-
-    setupEventListeners() {
-        // Minimize/Maximize toggle
-        const minimizeBtn = this.widget.querySelector('.floating-control-btn');
+    }    setupEventListeners() {
+        // Clean up any existing listeners first
+        this.removeEventListeners();
+        
+        // Minimize/Maximize toggle - use onclick attribute selector instead of CSS class
+        const minimizeBtn = this.widget.querySelector('button[onclick*="toggleMinimize"]');
         if (minimizeBtn) {
             minimizeBtn.addEventListener('click', () => this.toggleMinimize());
         }
 
-        // Date cell clicks
+        // Date cell clicks - using event delegation for better performance
         this.widget.addEventListener('click', (e) => {
-            if (e.target.classList.contains('floating-date-cell')) {
+            if (e.target.hasAttribute('data-date')) {
                 this.handleDateClick(e.target);
             }
         });
 
-        // Navigation buttons
-        const prevBtn = this.widget.querySelector('.floating-nav-btn');
-        const nextBtn = this.widget.querySelector('.floating-nav-btn:last-child');
+        // Navigation buttons - check if they exist in the floating calendar structure
+        const prevBtn = this.widget.querySelector('button[onclick*="goToPrevious"]');
+        const nextBtn = this.widget.querySelector('button[onclick*="goToNext"]');
         
         if (prevBtn) prevBtn.addEventListener('click', () => this.goToPreviousMonth());
         if (nextBtn) nextBtn.addEventListener('click', () => this.goToNextMonth());
@@ -99,34 +109,34 @@ class AdvancedFloatingCalendar {
         // Drag functionality
         this.setupDragFunctionality();
 
-        // Keyboard navigation
-        this.setupKeyboardNavigation();
+        // Keyboard navigation - only add once
+        if (!this.documentListeners.has('keydown')) {
+            document.addEventListener('keydown', this.boundHandleKeydown);
+            this.documentListeners.add('keydown');
+        }
 
-        // Window resize handler
-        window.addEventListener('resize', () => this.handleResize());
-    }
-
-    setupQuickActions() {
-        const quickButtons = this.widget.querySelectorAll('.floating-quick-btn');
-        quickButtons.forEach((btn, index) => {
-            btn.addEventListener('click', () => {
-                switch (index) {
-                    case 0: this.selectToday(); break;
-                    case 1: this.selectTomorrow(); break;
-                    case 2: this.selectWeekend(); break;
-                    case 3: this.selectNextWeek(); break;
-                    case 4: this.clearAll(); break;
-                    case 5: this.showTooltips(); break;
-                }
-            });
-        });
-    }
-
-    setupDragFunctionality() {
-        const header = this.widget.querySelector('.floating-calendar-header');
+        // Window resize handler - only add once
+        if (!this.windowListeners.has('resize')) {
+            window.addEventListener('resize', this.boundHandleResize);
+            this.windowListeners.add('resize');
+        }
+    }setupQuickActions() {
+        // Quick action buttons are already set up via onclick attributes in HTML
+        // They call methods like window.advancedCalendar.selectToday() directly
+        // No additional event listeners needed since they use onclick attributes
+        console.log('Quick actions are handled via onclick attributes in HTML');
+    }    setupDragFunctionality() {
+        // Use the actual header class that exists in the HTML
+        const header = this.widget.querySelector('.bg-gradient-to-r');
+        
+        if (!header) {
+            console.warn('Calendar header not found for drag functionality');
+            return;
+        }
         
         header.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.floating-control-btn')) return;
+            // Don't start drag if clicking on buttons
+            if (e.target.closest('button')) return;
             
             this.dragState.isDragging = true;
             this.dragState.offset = {
@@ -138,69 +148,87 @@ class AdvancedFloatingCalendar {
             document.body.style.userSelect = 'none';
         });
 
-        document.addEventListener('mousemove', (e) => {
-            if (!this.dragState.isDragging) return;
-            
-            const newX = e.clientX - this.dragState.offset.x;
-            const newY = e.clientY - this.dragState.offset.y;
-            
-            // Constrain to viewport
-            const rect = this.widget.getBoundingClientRect();
-            const maxX = window.innerWidth - rect.width;
-            const maxY = window.innerHeight - rect.height;
-            
-            const constrainedX = Math.max(0, Math.min(newX, maxX));
-            const constrainedY = Math.max(0, Math.min(newY, maxY));
-            
-            this.updatePosition({ 
-                top: constrainedY, 
-                left: constrainedX,
-                right: 'auto'
-            });
-        });
+        // Add mouse move and up listeners only once
+        if (!this.documentListeners.has('mousemove')) {
+            document.addEventListener('mousemove', this.boundHandleMouseMove);
+            this.documentListeners.add('mousemove');
+        }
 
-        document.addEventListener('mouseup', () => {
-            if (this.dragState.isDragging) {
-                this.dragState.isDragging = false;
-                this.widget.classList.remove('dragging');
-                document.body.style.userSelect = '';
-                this.savePosition();
-                this.emit('dragEnd', this.state.position);
-            }
+        if (!this.documentListeners.has('mouseup')) {
+            document.addEventListener('mouseup', this.boundHandleMouseUp);
+            this.documentListeners.add('mouseup');
+        }
+    }
+
+    handleMouseMove(e) {
+        if (!this.dragState.isDragging) return;
+        
+        const newX = e.clientX - this.dragState.offset.x;
+        const newY = e.clientY - this.dragState.offset.y;
+        
+        // Constrain to viewport
+        const rect = this.widget.getBoundingClientRect();
+        const maxX = window.innerWidth - rect.width;
+        const maxY = window.innerHeight - rect.height;
+        
+        const constrainedX = Math.max(0, Math.min(newX, maxX));
+        const constrainedY = Math.max(0, Math.min(newY, maxY));
+        
+        this.updatePosition({ 
+            top: constrainedY, 
+            left: constrainedX,
+            right: 'auto'
         });
     }
 
-    setupKeyboardNavigation() {
-        document.addEventListener('keydown', (e) => {
-            switch (e.key) {
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    this.navigateDate(-1);
-                    break;
-                case 'ArrowRight':
-                    e.preventDefault();
-                    this.navigateDate(1);
-                    break;
-                case 'ArrowUp':
-                    e.preventDefault();
-                    this.navigateDate(-7);
-                    break;
-                case 'ArrowDown':
-                    e.preventDefault();
-                    this.navigateDate(7);
-                    break;
-                case 'Enter':
-                case ' ':
-                    e.preventDefault();
-                    this.selectFocusedDate();
-                    break;
-                case 'Escape':
-                    e.preventDefault();
-                    this.clearSelection();
-                    break;
-            }
-        });
-    }    render() {
+    handleMouseUp() {
+        if (this.dragState.isDragging) {
+            this.dragState.isDragging = false;
+            this.widget.classList.remove('dragging');
+            document.body.style.userSelect = '';
+            this.savePosition();
+            this.emit('dragEnd', this.state.position);
+        }
+    }
+
+    handleKeydown(e) {
+        // Only handle keyboard events when the calendar is focused or has focus within
+        if (!this.widget.contains(document.activeElement) && document.activeElement !== this.widget) {
+            return;
+        }
+
+        switch (e.key) {
+            case 'ArrowLeft':
+                e.preventDefault();
+                this.navigateDate(-1);
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                this.navigateDate(1);
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                this.navigateDate(-7);
+                break;
+            case 'ArrowDown':
+                e.preventDefault();
+                this.navigateDate(7);
+                break;
+            case 'Enter':
+            case ' ':
+                e.preventDefault();
+                this.selectFocusedDate();
+                break;
+            case 'Escape':
+                e.preventDefault();
+                this.clearSelection();
+                break;
+        }
+    }    setupKeyboardNavigation() {
+        // This method is now handled in setupEventListeners() to prevent duplicate listeners
+        // Keyboard navigation is set up once using bound methods for proper cleanup
+        console.log('Keyboard navigation handled via setupEventListeners()');
+    }render() {
         const startTime = performance.now();
         
         this.renderCalendar();
@@ -270,36 +298,76 @@ class AdvancedFloatingCalendar {
 
         container.innerHTML = days.join('');
         this.attachDateCellListeners();
-    }
-
-    createDateCell(date, isOtherMonth) {
+    }    createDateCell(date, isOtherMonth) {
         const today = new Date();
         const isToday = this.isSameDate(date, today);
         const isSelected = this.isDateSelected(date);
         const isInRange = this.isDateInRange(date);
         
-        const classes = ['floating-date-cell'];
-        if (isOtherMonth) classes.push('other-month');
-        if (isToday) classes.push('today');
-        if (isSelected) classes.push('selected');
-        if (isInRange) classes.push('in-range');
+        // Base Tailwind classes for floating calendar date cells
+        const baseClasses = [
+            'w-8', 'h-8', 
+            'flex', 'items-center', 'justify-center',
+            'text-sm', 'font-medium',
+            'rounded-lg',
+            'cursor-pointer',
+            'transition-all', 'duration-200',
+            'hover:bg-blue-100', 'dark:hover:bg-blue-900/50',
+            'hover:scale-105',
+            'select-none'
+        ];
+        
+        // Conditional classes based on date state
+        if (isOtherMonth) {
+            baseClasses.push('text-gray-400', 'dark:text-gray-500');
+        } else {
+            baseClasses.push('text-gray-900', 'dark:text-gray-100');
+        }
+        
+        if (isToday) {
+            baseClasses.push('ring-2', 'ring-blue-500', 'ring-inset', 'font-bold', 'text-blue-600', 'dark:text-blue-300');
+        }
+        
+        if (isSelected) {
+            baseClasses.push('bg-blue-600', 'text-white', 'shadow-lg', 'hover:bg-blue-700', 'dark:hover:bg-blue-500');
+        }
+        
+        if (isInRange) {
+            baseClasses.push('bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-700', 'dark:text-blue-200');
+        }
 
         return `
-            <div class="${classes.join(' ')}" 
+            <div class="${baseClasses.join(' ')}" 
                  data-date="${date.toISOString()}"
-                 title="${this.formatDateForTitle(date)}">
+                 title="${this.formatDateForTitle(date)}"
+                 tabindex="0"
+                 role="button"
+                 aria-label="${this.formatDateForTitle(date)}">
                 ${date.getDate()}
             </div>
         `;
+    }    attachDateCellListeners() {
+        // Use event delegation instead of individual listeners
+        // Event delegation is already handled in setupEventListeners()
+        // This method now just ensures proper tabindex and aria attributes
+        const dateCells = this.widget.querySelectorAll('[data-date]');
+        dateCells.forEach(cell => {
+            // Set up accessibility attributes but no individual event listeners
+            cell.setAttribute('tabindex', '0');
+            cell.setAttribute('role', 'button');
+            
+            // Add hover and focus handlers directly as these don't accumulate
+            cell.addEventListener('mouseenter', () => this.handleDateHover(cell));
+            cell.addEventListener('mouseleave', () => this.handleDateLeave(cell));
+            cell.addEventListener('focus', () => this.handleDateFocus(cell));
+            cell.addEventListener('keydown', (e) => this.handleDateKeydown(e, cell));
+        });
     }
 
-    attachDateCellListeners() {
-        const dateCells = this.widget.querySelectorAll('.floating-date-cell');
-        dateCells.forEach(cell => {
-            cell.addEventListener('click', () => this.handleDateClick(cell));
-            cell.addEventListener('mouseenter', () => this.handleDateHover(cell));
-        });
-    }    handleDateClick(cell) {
+    handleDateLeave(cell) {
+        // Remove hover effects when mouse leaves
+        cell.classList.remove('bg-gray-100', 'dark:bg-gray-700');
+    }handleDateClick(cell) {
         const dateStr = cell.getAttribute('data-date');
         const date = new Date(dateStr);
         
@@ -318,9 +386,7 @@ class AdvancedFloatingCalendar {
         this.render();
         this.updateStatusDisplay();
         this.emit('dateSelect', date);
-    }
-
-    handleDateHover(cell) {
+    }    handleDateHover(cell) {
         const dateStr = cell.getAttribute('data-date');
         const date = new Date(dateStr);
         
@@ -328,7 +394,62 @@ class AdvancedFloatingCalendar {
         if (this.state.rangeMode && this.state.selectedRange.start && !this.state.selectedRange.end) {
             this.previewRange(this.state.selectedRange.start, date);
         }
-    }    handleRangeSelection(date) {
+        
+        // Add hover effect
+        if (!cell.classList.contains('bg-blue-600')) {
+            cell.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        }
+    }
+
+    handleDateFocus(cell) {
+        // Remove focus from other cells
+        const focusedCells = this.widget.querySelectorAll('[data-date].ring-2.ring-yellow-400');
+        focusedCells.forEach(c => {
+            c.classList.remove('ring-2', 'ring-yellow-400');
+        });
+        
+        // Add focus ring to current cell
+        cell.classList.add('ring-2', 'ring-yellow-400');
+    }
+
+    handleDateKeydown(e, cell) {
+        const dateStr = cell.getAttribute('data-date');
+        const date = new Date(dateStr);
+        
+        switch (e.key) {
+            case 'Enter':
+            case ' ':
+                e.preventDefault();
+                this.handleDateClick(cell);
+                break;
+            case 'ArrowLeft':
+                e.preventDefault();
+                this.focusAdjacentDate(date, -1);
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                this.focusAdjacentDate(date, 1);
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                this.focusAdjacentDate(date, -7);
+                break;
+            case 'ArrowDown':
+                e.preventDefault();
+                this.focusAdjacentDate(date, 7);
+                break;
+        }
+    }
+
+    focusAdjacentDate(currentDate, dayOffset) {
+        const targetDate = new Date(currentDate);
+        targetDate.setDate(currentDate.getDate() + dayOffset);
+        
+        const targetCell = this.widget.querySelector(`[data-date="${targetDate.toISOString()}"]`);
+        if (targetCell) {
+            targetCell.focus();
+        }
+    }handleRangeSelection(date) {
         if (!this.state.selectedRange.start || this.state.selectedRange.end) {
             // Start new range
             this.state.selectedRange = { start: date, end: null };
@@ -346,18 +467,21 @@ class AdvancedFloatingCalendar {
             
             this.emit('rangeSelect', this.state.selectedRange);
         }
-    }
-
-    previewRange(start, end) {
-        const cells = this.widget.querySelectorAll('.floating-date-cell');
+    }    previewRange(start, end) {
+        const cells = this.widget.querySelectorAll('[data-date]');
         cells.forEach(cell => {
-            cell.classList.remove('range-preview');
+            // Remove existing preview classes
+            cell.classList.remove('bg-blue-200', 'dark:bg-blue-800/50');
+            
             const cellDate = new Date(cell.getAttribute('data-date'));
             if (cellDate >= start && cellDate <= end) {
-                cell.classList.add('range-preview');
+                // Add preview styling for range
+                if (!cell.classList.contains('bg-blue-600')) {
+                    cell.classList.add('bg-blue-200', 'dark:bg-blue-800/50');
+                }
             }
         });
-    }    // Quick Action Methods
+    }// Quick Action Methods
     selectToday() {
         const today = new Date();
         
@@ -514,11 +638,9 @@ class AdvancedFloatingCalendar {
         
         this.updateModeDisplay();
         this.showTemporaryMessage('Single selection enabled');
-    }
-
-    // Animation and Effects
+    }    // Animation and Effects
     showAnimationDemo() {
-        const cells = this.widget.querySelectorAll('.floating-date-cell');
+        const cells = this.widget.querySelectorAll('[data-date]');
         cells.forEach((cell, index) => {
             setTimeout(() => {
                 cell.style.transform = 'scale(1.2) rotate(360deg)';
@@ -538,7 +660,9 @@ class AdvancedFloatingCalendar {
         setTimeout(() => {
             this.widget.classList.remove(`action-${action}`);
         }, 600);
-    }    stressTest() {
+    }
+
+    stressTest() {
         this.startPerformanceMonitor();
         const startTime = performance.now();
         let iterations = 0;
@@ -776,28 +900,71 @@ class AdvancedFloatingCalendar {
         this.widget.style.color = theme.textColor;
         
         this.showNotification(`${themeName.charAt(0).toUpperCase() + themeName.slice(1)} theme applied`);
-    }
-
-    // Smart positioning system
+    }    // Smart positioning system
     smartPosition() {
         const rect = this.widget.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         
         let newPosition = { ...this.state.position };
+        let needsUpdate = false;
         
-        // Adjust horizontal position if too close to edge
-        if (rect.right > viewportWidth - 20) {
+        // Check if widget is outside viewport bounds
+        if (rect.left < 0) {
+            newPosition.left = 20;
+            newPosition.right = 'auto';
+            needsUpdate = true;
+        } else if (rect.right > viewportWidth) {
+            // If widget is beyond right edge, move it to the right side with margin
             newPosition.right = 20;
             newPosition.left = 'auto';
+            needsUpdate = true;
         }
         
-        // Adjust vertical position if too close to bottom
-        if (rect.bottom > viewportHeight - 20) {
+        // Check vertical positioning
+        if (rect.top < 0) {
+            newPosition.top = 20;
+            needsUpdate = true;
+        } else if (rect.bottom > viewportHeight) {
+            // If widget is below viewport, move it up with margin
+            newPosition.top = Math.max(20, viewportHeight - rect.height - 20);
+            needsUpdate = true;
+        }
+        
+        // For cases where the widget might be too close to edges after resize
+        if (rect.right > viewportWidth - 20 && rect.left > viewportWidth / 2) {
+            newPosition.right = 20;
+            newPosition.left = 'auto';
+            needsUpdate = true;
+        }
+        
+        if (rect.bottom > viewportHeight - 20 && rect.top > viewportHeight / 2) {
             newPosition.top = viewportHeight - rect.height - 20;
+            needsUpdate = true;
         }
         
-        this.updatePosition(newPosition);
+        if (needsUpdate) {
+            this.updatePosition(newPosition);
+        }
+    }
+
+    // Handle window resize events
+    handleResize() {
+        // Debounce resize events for better performance
+        clearTimeout(this.resizeTimeout);
+        this.resizeTimeout = setTimeout(() => {
+            // Re-run smart positioning to ensure widget stays within viewport
+            this.smartPosition();
+            
+            // Emit resize event for any listeners
+            this.emit('resize', {
+                viewport: {
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                },
+                widget: this.widget.getBoundingClientRect()
+            });
+        }, 150); // 150ms debounce delay
     }
 
     // Performance monitoring
@@ -1062,25 +1229,55 @@ class AdvancedFloatingCalendar {
         
         // Clear existing content
         container.innerHTML = '';
-        
-        // Create date cells from controller data
+          // Create date cells from controller data
         days.forEach(dayData => {
             const cell = document.createElement('div');
-            cell.className = 'floating-date-cell';
-            cell.textContent = dayData.day || '';
             
-            // Apply styling based on controller data
-            if (dayData.isSelected) cell.classList.add('selected');
-            if (dayData.isToday) cell.classList.add('today');
-            if (dayData.isDisabled) cell.classList.add('disabled');
-            if (!dayData.isCurrentMonth) cell.classList.add('other-month');
-            if (dayData.isInRange) cell.classList.add('in-range');
-            if (dayData.isRangeStart) cell.classList.add('range-start');
-            if (dayData.isRangeEnd) cell.classList.add('range-end');
+            // Use Tailwind classes for consistent styling
+            const baseClasses = [
+                'w-8', 'h-8', 
+                'flex', 'items-center', 'justify-center',
+                'text-sm', 'font-medium',
+                'rounded-lg',
+                'cursor-pointer',
+                'transition-all', 'duration-200',
+                'hover:bg-blue-100', 'dark:hover:bg-blue-900/50',
+                'hover:scale-105',
+                'select-none'
+            ];
+            
+            // Apply conditional styling based on controller data
+            if (!dayData.isCurrentMonth) {
+                baseClasses.push('text-gray-400', 'dark:text-gray-500');
+            } else {
+                baseClasses.push('text-gray-900', 'dark:text-gray-100');
+            }
+            
+            if (dayData.isToday) {
+                baseClasses.push('ring-2', 'ring-blue-500', 'ring-inset', 'font-bold', 'text-blue-600', 'dark:text-blue-300');
+            }
+            
+            if (dayData.isSelected) {
+                baseClasses.push('bg-blue-600', 'text-white', 'shadow-lg', 'hover:bg-blue-700', 'dark:hover:bg-blue-500');
+            }
+            
+            if (dayData.isInRange) {
+                baseClasses.push('bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-700', 'dark:text-blue-200');
+            }
+            
+            if (dayData.isRangeStart || dayData.isRangeEnd) {
+                baseClasses.push('bg-blue-600', 'text-white', 'shadow-lg');
+            }
+            
+            cell.className = baseClasses.join(' ');
+            cell.textContent = dayData.day || '';
             
             // Store date data for click handling
             if (dayData.date) {
                 cell.dataset.date = dayData.date.toISOString();
+                cell.setAttribute('tabindex', '0');
+                cell.setAttribute('role', 'button');
+                cell.setAttribute('aria-label', this.formatDateForTitle(dayData.date));
             }
             
             container.appendChild(cell);
@@ -1096,14 +1293,128 @@ class AdvancedFloatingCalendar {
     }
 
     enableDragMode() {
-        this.showTemporaryMessage('Drag from header to move widget');
+        this.showTemporaryMessage('Drag from header to move widget');    }
+
+    // Additional methods for floating calendar functionality
+    enableDragMode() {
+        this.showTemporaryMessage('Drag mode enabled - Click and drag the header to move');
+        // Highlight the header to show it's draggable
+        const header = this.widget.querySelector('.bg-gradient-to-r');
+        if (header) {
+            header.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.5)';
+            setTimeout(() => {
+                header.style.boxShadow = '';
+            }, 2000);
+        }
+    }
+
+    showSettings() {
+        // Create a simple settings modal
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 z-[60] flex items-center justify-center bg-black/50';
+        modal.innerHTML = `
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 m-4 max-w-md w-full shadow-2xl">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Calendar Settings</h3>
+                    <button class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" onclick="this.closest('.fixed').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Theme</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" onchange="window.advancedCalendar.changeTheme(this.value)">
+                            <option value="default">Default</option>
+                            <option value="dark">Dark</option>
+                            <option value="blue">Blue</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded mr-2" ${this.state.rangeMode ? 'checked' : ''} onchange="window.advancedCalendar.toggleRangeMode(this.checked)">
+                            <span class="text-sm text-gray-700 dark:text-gray-300">Range Selection Mode</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded mr-2" ${this.state.animations ? 'checked' : ''} onchange="window.advancedCalendar.toggleAnimations(this.checked)">
+                            <span class="text-sm text-gray-700 dark:text-gray-300">Enable Animations</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onclick="this.closest('.fixed').remove()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    changeTheme(theme) {
+        this.state.currentTheme = theme;
+        this.showTemporaryMessage(`Theme changed to ${theme}`);
+        // Apply theme changes to the widget
+        const widget = this.widget;
+        widget.classList.remove('theme-default', 'theme-dark', 'theme-blue');
+        widget.classList.add(`theme-${theme}`);
+    }
+
+    toggleRangeMode(enabled) {
+        if (enabled) {
+            this.enableRangeMode();
+        } else {
+            this.disableRangeMode();
+        }
+    }
+
+    toggleAnimations(enabled) {
+        this.state.animations = enabled;
+        this.showTemporaryMessage(`Animations ${enabled ? 'enabled' : 'disabled'}`);
+    }    // Event listener cleanup method
+    removeEventListeners() {
+        // Remove document listeners
+        if (this.documentListeners.has('keydown')) {
+            document.removeEventListener('keydown', this.boundHandleKeydown);
+            this.documentListeners.delete('keydown');
+        }
+        
+        if (this.documentListeners.has('mousemove')) {
+            document.removeEventListener('mousemove', this.boundHandleMouseMove);
+            this.documentListeners.delete('mousemove');
+        }
+        
+        if (this.documentListeners.has('mouseup')) {
+            document.removeEventListener('mouseup', this.boundHandleMouseUp);
+            this.documentListeners.delete('mouseup');
+        }
+        
+        // Remove window listeners
+        if (this.windowListeners.has('resize')) {
+            window.removeEventListener('resize', this.boundHandleResize);
+            this.windowListeners.delete('resize');
+        }
     }
 
     destroy() {
         // Cleanup event listeners and save state
         this.saveState();
-        window.removeEventListener('resize', this.handleResize.bind(this));
-        document.removeEventListener('keydown', this.setupKeyboardNavigation.bind(this));
+        
+        // Remove all event listeners
+        this.removeEventListeners();
+        
+        // Clear any pending resize timeout
+        if (this.resizeTimeout) {
+            clearTimeout(this.resizeTimeout);
+            this.resizeTimeout = null;
+        }
+        
+        // Clear event listener tracking sets
+        this.documentListeners.clear();
+        this.windowListeners.clear();
+        
+        console.log('Advanced Floating Calendar destroyed and cleaned up');
     }
 }
 
