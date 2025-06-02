@@ -26,6 +26,8 @@ export interface CalendarOptions {
   maxDate?: Date;
   /** List of disabled dates */
   disabledDates?: Date[];
+  /** List of disabled days of the week (0 = Sunday, 1 = Monday, etc.) */
+  disabledDaysOfWeek?: number[];
   /** Start with a specific date selected */
   initialSelectedDate?: Date;
   /** First day of week (0 = Sunday, 1 = Monday, etc.) */

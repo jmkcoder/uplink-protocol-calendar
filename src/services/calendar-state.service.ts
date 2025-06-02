@@ -107,7 +107,7 @@ export class CalendarStateService implements ICalendarStateService {
     
     return disabledDates;
   }
-    /**
+  /**
    * Add a specific date to the disabled dates list
    */
   public addDisabledDate(
@@ -117,6 +117,19 @@ export class CalendarStateService implements ICalendarStateService {
     generateCalendarDaysFn: () => CalendarDate[]
   ): Date[] {
     if (!date) return disabledDates;
+    
+    // Check if date already exists in disabled dates to prevent duplicates
+    const dateExists = disabledDates.some(
+      (disabledDate) => 
+        date.getFullYear() === disabledDate.getFullYear() &&
+        date.getMonth() === disabledDate.getMonth() &&
+        date.getDate() === disabledDate.getDate()
+    );
+    
+    // If date already exists, return current array without changes
+    if (dateExists) {
+      return disabledDates;
+    }
     
     // Add date to disabled dates
     const newDate = new Date(date);
@@ -129,6 +142,7 @@ export class CalendarStateService implements ICalendarStateService {
     
     return newDisabledDates;
   }
+
     /**
    * Remove a specific date from the disabled dates list
    */

@@ -19,8 +19,7 @@ describe('CalendarGeneratorService', () => {
   });
 
   describe('generateCalendarDays', () => {
-    it('should generate calendar days for a month', () => {
-      const options: CalendarGenerationOptions = {
+    it('should generate calendar days for a month', () => {      const options: CalendarGenerationOptions = {
         firstDayOfWeek: 0,
         hideOtherMonthDays: false,
         selectedDate: null,
@@ -30,6 +29,7 @@ describe('CalendarGeneratorService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
@@ -50,8 +50,7 @@ describe('CalendarGeneratorService', () => {
       expect(today?.isToday).toBe(true);
     });
 
-    it('should handle first day of week offset', () => {
-      const options: CalendarGenerationOptions = {
+    it('should handle first day of week offset', () => {      const options: CalendarGenerationOptions = {
         firstDayOfWeek: 1, // Monday as first day
         hideOtherMonthDays: false,
         selectedDate: null,
@@ -61,6 +60,7 @@ describe('CalendarGeneratorService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
@@ -75,8 +75,7 @@ describe('CalendarGeneratorService', () => {
       expect(firstDay.month).toBe(3); // April
     });
 
-    it('should hide other month days when specified', () => {
-      const options: CalendarGenerationOptions = {
+    it('should hide other month days when specified', () => {      const options: CalendarGenerationOptions = {
         firstDayOfWeek: 0,
         hideOtherMonthDays: true,
         selectedDate: null,
@@ -86,6 +85,7 @@ describe('CalendarGeneratorService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
@@ -98,8 +98,7 @@ describe('CalendarGeneratorService', () => {
     });
 
     it('should mark selected date correctly', () => {
-      const selectedDate = createDate(2025, 4, 15);
-      const options: CalendarGenerationOptions = {
+      const selectedDate = createDate(2025, 4, 15);      const options: CalendarGenerationOptions = {
         firstDayOfWeek: 0,
         hideOtherMonthDays: false,
         selectedDate,
@@ -109,6 +108,7 @@ describe('CalendarGeneratorService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
@@ -130,9 +130,7 @@ describe('CalendarGeneratorService', () => {
       const dateRange: DateRange = {
         startDate: createDate(2025, 4, 10),
         endDate: createDate(2025, 4, 15)
-      };
-
-      const options: CalendarGenerationOptions = {
+      };      const options: CalendarGenerationOptions = {
         firstDayOfWeek: 0,
         hideOtherMonthDays: false,
         selectedDate: null,
@@ -142,6 +140,7 @@ describe('CalendarGeneratorService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
@@ -165,8 +164,7 @@ describe('CalendarGeneratorService', () => {
   });
 
   describe('generateMonthView', () => {
-    it('should generate month view with weeks', () => {
-      const options: CalendarGenerationOptions = {
+    it('should generate month view with weeks', () => {      const options: CalendarGenerationOptions = {
         selectedDate: null,
         selectedDateRange: { start: null, end: null },
         isRangeSelection: false,
@@ -175,6 +173,7 @@ describe('CalendarGeneratorService', () => {
         focusedDate: null,
         firstDayOfWeek: 0,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         },
@@ -195,8 +194,7 @@ describe('CalendarGeneratorService', () => {
       });
     });
 
-    it('should include week numbers when requested', () => {
-      const options: CalendarGenerationOptions = {
+    it('should include week numbers when requested', () => {      const options: CalendarGenerationOptions = {
         firstDayOfWeek: 0,
         hideOtherMonthDays: false,
         selectedDate: null,
@@ -207,6 +205,7 @@ describe('CalendarGeneratorService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: [],
+        disabledDaysOfWeek: [],
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
@@ -260,10 +259,212 @@ describe('CalendarGeneratorService', () => {
       const mayMonth = result.months.find(m => m.month === 4);
       expect(mayMonth).toBeDefined();
       expect(mayMonth?.isCurrentMonth).toBe(true);
-      
-      // Other months should not be marked as current
+        // Other months should not be marked as current
       const otherMonths = result.months.filter(m => m.month !== 4);
       expect(otherMonths.every(m => !m.isCurrentMonth)).toBe(true);
+    });
+  });
+
+  describe('generateCalendarDays with disabled days of week', () => {
+    it('should mark disabled days of week correctly', () => {
+      const options: CalendarGenerationOptions = {
+        firstDayOfWeek: 0,
+        hideOtherMonthDays: false,
+        selectedDate: null,
+        selectedDateRange: { start: null, end: null },
+        isRangeSelection: false,
+        focusedDate: null,
+        minDate: null,
+        maxDate: null,
+        disabledDates: [],
+        disabledDaysOfWeek: [0, 6], // Disable weekends (Sunday and Saturday)
+        isDateDisabledFn: function (date: Date): boolean {
+          // Check disabled days of week
+          const dayOfWeek = date.getDay();
+          return [0, 6].includes(dayOfWeek);
+        }
+      };
+
+      const result = service.generateCalendarDays(2025, 4, options); // May 2025      // Find weekends in May 2025
+      const weekendDays = result.filter(d => 
+        d.month === 4 && d.year === 2025 && d.date && [0, 6].includes(d.date.getDay())
+      );
+
+      // All weekend days should be disabled
+      expect(weekendDays.length).toBeGreaterThan(0);
+      expect(weekendDays.every(d => d.isDisabled)).toBe(true);
+
+      // Weekdays should not be disabled
+      const weekdayDays = result.filter(d => 
+        d.month === 4 && d.year === 2025 && d.date && ![0, 6].includes(d.date.getDay())
+      );
+      expect(weekdayDays.every(d => !d.isDisabled)).toBe(true);
+    });
+
+    it('should disable specific weekdays', () => {
+      const options: CalendarGenerationOptions = {
+        firstDayOfWeek: 0,
+        hideOtherMonthDays: false,
+        selectedDate: null,
+        selectedDateRange: { start: null, end: null },
+        isRangeSelection: false,
+        focusedDate: null,
+        minDate: null,
+        maxDate: null,
+        disabledDates: [],
+        disabledDaysOfWeek: [1, 3, 5], // Disable Monday, Wednesday, Friday
+        isDateDisabledFn: function (date: Date): boolean {
+          const dayOfWeek = date.getDay();
+          return [1, 3, 5].includes(dayOfWeek);
+        }
+      };
+
+      const result = service.generateCalendarDays(2025, 4, options); // May 2025
+
+      // Check specific dates that should be disabled
+      // May 5, 2025 is a Monday (day 1)
+      const monday = result.find(d => d.day === 5 && d.month === 4 && d.year === 2025);
+      expect(monday?.isDisabled).toBe(true);
+
+      // May 7, 2025 is a Wednesday (day 3) 
+      const wednesday = result.find(d => d.day === 7 && d.month === 4 && d.year === 2025);
+      expect(wednesday?.isDisabled).toBe(true);
+
+      // May 9, 2025 is a Friday (day 5)
+      const friday = result.find(d => d.day === 9 && d.month === 4 && d.year === 2025);
+      expect(friday?.isDisabled).toBe(true);
+
+      // May 6, 2025 is a Tuesday (day 2) - should NOT be disabled
+      const tuesday = result.find(d => d.day === 6 && d.month === 4 && d.year === 2025);
+      expect(tuesday?.isDisabled).toBe(false);
+
+      // May 8, 2025 is a Thursday (day 4) - should NOT be disabled
+      const thursday = result.find(d => d.day === 8 && d.month === 4 && d.year === 2025);
+      expect(thursday?.isDisabled).toBe(false);
+    });
+
+    it('should combine disabled dates and disabled days of week', () => {
+      const specificDisabledDate = createDate(2025, 4, 6); // May 6, 2025 - Tuesday
+
+      const options: CalendarGenerationOptions = {
+        firstDayOfWeek: 0,
+        hideOtherMonthDays: false,
+        selectedDate: null,
+        selectedDateRange: { start: null, end: null },
+        isRangeSelection: false,
+        focusedDate: null,
+        minDate: null,
+        maxDate: null,
+        disabledDates: [specificDisabledDate],
+        disabledDaysOfWeek: [0, 6], // Disable weekends
+        isDateDisabledFn: function (date: Date): boolean {
+          // Check disabled specific dates
+          const isSpecificDisabled = [specificDisabledDate].some(disabled =>
+            disabled.getFullYear() === date.getFullYear() &&
+            disabled.getMonth() === date.getMonth() &&
+            disabled.getDate() === date.getDate()
+          );
+
+          // Check disabled days of week
+          const dayOfWeek = date.getDay();
+          const isDayOfWeekDisabled = [0, 6].includes(dayOfWeek);
+
+          return isSpecificDisabled || isDayOfWeekDisabled;
+        }
+      };
+
+      const result = service.generateCalendarDays(2025, 4, options); // May 2025
+
+      // May 6, 2025 (Tuesday) should be disabled due to specific date
+      const tuesday = result.find(d => d.day === 6 && d.month === 4 && d.year === 2025);
+      expect(tuesday?.isDisabled).toBe(true);
+
+      // May 4, 2025 (Sunday) should be disabled due to day of week
+      const sunday = result.find(d => d.day === 4 && d.month === 4 && d.year === 2025);
+      expect(sunday?.isDisabled).toBe(true);
+
+      // May 10, 2025 (Saturday) should be disabled due to day of week
+      const saturday = result.find(d => d.day === 10 && d.month === 4 && d.year === 2025);
+      expect(saturday?.isDisabled).toBe(true);
+
+      // May 7, 2025 (Wednesday) should NOT be disabled
+      const wednesday = result.find(d => d.day === 7 && d.month === 4 && d.year === 2025);
+      expect(wednesday?.isDisabled).toBe(false);
+    });
+
+    it('should work with disabled days of week across different months', () => {
+      const options: CalendarGenerationOptions = {
+        firstDayOfWeek: 0,
+        hideOtherMonthDays: false,
+        selectedDate: null,
+        selectedDateRange: { start: null, end: null },
+        isRangeSelection: false,
+        focusedDate: null,
+        minDate: null,
+        maxDate: null,
+        disabledDates: [],
+        disabledDaysOfWeek: [0], // Only disable Sundays
+        isDateDisabledFn: function (date: Date): boolean {
+          return date.getDay() === 0; // Sunday
+        }
+      };
+
+      const result = service.generateCalendarDays(2025, 4, options); // May 2025      // Find all Sundays in the calendar view (including from previous/next months)
+      const sundays = result.filter(d => d.date && d.date.getDay() === 0);
+
+      // All Sundays should be disabled, regardless of which month they belong to
+      expect(sundays.length).toBeGreaterThan(0);
+      expect(sundays.every(d => d.isDisabled)).toBe(true);
+
+      // Non-Sundays should not be disabled
+      const nonSundays = result.filter(d => d.date && d.date.getDay() !== 0);
+      expect(nonSundays.every(d => !d.isDisabled)).toBe(true);
+    });
+
+    it('should handle empty disabled days of week array', () => {
+      const options: CalendarGenerationOptions = {
+        firstDayOfWeek: 0,
+        hideOtherMonthDays: false,
+        selectedDate: null,
+        selectedDateRange: { start: null, end: null },
+        isRangeSelection: false,
+        focusedDate: null,
+        minDate: null,
+        maxDate: null,
+        disabledDates: [],
+        disabledDaysOfWeek: [], // No disabled days of week
+        isDateDisabledFn: function (date: Date): boolean {
+          return false; // No dates disabled
+        }
+      };
+
+      const result = service.generateCalendarDays(2025, 4, options); // May 2025
+
+      // No days should be disabled
+      expect(result.every(d => !d.isDisabled)).toBe(true);
+    });
+
+    it('should disable all days when all weekdays are disabled', () => {
+      const options: CalendarGenerationOptions = {
+        firstDayOfWeek: 0,
+        hideOtherMonthDays: false,
+        selectedDate: null,
+        selectedDateRange: { start: null, end: null },
+        isRangeSelection: false,
+        focusedDate: null,
+        minDate: null,
+        maxDate: null,
+        disabledDates: [],
+        disabledDaysOfWeek: [0, 1, 2, 3, 4, 5, 6], // All days disabled
+        isDateDisabledFn: function (date: Date): boolean {
+          return true; // All dates disabled
+        }
+      };
+
+      const result = service.generateCalendarDays(2025, 4, options); // May 2025
+
+      // All days should be disabled
+      expect(result.every(d => d.isDisabled)).toBe(true);
     });
   });
 });

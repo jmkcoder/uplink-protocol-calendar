@@ -76,6 +76,7 @@ export interface CalendarGenerationOptions {
   minDate: Date | null;
   maxDate: Date | null;
   disabledDates: Date[];
+  disabledDaysOfWeek: number[]; // List of disabled days of the week (0 = Sunday, 1 = Monday, etc.)
   isRangeSelection: boolean;
   isDateDisabledFn: (date: Date) => boolean;
   hideOtherMonthDays: boolean;

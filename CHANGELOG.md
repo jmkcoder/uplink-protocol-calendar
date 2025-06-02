@@ -5,6 +5,14 @@ All notable changes to the `@uplink-protocol/calendar-controller` package will b
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-06-02
+
+### Fixed
+- **Example Fixes**
+  - Fixed function scope issue in disabled-weekdays example where button handlers were not accessible from global scope
+  - Functions `presetWeekends`, `presetWeekdays`, `applyDisabledDays`, and `clearDisabledDays` are now properly exposed to window object
+  - Resolved "ReferenceError: function is not defined" errors in example HTML onclick handlers
+
 ## [0.2.0] - 2025-06-01
 
 ### Added

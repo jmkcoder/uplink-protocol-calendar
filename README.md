@@ -7,6 +7,8 @@ A flexible calendar API supporting both calendar and date-picker integrations fo
 - Multiple view modes (day, month, and year views)
 - Date selection (single date and date range)
 - Year range navigation for efficient date picking
+- **Disabled weekdays** - Disable specific days of the week across all calendar views
+- Date constraints (min/max dates, disabled specific dates)
 - Internationalization support with locale-specific date formats
 - Flexible configuration options
 - Service-oriented architecture
@@ -21,7 +23,8 @@ import { CalendarController } from '@uplink-protocol/calendar-controller';
 const calendar = CalendarController({
   firstDayOfWeek: 1, // Monday
   dateFormat: 'MM/DD/YYYY',
-  initialSelectedDate: new Date()
+  initialSelectedDate: new Date(),
+  disabledDaysOfWeek: [0, 6] // Disable weekends
 });
 
 // Use the calendar API for date selection
@@ -39,7 +42,36 @@ calendar.methods.selectYear(2026); // Select 2026 in year view
 // Navigate year ranges
 calendar.methods.nextYearRange(); // Move to next decade
 calendar.methods.prevYearRange(); // Move to previous decade
+
+// Manage disabled weekdays dynamically
+calendar.methods.setDisabledDaysOfWeek([0, 6]); // Disable weekends
+calendar.methods.addDisabledDayOfWeek(1); // Also disable Monday
+calendar.methods.removeDisabledDayOfWeek(0); // Re-enable Sunday
+const disabledDays = calendar.methods.getDisabledDaysOfWeek(); // Get current disabled days
 ```
+
+### Disabled Weekdays
+
+Disable specific days of the week across all calendar views:
+
+```javascript
+// Disable weekends for business applications
+const businessCalendar = CalendarController({
+  disabledDaysOfWeek: [0, 6] // 0 = Sunday, 6 = Saturday
+});
+
+// Disable specific business days
+const customSchedule = CalendarController({
+  disabledDaysOfWeek: [1, 3] // Monday and Wednesday
+});
+
+// Dynamic management
+businessCalendar.methods.setDisabledDaysOfWeek([0, 5, 6]); // Weekends + Friday
+businessCalendar.methods.addDisabledDayOfWeek(1); // Add Monday
+businessCalendar.methods.removeDisabledDayOfWeek(5); // Remove Friday
+```
+
+[See full documentation →](docs/disabled-weekdays.md)
 
 ## UI Integration
 

@@ -195,9 +195,20 @@ export interface CalendarControllerMethods {
   
   /** Remove a date from the disabled dates */
   removeDisabledDate(date: Date): Date[];
-  
-  /** Get the current disabled dates */
+    /** Get the current disabled dates */
   getDisabledDates(): Date[];
+  
+  /** Set array of disabled days of the week (0 = Sunday, 1 = Monday, etc.) */
+  setDisabledDaysOfWeek(days: number[]): number[];
+  
+  /** Add a day of the week to the disabled days */
+  addDisabledDayOfWeek(day: number): number[];
+  
+  /** Remove a day of the week from the disabled days */
+  removeDisabledDayOfWeek(day: number): number[];
+  
+  /** Get the current disabled days of the week */
+  getDisabledDaysOfWeek(): number[];
   
   // === Year Range Management ===
   /** Get the current year range */
@@ -372,10 +383,10 @@ export interface CalendarState {
   calendarDays: CalendarDate[];
   calendarMonths: CalendarMonth[];
   calendarYears: CalendarYear[];
-  weekdays: string[];
-  minDate: Date | null;
+  weekdays: string[];  minDate: Date | null;
   maxDate: Date | null;
   disabledDates: Date[];
+  disabledDaysOfWeek: number[];
   locale: string;
   firstDayOfWeek: number;
 }

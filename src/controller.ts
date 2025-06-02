@@ -64,6 +64,7 @@ export interface CalendarControllerInterface extends TypedCalendarController {
   _minDate: Date | null;
   _maxDate: Date | null;
   _disabledDates: Date[];
+  _disabledDaysOfWeek: number[];
   _firstDayOfWeek: number;
   _dateFormat: string | null;
   _isRangeSelection: boolean;
@@ -95,7 +96,6 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   previousMonth?: () => void;
   nextYear?: () => void;
   prevYear?: () => void;
-
   // State variables
   _currentDate: Date = new Date();
   _selectedDate: Date | null = null;
@@ -104,6 +104,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   _minDate: Date | null = null;
   _maxDate: Date | null = null;
   _disabledDates: Date[] = [];
+  _disabledDaysOfWeek: number[] = [];
   _firstDayOfWeek: number = 0; // Sunday
   _dateFormat: string | null = null;
   _isRangeSelection: boolean = false;
@@ -175,8 +176,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       // Re-connect services with the updated localization service
       this._calendarService.setLocalizationService(this._localizationService);
       this._dateFormattingService.setLocalizationService(this._localizationService);
-      
-      // Apply configuration options to this controller instance
+        // Apply configuration options to this controller instance
       if (options.initialSelectedDate) this._selectedDate = options.initialSelectedDate;
       if (options.minDate) this._minDate = options.minDate;
       if (options.maxDate) this._maxDate = options.maxDate;
@@ -184,8 +184,11 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       if (options.dateFormat) this._dateFormat = options.dateFormat;
       if (options.isRangeSelection !== undefined) this._isRangeSelection = options.isRangeSelection;
       if (options.hideOtherMonthDays !== undefined) this._hideOtherMonthDays = options.hideOtherMonthDays;
-      if (options.dateFormatOptions) this._dateFormatOptions = options.dateFormatOptions;
-      if (options.disabledDates) this._disabledDates = [...options.disabledDates];
+      if (options.dateFormatOptions) this._dateFormatOptions = options.dateFormatOptions;      if (options.disabledDates) this._disabledDates = [...options.disabledDates];
+      if (options.disabledDaysOfWeek) {
+        // Use constraints service for validation
+        this._disabledDaysOfWeek = this._constraintsService.setDisabledDaysOfWeek(options.disabledDaysOfWeek);
+      }
     }    
       // Initialize bindings using ViewStateService
     this.bindings = this._viewStateService.initializeBindings(
@@ -252,14 +255,19 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       // Month and year selection
       selectMonth: this.selectMonth.bind(this),
       selectYear: this.selectYear.bind(this),
-      
-      // Date constraints
+        // Date constraints
       setMinDate: this.setMinDate.bind(this),
       setMaxDate: this.setMaxDate.bind(this),
       setDisabledDates: this.setDisabledDates.bind(this),
       addDisabledDate: this.addDisabledDate.bind(this),
       removeDisabledDate: this.removeDisabledDate.bind(this),
       getDisabledDates: this.getDisabledDates.bind(this),
+      
+      // Disabled days of week constraints
+      setDisabledDaysOfWeek: this.setDisabledDaysOfWeek.bind(this),
+      addDisabledDayOfWeek: this.addDisabledDayOfWeek.bind(this),
+      removeDisabledDayOfWeek: this.removeDisabledDayOfWeek.bind(this),
+      getDisabledDaysOfWeek: this.getDisabledDaysOfWeek.bind(this),
       
       // Year range management
       getCurrentYearRange: this.getCurrentYearRange.bind(this),
@@ -299,8 +307,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    */
   public generateCalendarDays(): CalendarDate[] {
     const year = this._currentDate.getFullYear();
-    const month = this._currentDate.getMonth();
-    const options: CalendarGenerationOptions = {
+    const month = this._currentDate.getMonth();    const options: CalendarGenerationOptions = {
       selectedDate: this._selectedDate,
       selectedDateRange: this._selectedDateRange,
       focusedDate: this._focusedDate,
@@ -308,6 +315,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       minDate: this._minDate,
       maxDate: this._maxDate,
       disabledDates: this._disabledDates,
+      disabledDaysOfWeek: this._disabledDaysOfWeek,
       isRangeSelection: this._isRangeSelection,
       isDateDisabledFn: (date: Date) => this.isDateDisabled(date),
       hideOtherMonthDays: this._hideOtherMonthDays,
@@ -400,7 +408,6 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       options
     );
   }
-
   /**
    * Check if a date is disabled by constraints or disabled dates array
    * @param date Date to check
@@ -411,7 +418,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       date,
       this._minDate,
       this._maxDate,
-      this._disabledDates
+      this._disabledDates,
+      this._disabledDaysOfWeek
     );
   }
   /**
@@ -835,13 +843,68 @@ export class CalendarControllerClass implements CalendarControllerInterface {
 
     return this._disabledDates;
   }
-
   /**
    * Get disabled dates
    * @returns Array of disabled dates
    */
   public getDisabledDates(): Date[] {
     return [...this._disabledDates];
+  }
+
+  /**
+   * Set disabled days of the week
+   * @param days Array of disabled days (0 = Sunday, 1 = Monday, etc.)
+   * @returns Array of disabled days
+   */
+  public setDisabledDaysOfWeek(days: number[]): number[] {
+    this._disabledDaysOfWeek = this._constraintsService.setDisabledDaysOfWeek(days);
+
+    // Update the calendar view
+    if (this.bindings.calendarDays) {
+      this.bindings.calendarDays.set(this.generateCalendarDays());
+    }
+
+    return [...this._disabledDaysOfWeek];
+  }
+
+  /**
+   * Add a disabled day of the week
+   * @param day Day of the week to disable (0 = Sunday, 1 = Monday, etc.)
+   * @returns Updated disabled days array
+   */
+  public addDisabledDayOfWeek(day: number): number[] {
+    this._disabledDaysOfWeek = this._constraintsService.addDisabledDayOfWeek(day);
+
+    // Update the calendar view
+    if (this.bindings.calendarDays) {
+      this.bindings.calendarDays.set(this.generateCalendarDays());
+    }
+
+    return [...this._disabledDaysOfWeek];
+  }
+
+  /**
+   * Remove a disabled day of the week
+   * @param day Day of the week to enable (0 = Sunday, 1 = Monday, etc.)
+   * @returns Updated disabled days array
+   */
+  public removeDisabledDayOfWeek(day: number): number[] {
+    this._disabledDaysOfWeek = this._constraintsService.removeDisabledDayOfWeek(day);
+
+    // Update the calendar view
+    if (this.bindings.calendarDays) {
+      this.bindings.calendarDays.set(this.generateCalendarDays());
+    }
+
+    return [...this._disabledDaysOfWeek];
+  }
+
+  /**
+   * Get disabled days of the week
+   * @returns Array of disabled days (0 = Sunday, 1 = Monday, etc.)
+   */
+  public getDisabledDaysOfWeek(): number[] {
+    return this._constraintsService.getDisabledDaysOfWeek();
   }
 
   /**
@@ -1375,8 +1438,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     weeks: { days: CalendarDate[]; weekNumber?: number }[];
     weekdays: string[];  } {    const year = this._currentDate.getFullYear();
     const month = this._currentDate.getMonth();
-    const showWeekNumbers = this._configurationService.getShowWeekNumbers();
-
+    const showWeekNumbers = this._configurationService.getShowWeekNumbers();    
     const options: CalendarGenerationOptions = {
       selectedDate: this._selectedDate,
       selectedDateRange: this._selectedDateRange,
@@ -1385,13 +1447,15 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       minDate: this._minDate,
       maxDate: this._maxDate,
       disabledDates: this._disabledDates,
+      disabledDaysOfWeek: this._disabledDaysOfWeek,
       isRangeSelection: this._isRangeSelection,
       isDateDisabledFn: (date: Date) =>
         this._constraintsService.isDateDisabled(
           date,
           this._minDate,
           this._maxDate,
-          this._disabledDates
+          this._disabledDates,
+          this._disabledDaysOfWeek
         ),
       hideOtherMonthDays: this._hideOtherMonthDays,
       locale: this._localizationService?.getLocale(),
