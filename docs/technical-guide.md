@@ -2,6 +2,8 @@
 
 This technical guide provides an in-depth explanation of the Calendar Controller's architecture, design patterns, and implementation details for developers who need to understand or extend the component.
 
+> **Latest Version (v0.2.1)**: Improved example architecture with better function scope management and enhanced browser compatibility.
+
 ## Architecture Overview
 
 The Calendar Controller follows a service-oriented architecture that separates concerns into specialized services. This approach provides several benefits:
@@ -167,3 +169,40 @@ The service-oriented architecture facilitates testing at multiple levels:
 The component uses standard JavaScript features and is compatible with:
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Internet Explorer 11 with appropriate polyfills (if required)
+
+## Example Architecture and Quality Assurance
+
+### Example Design Principles
+
+The included examples follow best practices for maintainability and reliability:
+
+- **Function Scope Management**: All interactive functions are properly exposed to global scope for HTML onclick handlers
+- **Browser Compatibility**: Examples work without build tools or module bundlers
+- **Progressive Enhancement**: Core functionality works even if JavaScript fails to load
+- **Accessibility**: Examples include proper ARIA attributes and keyboard navigation
+
+### v0.2.1 Improvements
+
+Recent architectural enhancements include:
+
+- **Fixed Function Scope Issues**: Resolved "function is not defined" errors in disabled-weekdays example
+- **Enhanced Browser Support**: Improved compatibility across different JavaScript environments
+- **Better Error Handling**: Examples now handle edge cases more gracefully
+- **Standardized Patterns**: Consistent approach to global function exposure across all examples
+
+### Example Quality Standards
+
+All examples maintain high quality through:
+
+1. **Standalone Operation**: Each example works independently without external dependencies
+2. **Clear Documentation**: Inline comments explain complex logic and integration points
+3. **Real-world Scenarios**: Examples demonstrate practical use cases and common patterns
+4. **Performance Optimization**: Efficient event handling and minimal DOM manipulation
+
+### Testing and Validation
+
+Examples undergo rigorous testing to ensure:
+- Cross-browser compatibility
+- Function accessibility from HTML event handlers
+- Proper error handling and user feedback
+- Responsive behavior across different screen sizes

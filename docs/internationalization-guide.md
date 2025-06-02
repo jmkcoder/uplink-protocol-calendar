@@ -2,6 +2,8 @@
 
 This guide explains how to use the internationalization features of the Calendar Controller.
 
+> **Latest Update (v0.2.1)**: Enhanced example compatibility ensures internationalization examples work reliably across all browsers.
+
 ## Overview
 
 The Calendar Controller supports internationalization through the JavaScript `Intl` API, allowing you to display the calendar in different languages and formats according to regional preferences.

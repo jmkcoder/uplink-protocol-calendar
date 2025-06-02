@@ -2,6 +2,8 @@
 
 This guide provides detailed examples of using the Calendar Controller in TypeScript projects, focusing on type definitions, interfaces, and TypeScript-specific features.
 
+> **Latest Version (v0.2.1)**: Enhanced example compatibility and improved TypeScript definitions for better development experience.
+
 ## Installation
 
 Install the package from npm:

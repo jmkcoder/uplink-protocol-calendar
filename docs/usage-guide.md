@@ -2,6 +2,8 @@
 
 This guide provides comprehensive instructions for implementing and using the Calendar Controller in your applications.
 
+> **Latest Update (v0.2.1)**: Fixed function scope issues in the disabled-weekdays example. All interactive examples now work correctly in browser environments without "function is not defined" errors.
+
 ## Getting Started
 
 ### Installation
@@ -634,3 +636,43 @@ If dates aren't formatting as expected:
 1. Check your dateFormat configuration
 2. Remember that MM = month, DD = day, YYYY = 4-digit year
 3. Consider using the native Date.toLocaleDateString() method for locale-aware formatting
+
+## Examples
+
+The package includes several working examples in the `examples/` folder that demonstrate different features and use cases:
+
+### Available Examples
+
+1. **Basic Calendar** (`examples/calendar/`) - Simple calendar implementation
+2. **Date Picker** (`examples/date-picker/`) - Full-featured date picker with styling
+3. **Disabled Weekdays** (`examples/disabled-weekdays/`) - Demonstrates weekday restrictions (fixed in v0.2.1)
+4. **Internationalization** (`examples/i18n/`) - Multi-language support
+5. **Multi-view Calendar** (`examples/multi-view-calendar/`) - Shows day/month/year views
+6. **Comprehensive Date Picker** (`examples/comprehensive-date-picker/`) - Advanced features showcase
+
+### Running Examples
+
+You can run the examples locally by:
+
+1. Cloning the repository
+2. Opening the HTML files directly in your browser
+3. Or serving them through a local development server
+
+```bash
+# Example: serve the examples using a simple HTTP server
+npx http-server examples/ -p 8080
+```
+
+### Example Fixes in v0.2.1
+
+The disabled-weekdays example had function scope issues where button handlers couldn't access JavaScript functions. This has been resolved by properly exposing functions to the global scope:
+
+```javascript
+// Functions are now accessible globally
+window.presetWeekends = function() { /* ... */ };
+window.presetWeekdays = function() { /* ... */ };
+window.applyDisabledDays = function() { /* ... */ };
+window.clearDisabledDays = function() { /* ... */ };
+```
+
+This ensures all interactive examples work correctly without requiring a build step or module bundler.

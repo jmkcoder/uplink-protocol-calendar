@@ -2,6 +2,8 @@
 
 This guide provides a comprehensive overview of all features available in the Calendar Controller component.
 
+> **Latest Update (v0.2.1)**: Enhanced example stability with function scope fixes. All interactive examples now work reliably in browser environments.
+
 ## Core Features
 
 ### Date Selection
@@ -156,3 +158,36 @@ As part of the Uplink Protocol ecosystem, this component:
 - Uses the core Uplink binding system for reactive updates
 - Follows Uplink controller patterns for consistent API design
 - Integrates with other Uplink Protocol components
+
+## Examples and Demonstrations
+
+The Calendar Controller includes comprehensive examples that showcase all features:
+
+### Working Examples
+
+1. **Basic Calendar** - Minimal implementation demonstrating core functionality
+2. **Date Picker** - Full-featured date picker with modern styling and accessibility
+3. **Disabled Weekdays** - Business rules and weekday restrictions (enhanced in v0.2.1)
+4. **Internationalization** - Multi-language support and locale handling
+5. **Multi-view Calendar** - Seamless transitions between day, month, and year views
+6. **Comprehensive Demo** - Advanced features including floating calendars and complex interactions
+
+### Example Quality Improvements
+
+Version 0.2.1 enhanced example reliability:
+- Fixed function scope issues in interactive examples
+- Ensured all button handlers work without build tools
+- Improved browser compatibility for standalone HTML files
+- Enhanced error handling in example code
+
+### Running Examples
+
+All examples can be run directly in any modern browser without additional setup:
+
+```bash
+# Clone the repository and open examples
+cd examples/
+# Open any HTML file directly in your browser
+```
+
+The examples demonstrate real-world usage patterns and serve as comprehensive documentation for implementing the Calendar Controller in your own projects.

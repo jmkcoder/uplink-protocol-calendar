@@ -2,6 +2,8 @@
 
 A flexible calendar API supporting both calendar and date-picker integrations for any JavaScript framework or library.
 
+> **Latest Release (v0.2.1)**: Enhanced example stability with function scope fixes. All interactive examples now work reliably across different browser environments.
+
 ## Features
 
 - Multiple view modes (day, month, and year views)
@@ -190,3 +192,34 @@ calendar.methods.setDateFormatOptions({
 ### Example
 
 See the full example of internationalization usage in the [i18n example](examples/i18n/index.html).
+
+## Examples
+
+The package includes comprehensive examples demonstrating various features and use cases:
+
+- **[Basic Calendar](examples/calendar/)** - Simple calendar implementation
+- **[Date Picker](examples/date-picker/)** - Full-featured date picker with modern styling
+- **[Disabled Weekdays](examples/disabled-weekdays/)** - Business rules and weekday restrictions 
+- **[Internationalization](examples/i18n/)** - Multi-language support
+- **[Multi-view Calendar](examples/multi-view-calendar/)** - Day, month, and year views
+- **[Comprehensive Demo](examples/comprehensive-date-picker/)** - Advanced features showcase
+
+### Running Examples
+
+All examples work directly in the browser without build tools:
+
+```bash
+# Clone the repository
+git clone https://github.com/jmkcoder/uplink-protocol-calendar.git
+cd uplink-protocol-calendar
+
+# Open any example in your browser
+# e.g., open examples/date-picker/index.html
+```
+
+### v0.2.1 Example Improvements
+
+- Fixed function scope issues in interactive examples
+- Enhanced browser compatibility for standalone HTML files
+- Improved error handling and user feedback
+- Standardized global function exposure patterns
