@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.0**](../README.md)
+[**@uplink-protocol/form-controller v0.2.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: CalendarWeek
 
-Defined in: [interfaces/calendar.interfaces.ts:89](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L89)
+Defined in: [interfaces/calendar.interfaces.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L91)
 
 CalendarWeek - Interface for a week in the calendar view
 
@@ -16,7 +16,7 @@ CalendarWeek - Interface for a week in the calendar view
 
 > **days**: [`CalendarDate`](CalendarDate.md)[]
 
-Defined in: [interfaces/calendar.interfaces.ts:90](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L90)
+Defined in: [interfaces/calendar.interfaces.ts:92](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L92)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [interfaces/calendar.interfaces.ts:90](https://github.com/jmkcoder/u
 
 > `optional` **weekNumber**: `number`
 
-Defined in: [interfaces/calendar.interfaces.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L91)
+Defined in: [interfaces/calendar.interfaces.ts:93](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L93)

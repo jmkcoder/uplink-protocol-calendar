@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.0**](../README.md)
+[**@uplink-protocol/form-controller v0.2.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: CalendarView
 
-Defined in: [interfaces/calendar.interfaces.ts:97](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L97)
+Defined in: [interfaces/calendar.interfaces.ts:99](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L99)
 
 CalendarView - Interface for a month view with weeks
 
@@ -16,7 +16,7 @@ CalendarView - Interface for a month view with weeks
 
 > **month**: `number`
 
-Defined in: [interfaces/calendar.interfaces.ts:98](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L98)
+Defined in: [interfaces/calendar.interfaces.ts:100](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L100)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [interfaces/calendar.interfaces.ts:98](https://github.com/jmkcoder/u
 
 > **weekdays**: `string`[]
 
-Defined in: [interfaces/calendar.interfaces.ts:101](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L101)
+Defined in: [interfaces/calendar.interfaces.ts:103](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L103)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [interfaces/calendar.interfaces.ts:101](https://github.com/jmkcoder/
 
 > **weeks**: [`CalendarWeek`](CalendarWeek.md)[]
 
-Defined in: [interfaces/calendar.interfaces.ts:100](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L100)
+Defined in: [interfaces/calendar.interfaces.ts:102](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L102)
 
 ***
 
@@ -40,4 +40,4 @@ Defined in: [interfaces/calendar.interfaces.ts:100](https://github.com/jmkcoder/
 
 > **year**: `number`
 
-Defined in: [interfaces/calendar.interfaces.ts:99](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/interfaces/calendar.interfaces.ts#L99)
+Defined in: [interfaces/calendar.interfaces.ts:101](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/interfaces/calendar.interfaces.ts#L101)

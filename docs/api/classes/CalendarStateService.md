@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.0**](../README.md)
+[**@uplink-protocol/form-controller v0.2.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: CalendarStateService
 
-Defined in: [services/calendar-state.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L14)
+Defined in: [services/calendar-state.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L14)
 
 Implementation of CalendarStateService
 Responsible for centralizing and managing the state of the calendar
@@ -21,7 +21,7 @@ Responsible for centralizing and managing the state of the calendar
 
 > **new CalendarStateService**(`_viewStateService`, `_dateSelectionService`, `_constraintsService`, `_eventManagerService?`): `CalendarStateService`
 
-Defined in: [services/calendar-state.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L15)
+Defined in: [services/calendar-state.service.ts:15](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L15)
 
 #### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [services/calendar-state.service.ts:15](https://github.com/jmkcoder/
 
 > **addDisabledDate**(`date`, `disabledDates`, `calendarDaysBinding`, `generateCalendarDaysFn`): `Date`[]
 
-Defined in: [services/calendar-state.service.ts:113](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L113)
+Defined in: [services/calendar-state.service.ts:113](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L113)
 
 Add a specific date to the disabled dates list
 
@@ -87,7 +87,7 @@ Add a specific date to the disabled dates list
 
 > **clearSelection**(`isRangeSelection`, `selectedDateBinding`, `selectedDateRangeBinding`, `calendarDaysBinding`, `generateCalendarDaysFn`): `object`
 
-Defined in: [services/calendar-state.service.ts:182](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L182)
+Defined in: [services/calendar-state.service.ts:196](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L196)
 
 Clear the current selection
 
@@ -135,7 +135,7 @@ Clear the current selection
 
 > **focusDate**(`date`, `focusedDateBinding`): `null` \| `Date`
 
-Defined in: [services/calendar-state.service.ts:213](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L213)
+Defined in: [services/calendar-state.service.ts:227](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L227)
 
 Focus a specific date for accessibility
 
@@ -163,7 +163,7 @@ Focus a specific date for accessibility
 
 > **removeDisabledDate**(`date`, `disabledDates`, `calendarDaysBinding`, `generateCalendarDaysFn`): `Date`[]
 
-Defined in: [services/calendar-state.service.ts:135](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L135)
+Defined in: [services/calendar-state.service.ts:149](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L149)
 
 Remove a specific date from the disabled dates list
 
@@ -199,7 +199,7 @@ Remove a specific date from the disabled dates list
 
 > **selectDate**(`date`, `isRangeSelection`, `currentSelectedDate`, `currentDateRange`, `isDateDisabledFn`, `bindings`, `events`, `generateCalendarDaysFn`): `object`
 
-Defined in: [services/calendar-state.service.ts:237](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L237)
+Defined in: [services/calendar-state.service.ts:251](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L251)
 
 Select a date based on the current selection mode
 
@@ -273,7 +273,7 @@ Select a date based on the current selection mode
 
 > **setDisabledDates**(`dates`, `currentDate`, `bindings`, `getMonthNameFn`, `generateCalendarDaysFn`): `Date`[]
 
-Defined in: [services/calendar-state.service.ts:85](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L85)
+Defined in: [services/calendar-state.service.ts:85](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L85)
 
 Set disabled dates
 
@@ -327,7 +327,7 @@ Set disabled dates
 
 > **setMaxDate**(`date`, `_currentMaxDate`, `currentDate`, `bindings`, `getMonthNameFn`, `generateCalendarDaysFn`): `null` \| `Date`
 
-Defined in: [services/calendar-state.service.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L55)
+Defined in: [services/calendar-state.service.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L55)
 
 Set the maximum selectable date
 
@@ -385,7 +385,7 @@ Set the maximum selectable date
 
 > **setMinDate**(`date`, `_currentMinDate`, `currentDate`, `bindings`, `getMonthNameFn`, `generateCalendarDaysFn`): `null` \| `Date`
 
-Defined in: [services/calendar-state.service.ts:25](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L25)
+Defined in: [services/calendar-state.service.ts:25](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L25)
 
 Set the minimum selectable date
 
@@ -443,7 +443,7 @@ Set the minimum selectable date
 
 > **setRangeSelectionMode**(`isRange`, `isRangeSelectionBinding`, `calendarDaysBinding`, `generateCalendarDaysFn`): `boolean`
 
-Defined in: [services/calendar-state.service.ts:162](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/services/calendar-state.service.ts#L162)
+Defined in: [services/calendar-state.service.ts:176](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/services/calendar-state.service.ts#L176)
 
 Set the date selection mode
 

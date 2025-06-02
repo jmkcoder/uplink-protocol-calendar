@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.0**](../README.md)
+[**@uplink-protocol/form-controller v0.2.1**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **getDaysInMonth**(`year`, `month`): `number`
 
-Defined in: [utils/calendar.utils.ts:11](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4b7d7626907cceb44afccd43a3ead251daf6f222/src/utils/calendar.utils.ts#L11)
+Defined in: [utils/calendar.utils.ts:11](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/utils/calendar.utils.ts#L11)
 
 Get the number of days in a month
 
