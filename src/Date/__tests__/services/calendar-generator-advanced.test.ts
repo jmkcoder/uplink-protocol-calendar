@@ -52,7 +52,7 @@ describe('CalendarGeneratorService - Advanced Views', () => {
         selectedDate,
         selectedYearRange: null,
         yearRangeSize: 10
-      };
+      } as unknown as YearViewGenerationOptions;
 
       const result = service.generateDecadeView(baseYear, options);
 
@@ -75,7 +75,7 @@ describe('CalendarGeneratorService - Advanced Views', () => {
         selectedDate: null,
         selectedYearRange: null,
         yearRangeSize: 12 // Non-standard decade size
-      };
+      } as unknown as YearViewGenerationOptions;
 
       const result = service.generateDecadeView(baseYear, options);
 
@@ -94,7 +94,7 @@ describe('CalendarGeneratorService - Advanced Views', () => {
         selectedDate: null,
         selectedYearRange: null,
         yearRangeSize: rangeSize
-      };
+      } as unknown as YearViewGenerationOptions;
 
       const result = service.generateMultiYearView(baseYear, options);
 
@@ -112,7 +112,7 @@ describe('CalendarGeneratorService - Advanced Views', () => {
           endYear: 2024
         },
         yearRangeSize: 10
-      };
+      } as unknown as YearViewGenerationOptions;
 
       const result = service.generateMultiYearView(baseYear, options);
 

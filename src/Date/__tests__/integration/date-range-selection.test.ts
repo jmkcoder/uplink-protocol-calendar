@@ -1,6 +1,6 @@
 import { CalendarControllerClass } from '../../controller';
 import { createDate, mockDate, testDates } from '../test-utils';
-import { CalendarOptions, DateRange } from '../../interfaces';
+import { CalendarOptions, DateRange } from '../..//interfaces';
 
 describe('Date Range Selection Tests', () => {
   let controller: CalendarControllerClass;

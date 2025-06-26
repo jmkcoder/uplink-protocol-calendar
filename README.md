@@ -1,11 +1,12 @@
-# Calendar Controller
+# Calendar & Time Controller
 
-A flexible calendar API supporting both calendar and date-picker integrations for any JavaScript framework or library.
+A flexible calendar and time picker API supporting both calendar and time selection integrations for any JavaScript framework or library.
 
-> **Latest Release (v0.2.1)**: Enhanced example stability with function scope fixes. All interactive examples now work reliably across different browser environments.
+> **Latest Release (v0.2.3)**: Added comprehensive Time Controller with full time picker functionality alongside the existing Calendar Controller.
 
 ## Features
 
+### Calendar Controller
 - Multiple view modes (day, month, and year views)
 - Date selection (single date and date range)
 - Year range navigation for efficient date picking
@@ -16,7 +17,20 @@ A flexible calendar API supporting both calendar and date-picker integrations fo
 - Service-oriented architecture
 - Framework agnostic
 
+### Time Controller ✨ **NEW**
+- Time selection (single time and time range)
+- 12/24 hour format support
+- Precision control (hours, minutes, seconds, milliseconds)
+- Time navigation with keyboard support
+- Time constraints and validation
+- Accessibility features with focus management
+- Locale-aware time formatting
+- Reactive state bindings
+- Complete service-oriented architecture
+
 ## Usage
+
+### Calendar Controller
 
 ```javascript
 import { CalendarController } from '@uplink-protocol/calendar-controller';
@@ -49,6 +63,41 @@ calendar.methods.prevYearRange(); // Move to previous decade
 calendar.methods.setDisabledDaysOfWeek([0, 6]); // Disable weekends
 calendar.methods.addDisabledDayOfWeek(1); // Also disable Monday
 calendar.methods.removeDisabledDayOfWeek(0); // Re-enable Sunday
+```
+
+### Time Controller ✨ **NEW**
+
+```javascript
+import { TimeController } from '@uplink-protocol/calendar-controller';
+
+// Create a new time controller
+const timeController = TimeController({
+  use12HourFormat: true,
+  showSeconds: true,
+  locale: 'en-US',
+  minuteStep: 15
+});
+
+// Select a time
+timeController.selectTime(9, 30, 0); // 9:30:00 AM
+
+// Get reactive bindings
+const selectedTime = timeController.bindings.selectedTime.get();
+const formattedTime = timeController.methods.getFormattedTime();
+
+// Navigate time
+timeController.goToNextHour();
+timeController.goToPreviousMinute();
+
+// Time range selection
+timeController.setRangeSelectionMode(true);
+timeController.selectTime(9, 0);  // Start time
+timeController.selectTime(17, 30); // End time
+
+// Time constraints
+timeController.setMinTime(new Date(2024, 0, 1, 9, 0));  // 9:00 AM
+timeController.setMaxTime(new Date(2024, 0, 1, 17, 0)); // 5:00 PM
+timeController.setDisabledHours([12, 13]); // Lunch break
 const disabledDays = calendar.methods.getDisabledDaysOfWeek(); // Get current disabled days
 ```
 
@@ -217,9 +266,26 @@ cd uplink-protocol-calendar
 # e.g., open examples/date-picker/index.html
 ```
 
-### v0.2.1 Example Improvements
+## Documentation
 
-- Fixed function scope issues in interactive examples
-- Enhanced browser compatibility for standalone HTML files
-- Improved error handling and user feedback
-- Standardized global function exposure patterns
+### Comprehensive Guides
+- **[Calendar Controller Usage Guide](docs/usage-guide.md)** - Complete calendar implementation guide
+- **[Time Controller Guide](docs/time-controller-guide.md)** - Complete time picker implementation guide ✨ **NEW**
+- **[Technical Architecture](docs/technical-guide.md)** - Service-oriented architecture details
+- **[TypeScript Usage](docs/typescript-usage.md)** - TypeScript integration guide
+- **[Internationalization Guide](docs/internationalization-guide.md)** - Multi-language support
+- **[Features Guide](docs/features-guide.md)** - Advanced features and examples
+
+### API Reference
+- **[API Documentation](docs/api/)** - Complete API reference with examples
+- **[Calendar Controller API](docs/api/classes/CalendarControllerClass.md)** - Calendar controller methods
+- **[Time Controller API](docs/api/classes/TimeControllerClass.md)** - Time controller methods ✨ **NEW**
+
+### v0.2.3 Improvements
+
+- Added comprehensive Time Controller with full time picker functionality
+- Complete service-oriented architecture for time operations
+- Full TypeScript support with comprehensive type definitions
+- 24 comprehensive tests ensuring reliability
+- Reactive bindings for real-time UI updates
+- Accessibility features with focus management

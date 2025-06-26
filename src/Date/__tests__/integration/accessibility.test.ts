@@ -29,7 +29,7 @@ describe('Accessibility Features Tests', () => {
       
       monthView.weeks.forEach(week => {
         week.days.forEach(day => {
-          if (day.date.getTime() === focusDate.getTime()) {
+          if (day.date!.getTime() === focusDate.getTime()) {
             expect(day.isFocused).toBe(true);
             focusedDateFound = true;
           } else {

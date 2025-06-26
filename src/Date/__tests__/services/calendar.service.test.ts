@@ -42,7 +42,7 @@ describe('CalendarService', () => {
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
-      };
+      } as unknown as CalendarGenerationOptions;
       
       const days = service.generateCalendarDays(2025, 4, options);
       
@@ -66,7 +66,7 @@ describe('CalendarService', () => {
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
-      };
+      } as unknown as CalendarGenerationOptions;
       
       const days = service.generateCalendarDays(2025, 4, options);
       
@@ -95,13 +95,13 @@ describe('CalendarService', () => {
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
-      };
+      } as unknown as CalendarGenerationOptions;
       
       const days = service.generateCalendarDays(2025, 4, options);
       
       // Find May 15, 2025 (our selected date)
       const selected = days.find(d => d.day === 15 && d.month === 4 && d.year === 2025);
-      expect(selected).toBeDefined();
+      expect(selected).toBeDefined();``
       expect(selected?.isSelected).toBe(true);
       
       // All other days should not be selected
@@ -123,7 +123,7 @@ describe('CalendarService', () => {
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
-      };
+      } as unknown as CalendarGenerationOptions;
       
       const days = service.generateCalendarDays(2025, 4, options);
       
@@ -153,7 +153,7 @@ describe('CalendarService', () => {
         isDateDisabledFn: function (date: Date): boolean {
           return false;
         }
-      };
+      } as unknown as CalendarGenerationOptions;
       
       const days = service.generateCalendarDays(2025, 4, options);
       
@@ -177,7 +177,7 @@ describe('CalendarService', () => {
         minDate: null,
         maxDate: null,
         disabledDates: []
-      };
+      } as unknown as CalendarGenerationOptions;
       
       const days = service.generateCalendarDays(2025, 4, options);
       

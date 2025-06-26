@@ -3,7 +3,7 @@
  * These tests focus on user-facing functionality and interactions
  */
 
-import { CalendarController } from '../../index';
+import { CalendarController } from '../../../index';
 import { createDate, mockDate, testDates } from '../test-utils';
 import { CalendarOptions } from '../../interfaces';
 
@@ -42,13 +42,17 @@ describe('CalendarController Integration Tests', () => {
       expect(monthView.year).toBe(2025);
       
       // Navigate to next month - June 2025
-      calendar.nextMonth();
+      if (calendar.nextMonth)
+        calendar.nextMonth();
+
       monthView = calendar.generateMonthView();
       expect(monthView.month).toBe(5);
       expect(monthView.year).toBe(2025);
       
       // Navigate to previous month - May 2025
-      calendar.previousMonth();
+      if (calendar.previousMonth)
+        calendar.previousMonth();
+
       monthView = calendar.generateMonthView();
       expect(monthView.month).toBe(4);
       expect(monthView.year).toBe(2025);

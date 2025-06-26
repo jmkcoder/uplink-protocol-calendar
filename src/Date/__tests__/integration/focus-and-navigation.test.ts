@@ -1,6 +1,6 @@
+import { CalendarControllerEvents } from '../../../../dist';
 import { CalendarControllerClass } from '../../controller';
 import { createDate, mockDate, testDates } from '../test-utils';
-import { CalendarOptions } from '../../interfaces';
 import { EventEmitter } from '@uplink-protocol/core';
 
 describe('Focus Changes and Calendar Navigation', () => {
@@ -209,7 +209,7 @@ describe('Focus Changes and Calendar Navigation', () => {
         const mockViewChanged = new EventEmitter<{month: number, year: number}>();
         const viewChangedSpy = jest.spyOn(mockViewChanged, 'emit');
         
-        controller.events = { viewChanged: mockViewChanged };
+        controller.events = { viewChanged: mockViewChanged } as CalendarControllerEvents;
         
         controller.selectMonth(7, 2025); // August 2025
         
@@ -246,7 +246,7 @@ describe('Focus Changes and Calendar Navigation', () => {
         const mockYearChanged = new EventEmitter<number>();
         const yearChangedSpy = jest.spyOn(mockYearChanged, 'emit');
         
-        controller.events = { yearChanged: mockYearChanged };
+        controller.events = { yearChanged: mockYearChanged }  as CalendarControllerEvents;
         
         controller.selectYear(2027);
         
@@ -470,7 +470,7 @@ describe('Focus Changes and Calendar Navigation', () => {
         viewChanged: mockViewChanged,
         monthChanged: mockMonthChanged,
         yearChanged: mockYearChanged
-      };
+      } as CalendarControllerEvents;
       
       controller.goToNextMonth();
       
@@ -483,7 +483,7 @@ describe('Focus Changes and Calendar Navigation', () => {
       
       controller.events = {
         yearRangeChanged: mockYearRangeChanged
-      };
+      } as CalendarControllerEvents;
       
       controller.goToNextYearRange();
       

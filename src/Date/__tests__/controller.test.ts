@@ -109,7 +109,8 @@ describe('CalendarControllerClass', () => {
       const initialMonth = controller._currentDate.getMonth();
       const initialYear = controller._currentDate.getFullYear();
       
-      controller.prevMonth();
+      if (controller.prevMonth)
+        controller.prevMonth();
       
       // Should now be April 2025
       expect(controller._currentDate.getMonth()).toBe((initialMonth - 1 + 12) % 12);
@@ -121,7 +122,8 @@ describe('CalendarControllerClass', () => {
       const initialMonth = controller._currentDate.getMonth();
       const initialYear = controller._currentDate.getFullYear();
       
-      controller.nextMonth();
+      if (controller.nextMonth)
+        controller.nextMonth();
       
       // Should now be June 2025
       expect(controller._currentDate.getMonth()).toBe((initialMonth + 1) % 12);
@@ -130,16 +132,18 @@ describe('CalendarControllerClass', () => {
     
     it('should navigate to previous year', () => {
       const initialYear = controller._currentDate.getFullYear();
-      
-      controller.prevYear();
-      
+
+      if (controller.prevYear)
+        controller.prevYear();
+
       expect(controller._currentDate.getFullYear()).toBe(initialYear - 1);
     });
     
     it('should navigate to next year', () => {
       const initialYear = controller._currentDate.getFullYear();
       
-      controller.nextYear();
+      if (controller.nextYear)
+        controller.nextYear();
       
       expect(controller._currentDate.getFullYear()).toBe(initialYear + 1);
     });

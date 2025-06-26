@@ -879,7 +879,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * @param date Date to check
    * @returns true if date is disabled
    */
-  private isDateDisabled(date: Date): boolean {
+  public isDateDisabled(date: Date): boolean {
     return this._constraintsService.isDateDisabled(
       date,
       this._minDate,

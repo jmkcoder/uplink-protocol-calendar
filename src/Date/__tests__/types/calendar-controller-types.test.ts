@@ -3,14 +3,14 @@
  * This ensures the exported types work correctly for consumers
  */
 
-import { CalendarController } from '../../index';
+import { CalendarController } from '../../../index';
 import {
   TypedCalendarController,
   CalendarState,
   BindingValue,
   SelectDateParams,
   DateSelectedEventData
-} from '../../types/calendar-controller.types';
+} from '../../../Date/types/calendar-controller.types';
 
 describe('Calendar Controller TypeScript Types', () => {
   let controller: TypedCalendarController;
@@ -179,7 +179,7 @@ describe('Calendar Controller TypeScript Types', () => {
       disabledDates: [],
       locale: 'en-US',
       firstDayOfWeek: 0
-    };
+    } as unknown as CalendarState;
     
     expect(mockState.currentDate instanceof Date).toBe(true);
     expect(mockState.selectedDate).toBeNull();

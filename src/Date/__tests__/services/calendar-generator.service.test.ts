@@ -1,7 +1,7 @@
 import { CalendarGeneratorService } from '../../services/calendar-generator.service';
 import { createDate, mockDate, testDates } from '../test-utils';
-import { CalendarDate, DateRange } from '../../interfaces/calendar.interfaces';
-import { CalendarGenerationOptions, MonthViewGenerationOptions, YearViewGenerationOptions } from '../../interfaces';
+import { DateRange } from '../../interfaces/calendar.interfaces';
+import { CalendarGenerationOptions, YearViewGenerationOptions } from '../../interfaces';
 
 describe('CalendarGeneratorService', () => {
   let service: CalendarGeneratorService;

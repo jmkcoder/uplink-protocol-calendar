@@ -68,7 +68,7 @@ describe('DateSelectionService', () => {
   });
 
   describe('clearSelection', () => {    it('should clear selected date', () => {
-      const result = service.clearSelection(false);
+      const result = service.clearSelection();
       expect(result.selectedDate).toBeNull();
       expect(result.selectedDateRange.startDate).toBeNull();
       expect(result.selectedDateRange.endDate).toBeNull();

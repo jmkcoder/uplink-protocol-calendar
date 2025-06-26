@@ -3,7 +3,7 @@
  * Verifies that each locale sets appropriate default format options
  */
 
-import { CalendarControllerClass } from '../controller';
+import { CalendarControllerClass } from '../../Date/controller';
 
 describe('Locale Default Formatting Tests', () => {
   let controller: CalendarControllerClass;
@@ -18,7 +18,7 @@ describe('Locale Default Formatting Tests', () => {
     it('should use numeric format for en-US (default)', () => {
       controller.setLocale('en-US');
       
-      const formatOptions = controller.getDateFormatOptions();
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'numeric',
@@ -38,7 +38,7 @@ describe('Locale Default Formatting Tests', () => {
     it('should use numeric format for en-GB', () => {
       controller.setLocale('en-GB');
       
-      const formatOptions = controller.getDateFormatOptions();
+      const formatOptions = controller.getDateFormatOptions()  as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'numeric',
@@ -67,7 +67,7 @@ describe('Locale Default Formatting Tests', () => {
     it('should use long month format for German (de-DE)', () => {
       controller.setLocale('de-DE');
       
-      const formatOptions = controller.getDateFormatOptions();
+      const formatOptions = controller.getDateFormatOptions()  as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -85,8 +85,8 @@ describe('Locale Default Formatting Tests', () => {
 
     it('should use long month format for French (fr-FR)', () => {
       controller.setLocale('fr-FR');
-      
-      const formatOptions = controller.getDateFormatOptions();
+
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -104,8 +104,8 @@ describe('Locale Default Formatting Tests', () => {
 
     it('should use long month format for Spanish (es-ES)', () => {
       controller.setLocale('es-ES');
-      
-      const formatOptions = controller.getDateFormatOptions();
+
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -123,8 +123,8 @@ describe('Locale Default Formatting Tests', () => {
 
     it('should use long month format for Italian (it-IT)', () => {
       controller.setLocale('it-IT');
-      
-      const formatOptions = controller.getDateFormatOptions();
+
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -142,8 +142,8 @@ describe('Locale Default Formatting Tests', () => {
 
     it('should use long month format for Dutch (nl-NL)', () => {
       controller.setLocale('nl-NL');
-      
-      const formatOptions = controller.getDateFormatOptions();
+
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -162,7 +162,7 @@ describe('Locale Default Formatting Tests', () => {
     it('should use long month format for Russian (ru-RU)', () => {
       controller.setLocale('ru-RU');
       
-      const formatOptions = controller.getDateFormatOptions();
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -177,8 +177,8 @@ describe('Locale Default Formatting Tests', () => {
 
     it('should use long month format for Portuguese (pt-BR)', () => {
       controller.setLocale('pt-BR');
-      
-      const formatOptions = controller.getDateFormatOptions();
+
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -196,7 +196,7 @@ describe('Locale Default Formatting Tests', () => {
     it('should use numeric format for Japanese (ja-JP)', () => {
       controller.setLocale('ja-JP');
       
-      const formatOptions = controller.getDateFormatOptions();
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'numeric',
@@ -214,8 +214,8 @@ describe('Locale Default Formatting Tests', () => {
 
     it('should use long month format for Chinese (zh-CN)', () => {
       controller.setLocale('zh-CN');
-      
-      const formatOptions = controller.getDateFormatOptions();
+
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'long',
@@ -231,7 +231,7 @@ describe('Locale Default Formatting Tests', () => {
     it('should use numeric format for Korean (ko-KR)', () => {
       controller.setLocale('ko-KR');
       
-      const formatOptions = controller.getDateFormatOptions();
+      const formatOptions = controller.getDateFormatOptions() as Intl.DateTimeFormatOptions;
       expect(formatOptions).toEqual({
         year: 'numeric',
         month: 'numeric',
@@ -466,7 +466,7 @@ describe('Locale Default Formatting Tests', () => {
         expect(typeof formatted).toBe('string');
         
         // Verify it matches native Intl.DateTimeFormat output
-        const expectedFormat = new Intl.DateTimeFormat(locale, expectedOptions).format(testDate);
+        const expectedFormat = new Intl.DateTimeFormat(locale, expectedOptions as Intl.DateTimeFormatOptions).format(testDate);
         expect(formatted).toBe(expectedFormat);
       });
     });
