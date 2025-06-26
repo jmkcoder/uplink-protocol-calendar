@@ -6,7 +6,7 @@
 
 # Class: CalendarGeneratorService
 
-Defined in: [services/calendar-generator.service.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L24)
+Defined in: [services/calendar-generator.service.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L24)
 
 Implementation of CalendarGeneratorService
 Responsible for generating calendar data structures
@@ -31,7 +31,7 @@ Responsible for generating calendar data structures
 
 > **generateCalendarDays**(`year`, `month`, `options`): [`CalendarDate`](../interfaces/CalendarDate.md)[]
 
-Defined in: [services/calendar-generator.service.ts:62](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L62)
+Defined in: [services/calendar-generator.service.ts:62](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L62)
 
 Generate calendar days for a specific month/year
 
@@ -71,7 +71,7 @@ Array of calendar dates
 
 > **generateCalendarMonths**(`year`, `options`): [`CalendarMonth`](../interfaces/CalendarMonth.md)[]
 
-Defined in: [services/calendar-generator.service.ts:132](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L132)
+Defined in: [services/calendar-generator.service.ts:132](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L132)
 
 Generate an array of calendar months for a year view
 
@@ -105,7 +105,7 @@ Array of calendar month objects
 
 > **generateCalendarYears**(`baseYear`, `rangeSize`, `options`): [`CalendarYear`](../interfaces/CalendarYear.md)[]
 
-Defined in: [services/calendar-generator.service.ts:171](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L171)
+Defined in: [services/calendar-generator.service.ts:171](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L171)
 
 Generate an array of calendar years for a year range view
 
@@ -145,7 +145,7 @@ Array of calendar year objects
 
 > **generateDecadeView**(`baseYear`, `options`): `object`
 
-Defined in: [services/calendar-generator.service.ts:395](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L395)
+Defined in: [services/calendar-generator.service.ts:395](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L395)
 
 Generate decade view (10 years)
 
@@ -187,7 +187,7 @@ Object with decade view data
 
 > **generateMonthView**(`year`, `month`, `options`): `object`
 
-Defined in: [services/calendar-generator.service.ts:303](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L303)
+Defined in: [services/calendar-generator.service.ts:303](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L303)
 
 Generate month view for a specific month/year
 
@@ -243,7 +243,7 @@ Object with month view data
 
 > **generateMultiYearView**(`baseYear`, `options`): `object`
 
-Defined in: [services/calendar-generator.service.ts:425](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L425)
+Defined in: [services/calendar-generator.service.ts:425](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L425)
 
 Generate multi-year view (typically for selecting a year within a decade or larger range)
 
@@ -289,7 +289,7 @@ Object with multi-year view data
 
 > **generateYearView**(`year`, `options`): `object`
 
-Defined in: [services/calendar-generator.service.ts:375](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L375)
+Defined in: [services/calendar-generator.service.ts:375](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L375)
 
 Generate year view with all months for a specific year
 
@@ -327,7 +327,7 @@ Object with year view data
 
 > **getCalendarDaysGenerator**(`getCurrentDate`, `getCalendarOptions`): () => [`CalendarDate`](../interfaces/CalendarDate.md)[]
 
-Defined in: [services/calendar-generator.service.ts:283](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L283)
+Defined in: [services/calendar-generator.service.ts:283](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L283)
 
 Get calendar days generation function
 Returns a function that can be called to generate calendar days
@@ -366,7 +366,7 @@ Function that generates calendar days
 
 > **getWeekNumber**(`date`, `locale?`): `number`
 
-Defined in: [services/calendar-generator.service.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/calendar-generator.service.ts#L30)
+Defined in: [services/calendar-generator.service.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/calendar-generator.service.ts#L30)
 
 #### Parameters
 

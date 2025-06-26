@@ -6,7 +6,7 @@
 
 # Class: InitializationService
 
-Defined in: [services/initialization.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/initialization.service.ts#L23)
+Defined in: [services/initialization.service.ts:23](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/initialization.service.ts#L23)
 
 Implementation of InitializationService
 Responsible for setting up and initializing calendar components
@@ -31,7 +31,7 @@ Responsible for setting up and initializing calendar components
 
 > **applyConfiguration**(`options`, `locale`, `calendarService`, `dateFormattingService`, `localizationService`): `object`
 
-Defined in: [services/initialization.service.ts:63](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/initialization.service.ts#L63)
+Defined in: [services/initialization.service.ts:63](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/initialization.service.ts#L63)
 
 Apply calendar configuration options
 
@@ -115,7 +115,7 @@ Apply calendar configuration options
 
 > **initializeBindings**(`currentDate`, `selectedDate`, `selectedDateRange`, `firstDayOfWeek`, `isRangeSelection`, `calendarDaysGenerator`, `getMonthNameFn`, `getWeekdayNamesFn`, `generateCalendarMonthsFn`, `generateCalendarYearsFn`): `Record`\<`string`, `Binding`\<`any`\>\>
 
-Defined in: [services/initialization.service.ts:27](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/services/initialization.service.ts#L27)
+Defined in: [services/initialization.service.ts:27](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/initialization.service.ts#L27)
 
 Initialize view state bindings and initial values
 

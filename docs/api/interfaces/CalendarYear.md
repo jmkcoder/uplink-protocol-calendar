@@ -6,7 +6,7 @@
 
 # Interface: CalendarYear
 
-Defined in: [interfaces/calendar.interfaces.ts:72](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar.interfaces.ts#L72)
+Defined in: [interfaces/calendar.interfaces.ts:72](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar.interfaces.ts#L72)
 
 CalendarYear - Interface for calendar year objects in year view
 
@@ -16,7 +16,7 @@ CalendarYear - Interface for calendar year objects in year view
 
 > **isCurrentYear**: `boolean`
 
-Defined in: [interfaces/calendar.interfaces.ts:74](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar.interfaces.ts#L74)
+Defined in: [interfaces/calendar.interfaces.ts:74](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar.interfaces.ts#L74)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [interfaces/calendar.interfaces.ts:74](https://github.com/jmkcoder/u
 
 > **isDisabled**: `boolean`
 
-Defined in: [interfaces/calendar.interfaces.ts:76](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar.interfaces.ts#L76)
+Defined in: [interfaces/calendar.interfaces.ts:76](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar.interfaces.ts#L76)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [interfaces/calendar.interfaces.ts:76](https://github.com/jmkcoder/u
 
 > `optional` **isInRange**: `boolean`
 
-Defined in: [interfaces/calendar.interfaces.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar.interfaces.ts#L77)
+Defined in: [interfaces/calendar.interfaces.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar.interfaces.ts#L77)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [interfaces/calendar.interfaces.ts:77](https://github.com/jmkcoder/u
 
 > **isSelected**: `boolean`
 
-Defined in: [interfaces/calendar.interfaces.ts:75](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar.interfaces.ts#L75)
+Defined in: [interfaces/calendar.interfaces.ts:75](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar.interfaces.ts#L75)
 
 ***
 
@@ -48,4 +48,4 @@ Defined in: [interfaces/calendar.interfaces.ts:75](https://github.com/jmkcoder/u
 
 > **year**: `number`
 
-Defined in: [interfaces/calendar.interfaces.ts:73](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar.interfaces.ts#L73)
+Defined in: [interfaces/calendar.interfaces.ts:73](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar.interfaces.ts#L73)

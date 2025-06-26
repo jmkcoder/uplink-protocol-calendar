@@ -6,7 +6,7 @@
 
 # Interface: ICalendarGeneratorService
 
-Defined in: [interfaces/calendar-generator.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar-generator.service.interfaces.ts#L8)
+Defined in: [interfaces/calendar-generator.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar-generator.service.interfaces.ts#L8)
 
 Calendar generator service interface
 Responsible for generating calendar days based on given options
@@ -17,7 +17,7 @@ Responsible for generating calendar days based on given options
 
 > **generateCalendarDays**(`year`, `month`, `options`): [`CalendarDate`](CalendarDate.md)[]
 
-Defined in: [interfaces/calendar-generator.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar-generator.service.interfaces.ts#L12)
+Defined in: [interfaces/calendar-generator.service.interfaces.ts:12](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar-generator.service.interfaces.ts#L12)
 
 Generate calendar days for a specified month/year
 
@@ -45,7 +45,7 @@ Generate calendar days for a specified month/year
 
 > **generateCalendarMonths**(`year`, `options`): [`CalendarMonth`](CalendarMonth.md)[]
 
-Defined in: [interfaces/calendar-generator.service.interfaces.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar-generator.service.interfaces.ts#L21)
+Defined in: [interfaces/calendar-generator.service.interfaces.ts:21](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar-generator.service.interfaces.ts#L21)
 
 Generate calendar months for a specified year
 
@@ -69,7 +69,7 @@ Generate calendar months for a specified year
 
 > **generateCalendarYears**(`baseYear`, `rangeSize`, `options`): [`CalendarYear`](CalendarYear.md)[]
 
-Defined in: [interfaces/calendar-generator.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar-generator.service.interfaces.ts#L29)
+Defined in: [interfaces/calendar-generator.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar-generator.service.interfaces.ts#L29)
 
 Generate calendar years for a specified year range
 
@@ -97,7 +97,7 @@ Generate calendar years for a specified year range
 
 > **generateMonthView**(`year`, `month`, `options`): `object`
 
-Defined in: [interfaces/calendar-generator.service.interfaces.ts:48](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar-generator.service.interfaces.ts#L48)
+Defined in: [interfaces/calendar-generator.service.interfaces.ts:48](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar-generator.service.interfaces.ts#L48)
 
 Generate a complete month view with proper structure for rendering
 Includes weeks and weekdays data
@@ -142,7 +142,7 @@ Includes weeks and weekdays data
 
 > **getCalendarDaysGenerator**(`getCurrentDate`, `getCalendarOptions`): () => [`CalendarDate`](CalendarDate.md)[]
 
-Defined in: [interfaces/calendar-generator.service.interfaces.ts:39](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/calendar-generator.service.interfaces.ts#L39)
+Defined in: [interfaces/calendar-generator.service.interfaces.ts:39](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/calendar-generator.service.interfaces.ts#L39)
 
 Get calendar days generation function
 Returns a function that can be called to generate calendar days

@@ -6,7 +6,7 @@
 
 # Interface: CalendarControllerBindings
 
-Defined in: [types/calendar-controller.types.ts:20](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L20)
+Defined in: [types/calendar-controller.types.ts:20](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L20)
 
 Calendar Controller Bindings - Reactive state properties
 These bindings automatically update the UI when calendar state changes
@@ -17,7 +17,7 @@ These bindings automatically update the UI when calendar state changes
 
 > **calendarDays**: `Binding`\<[`CalendarDate`](CalendarDate.md)[]\>
 
-Defined in: [types/calendar-controller.types.ts:43](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L43)
+Defined in: [types/calendar-controller.types.ts:43](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L43)
 
 Array of calendar days for the current month view
 
@@ -27,7 +27,7 @@ Array of calendar days for the current month view
 
 > **calendarMonths**: `Binding`\<[`CalendarMonth`](CalendarMonth.md)[]\>
 
-Defined in: [types/calendar-controller.types.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L46)
+Defined in: [types/calendar-controller.types.ts:46](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L46)
 
 Array of calendar months for the year view
 
@@ -37,7 +37,7 @@ Array of calendar months for the year view
 
 > **calendarYears**: `Binding`\<[`CalendarYear`](CalendarYear.md)[]\>
 
-Defined in: [types/calendar-controller.types.ts:49](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L49)
+Defined in: [types/calendar-controller.types.ts:49](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L49)
 
 Array of calendar years for the decade view
 
@@ -47,7 +47,7 @@ Array of calendar years for the decade view
 
 > **currentDate**: `Binding`\<`Date`\>
 
-Defined in: [types/calendar-controller.types.ts:31](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L31)
+Defined in: [types/calendar-controller.types.ts:31](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L31)
 
 Current date being displayed (navigation state)
 
@@ -57,7 +57,7 @@ Current date being displayed (navigation state)
 
 > **currentMonth**: `Binding`\<`number`\>
 
-Defined in: [types/calendar-controller.types.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L34)
+Defined in: [types/calendar-controller.types.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L34)
 
 Current month number (0-based)
 
@@ -67,7 +67,7 @@ Current month number (0-based)
 
 > **currentYear**: `Binding`\<`number`\>
 
-Defined in: [types/calendar-controller.types.ts:37](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L37)
+Defined in: [types/calendar-controller.types.ts:37](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L37)
 
 Current year number
 
@@ -77,7 +77,7 @@ Current year number
 
 > **currentYearRangeBase**: `Binding`\<`number` \| [`YearRange`](YearRange.md)\>
 
-Defined in: [types/calendar-controller.types.ts:58](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L58)
+Defined in: [types/calendar-controller.types.ts:58](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L58)
 
 Current year range base for decade view
 
@@ -87,7 +87,7 @@ Current year range base for decade view
 
 > **focusedDate**: `Binding`\<`null` \| `Date`\>
 
-Defined in: [types/calendar-controller.types.ts:28](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L28)
+Defined in: [types/calendar-controller.types.ts:28](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L28)
 
 Currently focused date (for accessibility)
 
@@ -97,7 +97,7 @@ Currently focused date (for accessibility)
 
 > **isRangeSelection**: `Binding`\<`boolean`\>
 
-Defined in: [types/calendar-controller.types.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L55)
+Defined in: [types/calendar-controller.types.ts:55](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L55)
 
 Whether range selection mode is enabled
 
@@ -107,7 +107,7 @@ Whether range selection mode is enabled
 
 > **monthName**: `Binding`\<`string`\>
 
-Defined in: [types/calendar-controller.types.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L40)
+Defined in: [types/calendar-controller.types.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L40)
 
 Current month name in the selected locale
 
@@ -117,7 +117,7 @@ Current month name in the selected locale
 
 > **selectedDate**: `Binding`\<`null` \| `Date`\>
 
-Defined in: [types/calendar-controller.types.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L22)
+Defined in: [types/calendar-controller.types.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L22)
 
 Currently selected date (null if no date selected)
 
@@ -127,7 +127,7 @@ Currently selected date (null if no date selected)
 
 > **selectedDateRange**: `Binding`\<[`DateRange`](DateRange.md)\>
 
-Defined in: [types/calendar-controller.types.ts:25](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L25)
+Defined in: [types/calendar-controller.types.ts:25](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L25)
 
 Selected date range (for range selection mode)
 
@@ -137,6 +137,6 @@ Selected date range (for range selection mode)
 
 > **weekdays**: `Binding`\<`string`[]\>
 
-Defined in: [types/calendar-controller.types.ts:52](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/types/calendar-controller.types.ts#L52)
+Defined in: [types/calendar-controller.types.ts:52](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L52)
 
 Array of weekday names in the selected locale
