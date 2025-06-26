@@ -59,26 +59,26 @@ The Time Controller provides reactive bindings that automatically update when th
 
 ```typescript
 // Current time state
-timeController.bindings.selectedTime.get();     // Selected time as Date
-timeController.bindings.selectedTimeRange.get(); // Selected time range
+timeController.bindings.selectedTime.current;     // Selected time as Date
+timeController.bindings.selectedTimeRange.current; // Selected time range
 
 // Time segments
-timeController.bindings.currentHour.get();      // Current hour (0-23)
-timeController.bindings.currentMinute.get();    // Current minute (0-59)
-timeController.bindings.currentSecond.get();    // Current second (0-59)
-timeController.bindings.currentMillisecond.get(); // Current millisecond (0-999)
+timeController.bindings.currentHour.current;      // Current hour (0-23)
+timeController.bindings.currentMinute.current;    // Current minute (0-59)
+timeController.bindings.currentSecond.current;    // Current second (0-59)
+timeController.bindings.currentMillisecond.current; // Current millisecond (0-999)
 
 // 12-hour format specific
-timeController.bindings.currentHour12.get();    // Hour in 12-hour format (1-12)
-timeController.bindings.currentPeriod.get();    // 'AM' or 'PM'
+timeController.bindings.currentHour12.current;    // Hour in 12-hour format (1-12)
+timeController.bindings.currentPeriod.current;    // 'AM' or 'PM'
 
 // Time segments arrays for UI
-timeController.bindings.timeSegments.get();     // Array of time segments
-timeController.bindings.hourSegments.get();     // Available hour options
-timeController.bindings.minuteSegments.get();   // Available minute options
+timeController.bindings.timeSegments.current;     // Array of time segments
+timeController.bindings.hourSegments.current;     // Available hour options
+timeController.bindings.minuteSegments.current;   // Available minute options
 
 // Focus and accessibility
-timeController.bindings.focusedSegment.get();   // Currently focused segment
+timeController.bindings.focusedSegment.current;   // Currently focused segment
 ```
 
 ## Methods
@@ -198,7 +198,7 @@ timeController.selectTime(9, 0); // 9:00 AM
 timeController.selectTime(17, 30); // 5:30 PM
 
 // Get range
-const range = timeController.bindings.selectedTimeRange.get();
+const range = timeController.bindings.selectedTimeRange.current;
 console.log(range); // { startTime: Date, endTime: Date }
 ```
 
