@@ -42,9 +42,24 @@ describe('DateFormattingService', () => {
       
       // Set options
       service.setDateFormatOptions(options);
-      
-      // Should be set
+        // Should be set
       expect(service.getDateFormatOptions()).toEqual(options);
+    });
+
+    it('should allow setting date format options to null to reset to defaults', () => {
+      const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      
+      // Set options
+      service.setDateFormatOptions(options);
+      expect(service.getDateFormatOptions()).toEqual(options);
+      
+      // Reset to null
+      service.setDateFormatOptions(null);
+      expect(service.getDateFormatOptions()).toBeNull();
     });
   });
 
@@ -57,10 +72,22 @@ describe('DateFormattingService', () => {
 
       // Format date with default options
       service.setDateFormatOptions({ year: 'numeric', month: 'long', day: 'numeric' });
+      const result = service.formatDate(date);      // Should have delegated to localization service
+      expect(mockLocalizationService.formatDate).toHaveBeenCalledWith(date, { year: 'numeric', month: 'long', day: 'numeric' });
+      expect(result).toBe('localized date');
+    });
+
+    it('should use localization service with locale defaults when no format options are set', () => {
+      const date = createDate(2025, 4, 15);
+
+      // Set localization service but no date format options
+      service.setLocalizationService(mockLocalizationService);
+      service.setDateFormatOptions(null);
+      
       const result = service.formatDate(date);
 
-      // Should have delegated to localization service
-      expect(mockLocalizationService.formatDate).toHaveBeenCalledWith(date, { year: 'numeric', month: 'long', day: 'numeric' });
+      // Should have delegated to localization service without format options (uses locale defaults)
+      expect(mockLocalizationService.formatDate).toHaveBeenCalledWith(date);
       expect(result).toBe('localized date');
     });
 

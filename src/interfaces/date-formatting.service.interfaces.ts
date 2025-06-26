@@ -32,11 +32,10 @@ export interface IDateFormattingService {
    * Get the localization service
    */
   getLocalizationService(): any | null;
-  
-  /**
+    /**
    * Set the date format options
    */
-  setDateFormatOptions(options: Intl.DateTimeFormatOptions): void;
+  setDateFormatOptions(options: Intl.DateTimeFormatOptions | null): void;
   
   /**
    * Get the date format options

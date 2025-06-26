@@ -369,11 +369,10 @@ export class CalendarControllerClass implements CalendarControllerInterface {
             short: { type: "boolean", description: "Whether to return short names", required: false }
           },
           returns: "string[]"
-        },
-        setDateFormatOptions: {
+        },        setDateFormatOptions: {
           description: "Set date format options",
           parameters: {
-            options: { type: "Intl.DateTimeFormatOptions", description: "Date formatting options", required: true }
+            options: { type: "Intl.DateTimeFormatOptions | null", description: "Date formatting options or null to use locale defaults", required: true }
           },
           returns: "void"
         },
@@ -641,7 +640,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       // Re-connect services with the updated localization service
       this._calendarService.setLocalizationService(this._localizationService);
       this._dateFormattingService.setLocalizationService(this._localizationService);
-        // Apply configuration options to this controller instance
+
+      // Apply configuration options to this controller instance
       if (options.initialSelectedDate) this._selectedDate = options.initialSelectedDate;
       if (options.minDate) this._minDate = options.minDate;
       if (options.maxDate) this._maxDate = options.maxDate;
@@ -649,7 +649,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       if (options.dateFormat) this._dateFormat = options.dateFormat;
       if (options.isRangeSelection !== undefined) this._isRangeSelection = options.isRangeSelection;
       if (options.hideOtherMonthDays !== undefined) this._hideOtherMonthDays = options.hideOtherMonthDays;
-      if (options.dateFormatOptions) this._dateFormatOptions = options.dateFormatOptions;      if (options.disabledDates) this._disabledDates = [...options.disabledDates];
+      if (options.dateFormatOptions) this._dateFormatOptions = options.dateFormatOptions;
+      if (options.disabledDates) this._disabledDates = [...options.disabledDates];
       if (options.disabledDaysOfWeek) {
         // Use constraints service for validation
         this._disabledDaysOfWeek = this._constraintsService.setDisabledDaysOfWeek(options.disabledDaysOfWeek);
@@ -1196,7 +1197,6 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       calendarDays: true,
     });
   }
-
   /**
    * Get formatted date string
    * @returns Formatted date string or null
@@ -1204,13 +1204,20 @@ export class CalendarControllerClass implements CalendarControllerInterface {
   public getFormattedDate(): string | null {
     if (!this._selectedDate) return null;
 
-    if (this._localizationService && this._dateFormatOptions) {
-      return this._localizationService.formatDate(
-        this._selectedDate,
-        this._dateFormatOptions
-      );
+    // If we have a localization service, use it for locale-aware formatting
+    if (this._localizationService) {
+      // If explicit format options are set, use them
+      if (this._dateFormatOptions) {
+        return this._localizationService.formatDate(
+          this._selectedDate,
+          this._dateFormatOptions
+        );
+      }
+      // Otherwise, use locale-default formatting (no options = browser default for locale)
+      return this._localizationService.formatDate(this._selectedDate);
     }
 
+    // Fallback to date formatting service
     return this._dateFormattingService.formatDate(this._selectedDate);
   }
 
@@ -1370,8 +1377,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    */
   public getDisabledDaysOfWeek(): number[] {
     return this._constraintsService.getDisabledDaysOfWeek();
-  }
-
+  }  
+  
   /**
    * Set locale
    * @param locale Locale string
@@ -1380,7 +1387,15 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     this._locale = locale;
     this._localizationService.setLocale(locale);
 
-    this.bindings.monthName.set(
+    // If custom format options were previously set, reapply them
+    if (this._dateFormatOptions) {
+      this._dateFormattingService.setDateFormatOptions(this._dateFormatOptions);
+    } else {
+      // If no custom format options were set, set locale-appropriate defaults
+      const localeDefaults = this.getLocaleDefaultFormatOptions(locale);
+      this._dateFormatOptions = localeDefaults;
+      this._dateFormattingService.setDateFormatOptions(localeDefaults);
+    }    this.bindings.monthName.set(
       this._calendarService.getMonthName(this._currentDate.getMonth())
     );
     this.bindings.weekdays.set(
@@ -1395,13 +1410,13 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    */
   public getLocale(): string {
     return this._locale;
-  }
-
+  }  
+  
   /**
    * Set date format options
-   * @param options Intl.DateTimeFormatOptions
+   * @param options Intl.DateTimeFormatOptions or null to use locale defaults
    */
-  public setDateFormatOptions(options: Intl.DateTimeFormatOptions): void {
+  public setDateFormatOptions(options: Intl.DateTimeFormatOptions | null): void {
     this._dateFormatOptions = options;
     this._dateFormattingService.setDateFormatOptions(options);
   }
@@ -1438,7 +1453,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
    * @param date Date to format
    * @param options Format options or format string
    * @returns Formatted date string
-   */  public formatDate(
+   */  
+  public formatDate(
     date: Date,
     options?: Intl.DateTimeFormatOptions | string
   ): string {
@@ -1854,6 +1870,72 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       calendarDays: true,
     });
   }
+
+  /**
+   * Get locale-specific default format options
+   * @param locale The locale to get defaults for
+   * @returns Appropriate format options for the locale
+   */  
+  private getLocaleDefaultFormatOptions(locale: string): Intl.DateTimeFormatOptions {
+    // Extract language from locale for fallback purposes
+    const [language] = locale.toLowerCase().split('-');
+    
+    // Define locale-specific defaults
+    const localeDefaults: Record<string, Intl.DateTimeFormatOptions> = {
+      // US English - M/D/YYYY format
+      'en-us': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      'en': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      
+      // UK English - DD/MM/YYYY format
+      'en-gb': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      
+      // German - DD.MM.YYYY format with long month names
+      'de-de': { year: 'numeric', month: 'long', day: 'numeric' },
+      'de': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // French - DD/MM/YYYY format with long month names
+      'fr-fr': { year: 'numeric', month: 'long', day: 'numeric' },
+      'fr': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Spanish - DD/MM/YYYY format with long month names
+      'es-es': { year: 'numeric', month: 'long', day: 'numeric' },
+      'es': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Italian - DD/MM/YYYY format with long month names
+      'it-it': { year: 'numeric', month: 'long', day: 'numeric' },
+      'it': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Japanese - YYYY/MM/DD format
+      'ja-jp': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      'ja': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      
+      // Chinese - YYYY年MM月DD日 format
+      'zh-cn': { year: 'numeric', month: 'long', day: 'numeric' },
+      'zh': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Portuguese - DD/MM/YYYY format with long month names
+      'pt-br': { year: 'numeric', month: 'long', day: 'numeric' },
+      'pt': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Russian - DD.MM.YYYY format with long month names
+      'ru-ru': { year: 'numeric', month: 'long', day: 'numeric' },
+      'ru': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Dutch - DD-MM-YYYY format with long month names
+      'nl-nl': { year: 'numeric', month: 'long', day: 'numeric' },
+      'nl': { year: 'numeric', month: 'long', day: 'numeric' },
+      
+      // Korean - YYYY.MM.DD format
+      'ko-kr': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      'ko': { year: 'numeric', month: 'numeric', day: 'numeric' }
+    };
+    
+    // Try exact match first, then language-only match, then fallback to en-US
+    return localeDefaults[locale.toLowerCase()] || 
+           localeDefaults[language] || 
+           localeDefaults['en-us'];
+  }
+
   /**
    * Get accessible label for a date
    * @param date Date to get label for
@@ -2078,7 +2160,6 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       updates.forEach(update => update());
     });
   }
-
 }
 
 /**

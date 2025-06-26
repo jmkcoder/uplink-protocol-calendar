@@ -160,9 +160,8 @@ export interface CalendarControllerMethods {
   
   /** Get weekday names in the current locale */
   getWeekdayNames(short?: boolean): string[];
-  
-  /** Set date format options */
-  setDateFormatOptions(options: Intl.DateTimeFormatOptions): void;
+    /** Set date format options */
+  setDateFormatOptions(options: Intl.DateTimeFormatOptions | null): void;
   
   /** Get current date format options */
   getDateFormatOptions(): Intl.DateTimeFormatOptions | null;

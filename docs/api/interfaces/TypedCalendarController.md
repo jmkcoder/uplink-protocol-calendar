@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.1**](../README.md)
+[**@uplink-protocol/form-controller v0.2.2**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TypedCalendarController
 
-Defined in: [types/calendar-controller.types.ts:299](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L299)
+Defined in: [types/calendar-controller.types.ts:298](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L298)
 
 Complete Calendar Controller Interface
 Combines all the above interfaces into a single comprehensive type
@@ -22,7 +22,7 @@ Combines all the above interfaces into a single comprehensive type
 
 > **bindings**: [`CalendarControllerBindings`](CalendarControllerBindings.md)
 
-Defined in: [types/calendar-controller.types.ts:301](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L301)
+Defined in: [types/calendar-controller.types.ts:300](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L300)
 
 Reactive state bindings
 
@@ -32,7 +32,7 @@ Reactive state bindings
 
 > **events**: [`CalendarControllerEvents`](CalendarControllerEvents.md)
 
-Defined in: [types/calendar-controller.types.ts:307](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L307)
+Defined in: [types/calendar-controller.types.ts:306](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L306)
 
 Event emitters
 
@@ -42,7 +42,7 @@ Event emitters
 
 > **methods**: [`CalendarControllerMethods`](CalendarControllerMethods.md)
 
-Defined in: [types/calendar-controller.types.ts:304](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L304)
+Defined in: [types/calendar-controller.types.ts:303](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L303)
 
 Available methods
 
@@ -52,7 +52,7 @@ Available methods
 
 > `optional` **options**: [`CalendarOptions`](CalendarOptions.md)
 
-Defined in: [types/calendar-controller.types.ts:310](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L310)
+Defined in: [types/calendar-controller.types.ts:309](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L309)
 
 Calendar configuration options
 
@@ -62,7 +62,7 @@ Calendar configuration options
 
 > **selectedDateRange**: `object`
 
-Defined in: [types/calendar-controller.types.ts:324](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L324)
+Defined in: [types/calendar-controller.types.ts:323](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L323)
 
 Selected date range with flexible property access
 
@@ -88,7 +88,7 @@ Selected date range with flexible property access
 
 > **clearSelection**(): `void`
 
-Defined in: [types/calendar-controller.types.ts:319](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L319)
+Defined in: [types/calendar-controller.types.ts:318](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L318)
 
 #### Returns
 
@@ -100,7 +100,7 @@ Defined in: [types/calendar-controller.types.ts:319](https://github.com/jmkcoder
 
 > **goToNextMonth**(): `void`
 
-Defined in: [types/calendar-controller.types.ts:315](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L315)
+Defined in: [types/calendar-controller.types.ts:314](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L314)
 
 #### Returns
 
@@ -112,7 +112,7 @@ Defined in: [types/calendar-controller.types.ts:315](https://github.com/jmkcoder
 
 > **goToNextYear**(): `void`
 
-Defined in: [types/calendar-controller.types.ts:317](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L317)
+Defined in: [types/calendar-controller.types.ts:316](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L316)
 
 #### Returns
 
@@ -124,7 +124,7 @@ Defined in: [types/calendar-controller.types.ts:317](https://github.com/jmkcoder
 
 > **goToPreviousMonth**(): `void`
 
-Defined in: [types/calendar-controller.types.ts:316](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L316)
+Defined in: [types/calendar-controller.types.ts:315](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L315)
 
 #### Returns
 
@@ -136,7 +136,7 @@ Defined in: [types/calendar-controller.types.ts:316](https://github.com/jmkcoder
 
 > **goToPreviousYear**(): `void`
 
-Defined in: [types/calendar-controller.types.ts:318](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L318)
+Defined in: [types/calendar-controller.types.ts:317](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L317)
 
 #### Returns
 
@@ -148,7 +148,7 @@ Defined in: [types/calendar-controller.types.ts:318](https://github.com/jmkcoder
 
 > **selectDate**(`yearOrDate`, `month?`, `day?`): `void`
 
-Defined in: [types/calendar-controller.types.ts:314](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L314)
+Defined in: [types/calendar-controller.types.ts:313](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L313)
 
 #### Parameters
 
@@ -174,7 +174,7 @@ Defined in: [types/calendar-controller.types.ts:314](https://github.com/jmkcoder
 
 > **setRangeSelectionMode**(`isRange`): `void`
 
-Defined in: [types/calendar-controller.types.ts:320](https://github.com/jmkcoder/uplink-protocol-calendar/blob/311e0b81efba7399cf1c367c0a2007aa66f3b830/src/types/calendar-controller.types.ts#L320)
+Defined in: [types/calendar-controller.types.ts:319](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/types/calendar-controller.types.ts#L319)
 
 #### Parameters
 

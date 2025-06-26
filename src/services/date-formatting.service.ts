@@ -25,12 +25,11 @@ export class DateFormattingService implements IDateFormattingService {
   public getLocalizationService(): ILocalizationService | null {
     return this._localizationService;
   }
-  
-  /**
+    /**
    * Set the date format options for Intl.DateTimeFormat
    * @param options Format options
    */
-  public setDateFormatOptions(options: Intl.DateTimeFormatOptions): void {
+  public setDateFormatOptions(options: Intl.DateTimeFormatOptions | null): void {
     this._dateFormatOptions = options;
   }
   
@@ -56,8 +55,7 @@ export class DateFormattingService implements IDateFormattingService {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const year = date.getFullYear();
       return `${day}/${month}/${year}`;
-    }
-    // If localization service is available and format is an object or known type, use it
+    }    // If localization service is available and format is an object or known type, use it
     if (this._localizationService) {
       if (typeof format === 'object' && format !== null) {
         return this._localizationService.formatDate(date, format);
@@ -67,6 +65,10 @@ export class DateFormattingService implements IDateFormattingService {
       }
       if (!format && this._dateFormatOptions) {
         return this._localizationService.formatDate(date, this._dateFormatOptions);
+      }
+      // If no format specified and no date format options, use locale-default formatting
+      if (!format && !this._dateFormatOptions) {
+        return this._localizationService.formatDate(date);
       }
     }
     // Use default format if set

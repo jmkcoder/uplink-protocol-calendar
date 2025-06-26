@@ -5,6 +5,40 @@ All notable changes to the `@uplink-protocol/calendar-controller` package will b
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2025-06-25
+
+### Added
+- **Intelligent Locale-Based Date Formatting**
+  - Enhanced `setLocale()` method to automatically apply appropriate format defaults for different locales
+  - Added `getLocaleDefaultFormatOptions()` private method with comprehensive locale-specific formatting rules
+  - Supports 15+ locales with culturally appropriate formatting (e.g., long month names for European locales, numeric formatting for English/Asian locales)
+  - Language-only locale fallbacks (e.g., "de" falls back to "de-DE" defaults)
+  - Unknown locale fallback to "en-US" formatting
+
+- **Enhanced Date Format Management**
+  - `setDateFormatOptions()` now accepts `null` to reset to locale-appropriate defaults
+  - Improved persistence of custom format options across locale changes
+  - Better integration between `getFormattedDate()` and locale-specific formatting
+
+- **Comprehensive Test Coverage**
+  - Added 33 new tests in `locale-formatting-defaults.test.ts`
+  - Validates correct format options for all supported locales
+  - Tests real-world formatting output against browser `Intl.DateTimeFormat`
+  - Verifies format option persistence and reset behavior
+  - Edge case testing for unknown locales and case-insensitive handling
+
+### Enhanced
+- **Localization Service Integration**
+  - Improved fallback logic in `DateFormattingService` when no format options are specified
+  - Enhanced `getFormattedDate()` to use locale-default formatting when no explicit options are set
+  - Better coordination between localization and date formatting services
+
+### Technical
+- **Developer Experience**
+  - Comprehensive locale formatting validation tests
+  - Improved TypeScript type definitions for date formatting
+  - Enhanced documentation for internationalization features
+
 ## [0.2.1] - 2025-06-02
 
 ### Fixed

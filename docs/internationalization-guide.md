@@ -2,11 +2,11 @@
 
 This guide explains how to use the internationalization features of the Calendar Controller.
 
-> **Latest Update (v0.2.1)**: Enhanced example compatibility ensures internationalization examples work reliably across all browsers.
+> **Latest Update (v0.2.2)**: Added intelligent locale-based date formatting with automatic format defaults for 15+ locales and enhanced locale switching capabilities.
 
 ## Overview
 
-The Calendar Controller supports internationalization through the JavaScript `Intl` API, allowing you to display the calendar in different languages and formats according to regional preferences.
+The Calendar Controller supports comprehensive internationalization through the JavaScript `Intl` API, allowing you to display the calendar in different languages and formats according to regional preferences. As of v0.2.2, the controller automatically applies culturally appropriate date format defaults for different locales, making internationalization even easier.
 
 ## Basic Configuration
 
@@ -16,7 +16,14 @@ To initialize a calendar with internationalization support:
 import { CalendarController } from '@uplink-protocol/calendar-controller';
 
 // Create a calendar with Spanish (Spain) locale
+// The controller automatically applies appropriate format defaults
 const calendar = CalendarController({
+  locale: 'es-ES'
+  // dateFormatOptions is now optional - intelligent defaults are applied
+});
+
+// Or with custom format options that override the defaults
+const customCalendar = CalendarController({
   locale: 'es-ES',
   dateFormatOptions: {
     weekday: 'short',
@@ -29,22 +36,62 @@ const calendar = CalendarController({
 
 ## Locale Options
 
-The `locale` parameter accepts any valid BCP 47 language tag. Some common examples:
+The `locale` parameter accepts any valid BCP 47 language tag. The controller includes intelligent formatting defaults for the following locales:
 
-- `en-US` - English (United States)
+### Supported Locales with Smart Defaults
+
+**English Locales** (Numeric formatting):
+- `en-US` - English (United States) 
 - `en-GB` - English (United Kingdom)
+- `en` - Generic English
+
+**European Locales** (Long month formatting):
 - `fr-FR` - French (France)
 - `de-DE` - German (Germany)
-- `ja-JP` - Japanese (Japan)
-- `zh-CN` - Chinese (Simplified, China)
-- `ar-EG` - Arabic (Egypt)
+- `es-ES` - Spanish (Spain)
+- `it-IT` - Italian (Italy)
+- `nl-NL` - Dutch (Netherlands)
+- `pt-BR` - Portuguese (Brazil)
 - `ru-RU` - Russian (Russia)
+
+**Asian Locales**:
+- `ja-JP` - Japanese (Japan) - Numeric formatting
+- `ko-KR` - Korean (South Korea) - Numeric formatting
+- `zh-CN` - Chinese (Simplified, China) - Long month formatting
+
+**Language Fallbacks**:
+The controller supports language-only codes that fall back to the primary region:
+- `fr` → `fr-FR`, `de` → `de-DE`, `es` → `es-ES`, etc.
+
+**Unknown Locales**:
+Any unsupported locale automatically falls back to `en-US` formatting defaults.
+
+## Automatic Date Format Defaults
+
+**New in v0.2.2**: The controller automatically applies culturally appropriate date format defaults based on the selected locale:
+
+```javascript
+// German locale automatically gets long month formatting
+calendar.methods.setLocale('de-DE');
+// Automatically applies: { year: 'numeric', month: 'long', day: 'numeric' }
+// Results in: "15. Januar 2025"
+
+// US English gets numeric formatting  
+calendar.methods.setLocale('en-US');
+// Automatically applies: { year: 'numeric', month: 'numeric', day: 'numeric' }
+// Results in: "1/15/2025"
+
+// Japanese gets numeric formatting
+calendar.methods.setLocale('ja-JP'); 
+// Automatically applies: { year: 'numeric', month: 'numeric', day: 'numeric' }
+// Results in: "2025/1/15"
+```
 
 ## Date Format Options
 
-You can customize the date format using the `dateFormatOptions` parameter, which accepts an object conforming to the [Intl.DateTimeFormat options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat).
+You can still customize the date format using the `dateFormatOptions` parameter, which accepts an object conforming to the [Intl.DateTimeFormat options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat).
 
-Common options include:
+### Custom Format Examples
 
 ```javascript
 // Full date and time
@@ -67,6 +114,24 @@ Common options include:
   month: 'long',
   day: 'numeric'
 }
+```
+
+### Resetting to Locale Defaults
+
+**New in v0.2.2**: You can reset custom format options to use the locale's intelligent defaults:
+
+```javascript
+// Set custom formatting
+calendar.methods.setDateFormatOptions({
+  weekday: 'long',
+  year: '2-digit',
+  month: 'short',
+  day: 'numeric'
+});
+
+// Reset to locale-appropriate defaults
+calendar.methods.setDateFormatOptions(null);
+// Now uses the intelligent defaults for the current locale
 ```
 
 ## Dynamic Locale Switching

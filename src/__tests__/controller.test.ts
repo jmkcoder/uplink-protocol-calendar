@@ -174,6 +174,169 @@ describe('CalendarControllerClass', () => {
       expect(controller.bindings.calendarYears).toBeDefined();
     });
   });
+
+  describe('localization and formatting', () => {
+    beforeEach(() => {
+      // Create a fresh controller for each test
+      controller = new CalendarControllerClass();
+    });
+
+    it('should initialize with default locale and null format options', () => {
+      expect(controller._locale).toBe('en-US');
+      expect(controller._dateFormatOptions).toBeNull();
+    });
+
+    it('should initialize with provided locale from options', () => {
+      const options: CalendarOptions = {
+        locale: 'fr-FR'
+      };
+      
+      const frenchController = new CalendarControllerClass(options);
+      
+      expect(frenchController._locale).toBe('fr-FR');
+      expect(frenchController._dateFormatOptions).toBeNull();
+    });
+
+    it('should initialize with provided dateFormatOptions from options', () => {
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      
+      const options: CalendarOptions = {
+        dateFormatOptions: formatOptions
+      };
+      
+      const formattedController = new CalendarControllerClass(options);
+      
+      expect(formattedController._dateFormatOptions).toEqual(formatOptions);
+    });
+
+    it('should set locale and maintain existing format options', () => {
+      // First set some format options
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit'
+      };
+      
+      controller.setDateFormatOptions(formatOptions);
+      expect(controller._dateFormatOptions).toEqual(formatOptions);
+      
+      // Then change locale - format options should be reapplied
+      controller.setLocale('de-DE');
+      
+      expect(controller._locale).toBe('de-DE');
+      expect(controller._dateFormatOptions).toEqual(formatOptions);
+    });    it('should set locale without format options and populate locale defaults', () => {
+      // Ensure format options are null initially
+      expect(controller._dateFormatOptions).toBeNull();
+      
+      // Change locale - should populate format options with locale defaults
+      controller.setLocale('de-DE');
+      
+      expect(controller._locale).toBe('de-DE');
+      expect(controller._dateFormatOptions).not.toBeNull();
+      expect(controller._dateFormatOptions).toEqual({
+        year: 'numeric',
+        month: 'long', 
+        day: 'numeric'
+      });
+    });
+
+    it('should allow setting format options to null to reset to locale defaults', () => {
+      // First set some format options
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      
+      controller.setDateFormatOptions(formatOptions);
+      expect(controller._dateFormatOptions).toEqual(formatOptions);
+      
+      // Reset to null (locale defaults)
+      controller.setDateFormatOptions(null);
+      expect(controller._dateFormatOptions).toBeNull();
+    });
+
+    it('should format dates with custom options when set', () => {
+      // Select a date first
+      controller.selectDate(new Date(2024, 0, 15)); // January 15, 2024
+      
+      // Set custom format options
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      
+      controller.setDateFormatOptions(formatOptions);
+      
+      const formattedDate = controller.getFormattedDate();
+      expect(formattedDate).toBeTruthy();
+      expect(typeof formattedDate).toBe('string');
+      // The exact format will depend on locale, but it should use long month
+      expect(formattedDate).toMatch(/January/); // Should contain full month name
+    });
+
+    it('should use locale defaults when format options are null', () => {
+      // Select a date first
+      controller.selectDate(new Date(2024, 0, 15)); // January 15, 2024
+      
+      // Ensure format options are null
+      controller.setDateFormatOptions(null);
+      expect(controller._dateFormatOptions).toBeNull();
+      
+      const formattedDate = controller.getFormattedDate();
+      expect(formattedDate).toBeTruthy();
+      expect(typeof formattedDate).toBe('string');
+      // Should use browser default formatting for the locale
+    });
+
+    it('should maintain format options when switching locales', () => {
+      // Set initial format options
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      };
+      
+      controller.setDateFormatOptions(formatOptions);
+      controller.setLocale('en-US');
+      
+      // Switch to different locale
+      controller.setLocale('fr-FR');
+      
+      // Format options should be maintained
+      expect(controller._dateFormatOptions).toEqual(formatOptions);
+      expect(controller.getDateFormatOptions()).toEqual(formatOptions);
+    });
+
+    it('should get and set format options correctly', () => {
+      // Initially should be null
+      expect(controller.getDateFormatOptions()).toBeNull();
+      
+      // Set format options
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        year: '2-digit',
+        month: 'numeric',
+        day: 'numeric'
+      };
+      
+      controller.setDateFormatOptions(formatOptions);
+      
+      // Should return the same options
+      expect(controller.getDateFormatOptions()).toEqual(formatOptions);
+      
+      // Set to null
+      controller.setDateFormatOptions(null);
+      expect(controller.getDateFormatOptions()).toBeNull();
+    });
+  });
   
   describe('constraints and validation', () => {
     it('should set min date', () => {

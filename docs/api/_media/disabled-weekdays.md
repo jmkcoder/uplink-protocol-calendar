@@ -2,6 +2,8 @@
 
 The disabled weekdays feature allows you to disable specific days of the week across all calendar views (days, months, years). This is useful for business applications, appointment scheduling, and any scenario where certain days should not be selectable.
 
+> **Note**: Version 0.2.1 fixed function scope issues in the disabled-weekdays example. All button handlers now properly work in browser environments without "function is not defined" errors.
+
 ## Overview
 
 - **Days of Week**: Represented as numbers 0-6 (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
