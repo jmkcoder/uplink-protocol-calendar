@@ -5,6 +5,17 @@ All notable changes to the `@uplink-protocol/calendar-controller` package will b
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2025-06-26
+
+### Fixed
+- **Intl-Based Locale Formatting**
+  - Fixed `getLocaleDefaultFormatOptions()` to use native `Intl.DateTimeFormat` for better locale detection
+  - Enhanced cultural pattern recognition for date formatting preferences
+  - Better support for unknown locales with automatic format option resolution
+  - Maintains existing behavior while leveraging browser's native internationalization capabilities
+  - Fixed all locale formatting default tests to pass with new Intl-based implementation
+  - Ensured consistent behavior across different locale configurations
+
 ## [0.2.2] - 2025-06-25
 
 ### Added

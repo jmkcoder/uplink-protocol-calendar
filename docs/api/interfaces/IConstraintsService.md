@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.2**](../README.md)
+[**@uplink-protocol/form-controller v0.2.3**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IConstraintsService
 
-Defined in: [interfaces/constraints.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L5)
+Defined in: [interfaces/constraints.service.interfaces.ts:5](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L5)
 
 Constraints service interface
 Responsible for managing date constraints like min/max dates and disabled dates
@@ -17,7 +17,7 @@ Responsible for managing date constraints like min/max dates and disabled dates
 
 > **addDisabledDate**(`date`): `Date`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:44](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L44)
+Defined in: [interfaces/constraints.service.interfaces.ts:44](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L44)
 
 Add a date to the disabled dates list
 
@@ -37,7 +37,7 @@ Add a date to the disabled dates list
 
 > **addDisabledDayOfWeek**(`day`): `number`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:54](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L54)
+Defined in: [interfaces/constraints.service.interfaces.ts:54](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L54)
 
 Add a day of the week to the disabled days list
 
@@ -57,7 +57,7 @@ Add a day of the week to the disabled days list
 
 > **getConstraints**(): `object`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L34)
+Defined in: [interfaces/constraints.service.interfaces.ts:34](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L34)
 
 Get current constraints
 
@@ -87,7 +87,7 @@ Get current constraints
 
 > **getDisabledDaysOfWeek**(): `number`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:64](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L64)
+Defined in: [interfaces/constraints.service.interfaces.ts:64](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L64)
 
 Get disabled days of the week
 
@@ -101,7 +101,7 @@ Get disabled days of the week
 
 > **isDateDisabled**(`date`, `minDate`, `maxDate`, `disabledDates`, `disabledDaysOfWeek?`): `boolean`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L29)
+Defined in: [interfaces/constraints.service.interfaces.ts:29](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L29)
 
 Check if a date is disabled
 
@@ -137,7 +137,7 @@ Check if a date is disabled
 
 > **removeDisabledDate**(`date`): `Date`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:49](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L49)
+Defined in: [interfaces/constraints.service.interfaces.ts:49](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L49)
 
 Remove a date from the disabled dates list
 
@@ -157,7 +157,7 @@ Remove a date from the disabled dates list
 
 > **removeDisabledDayOfWeek**(`day`): `number`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L59)
+Defined in: [interfaces/constraints.service.interfaces.ts:59](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L59)
 
 Remove a day of the week from the disabled days list
 
@@ -177,7 +177,7 @@ Remove a day of the week from the disabled days list
 
 > **setDisabledDates**(`dates`): `Date`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L19)
+Defined in: [interfaces/constraints.service.interfaces.ts:19](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L19)
 
 Set disabled dates
 
@@ -197,7 +197,7 @@ Set disabled dates
 
 > **setDisabledDaysOfWeek**(`days`): `number`[]
 
-Defined in: [interfaces/constraints.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L24)
+Defined in: [interfaces/constraints.service.interfaces.ts:24](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L24)
 
 Set disabled days of the week
 
@@ -217,7 +217,7 @@ Set disabled days of the week
 
 > **setMaxDate**(`date`): `null` \| `Date`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L14)
+Defined in: [interfaces/constraints.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L14)
 
 Set maximum date
 
@@ -237,7 +237,7 @@ Set maximum date
 
 > **setMinDate**(`date`): `null` \| `Date`
 
-Defined in: [interfaces/constraints.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/9a15037d7723ff15fbca8c4cbbcd3a222733e98e/src/interfaces/constraints.service.interfaces.ts#L9)
+Defined in: [interfaces/constraints.service.interfaces.ts:9](https://github.com/jmkcoder/uplink-protocol-calendar/blob/b9b5d949a141a189c8cea12210e36bb76f18ad06/src/interfaces/constraints.service.interfaces.ts#L9)
 
 Set minimum date
 

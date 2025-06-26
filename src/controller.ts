@@ -1869,7 +1869,9 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       selectedDateRange: true,
       calendarDays: true,
     });
-  }  /**
+  }  
+  
+  /**
    * Get locale-specific default format options
    * @param locale The locale to get defaults for
    * @returns Appropriate format options for the locale
