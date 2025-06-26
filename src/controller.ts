@@ -1869,71 +1869,58 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       selectedDateRange: true,
       calendarDays: true,
     });
-  }
-
-  /**
+  }  /**
    * Get locale-specific default format options
    * @param locale The locale to get defaults for
    * @returns Appropriate format options for the locale
    */  
   private getLocaleDefaultFormatOptions(locale: string): Intl.DateTimeFormatOptions {
-    // Extract language from locale for fallback purposes
-    const [language] = locale.toLowerCase().split('-');
-    
-    // Define locale-specific defaults
-    const localeDefaults: Record<string, Intl.DateTimeFormatOptions> = {
-      // US English - M/D/YYYY format
-      'en-us': { year: 'numeric', month: 'numeric', day: 'numeric' },
-      'en': { year: 'numeric', month: 'numeric', day: 'numeric' },
+    try {
+      // Extract language from locale for cultural preferences
+      const [language] = locale.toLowerCase().split('-');
       
-      // UK English - DD/MM/YYYY format
-      'en-gb': { year: 'numeric', month: 'numeric', day: 'numeric' },
+      // Determine appropriate format based on cultural patterns
+      let formatOptions: Intl.DateTimeFormatOptions;
       
-      // German - DD.MM.YYYY format with long month names
-      'de-de': { year: 'numeric', month: 'long', day: 'numeric' },
-      'de': { year: 'numeric', month: 'long', day: 'numeric' },
+      // Languages that traditionally prefer long month names in formal contexts
+      const longMonthLanguages = ['fr', 'de', 'es', 'it', 'pt', 'ru', 'nl', 'zh'];
       
-      // French - DD/MM/YYYY format with long month names
-      'fr-fr': { year: 'numeric', month: 'long', day: 'numeric' },
-      'fr': { year: 'numeric', month: 'long', day: 'numeric' },
+      // Languages that prefer numeric formats
+      const numericLanguages = ['en', 'ja', 'ko'];
       
-      // Spanish - DD/MM/YYYY format with long month names
-      'es-es': { year: 'numeric', month: 'long', day: 'numeric' },
-      'es': { year: 'numeric', month: 'long', day: 'numeric' },
+      if (longMonthLanguages.includes(language)) {
+        formatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      } else if (numericLanguages.includes(language)) {
+        formatOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      } else {
+        // For unknown languages, create a formatter to test locale behavior
+        const formatter = new Intl.DateTimeFormat(locale, {
+          year: 'numeric',
+          month: 'numeric', 
+          day: 'numeric'
+        });
+        
+        const resolvedOptions = formatter.resolvedOptions();
+        
+        // Use resolved options but prefer 'numeric' over '2-digit' for consistency
+        const monthFormat = resolvedOptions.month === '2-digit' ? 'numeric' : 
+                          (resolvedOptions.month as 'numeric' | 'long' | 'short' | 'narrow') || 'numeric';
+        const dayFormat = resolvedOptions.day === '2-digit' ? 'numeric' : 
+                         (resolvedOptions.day as 'numeric' | '2-digit') || 'numeric';
+        
+        formatOptions = {
+          year: 'numeric',
+          month: monthFormat,
+          day: dayFormat
+        };
+      }
       
-      // Italian - DD/MM/YYYY format with long month names
-      'it-it': { year: 'numeric', month: 'long', day: 'numeric' },
-      'it': { year: 'numeric', month: 'long', day: 'numeric' },
+      return formatOptions;
       
-      // Japanese - YYYY/MM/DD format
-      'ja-jp': { year: 'numeric', month: 'numeric', day: 'numeric' },
-      'ja': { year: 'numeric', month: 'numeric', day: 'numeric' },
-      
-      // Chinese - YYYY年MM月DD日 format
-      'zh-cn': { year: 'numeric', month: 'long', day: 'numeric' },
-      'zh': { year: 'numeric', month: 'long', day: 'numeric' },
-      
-      // Portuguese - DD/MM/YYYY format with long month names
-      'pt-br': { year: 'numeric', month: 'long', day: 'numeric' },
-      'pt': { year: 'numeric', month: 'long', day: 'numeric' },
-      
-      // Russian - DD.MM.YYYY format with long month names
-      'ru-ru': { year: 'numeric', month: 'long', day: 'numeric' },
-      'ru': { year: 'numeric', month: 'long', day: 'numeric' },
-      
-      // Dutch - DD-MM-YYYY format with long month names
-      'nl-nl': { year: 'numeric', month: 'long', day: 'numeric' },
-      'nl': { year: 'numeric', month: 'long', day: 'numeric' },
-      
-      // Korean - YYYY.MM.DD format
-      'ko-kr': { year: 'numeric', month: 'numeric', day: 'numeric' },
-      'ko': { year: 'numeric', month: 'numeric', day: 'numeric' }
-    };
-    
-    // Try exact match first, then language-only match, then fallback to en-US
-    return localeDefaults[locale.toLowerCase()] || 
-           localeDefaults[language] || 
-           localeDefaults['en-us'];
+    } catch (error) {
+      // Fallback to safe defaults if Intl operations fail
+      return { year: 'numeric', month: 'numeric', day: 'numeric' };
+    }
   }
 
   /**
