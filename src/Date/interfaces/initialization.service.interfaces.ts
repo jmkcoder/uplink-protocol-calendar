@@ -3,9 +3,9 @@ import {
   IDateFormattingService,
   ILocalizationService,
   CalendarOptions
-} from '../interfaces';
+} from '.';
 import { Binding } from '@uplink-protocol/core';
-import { CalendarMonth, CalendarYear, CalendarDate } from '../interfaces';
+import { CalendarMonth, CalendarYear, CalendarDate } from '.';
 
 /**
  * Interface for component initialization service

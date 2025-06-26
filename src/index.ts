@@ -7,8 +7,8 @@
  * @packageDocumentation
  */
 
-import { CalendarControllerClass } from './controller';
-import { CalendarOptions } from './interfaces';
+import { CalendarControllerClass } from './Date/controller';
+import { CalendarOptions } from './Date/interfaces';
 
 /**
  * Factory function to create a calendar controller
@@ -25,16 +25,16 @@ export function CalendarController(options?: CalendarOptions): CalendarControlle
 }
 
 // Export the main controller
-export * from "./controller";
+export * from "./Date/controller";
 
 // Export public interfaces for form configuration
-export * from "./interfaces";
+export * from "./Date/interfaces";
 
 // Export TypeScript type definitions
-export * from "./types";
+export * from "./Date/types";
 
 // Export core services for advanced usage
-export * from "./services";
+export * from "./Date/services";
 
 // Export utility functions and validator helpers
-export * from "./utils";
+export * from "./Date/utils";
