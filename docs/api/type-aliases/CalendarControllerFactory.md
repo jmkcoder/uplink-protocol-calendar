@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.3**](../README.md)
+[**@uplink-protocol/form-controller v0.3.0**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **CalendarControllerFactory** = (`options?`) => [`TypedCalendarController`](../interfaces/TypedCalendarController.md)
 
-Defined in: [types/calendar-controller.types.ts:335](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/types/calendar-controller.types.ts#L335)
+Defined in: [Date/types/calendar-controller.types.ts:335](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/types/calendar-controller.types.ts#L335)
 
 Factory Function Type
 Type for the CalendarController factory function

@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.3**](../README.md)
+[**@uplink-protocol/form-controller v0.3.0**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **formatDate**(`date`, `format?`): `string`
 
-Defined in: [utils/calendar.utils.ts:45](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/utils/calendar.utils.ts#L45)
+Defined in: [Date/utils/calendar.utils.ts:45](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/utils/calendar.utils.ts#L45)
 
 Format a date as a string
 

@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.3**](../README.md)
+[**@uplink-protocol/form-controller v0.3.0**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IAccessibilityService
 
-Defined in: [interfaces/accessibility.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/accessibility.service.interfaces.ts#L8)
+Defined in: [Date/interfaces/accessibility.service.interfaces.ts:8](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/interfaces/accessibility.service.interfaces.ts#L8)
 
 Interface for the AccessibilityService
 Responsible for accessibility-related functionality such as screen reader support
@@ -18,7 +18,7 @@ and keyboard navigation
 
 > **getAccessibleDateLabel**(`date`, `localeMonthNameFn?`): `string`
 
-Defined in: [interfaces/accessibility.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/accessibility.service.interfaces.ts#L14)
+Defined in: [Date/interfaces/accessibility.service.interfaces.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/interfaces/accessibility.service.interfaces.ts#L14)
 
 Get accessible date label for screen readers
 
@@ -46,7 +46,7 @@ Accessible date label string
 
 > **getDateStateDescription**(`date`, `currentState`): `string`
 
-Defined in: [interfaces/accessibility.service.interfaces.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/accessibility.service.interfaces.ts#L22)
+Defined in: [Date/interfaces/accessibility.service.interfaces.ts:22](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/interfaces/accessibility.service.interfaces.ts#L22)
 
 Get date state description for screen readers (today, selected, disabled, etc.)
 
@@ -94,7 +94,7 @@ State description string
 
 > **moveFocus**(`direction`, `currentFocusedDate`, `selectedDate`): `Date`
 
-Defined in: [interfaces/accessibility.service.interfaces.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/accessibility.service.interfaces.ts#L40)
+Defined in: [Date/interfaces/accessibility.service.interfaces.ts:40](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/interfaces/accessibility.service.interfaces.ts#L40)
 
 Move focus to a new date
 
@@ -130,7 +130,7 @@ New focused date
 
 > **selectFocusedDate**(`focusedDate`, `selectDateFn`): `boolean`
 
-Defined in: [interfaces/accessibility.service.interfaces.ts:52](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/interfaces/accessibility.service.interfaces.ts#L52)
+Defined in: [Date/interfaces/accessibility.service.interfaces.ts:52](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/interfaces/accessibility.service.interfaces.ts#L52)
 
 Handle selecting the currently focused date
 

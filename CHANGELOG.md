@@ -5,6 +5,62 @@ All notable changes to the `@uplink-protocol/calendar-controller` package will b
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-06-26
+
+### Added
+- **TimeController - Complete Time Picker Solution**
+  - Introduced `TimeControllerClass` with comprehensive time selection functionality
+  - Service-oriented architecture with 10 specialized time services:
+    - `TimeService` - Core time operations and utilities
+    - `TimeFormattingService` - Time formatting and localization
+    - `TimeSelectionService` - Time selection logic and range handling
+    - `TimeViewStateService` - Reactive bindings and UI state management
+    - `TimeEventManagerService` - Event handling and emission
+    - `TimeNavigationService` - Time navigation and focus management
+    - `TimeConstraintsService` - Time validation and constraints
+    - `TimeGeneratorService` - Time view generation
+    - `TimeConfigurationService` - Configuration processing
+    - `TimeValidationService` - Time validation logic
+
+- **Comprehensive Time Features**
+  - Single time selection and time range selection modes
+  - 12-hour and 24-hour format support with automatic AM/PM handling
+  - Configurable time segments (hours, minutes, seconds, milliseconds)
+  - Step-based time navigation (1, 5, 10, 15, 30 minute/second steps)
+  - Advanced time constraints (min/max times, disabled times/hours/minutes/seconds)
+  - Accessibility-focused segment navigation and keyboard support
+
+- **Rich Time Configuration Options**
+  - Initial time selection and range selection
+  - Customizable time format options and locale-specific formatting
+  - Flexible time display options (show/hide seconds, milliseconds)
+  - Comprehensive constraint system for business rules
+  - Event-driven architecture with 6 time-specific events
+
+- **Internationalization & Accessibility**
+  - Full internationalization support with `Intl.DateTimeFormat` integration
+  - Locale-aware time formatting and cultural time preferences
+  - Complete accessibility support with ARIA-compliant focus management
+  - Keyboard navigation between time segments
+
+- **Developer Experience**
+  - Factory function `TimeController(options)` for easy instantiation
+  - TypeScript-first with comprehensive type definitions
+  - Reactive bindings for modern UI frameworks (React, Vue, Angular)
+  - Extensive method library (40+ time manipulation methods)
+  - Comprehensive test coverage with 23 test suites
+
+### Enhanced
+- **Package Exports**
+  - Added time controller exports to main index.ts
+  - Updated TypeScript type definitions to include time types
+  - Enhanced package keywords to include time-picker related terms
+
+- **Documentation**
+  - Time controller capabilities documented in Examples/Time/
+  - Advanced time examples and demos included
+  - Comprehensive time controller guide available
+
 ## [0.2.3] - 2025-06-26
 
 ### Fixed

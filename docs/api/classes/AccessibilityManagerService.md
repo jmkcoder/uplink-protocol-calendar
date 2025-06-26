@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.2.3**](../README.md)
+[**@uplink-protocol/form-controller v0.3.0**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: AccessibilityManagerService
 
-Defined in: [services/accessibility-manager.service.ts:13](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/accessibility-manager.service.ts#L13)
+Defined in: [Date/services/accessibility-manager.service.ts:13](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/services/accessibility-manager.service.ts#L13)
 
 Implementation of AccessibilityManagerService
 Handles keyboard navigation, focus management, and accessibility functions
@@ -22,7 +22,7 @@ by coordinating between AccessibilityService and other services
 
 > **new AccessibilityManagerService**(`_accessibilityService`, `_viewStateService`): `AccessibilityManagerService`
 
-Defined in: [services/accessibility-manager.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/accessibility-manager.service.ts#L14)
+Defined in: [Date/services/accessibility-manager.service.ts:14](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/services/accessibility-manager.service.ts#L14)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [services/accessibility-manager.service.ts:14](https://github.com/jm
 
 > **getAccessibleDateLabel**(`date`, `localeMonthNameFn?`): `string`
 
-Defined in: [services/accessibility-manager.service.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/accessibility-manager.service.ts#L91)
+Defined in: [Date/services/accessibility-manager.service.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/services/accessibility-manager.service.ts#L91)
 
 Get accessible date label for screen readers
 
@@ -78,7 +78,7 @@ Accessible date label string
 
 > **getDateStateDescription**(`date`, `selectedDate`, `selectedDateRange`, `isRangeSelection`, `isDateDisabledFn`, `isTodayFn`): `string`
 
-Defined in: [services/accessibility-manager.service.ts:112](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/accessibility-manager.service.ts#L112)
+Defined in: [Date/services/accessibility-manager.service.ts:112](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/services/accessibility-manager.service.ts#L112)
 
 Get date state description for screen readers
 
@@ -136,7 +136,7 @@ State description string
 
 > **manageFocus**(`direction`, `focusedDate`, `selectedDate`, `currentDate`, `calendarDaysBinding`, `generateCalendarDaysFn`, `updateDateFn?`): `Date`
 
-Defined in: [services/accessibility-manager.service.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/accessibility-manager.service.ts#L30)
+Defined in: [Date/services/accessibility-manager.service.ts:30](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/services/accessibility-manager.service.ts#L30)
 
 Handles focus management including view updates and navigation
 
@@ -200,7 +200,7 @@ The new focused date
 
 > **selectFocusedDate**(`focusedDate`, `selectDateFn`): `boolean`
 
-Defined in: [services/accessibility-manager.service.ts:74](https://github.com/jmkcoder/uplink-protocol-calendar/blob/dfbd1d9163b3335ef17060f21cb7756b2a9c621d/src/services/accessibility-manager.service.ts#L74)
+Defined in: [Date/services/accessibility-manager.service.ts:74](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Date/services/accessibility-manager.service.ts#L74)
 
 Select the currently focused date
 
