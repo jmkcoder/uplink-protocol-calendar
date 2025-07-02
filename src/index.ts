@@ -75,6 +75,20 @@ export type {
 export * from "./Date/services";
 export * from "./Time/services";
 
+// Export Event management system (with explicit naming to avoid conflicts)
+export { 
+  EventController,
+  EventStorageService as CalendarEventStorageService,
+  EventManagerService as CalendarEventManagerService,
+  EventValidationService as CalendarEventValidationService,
+  EventFormattingService as CalendarEventFormattingService,
+  EventSearchService as CalendarEventSearchService
+} from "./Event";
+
+// Re-export Event interfaces and types with namespace
+export * as EventInterfaces from "./Event/interfaces";
+export * as EventTypes from "./Event/types";
+
 // Export utility functions and validator helpers
 export * from "./Date/utils";
 export * from "./Time/utils";
