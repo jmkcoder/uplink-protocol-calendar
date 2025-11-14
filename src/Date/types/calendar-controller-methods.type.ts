@@ -97,12 +97,22 @@ export interface CalendarControllerMethods {
   /** Get the current locale */
   getLocale(): string;
   
+  /** Set the first day of the week (0 = Sunday, 1 = Monday, etc.) */
+  setFirstDayOfWeek(day: number): void;
+  
+  /** Set whether to hide days from other months */
+  setHideOtherMonthDays(hide: boolean): void;
+  
   /** Get month names in the current locale */
   getMonthNames(): string[];
   
   /** Get weekday names in the current locale */
   getWeekdayNames(short?: boolean): string[];
-    /** Set date format options */
+  
+  /** Set the date format */
+  setDateFormat(format: string | null): void;
+  
+  /** Set date format options */
   setDateFormatOptions(options: Intl.DateTimeFormatOptions | null): void;
   
   /** Get current date format options */
@@ -171,6 +181,18 @@ export interface CalendarControllerMethods {
   // === Utility Methods ===
   /** Check if a date is today */
   isToday(date: Date): boolean;
+  
+  /** Check if a date is disabled */
+  isDateDisabled(date: Date): boolean;
+  
+  /** Check if a date is selected */
+  isDateSelected(date: Date): boolean;
+  
+  /** Check if a date is in the selected range */
+  isDateInRange(date: Date): boolean;
+  
+  /** Check if a date has events */
+  hasEvents(date: Date): boolean;
   
   /** Generate month view data */
   generateMonthView(): {
