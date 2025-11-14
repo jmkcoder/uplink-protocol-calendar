@@ -11,7 +11,6 @@ import { ICalendarService } from "../interfaces";
 export class ConstraintsCoordinator {
   constructor(
     private stateManager: CalendarStateManager,
-    // @ts-expect-error - bindingsCoordinator will be used for batch updates when fully implemented
     private bindingsCoordinator: BindingsCoordinator,
     private constraintsService: IConstraintsService,
     private calendarStateService: ICalendarStateService
@@ -40,6 +39,10 @@ export class ConstraintsCoordinator {
       (month: number) => calendarService.getMonthName(month),
       gettersObj.calendarDays
     );
+
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
   }
 
   /**
@@ -65,6 +68,10 @@ export class ConstraintsCoordinator {
       (month: number) => calendarService.getMonthName(month),
       gettersObj.calendarDays
     );
+
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
   }
 
   /**
@@ -89,6 +96,10 @@ export class ConstraintsCoordinator {
       (month: number) => calendarService.getMonthName(month),
       gettersObj.calendarDays
     );
+
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
   }
 
   /**
@@ -108,6 +119,10 @@ export class ConstraintsCoordinator {
       bindings.calendarDays,
       gettersObj.calendarDays
     );
+
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
 
     return this.stateManager.disabledDates;
   }
@@ -130,6 +145,10 @@ export class ConstraintsCoordinator {
       gettersObj.calendarDays
     );
 
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
+
     return this.stateManager.disabledDates;
   }
 
@@ -150,11 +169,11 @@ export class ConstraintsCoordinator {
   ): number[] {
     this.stateManager.disabledDaysOfWeek = this.constraintsService.setDisabledDaysOfWeek(days);
 
-    // Update the calendar view
+    // Update the calendar view using bindingsCoordinator
     const gettersObj = typeof getters === 'function' ? getters() : getters;
-    if (bindings.calendarDays) {
-      bindings.calendarDays.set(gettersObj.calendarDays());
-    }
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
 
     return [...this.stateManager.disabledDaysOfWeek];
   }
@@ -169,11 +188,11 @@ export class ConstraintsCoordinator {
   ): number[] {
     this.stateManager.disabledDaysOfWeek = this.constraintsService.addDisabledDayOfWeek(day);
 
-    // Update the calendar view
+    // Update the calendar view using bindingsCoordinator
     const gettersObj = typeof getters === 'function' ? getters() : getters;
-    if (bindings.calendarDays) {
-      bindings.calendarDays.set(gettersObj.calendarDays());
-    }
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
 
     return [...this.stateManager.disabledDaysOfWeek];
   }
@@ -188,11 +207,11 @@ export class ConstraintsCoordinator {
   ): number[] {
     this.stateManager.disabledDaysOfWeek = this.constraintsService.removeDisabledDayOfWeek(day);
 
-    // Update the calendar view
+    // Update the calendar view using bindingsCoordinator
     const gettersObj = typeof getters === 'function' ? getters() : getters;
-    if (bindings.calendarDays) {
-      bindings.calendarDays.set(gettersObj.calendarDays());
-    }
+    this.bindingsCoordinator.updateAllBindings(bindings, gettersObj, {
+      calendarDays: true,
+    });
 
     return [...this.stateManager.disabledDaysOfWeek];
   }
