@@ -46,4 +46,19 @@ export interface IAccessibilityManagerService {
     isDateDisabledFn: (date: Date) => boolean,
     isTodayFn: (date: Date) => boolean
   ): string;
+
+  /**
+   * Get ARIA label for a date
+   */
+  getAriaLabel(date: Date): string;
+
+  /**
+   * Get ARIA label for month
+   */
+  getAriaLabelForMonth(month: number, year: number): string;
+
+  /**
+   * Get ARIA label for year
+   */
+  getAriaLabelForYear(year: number): string;
 }
