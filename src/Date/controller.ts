@@ -229,6 +229,8 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this.bindingsCoordinator,
       this._calendarStateService
     );
+    // Set navigation coordinator reference to avoid circular dependency
+    this.selectionCoordinator.setNavigationCoordinator(this.navigationCoordinator);
     this.constraintsCoordinator = new ConstraintsCoordinator(
       this.stateManager,
       this.bindingsCoordinator,
@@ -525,7 +527,7 @@ export class CalendarControllerClass implements CalendarControllerInterface {
       this.bindings,
       this.events,
       this.getGetters(),
-      this._navigationService,
+      this._calendarService,
       this._eventManagerService
     );
   }

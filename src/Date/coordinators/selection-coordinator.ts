@@ -1,18 +1,28 @@
 import { CalendarStateManager } from "./state-manager";
 import { BindingsCoordinator } from "./bindings-coordinator";
+import { NavigationCoordinator } from "./navigation-coordinator";
 import { CalendarControllerBindings, CalendarControllerEvents } from "../types";
-import { ICalendarStateService, IEventManagerService } from "../interfaces";
+import { ICalendarStateService, IEventManagerService, ICalendarService } from "../interfaces";
 
 /**
  * SelectionCoordinator - Handles date selection operations
  * Manages single date and range selection logic
  */
 export class SelectionCoordinator {
+  private navigationCoordinator?: NavigationCoordinator;
+
   constructor(
     private stateManager: CalendarStateManager,
     private bindingsCoordinator: BindingsCoordinator,
     private calendarStateService: ICalendarStateService
   ) {}
+
+  /**
+   * Set navigation coordinator (to avoid circular dependency)
+   */
+  setNavigationCoordinator(navigationCoordinator: NavigationCoordinator): void {
+    this.navigationCoordinator = navigationCoordinator;
+  }
 
   /**
    * Select a date
@@ -119,6 +129,7 @@ export class SelectionCoordinator {
 
   /**
    * Select month (navigate to month view)
+   * Delegates to NavigationCoordinator to avoid duplication
    */
   selectMonth(
     month: number,
@@ -126,28 +137,23 @@ export class SelectionCoordinator {
     bindings: CalendarControllerBindings,
     events: CalendarControllerEvents,
     getters: any,
-    _navigationService: any,
+    calendarService: ICalendarService,
     eventManagerService: IEventManagerService
   ): void {
-    // Simply set the current date to the first day of the specified month/year
-    this.stateManager.currentDate = new Date(year, month, 1);
-
-    // Update bindings through navigation coordinator's logic
-    if (bindings.currentMonth) {
-      bindings.currentMonth.set(month);
+    if (!this.navigationCoordinator) {
+      throw new Error('NavigationCoordinator not set. Call setNavigationCoordinator first.');
     }
-    if (bindings.currentYear) {
-      bindings.currentYear.set(year);
-    }
-
-    this.bindingsCoordinator.updateAllBindings(bindings, getters, {
-      currentDate: true,
-      calendarDays: true,
-    });
-
-    if (events?.viewChanged) {
-      eventManagerService.emitViewChanged(events.viewChanged, { month, year });
-    }
+    
+    // Delegate to NavigationCoordinator.goToMonth to avoid duplication
+    this.navigationCoordinator.goToMonth(
+      month,
+      year,
+      bindings,
+      events,
+      getters,
+      calendarService,
+      eventManagerService
+    );
   }
 
   /**
