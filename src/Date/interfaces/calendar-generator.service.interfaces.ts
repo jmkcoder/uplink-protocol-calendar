@@ -55,4 +55,20 @@ export interface ICalendarGeneratorService {
     weeks: { days: CalendarDate[]; weekNumber?: number }[];
     weekdays: string[];
   };
+
+  /**
+   * Generate a complete year view with all months
+   */
+  generateYearView(
+    year: number,
+    options: YearViewGenerationOptions
+  ): {
+    months: CalendarMonth[];
+    year: number;
+  };
+
+  /**
+   * Get the ISO week number for a date
+   */
+  getWeekNumber(date: Date): number;
 }

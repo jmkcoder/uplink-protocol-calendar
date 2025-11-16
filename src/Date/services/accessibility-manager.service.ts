@@ -129,4 +129,29 @@ export class AccessibilityManagerService implements IAccessibilityManagerService
       }
     );
   }
+
+  /**
+   * Get ARIA label for a date
+   */
+  public getAriaLabel(date: Date): string {
+    return this._accessibilityService.getAccessibleDateLabel(date);
+  }
+
+  /**
+   * Get ARIA label for month
+   */
+  public getAriaLabelForMonth(month: number, year: number): string {
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return `${monthNames[month]} ${year}`;
+  }
+
+  /**
+   * Get ARIA label for year
+   */
+  public getAriaLabelForYear(year: number): string {
+    return `Year ${year}`;
+  }
 }

@@ -325,4 +325,31 @@ export class CalendarStateService implements ICalendarStateService {
     
     return { selectedDate, selectedDateRange };
   }
+  
+  /**
+   * Get current state for accessibility and other features
+   */
+  public getCurrentState(
+    currentDate: Date,
+    selectedDate: Date | null,
+    selectedDateRange: DateRange,
+    focusedDate: Date | null,
+    isDateDisabledFn: (date: Date) => boolean,
+    isDateSelectedFn: (date: Date) => boolean,
+    isDateInRangeFn: (date: Date) => boolean,
+    isTodayFn: (date: Date) => boolean,
+    hasEventsFn: (date: Date) => boolean
+  ): any {
+    return {
+      currentDate,
+      selectedDate,
+      selectedDateRange,
+      focusedDate,
+      isDateDisabledFn,
+      isDateSelectedFn,
+      isDateInRangeFn,
+      isTodayFn,
+      hasEventsFn
+    };
+  }
 }
