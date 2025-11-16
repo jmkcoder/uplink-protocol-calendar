@@ -1,6 +1,6 @@
 {
   "name": "@uplink-protocol/calendar-controller",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Flexible calendar and time picker API supporting both calendar, date-picker, and time-picker integrations for any JavaScript framework or library",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
