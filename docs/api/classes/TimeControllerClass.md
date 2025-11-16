@@ -1,4 +1,4 @@
-[**@uplink-protocol/form-controller v0.3.0**](../README.md)
+[**@uplink-protocol/form-controller v0.3.1**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: TimeControllerClass
 
-Defined in: [Time/controller.ts:68](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L68)
+Defined in: [Time/controller.ts:68](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L68)
 
 TimeControllerClass - A full featured time picker controller class.
 Provides functionality for time picking and time display.
@@ -24,7 +24,7 @@ functionality is delegated to specialized services.
 
 > **new TimeControllerClass**(`options?`): `TimeControllerClass`
 
-Defined in: [Time/controller.ts:112](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L112)
+Defined in: [Time/controller.ts:112](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L112)
 
 Constructor - initializes the controller with optional configuration
 
@@ -46,7 +46,7 @@ Time configuration options
 
 > `optional` **\_\_adapter**: `ControllerAdapter`
 
-Defined in: [Time/controller.ts:73](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L73)
+Defined in: [Time/controller.ts:73](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L73)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [Time/controller.ts:73](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_disabledHours**: `number`[] = `[]`
 
-Defined in: [Time/controller.ts:83](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L83)
+Defined in: [Time/controller.ts:83](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L83)
 
 #### Implementation of
 
@@ -66,7 +66,7 @@ Defined in: [Time/controller.ts:83](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_disabledMinutes**: `number`[] = `[]`
 
-Defined in: [Time/controller.ts:84](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L84)
+Defined in: [Time/controller.ts:84](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L84)
 
 #### Implementation of
 
@@ -78,7 +78,7 @@ Defined in: [Time/controller.ts:84](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_disabledSeconds**: `number`[] = `[]`
 
-Defined in: [Time/controller.ts:85](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L85)
+Defined in: [Time/controller.ts:85](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L85)
 
 #### Implementation of
 
@@ -90,7 +90,7 @@ Defined in: [Time/controller.ts:85](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_disabledTimes**: `Date`[] = `[]`
 
-Defined in: [Time/controller.ts:82](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L82)
+Defined in: [Time/controller.ts:82](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L82)
 
 #### Implementation of
 
@@ -100,9 +100,9 @@ Defined in: [Time/controller.ts:82](https://github.com/jmkcoder/uplink-protocol-
 
 ### \_focusedSegment
 
-> **\_focusedSegment**: `null` \| `"hours"` \| `"minutes"` \| `"seconds"` \| `"milliseconds"` \| `"period"` = `null`
+> **\_focusedSegment**: `"hours"` \| `"minutes"` \| `"seconds"` \| `"milliseconds"` \| `"period"` \| `null` = `null`
 
-Defined in: [Time/controller.ts:79](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L79)
+Defined in: [Time/controller.ts:79](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L79)
 
 #### Implementation of
 
@@ -114,7 +114,7 @@ Defined in: [Time/controller.ts:79](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_isRangeSelection**: `boolean` = `false`
 
-Defined in: [Time/controller.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L94)
+Defined in: [Time/controller.ts:94](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L94)
 
 #### Implementation of
 
@@ -126,7 +126,7 @@ Defined in: [Time/controller.ts:94](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_locale**: `string` = `"en-US"`
 
-Defined in: [Time/controller.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L91)
+Defined in: [Time/controller.ts:91](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L91)
 
 #### Implementation of
 
@@ -136,9 +136,9 @@ Defined in: [Time/controller.ts:91](https://github.com/jmkcoder/uplink-protocol-
 
 ### \_maxTime
 
-> **\_maxTime**: `null` \| `Date` = `null`
+> **\_maxTime**: `Date` \| `null` = `null`
 
-Defined in: [Time/controller.ts:81](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L81)
+Defined in: [Time/controller.ts:81](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L81)
 
 #### Implementation of
 
@@ -148,9 +148,9 @@ Defined in: [Time/controller.ts:81](https://github.com/jmkcoder/uplink-protocol-
 
 ### \_minTime
 
-> **\_minTime**: `null` \| `Date` = `null`
+> **\_minTime**: `Date` \| `null` = `null`
 
-Defined in: [Time/controller.ts:80](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L80)
+Defined in: [Time/controller.ts:80](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L80)
 
 #### Implementation of
 
@@ -162,7 +162,7 @@ Defined in: [Time/controller.ts:80](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_minuteStep**: `number` = `1`
 
-Defined in: [Time/controller.ts:89](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L89)
+Defined in: [Time/controller.ts:89](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L89)
 
 #### Implementation of
 
@@ -174,7 +174,7 @@ Defined in: [Time/controller.ts:89](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_secondStep**: `number` = `1`
 
-Defined in: [Time/controller.ts:90](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L90)
+Defined in: [Time/controller.ts:90](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L90)
 
 #### Implementation of
 
@@ -184,9 +184,9 @@ Defined in: [Time/controller.ts:90](https://github.com/jmkcoder/uplink-protocol-
 
 ### \_selectedTime
 
-> **\_selectedTime**: `null` \| `Date` = `null`
+> **\_selectedTime**: `Date` \| `null` = `null`
 
-Defined in: [Time/controller.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L77)
+Defined in: [Time/controller.ts:77](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L77)
 
 #### Implementation of
 
@@ -198,7 +198,7 @@ Defined in: [Time/controller.ts:77](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_selectedTimeRange**: [`TimeRange`](../interfaces/TimeRange.md)
 
-Defined in: [Time/controller.ts:78](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L78)
+Defined in: [Time/controller.ts:78](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L78)
 
 #### Implementation of
 
@@ -210,7 +210,7 @@ Defined in: [Time/controller.ts:78](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_showMilliseconds**: `boolean` = `false`
 
-Defined in: [Time/controller.ts:88](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L88)
+Defined in: [Time/controller.ts:88](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L88)
 
 #### Implementation of
 
@@ -222,7 +222,7 @@ Defined in: [Time/controller.ts:88](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_showSeconds**: `boolean` = `false`
 
-Defined in: [Time/controller.ts:87](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L87)
+Defined in: [Time/controller.ts:87](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L87)
 
 #### Implementation of
 
@@ -232,9 +232,9 @@ Defined in: [Time/controller.ts:87](https://github.com/jmkcoder/uplink-protocol-
 
 ### \_timeFormat
 
-> **\_timeFormat**: `null` \| `string` = `null`
+> **\_timeFormat**: `string` \| `null` = `null`
 
-Defined in: [Time/controller.ts:92](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L92)
+Defined in: [Time/controller.ts:92](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L92)
 
 #### Implementation of
 
@@ -244,9 +244,9 @@ Defined in: [Time/controller.ts:92](https://github.com/jmkcoder/uplink-protocol-
 
 ### \_timeFormatOptions
 
-> **\_timeFormatOptions**: `null` \| `DateTimeFormatOptions` = `null`
+> **\_timeFormatOptions**: `DateTimeFormatOptions` \| `null` = `null`
 
-Defined in: [Time/controller.ts:93](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L93)
+Defined in: [Time/controller.ts:93](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L93)
 
 #### Implementation of
 
@@ -258,7 +258,7 @@ Defined in: [Time/controller.ts:93](https://github.com/jmkcoder/uplink-protocol-
 
 > **\_use12HourFormat**: `boolean` = `false`
 
-Defined in: [Time/controller.ts:86](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L86)
+Defined in: [Time/controller.ts:86](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L86)
 
 #### Implementation of
 
@@ -270,7 +270,7 @@ Defined in: [Time/controller.ts:86](https://github.com/jmkcoder/uplink-protocol-
 
 > **bindings**: [`TimeControllerBindings`](../interfaces/TimeControllerBindings.md)
 
-Defined in: [Time/controller.ts:69](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L69)
+Defined in: [Time/controller.ts:69](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L69)
 
 Reactive state bindings
 
@@ -284,7 +284,7 @@ Reactive state bindings
 
 > **events**: [`TimeControllerEvents`](../interfaces/TimeControllerEvents.md)
 
-Defined in: [Time/controller.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L71)
+Defined in: [Time/controller.ts:71](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L71)
 
 Event emitters
 
@@ -298,7 +298,7 @@ Event emitters
 
 > `optional` **meta**: `ControllerMetadata`
 
-Defined in: [Time/controller.ts:72](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L72)
+Defined in: [Time/controller.ts:72](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L72)
 
 ***
 
@@ -306,7 +306,7 @@ Defined in: [Time/controller.ts:72](https://github.com/jmkcoder/uplink-protocol-
 
 > **methods**: [`TimeControllerMethods`](../interfaces/TimeControllerMethods.md)
 
-Defined in: [Time/controller.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L70)
+Defined in: [Time/controller.ts:70](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L70)
 
 Available methods
 
@@ -320,7 +320,7 @@ Available methods
 
 > `optional` **options**: [`TimeOptions`](../interfaces/TimeOptions.md)
 
-Defined in: [Time/controller.ts:74](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L74)
+Defined in: [Time/controller.ts:74](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L74)
 
 Time configuration options
 
@@ -336,7 +336,7 @@ Time configuration options
 
 > **get** **selectedTimeRange**(): `object`
 
-Defined in: [Time/controller.ts:421](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L421)
+Defined in: [Time/controller.ts:421](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L421)
 
 Selected time range with flexible property access
 
@@ -346,19 +346,19 @@ Selected time range with flexible property access
 
 ###### end
 
-> **end**: `null` \| `Date`
+> **end**: `Date` \| `null`
 
 ###### endTime
 
-> **endTime**: `null` \| `Date`
+> **endTime**: `Date` \| `null`
 
 ###### start
 
-> **start**: `null` \| `Date`
+> **start**: `Date` \| `null`
 
 ###### startTime
 
-> **startTime**: `null` \| `Date`
+> **startTime**: `Date` \| `null`
 
 Selected time range with flexible property access
 
@@ -372,7 +372,7 @@ Selected time range with flexible property access
 
 > **addDisabledHour**(`hour`): `number`[]
 
-Defined in: [Time/controller.ts:524](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L524)
+Defined in: [Time/controller.ts:524](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L524)
 
 #### Parameters
 
@@ -390,7 +390,7 @@ Defined in: [Time/controller.ts:524](https://github.com/jmkcoder/uplink-protocol
 
 > **addDisabledTime**(`time`): `Date`[]
 
-Defined in: [Time/controller.ts:502](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L502)
+Defined in: [Time/controller.ts:502](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L502)
 
 #### Parameters
 
@@ -408,7 +408,7 @@ Defined in: [Time/controller.ts:502](https://github.com/jmkcoder/uplink-protocol
 
 > **clearFocusedSegment**(): `void`
 
-Defined in: [Time/controller.ts:479](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L479)
+Defined in: [Time/controller.ts:479](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L479)
 
 #### Returns
 
@@ -420,7 +420,7 @@ Defined in: [Time/controller.ts:479](https://github.com/jmkcoder/uplink-protocol
 
 > **clearSelection**(): `void`
 
-Defined in: [Time/controller.ts:408](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L408)
+Defined in: [Time/controller.ts:408](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L408)
 
 #### Returns
 
@@ -436,7 +436,7 @@ Defined in: [Time/controller.ts:408](https://github.com/jmkcoder/uplink-protocol
 
 > **focusSegment**(`segment`): `void`
 
-Defined in: [Time/controller.ts:483](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L483)
+Defined in: [Time/controller.ts:483](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L483)
 
 #### Parameters
 
@@ -454,7 +454,7 @@ Defined in: [Time/controller.ts:483](https://github.com/jmkcoder/uplink-protocol
 
 > **formatTime**(`time`, `options?`): `string`
 
-Defined in: [Time/controller.ts:582](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L582)
+Defined in: [Time/controller.ts:582](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L582)
 
 #### Parameters
 
@@ -476,7 +476,7 @@ Defined in: [Time/controller.ts:582](https://github.com/jmkcoder/uplink-protocol
 
 > **generateTimeView**(): [`TimeView`](../interfaces/TimeView.md)
 
-Defined in: [Time/controller.ts:642](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L642)
+Defined in: [Time/controller.ts:642](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L642)
 
 #### Returns
 
@@ -488,7 +488,7 @@ Defined in: [Time/controller.ts:642](https://github.com/jmkcoder/uplink-protocol
 
 > **getDisabledHours**(): `number`[]
 
-Defined in: [Time/controller.ts:536](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L536)
+Defined in: [Time/controller.ts:536](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L536)
 
 #### Returns
 
@@ -500,7 +500,7 @@ Defined in: [Time/controller.ts:536](https://github.com/jmkcoder/uplink-protocol
 
 > **getDisabledTimes**(): `Date`[]
 
-Defined in: [Time/controller.ts:514](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L514)
+Defined in: [Time/controller.ts:514](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L514)
 
 #### Returns
 
@@ -510,13 +510,13 @@ Defined in: [Time/controller.ts:514](https://github.com/jmkcoder/uplink-protocol
 
 ### getFormattedTime()
 
-> **getFormattedTime**(): `null` \| `string`
+> **getFormattedTime**(): `string` \| `null`
 
-Defined in: [Time/controller.ts:572](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L572)
+Defined in: [Time/controller.ts:572](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L572)
 
 #### Returns
 
-`null` \| `string`
+`string` \| `null`
 
 ***
 
@@ -524,7 +524,7 @@ Defined in: [Time/controller.ts:572](https://github.com/jmkcoder/uplink-protocol
 
 > **getLocale**(): `string`
 
-Defined in: [Time/controller.ts:558](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L558)
+Defined in: [Time/controller.ts:558](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L558)
 
 #### Returns
 
@@ -534,13 +534,13 @@ Defined in: [Time/controller.ts:558](https://github.com/jmkcoder/uplink-protocol
 
 ### getTimeFormatOptions()
 
-> **getTimeFormatOptions**(): `null` \| `DateTimeFormatOptions`
+> **getTimeFormatOptions**(): `DateTimeFormatOptions` \| `null`
 
-Defined in: [Time/controller.ts:568](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L568)
+Defined in: [Time/controller.ts:568](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L568)
 
 #### Returns
 
-`null` \| `DateTimeFormatOptions`
+`DateTimeFormatOptions` \| `null`
 
 ***
 
@@ -548,7 +548,7 @@ Defined in: [Time/controller.ts:568](https://github.com/jmkcoder/uplink-protocol
 
 > **goToCurrentTime**(): `void`
 
-Defined in: [Time/controller.ts:460](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L460)
+Defined in: [Time/controller.ts:460](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L460)
 
 #### Returns
 
@@ -560,7 +560,7 @@ Defined in: [Time/controller.ts:460](https://github.com/jmkcoder/uplink-protocol
 
 > **goToNextHour**(): `void`
 
-Defined in: [Time/controller.ts:372](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L372)
+Defined in: [Time/controller.ts:372](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L372)
 
 #### Returns
 
@@ -576,7 +576,7 @@ Defined in: [Time/controller.ts:372](https://github.com/jmkcoder/uplink-protocol
 
 > **goToNextMinute**(): `void`
 
-Defined in: [Time/controller.ts:384](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L384)
+Defined in: [Time/controller.ts:384](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L384)
 
 #### Returns
 
@@ -592,7 +592,7 @@ Defined in: [Time/controller.ts:384](https://github.com/jmkcoder/uplink-protocol
 
 > **goToNextSecond**(): `void`
 
-Defined in: [Time/controller.ts:396](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L396)
+Defined in: [Time/controller.ts:396](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L396)
 
 #### Returns
 
@@ -604,7 +604,7 @@ Defined in: [Time/controller.ts:396](https://github.com/jmkcoder/uplink-protocol
 
 > **goToPreviousHour**(): `void`
 
-Defined in: [Time/controller.ts:378](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L378)
+Defined in: [Time/controller.ts:378](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L378)
 
 #### Returns
 
@@ -620,7 +620,7 @@ Defined in: [Time/controller.ts:378](https://github.com/jmkcoder/uplink-protocol
 
 > **goToPreviousMinute**(): `void`
 
-Defined in: [Time/controller.ts:390](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L390)
+Defined in: [Time/controller.ts:390](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L390)
 
 #### Returns
 
@@ -636,7 +636,7 @@ Defined in: [Time/controller.ts:390](https://github.com/jmkcoder/uplink-protocol
 
 > **goToPreviousSecond**(): `void`
 
-Defined in: [Time/controller.ts:402](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L402)
+Defined in: [Time/controller.ts:402](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L402)
 
 #### Returns
 
@@ -648,7 +648,7 @@ Defined in: [Time/controller.ts:402](https://github.com/jmkcoder/uplink-protocol
 
 > **isCurrentTime**(`time`): `boolean`
 
-Defined in: [Time/controller.ts:638](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L638)
+Defined in: [Time/controller.ts:638](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L638)
 
 #### Parameters
 
@@ -666,7 +666,7 @@ Defined in: [Time/controller.ts:638](https://github.com/jmkcoder/uplink-protocol
 
 > **isTimeValid**(`time`): `boolean`
 
-Defined in: [Time/controller.ts:647](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L647)
+Defined in: [Time/controller.ts:647](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L647)
 
 #### Parameters
 
@@ -684,7 +684,7 @@ Defined in: [Time/controller.ts:647](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToHours**(): `void`
 
-Defined in: [Time/controller.ts:683](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L683)
+Defined in: [Time/controller.ts:683](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L683)
 
 #### Returns
 
@@ -696,7 +696,7 @@ Defined in: [Time/controller.ts:683](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToMilliseconds**(): `void`
 
-Defined in: [Time/controller.ts:697](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L697)
+Defined in: [Time/controller.ts:697](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L697)
 
 #### Returns
 
@@ -708,7 +708,7 @@ Defined in: [Time/controller.ts:697](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToMinutes**(): `void`
 
-Defined in: [Time/controller.ts:687](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L687)
+Defined in: [Time/controller.ts:687](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L687)
 
 #### Returns
 
@@ -720,7 +720,7 @@ Defined in: [Time/controller.ts:687](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToNextSegment**(): `void`
 
-Defined in: [Time/controller.ts:663](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L663)
+Defined in: [Time/controller.ts:663](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L663)
 
 #### Returns
 
@@ -732,7 +732,7 @@ Defined in: [Time/controller.ts:663](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToPeriod**(): `void`
 
-Defined in: [Time/controller.ts:703](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L703)
+Defined in: [Time/controller.ts:703](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L703)
 
 #### Returns
 
@@ -744,7 +744,7 @@ Defined in: [Time/controller.ts:703](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToPreviousSegment**(): `void`
 
-Defined in: [Time/controller.ts:673](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L673)
+Defined in: [Time/controller.ts:673](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L673)
 
 #### Returns
 
@@ -756,7 +756,7 @@ Defined in: [Time/controller.ts:673](https://github.com/jmkcoder/uplink-protocol
 
 > **moveFocusToSeconds**(): `void`
 
-Defined in: [Time/controller.ts:691](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L691)
+Defined in: [Time/controller.ts:691](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L691)
 
 #### Returns
 
@@ -768,7 +768,7 @@ Defined in: [Time/controller.ts:691](https://github.com/jmkcoder/uplink-protocol
 
 > **removeDisabledHour**(`hour`): `number`[]
 
-Defined in: [Time/controller.ts:530](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L530)
+Defined in: [Time/controller.ts:530](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L530)
 
 #### Parameters
 
@@ -786,7 +786,7 @@ Defined in: [Time/controller.ts:530](https://github.com/jmkcoder/uplink-protocol
 
 > **removeDisabledTime**(`time`): `Date`[]
 
-Defined in: [Time/controller.ts:508](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L508)
+Defined in: [Time/controller.ts:508](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L508)
 
 #### Parameters
 
@@ -804,7 +804,7 @@ Defined in: [Time/controller.ts:508](https://github.com/jmkcoder/uplink-protocol
 
 > **roundToStep**(`time`): `Date`
 
-Defined in: [Time/controller.ts:659](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L659)
+Defined in: [Time/controller.ts:659](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L659)
 
 #### Parameters
 
@@ -822,7 +822,7 @@ Defined in: [Time/controller.ts:659](https://github.com/jmkcoder/uplink-protocol
 
 > **selectFocusedSegment**(): `void`
 
-Defined in: [Time/controller.ts:709](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L709)
+Defined in: [Time/controller.ts:709](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L709)
 
 #### Returns
 
@@ -834,7 +834,7 @@ Defined in: [Time/controller.ts:709](https://github.com/jmkcoder/uplink-protocol
 
 > **selectTime**(`time`): `void`
 
-Defined in: [Time/controller.ts:346](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L346)
+Defined in: [Time/controller.ts:346](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L346)
 
 #### Parameters
 
@@ -856,7 +856,7 @@ Defined in: [Time/controller.ts:346](https://github.com/jmkcoder/uplink-protocol
 
 > **setDisabledHours**(`hours`): `number`[]
 
-Defined in: [Time/controller.ts:518](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L518)
+Defined in: [Time/controller.ts:518](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L518)
 
 #### Parameters
 
@@ -874,7 +874,7 @@ Defined in: [Time/controller.ts:518](https://github.com/jmkcoder/uplink-protocol
 
 > **setDisabledMinutes**(`minutes`): `number`[]
 
-Defined in: [Time/controller.ts:540](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L540)
+Defined in: [Time/controller.ts:540](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L540)
 
 #### Parameters
 
@@ -892,7 +892,7 @@ Defined in: [Time/controller.ts:540](https://github.com/jmkcoder/uplink-protocol
 
 > **setDisabledSeconds**(`seconds`): `number`[]
 
-Defined in: [Time/controller.ts:546](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L546)
+Defined in: [Time/controller.ts:546](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L546)
 
 #### Parameters
 
@@ -910,7 +910,7 @@ Defined in: [Time/controller.ts:546](https://github.com/jmkcoder/uplink-protocol
 
 > **setDisabledTimes**(`times`): `void`
 
-Defined in: [Time/controller.ts:497](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L497)
+Defined in: [Time/controller.ts:497](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L497)
 
 #### Parameters
 
@@ -928,13 +928,13 @@ Defined in: [Time/controller.ts:497](https://github.com/jmkcoder/uplink-protocol
 
 > **setFocusedSegment**(`segment`): `void`
 
-Defined in: [Time/controller.ts:471](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L471)
+Defined in: [Time/controller.ts:471](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L471)
 
 #### Parameters
 
 ##### segment
 
-`null` | `"hours"` | `"minutes"` | `"seconds"` | `"milliseconds"` | `"period"`
+`"hours"` | `"minutes"` | `"seconds"` | `"milliseconds"` | `"period"` | `null`
 
 #### Returns
 
@@ -946,7 +946,7 @@ Defined in: [Time/controller.ts:471](https://github.com/jmkcoder/uplink-protocol
 
 > **setHour**(`hour`, `period?`): `void`
 
-Defined in: [Time/controller.ts:436](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L436)
+Defined in: [Time/controller.ts:436](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L436)
 
 #### Parameters
 
@@ -968,7 +968,7 @@ Defined in: [Time/controller.ts:436](https://github.com/jmkcoder/uplink-protocol
 
 > **setLocale**(`locale`): `void`
 
-Defined in: [Time/controller.ts:552](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L552)
+Defined in: [Time/controller.ts:552](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L552)
 
 #### Parameters
 
@@ -986,13 +986,13 @@ Defined in: [Time/controller.ts:552](https://github.com/jmkcoder/uplink-protocol
 
 > **setMaxTime**(`time`): `void`
 
-Defined in: [Time/controller.ts:492](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L492)
+Defined in: [Time/controller.ts:492](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L492)
 
 #### Parameters
 
 ##### time
 
-`null` | `Date`
+`Date` | `null`
 
 #### Returns
 
@@ -1004,7 +1004,7 @@ Defined in: [Time/controller.ts:492](https://github.com/jmkcoder/uplink-protocol
 
 > **setMillisecond**(`millisecond`): `void`
 
-Defined in: [Time/controller.ts:454](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L454)
+Defined in: [Time/controller.ts:454](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L454)
 
 #### Parameters
 
@@ -1022,13 +1022,13 @@ Defined in: [Time/controller.ts:454](https://github.com/jmkcoder/uplink-protocol
 
 > **setMinTime**(`time`): `void`
 
-Defined in: [Time/controller.ts:487](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L487)
+Defined in: [Time/controller.ts:487](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L487)
 
 #### Parameters
 
 ##### time
 
-`null` | `Date`
+`Date` | `null`
 
 #### Returns
 
@@ -1040,7 +1040,7 @@ Defined in: [Time/controller.ts:487](https://github.com/jmkcoder/uplink-protocol
 
 > **setMinute**(`minute`): `void`
 
-Defined in: [Time/controller.ts:442](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L442)
+Defined in: [Time/controller.ts:442](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L442)
 
 #### Parameters
 
@@ -1058,7 +1058,7 @@ Defined in: [Time/controller.ts:442](https://github.com/jmkcoder/uplink-protocol
 
 > **setMinuteStep**(`step`): `void`
 
-Defined in: [Time/controller.ts:622](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L622)
+Defined in: [Time/controller.ts:622](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L622)
 
 #### Parameters
 
@@ -1076,7 +1076,7 @@ Defined in: [Time/controller.ts:622](https://github.com/jmkcoder/uplink-protocol
 
 > **setRangeSelectionMode**(`isRange`): `void`
 
-Defined in: [Time/controller.ts:415](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L415)
+Defined in: [Time/controller.ts:415](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L415)
 
 #### Parameters
 
@@ -1098,7 +1098,7 @@ Defined in: [Time/controller.ts:415](https://github.com/jmkcoder/uplink-protocol
 
 > **setSecond**(`second`): `void`
 
-Defined in: [Time/controller.ts:448](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L448)
+Defined in: [Time/controller.ts:448](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L448)
 
 #### Parameters
 
@@ -1116,7 +1116,7 @@ Defined in: [Time/controller.ts:448](https://github.com/jmkcoder/uplink-protocol
 
 > **setSecondStep**(`step`): `void`
 
-Defined in: [Time/controller.ts:630](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L630)
+Defined in: [Time/controller.ts:630](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L630)
 
 #### Parameters
 
@@ -1134,7 +1134,7 @@ Defined in: [Time/controller.ts:630](https://github.com/jmkcoder/uplink-protocol
 
 > **setShowMilliseconds**(`show`): `void`
 
-Defined in: [Time/controller.ts:610](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L610)
+Defined in: [Time/controller.ts:610](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L610)
 
 #### Parameters
 
@@ -1152,7 +1152,7 @@ Defined in: [Time/controller.ts:610](https://github.com/jmkcoder/uplink-protocol
 
 > **setShowSeconds**(`show`): `void`
 
-Defined in: [Time/controller.ts:598](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L598)
+Defined in: [Time/controller.ts:598](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L598)
 
 #### Parameters
 
@@ -1170,13 +1170,13 @@ Defined in: [Time/controller.ts:598](https://github.com/jmkcoder/uplink-protocol
 
 > **setTimeFormatOptions**(`options`): `void`
 
-Defined in: [Time/controller.ts:562](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L562)
+Defined in: [Time/controller.ts:562](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L562)
 
 #### Parameters
 
 ##### options
 
-`null` | `DateTimeFormatOptions`
+`DateTimeFormatOptions` | `null`
 
 #### Returns
 
@@ -1188,7 +1188,7 @@ Defined in: [Time/controller.ts:562](https://github.com/jmkcoder/uplink-protocol
 
 > **setUse12HourFormat**(`use12Hour`): `void`
 
-Defined in: [Time/controller.ts:586](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L586)
+Defined in: [Time/controller.ts:586](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L586)
 
 #### Parameters
 
@@ -1206,7 +1206,7 @@ Defined in: [Time/controller.ts:586](https://github.com/jmkcoder/uplink-protocol
 
 > **togglePeriod**(): `void`
 
-Defined in: [Time/controller.ts:464](https://github.com/jmkcoder/uplink-protocol-calendar/blob/c7c94af75a3a7e438811c9ee3008f982792d2fb8/src/Time/controller.ts#L464)
+Defined in: [Time/controller.ts:464](https://github.com/jmkcoder/uplink-protocol-calendar/blob/4cde26f472352440ee258db7670fce2e95651862/src/Time/controller.ts#L464)
 
 #### Returns
 
