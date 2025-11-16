@@ -1087,27 +1087,30 @@ This separation provides:
 
 ### Selection Operations
 | Task | Coordinator | Method |
-| Select date | Selection | selectDate(yearOrDate, month, day) |
-| Select month | Selection | selectMonth(month, year) |
-| Select year | Selection | selectYear(year) |
-| Clear selection | Selection | clearSelection() |
-| Set Range Selection Mode | Selection | setRangeSelectionMode(isRange) |
+|------|-------------|--------|
+| Select date | Selection | `selectDate(yearOrDate, month, day)` |
+| Select month | Selection | `selectMonth(month, year)` |
+| Select year | Selection | `selectYear(year)` |
+| Clear selection | Selection | `clearSelection()` |
+| Set Range Selection Mode | Selection | `setRangeSelectionMode(isRange)` |
 
 ### Year Range Operations
 | Task | Coordinator | Method |
-| Get Current Year Range | Navigation | getCurrentYearRange() |
-| Set Current Year Range | Navigation | setCurrentYearRange(date) |
-| Set Year Range Size | Configuration | setYearRangeSize(size) |
-| Get Year Range Size | Configuration | getYearRangeSize() |
+|------|-------------|--------|
+| Get Current Year Range | Navigation | `getCurrentYearRange()` |
+| Set Current Year Range | Navigation | `setCurrentYearRange(date)` |
+| Set Year Range Size | Configuration | `setYearRangeSize(size)` |
+| Get Year Range Size | Configuration | `getYearRangeSize()` |
 
 ## State Getters
 | Task | Coordinator | Method |
-| Get Current Date | StateManager | getCurrentDate() |
-| Get Selected Date | StateManager | getSelectedDate() |
-| Get Focused Date | StateManager | getFocusedDate() |
-| Get Minimum Date | StateManager | getMinDate() |
-| Get Maximum Date | StateManager | getMaxDate() |
-| Get Range Selection Mode | StateManager | getRangeSelectionMode() |
+|------|-------------|--------|
+| Get Current Date | StateManager | `getCurrentDate()` |
+| Get Selected Date | StateManager | `getSelectedDate()` |
+| Get Focused Date | StateManager | `getFocusedDate()` |
+| Get Minimum Date | StateManager | `getMinDate()` |
+| Get Maximum Date | StateManager | `getMaxDate()` |
+| Get Range Selection Mode | StateManager | `getRangeSelectionMode()` |
 
 ### State Access
 | Task | Coordinator | Property |
