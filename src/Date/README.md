@@ -997,23 +997,19 @@ This separation provides:
 | Select year | Selection | `selectYear(year)` |
 | Clear selection | Selection | `clearSelection()` |
 | Set range selection mode | Selection | `setRangeSelectionMode(isRange)` |
-| Get selected date | StateManager | `selectedDate` |
-| Get selected range | StateManager | `selectedDateRange` |
 
 ### Constraint Management
 | Task | Coordinator | Method |
 |------|-------------|--------|
 | Set minimum date | Constraints | `setMinDate(date)` |
 | Set maximum date | Constraints | `setMaxDate(date)` |
-| Clear minimum date | Constraints | `clearMinDate()` |
-| Clear maximum date | Constraints | `clearMaxDate()` |
 | Set disabled dates | Constraints | `setDisabledDates(dates[])` |
+| Get disabled dates | Constraints | `getDisabledDates()` |
 | Add disabled date | Constraints | `addDisabledDate(date)` |
 | Remove disabled date | Constraints | `removeDisabledDate(date)` |
-| Clear disabled dates | Constraints | `clearDisabledDates()` |
 | Set disabled days of week | Constraints | `setDisabledDaysOfWeek(days[])` |
-| Clear disabled days | Constraints | `clearDisabledDaysOfWeek()` |
-| Check if date disabled | Utility | `isDateDisabled(date)` |
+| Get disabled days of week | Constraints | `getDisabledDaysOfWeek()` |
+| Remove disabled days of week | Constraints | `removeDisabledDayOfWeek(day)` |
 
 ### Focus & Keyboard Navigation
 | Task | Coordinator | Method |
@@ -1021,95 +1017,100 @@ This separation provides:
 | Focus a date | Focus | `focusDate(date)` |
 | Set focused date | Focus | `setFocusedDate(date)` |
 | Clear focused date | Focus | `clearFocusedDate()` |
+| Select focused date | Focus | `selectFocusedDate()` |
+| Get accessible date label | Focus | `getAccessibleDateLabel(date)` |
+| Get date state description | Focus | `getDateStateDescription(date)` |
 | Move focus left (←) | Focus | `moveFocusLeft()` |
 | Move focus right (→) | Focus | `moveFocusRight()` |
 | Move focus up (↑) | Focus | `moveFocusUp()` |
 | Move focus down (↓) | Focus | `moveFocusDown()` |
-| Move to start of week (Home) | Focus | `moveFocusToStartOfWeek()` |
-| Move to end of week (End) | Focus | `moveFocusToEndOfWeek()` |
-| Move to start of month | Focus | `moveFocusToStartOfMonth()` |
-| Move to end of month | Focus | `moveFocusToEndOfMonth()` |
-| Move focus page up (PgUp) | Focus | `moveFocusPageUp()` |
-| Move focus page down (PgDn) | Focus | `moveFocusPageDown()` |
-| Select focused date | Focus | `selectFocusedDate()` |
-| Get accessible date label | Focus | `getAccessibleDateLabel(date)` |
-| Get date state description | Focus | `getDateStateDescription(date)` |
+| Move focus to start of week (Home) | Focus | `moveFocusToStartOfWeek()` |
+| Move focus to end of week (End) | Focus | `moveFocusToEndOfWeek()` |
+| Move focus to start of month | Focus | `moveFocusToStartOfMonth()` |
+| Move focus to end of month | Focus | `moveFocusToEndOfMonth()` |
+| Move focus to next month | Focus | `moveFocusToNextMonth()` |
+| Move focus to previous month | Focus | `moveFocusToPreviousMonth()` |
+| Move focus to next year | Focus | `moveFocusToNextYear()` |
+| Move focus to previous year | Focus | `moveFocusToPreviousYear()` |
+| Get aria label for date | Focus | `getAriaLabel(date)` |
+| Get aria label for month | Focus | `getAriaLabelForMonth(month, year)` |
+| Get aria label for year | Focus | `getAriaLabelForYear(year)` |
 
 ### Formatting Operations
 | Task | Coordinator | Method |
 |------|-------------|--------|
+| Get formatted date | Formatting | `getFormattedDate()` |
 | Format date | Formatting | `formatDate(date)` |
 | Format with options | Formatting | `formatDateWithOptions(date, options)` |
-| Get formatted date | Formatting | `getFormattedDate()` |
-| Set date format | Formatting | `setDateFormat(format)` |
-| Get date format | Formatting | `getDateFormat()` |
-| Set date format options | Formatting | `setDateFormatOptions(options)` |
-| Get date format options | Formatting | `getDateFormatOptions()` |
-| Parse date string | Formatting | `parseDate(dateString)` |
+| Get month name | Formatting | `getMonthName(month, format, locale)` |
+| Get day name | Formatting | `getMonthName(dayOfWeek, format, locale)` |
+| Get days' names | Formatting | `getDayNames(format, locale)` |
+| Get weekdays' names | Formatting | `getWeekdayNames(format, locale)` |
+| Get months' names | Formatting | `getMonthNames(format, locale)` |
 
 ### Localization Operations
 | Task | Coordinator | Method |
 |------|-------------|--------|
 | Set locale | Localization | `setLocale(locale)` |
 | Get locale | Localization | `getLocale()` |
-| Get month names | Localization | `getMonthNames()` |
-| Get short month names | Localization | `getShortMonthNames()` |
-| Get day names | Localization | `getDayNames()` |
-| Get short day names | Localization | `getShortDayNames()` |
-| Get narrow day names | Localization | `getNarrowDayNames()` |
-| Set first day of week | Localization | `setFirstDayOfWeek(day)` |
-| Get first day of week | Localization | `getFirstDayOfWeek()` |
-| Set hide other month days | Localization | `setHideOtherMonthDays(hide)` |
-| Get hide other month days | Localization | `getHideOtherMonthDays()` |
+| Set Date Format | Localization | `setDateFormat(format)` |
+| Get Date Format | Localization | `getDateFormat()` |
+| Set Date Format Options | Localization | `setDateFormatOptions(options)` |
+| Get Date Format Options | Localization | `getDateFormatOptions()` |
+| Set First Day of Week | Localization | `setFirstDayOfWeek(day)` |
+| Get First Day of Week | Localization | `getFirstDayOfWeek()` |
+| Set Hide Other Month Days | Localization | `setHideOtherMonthDays(hide)` |
+| Get Hide Other Month Days | Localization | `getHideOtherMonthDays()` |
 
 ### View Generation
 | Task | Coordinator | Method |
 |------|-------------|--------|
-| Generate month view | ViewGeneration | `generateCurrentMonthView()` |
-| Generate year view | ViewGeneration | `generateCurrentYearView()` |
 | Generate calendar days | ViewGeneration | `generateCalendarDays()` |
 | Generate calendar months | ViewGeneration | `generateCalendarMonths()` |
 | Generate calendar years | ViewGeneration | `generateCalendarYears()` |
-| Get current month data | CalendarGenerator | `generateCalendarDays()` |
-| Get year months data | CalendarGenerator | `generateCalendarMonths()` |
-| Get year range data | CalendarGenerator | `generateCalendarYears()` |
-
-### Binding Management
-| Task | Coordinator | Method |
-|------|-------------|--------|
-| Update all bindings | Bindings | `updateAllBindings()` |
-| Update specific binding | Bindings | `updateBinding(name)` |
-| Batch binding updates | Bindings | `executeBatchedBindingUpdates()` |
-| Initialize bindings | Bindings | `initializeBindings()` |
-
-### Configuration
-| Task | Coordinator | Method |
-|------|-------------|--------|
-| Apply options | Configuration | `applyOptions(options)` |
-| Set year range size | Configuration | `setYearRangeSize(size)` |
-| Get year range size | Configuration | `getYearRangeSize()` |
-| Set range selection mode | Configuration | `setRangeSelectionMode(isRange)` |
+| Get ISO Week number | CalendarGenerator | `getWeekNumber()` |
+| Generate month view | CalendarGenerator | `generateMonthView()` |
+| Generate year view | CalendarGenerator | `generateYearView()` |
 
 ### Utility Operations
 | Task | Coordinator | Method |
 |------|-------------|--------|
 | Check if date disabled | Utility | `isDateDisabled(date)` |
+| Check if date selected | Utility | `isDateSelected(date)` |
+| Check if date in range | Utility | `isDateInRange(date)` |
 | Check if date is today | Utility | `isToday(date)` |
-| Get week number | Utility | `getWeekNumber(date)` |
-| Get disabled dates | Utility | `getDisabledDates()` |
-| Get disabled days of week | Utility | `getDisabledDaysOfWeek()` |
-| Check if date in range | Utility | `isDateInRange(date, start, end)` |
 | Check if same day | Utility | `isSameDay(date1, date2)` |
 | Check if same month | Utility | `isSameMonth(date1, date2)` |
 | Check if same year | Utility | `isSameYear(date1, date2)` |
-| Add days to date | Utility | `addDays(date, days)` |
-| Add months to date | Utility | `addMonths(date, months)` |
-| Add years to date | Utility | `addYears(date, years)` |
-| Get days in month | Utility | `getDaysInMonth(month, year)` |
-| Get start of month | Utility | `getStartOfMonth(date)` |
-| Get end of month | Utility | `getEndOfMonth(date)` |
-| Get start of week | Utility | `getStartOfWeek(date)` |
-| Get end of week | Utility | `getEndOfWeek(date)` |
+| Get day of week | Utility | `getDayOfWeek(date)` |
+| Get days in month | Utility | `getDaysInMonth(year, month)` |
+
+### Selection Operations
+| Task | Coordinator | Method |
+|------|-------------|--------|
+| Select date | Selection | `selectDate(yearOrDate, month, day)` |
+| Select month | Selection | `selectMonth(month, year)` |
+| Select year | Selection | `selectYear(year)` |
+| Clear selection | Selection | `clearSelection()` |
+| Set Range Selection Mode | Selection | `setRangeSelectionMode(isRange)` |
+
+### Year Range Operations
+| Task | Coordinator | Method |
+|------|-------------|--------|
+| Get Current Year Range | Navigation | `getCurrentYearRange()` |
+| Set Current Year Range | Navigation | `setCurrentYearRange(date)` |
+| Set Year Range Size | Configuration | `setYearRangeSize(size)` |
+| Get Year Range Size | Configuration | `getYearRangeSize()` |
+
+## State Getters
+| Task | Coordinator | Method |
+|------|-------------|--------|
+| Get Current Date | StateManager | `getCurrentDate()` |
+| Get Selected Date | StateManager | `getSelectedDate()` |
+| Get Focused Date | StateManager | `getFocusedDate()` |
+| Get Minimum Date | StateManager | `getMinDate()` |
+| Get Maximum Date | StateManager | `getMaxDate()` |
+| Get Range Selection Mode | StateManager | `getRangeSelectionMode()` |
 
 ### State Access
 | Task | Coordinator | Property |
