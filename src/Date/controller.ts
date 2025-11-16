@@ -443,6 +443,22 @@ export class CalendarControllerClass implements CalendarControllerInterface {
     return this.viewGenerationCoordinator.getWeekNumber(date);
   }
 
+  public generateMonthView(): {
+    month: number;
+    year: number;
+    weeks: { days: CalendarDate[]; weekNumber?: number }[];
+    weekdays: string[];
+  } {
+    return this.viewGenerationCoordinator.generateMonthView();
+  }
+
+  public generateYearView(): {
+    months: CalendarMonth[];
+    year: number;
+  } {
+    return this.viewGenerationCoordinator.generateYearView();
+  }
+
   // =============================================================================
   // UTILITY (Delegated to UtilityCoordinator)
   // =============================================================================
@@ -1010,26 +1026,6 @@ export class CalendarControllerClass implements CalendarControllerInterface {
 
   public getRangeSelectionMode(): boolean {
     return this._isRangeSelection;
-  }
-
-  // =============================================================================
-  // VIEW GENERATION (Delegated to ViewGenerationCoordinator)
-  // =============================================================================
-
-  public generateMonthView(): {
-    month: number;
-    year: number;
-    weeks: { days: CalendarDate[]; weekNumber?: number }[];
-    weekdays: string[];
-  } {
-    return this.viewGenerationCoordinator.generateMonthView();
-  }
-
-  public generateYearView(): {
-    months: CalendarMonth[];
-    year: number;
-  } {
-    return this.viewGenerationCoordinator.generateYearView();
   }
 
   // =============================================================================
